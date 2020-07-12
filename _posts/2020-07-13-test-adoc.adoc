@@ -1,0 +1,51 @@
+=  Post sample
+:showtitle:
+:page-layout: post
+:page-navtitle: sample
+:page-excerpt: Excerpt goes here.
+:page-root: ../../../
+:page-liquid:
+:page-permalink: sample-permalink
+:page-categories: [dev]
+
+== Title 1
+
+[.left]
+image::{{site.imgpath}}/sample/sample.jpg[180,120]
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In iaculis erat tellus. Vestibulum in justo dolor. Donec finibus, eros non pulvinar blandit, metus purus porta mi, in lobortis mauris ante et quam. Etiam gravida euismod blandit. Maecenas hendrerit porta fermentum. Vivamus laoreet mollis diam sit amet aliquet. Nunc eros justo, interdum id feugiat non, posuere ut massa. Praesent sed lacus odio. Morbi elit tellus, vestibulum mollis mauris sed, ultrices convallis nisl. Sed a commodo ante. Pellentesque consectetur erat est, in vulputate enim bibendum sit amet.
+
+== Title 2
+
+=== Title 2.1
+
+Suspendisse molestie metus in urna congue, non egestas arcu sollicitudin. Fusce id condimentum quam. Nullam viverra, ligula vel tincidunt tempor, tellus massa imperdiet sem, nec lobortis arcu nulla non massa. Sed non viverra felis. Sed ut ornare elit. In consectetur, lorem at cursus hendrerit, tellus libero convallis nulla, at feugiat risus quam sit amet turpis. Nulla interdum enim id eleifend cursus. Nam iaculis, orci vel vehicula viverra, erat lorem viverra arcu, consectetur auctor diam mauris sed eros. Proin bibendum, risus ut feugiat ullamcorper, purus purus tempor risus, vel feugiat libero metus molestie turpis. Sed dignissim ornare lacus at convallis. In hac habitasse platea dictumst. Sed sed metus non eros ultricies volutpat. Etiam ut dui eget enim ultrices iaculis commodo at quam. Sed et libero a elit mattis consequat vel a elit.
+
+.Source code
+[source,sh]
+----
+ls -la
+mkdir stuff
+----
+
+=== Title 2.2
+
+List :
+
+* item
+* item
+** subitem
+** subitem
+
+== Title 3
+
+link:https://jekyllrb.com/[Jekyll website]
+
+== Title 4
+
+.Legend (link:https://google.com[link])
+[link={{site.imgpath}}/sample/sample.jpg]
+image::{{site.imgpath}}/sample/sample.jpg[300,200]
+
+.Youtube video
+video::oavMtUWDBTM[youtube]
