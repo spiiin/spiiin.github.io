@@ -1,0 +1,44 @@
+{
+  "name": "hexo-site",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "4.2.1"
+  },
+  "dependencies": {
+    "hexo": "^4.2.1",
+    "hexo-abbrlink": "^2.2.1",
+    "hexo-admin": "^2.3.0",
+    "hexo-asset-link": "^2.0.1",
+    "hexo-broken-links-checker": "^2.1.0",
+    "hexo-browsersync": "^0.3.0",
+    "hexo-deployer-git": "^2.1.0",
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-feed": "^2.2.0",
+    "hexo-generator-fragments": "^1.0.0",
+    "hexo-generator-index": "^1.0.0",
+    "hexo-generator-sitemap": "^2.0.0",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-pagination": "^1.0.0",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-jade": "^0.5.0",
+    "hexo-renderer-kramed": "^0.1.4",
+    "hexo-renderer-stylus": "^1.1.0",
+    "hexo-server": "^1.0.0",
+    "hexo-sliding-spoiler": "^1.2.1",
+    "hexo-tag-autogallery": "0.0.1",
+    "hexo-tag-details": "^0.1.7",
+    "hexo-tag-hint": "^0.3.1",
+    "hexo-tag-nomnoml": "0.0.2",
+    "hexo-tag-qrcode": "^1.0.0",
+    "hexo-tag-youtube-responsive": "^0.4.2",
+    "hexo-valkyr-url": "^1.1.0"
+  }
+}

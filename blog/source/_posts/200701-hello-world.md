@@ -1,0 +1,179 @@
+---
+title: Hello World
+tag: hexo
+abbrlink: 16107
+date: 2020-07-01 15:45:28
+---
+**Hello, world!**
+Немного тестов разметки
+<!-- more -->
+
+---
+
+Заголовки
+
+# Заголовок1
+
+## Заголовок2
+
+---
+
+Код:
+
+```nim
+echo "code without line numbers"
+```
+
+{% codeblock hello.cpp lang:cpp line_number:true first_line:100 mark:2-5 %}
+using namespace std;
+cout << "Code";
+cout << "with";
+cout << "line";
+cout << "numbers";
+cout << end;
+{% endcodeblock %}
+
+{% codeblock hello.cpp lang:cpp line_number:true %}
+namespace std {
+    template<> struct tuple_element<0,Config> { using type = std::string_view; };
+    template<> struct tuple_element<1,Config> { using type = std::size_t; };
+    template<> struct tuple_element<2,Config> { using type = const std::vector<std::string>&; };
+}
+{% endcodeblock %}
+
+---
+
+Цитаты:
+
+{% blockquote spiiin %}
+"Citate from me"
+{% endblockquote %}
+
+---
+
+Списки:
+
+- список1
+- список2
+  - список21
+  - список22
+    - *список221*
+- список3
+
+Тест 2
+
+- **Языки**
+  - [C++](https://c++)
+  - C#
+  - Python
+- **Движки**
+  - Unity
+  - Cocos2d
+  - Godot
+---
+Большой список с уточнениями:
+
+**`- Один`**
+Объяснение на много
+много
+много строк.
+ 
+**`- Два`**
+Длинное объяснение
+ 
+**`- Три`**
+Ещё одно объснение, в несколько предложений.
+Или абзацев.
+
+---
+Текст
+
+болд - **text**
+курсив - *text*
+болд+курсив - ***text***
+код - `code`
+код-болд - **`code-bold`**
+
+---
+Ссылки
+
+Глобальная - [Google](https://google.com/)
+На пост в блоге - {% post_link 200718-hello-hexo 'Hello, hexo' %}
+
+---
+
+Спойлер:
+
+{% spoiler gist %}
+{% gist 44721f2e5a70294fa390218ad92385e4 james_bond_nim.nim %}
+{% endspoiler %}
+
+---
+
+{% details Развернуть %}
+Текст
+{% enddetails %}
+
+---
+
+Хинт
+
+Не работает в начале строки - {% hint 'Test' 'Multiline' 'hint' %}
+
+---
+
+Таблицы
+
+| Tables        | Are                      | Cool  |
+| ------------- |:------------------------:| -----:|
+| col 3 is      | *right-aligned*          | $1600 |
+| col 2 is      | centered                 |   $12 |
+| zebra stripes | are neat                 |    $1 |
+
+| `Table Header 1` | `Table Header 2` | `Table Header 3` |
+| - | - | - |
+| Division 1 | Division 2 | Division 3 |
+| Division 1 | Division 2 | Division 3 |
+| Division 1 | Division 2 | Division 3 |
+
+
+Backticks escape: \`are\` these!
+
+---
+
+Картинки
+
+![fox](200701-hello-world/fox.png)
+---
+
+---
+Плагин для youtube:
+{% youtuber video GR18emXxAi0 %}
+{% endyoutuber %}
+
+---
+Плагин valkyr-url:
+
+{% valkyrurl
+[url=https://github.com/spiiin/CadEditor]
+[title="Cad Editor"]
+[avatar="https://raw.githubusercontent.com/spiiin/CadEditor/master/CadEditor/cadIco.png"]
+[desc="CadEditor is level editor for many classic console games"]
+%}
+
+---
+Nomnoml diagram
+
+{% nomnoml '{"style":"background-color:white;"}'%}
+#fill: #eee8d5;
+[hello] -> [world]
+[1] -> [2]
+[1] -> [3]
+[2]  -> [4]
+{% endnomnoml %}
+
+---
+Плагин для qrcode 
+{% qrcode "hello, world" alt:"hello, world" title:"hello, world" hello world %}
+---
+
