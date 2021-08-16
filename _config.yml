@@ -91,6 +91,7 @@ menu:
 
 favicon: /images/favicon.png
 syntax_highlight: darkula
+disqus: spiiin-github-io
 googleAnalytics: UA-00000000-0
 
 deploy:
