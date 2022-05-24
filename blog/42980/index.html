@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Памятка для начинающего iphone и macosx gamedeveloper'а</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h3 class="article__title">Памятка для начинающего iphone и macosx gamedeveloper'а</h3><div class="article__date metadata"><div class="post-info">2011/04/10</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/objc/">objc</a><a class="article__tags__link metadata" href="/tags/opengl/">opengl</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Cижу, изучаю маковских <a href="http://bash.org.ru/quote/408098" target="_blank" rel="noopener">юных дев</a> , курю маны. Небольшая памятка: 1. Компилятор и <a href="http://www.gnu.org/software/binutils/" target="_blank" rel="noopener">binutils</a> </p>
+<h2 id="Тулзы"><a href="#Тулзы" class="headerlink" title="Тулзы"></a>Тулзы</h2><p><strong>gcc + cc + g++ </strong>- набор компиляторов, gcc вроде вызывает нужный, но иногда удобнее вызвать необходимый, чем подбирать командную строку, перекрывающую его умолчания. </p>
+<p>Важные параметры:<br>-x передать параметр линкеру<br>-Ox - уровень оптимизации с номером x, x больше -&gt; оптимизации сильнее. Включают в себя сразу наборы из разных опций оптимизации и генерации отладочной информации. </p>
+<p>Стадии:<br>-E препроцессинг<br>-S ассемблерный листинг -c только компиляция, не генерировать объектный код<br>-Dсимвол - передать дефайн препроцессору<br>-Wтекст - включение предупреждений<br>-Werror - считать предупреждения ошибками. Для фанатиков чистоты.<br>-iпуть - искать заголовочные файлы в заданной папке. Может встречаться в командной строке несколько раз.<br>-arch тип - архитектура, под которой будет выполняться код. Можно задать сразу несколько. </p>
+<p><strong>ld</strong> - линкер. </p>
+<p>-lлиб - подключить библиотеку с именем либ<br>-Lпуть - путь к библиотекам<br>-framework<br>-weak_framework - подключить <a href="http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html" target="_blank" rel="noopener">фреймворк</a> (являющийся набором заголовочных файлов, ресурсов, библиотек). </p>
+<p><strong>ar и ranlib</strong> - утилиты для сборки файлов в библиотеку для последующей линковки. В более широком применении - архиватор.</p>
+<p><strong>nm</strong> - просмотр информации о библиотеках и исполнимых файлах.</p>
+<p><strong>strip</strong> - вырезалка имен символов.</p>
+<p><strong>arch и lipo</strong> - позволяют управлять исполнимыми файлами, содержащими несколько архитектур (создавать и запускать разные версии). Мак под рукой поддерживает i386, x64_86 и ppc.</p>
+<p><strong>sign</strong> - подписать файл сертификатом разработчика.</p>
+<p>Еще бы gdc и shark упомянуть, но я ими не пользуюсь.</p>
+<h2 id="Cocoa"><a href="#Cocoa" class="headerlink" title="Cocoa"></a>Cocoa</h2><p> <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/EventOverview/Introduction/Introduction.html#//apple_ref/doc/uid/10000060i-CH1-SW1" target="_blank" rel="noopener">Cocoa Event-Handling Guide</a> </p>
+<p><a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaViewsGuide/Introduction/Introduction.html" target="_blank" rel="noopener">View programming guide</a> (часть) </p>
+<p><a href="http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_drawing/opengl_drawing.html" target="_blank" rel="noopener">Opengl programming guide</a> </p>
+<p><a href="http://developer.apple.com/" target="_blank" rel="noopener">http://developer.apple.com/</a> - доки по NSObject, NSResponder, NSBundle, NSApplication, NSRunLoop, NSWindow, NSView, NSOpenGLView, NSTimer, NSApplicationDelegate, NSViewController </p>
+<p>Как создать приложение без главного nib-файла : <a href="http://lapcatsoftware.com/blog/2007/06/10/working-without-a-nib-part-5-no-3" target="_blank" rel="noopener">http://lapcatsoftware.com/blog/2007/06/10/working-without-a-nib-part-5-no-3</a> (правка info.plist + перегрузка NSApplication + подстановка своего класса вместо NSBundle + настройки стилей NSWindow для приема событий мыши и клавиатуры и внешнего вида) </p>
+<h2 id="Render"><a href="#Render" class="headerlink" title="Render"></a>Render</h2><p>Нативными для GUI являются <code>Cocoa</code> или <code>Carbon</code>. </p>
+<p>Cocoa лежит во фреймфорке ApplicationKit/UIKit (для macosx / iphone)<br>В Cocoa для рисования можно использовать Quartz или OpenGL. </p>
+<p><code>OpenGL</code> представлена в виде фреймворка OpenGL, в котором содержатся библиотеки <code>gl, glu, glut, glx</code>.</p>
+<p>Для использования OpenGL можно выбрать надстройки CGL* и NSOpenGL. Вторая состоит готовых классов-наборов установок для первой, а также частично просто дублирует классы CGL.</p>
+<p>A drawable object can be any of the following: a Cocoa view, offscreenmemory, a full-screen graphics device, or a pixel buffer. - Смешивать отрисовку контролов из Cocoa и отрисовку OpenGL надо также аккуратно, как и в любой другой ОС. А лучше вообще не смешивать.</p>
+<p>Полезная схема : <img src="http://developer.apple.com/library/mac/documentation/graphicsimaging/conceptual/OpenGL-MacProgGuide/art/opengl_architecture.jpg" alt="opengl on mac"></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><section class="comments"><div id="disqus_thread"></div><script>var disqus_shortname = 'spiiin-github-io';
+(function () {
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//#{theme.disqus}.disqus.com/count.js" async></script></section><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/58472/">Next</a><a class="pagination__link pagination__next" href="/blog/32194/">Back</a></div></main><footer class="footer metadata"><p class="footer__text">© 2022 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

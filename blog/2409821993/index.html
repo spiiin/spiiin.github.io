@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Mastering Bitcoin</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h3 class="article__title">Mastering Bitcoin</h3><div class="article__date metadata"><div class="post-info">2017/12/24</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/python/">python</a><a class="article__tags__link metadata" href="/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/">книги</a><a class="article__tags__link metadata" href="/tags/%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE/">крипто</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Дочитал <a href="https://www.bitcoinbook.info/" target="_blank" rel="noopener">Mastering Bitcoin</a>, в книжке рассказывается как о базовых концепциях самой известной криптовалюты, так и о программах/библиотеках для работы с ней.</p>
+<p>Всё это описывается детально, виден “скелет” всего, что происходит внутри системы. Описано, как с помощью простого скрипта на Python собрать, подписать и отправить транзакцию со своего адреса, имея только приватный ключ от него.  </p>
+<p>Низкоуровневые подробности интересны будут только для разработки своих приложений, но разобраться в функционировании системы будет полезно любым программистам, из-за хайпа вокруг биткоинов многих интересует только их текущий курс к доллару =\  </p>
+<p> Забавляет, что в качестве примеров часто приводятся цифры, которые по текущему курсу подходят скорее не для оплаты чашки кофе, а для покупки кофейни.  </p>
+<p>В качестве упражнения попробовал повторить исследования хакера по <a href="https://spiiin.dreamwidth.org/113215.html" target="_blank" rel="noopener">поиску кладов в блокчейне</a>. Адреса всех неизрасходованных выходов транзакций блокчейна (UTXO) можно получить из полного узла, или, если лень его качать, то их периодически выкладывают <a href="https://bitcointalk.org/index.php?topic=267618.100" target="_blank" rel="noopener">тут</a> (~20 млн адресов в данный момент).  </p>
+<p>Получается примерно такой код:<br><a href="https://gist.github.com/spiiin/f929da13d7f4c2ee31365f59ac22bb02" target="_blank" rel="noopener">https://gist.github.com/spiiin/f929da13d7f4c2ee31365f59ac22bb02</a>  </p>
+<p>Забавно, что по <a href="https://blockchain.info/address/1Q7f2rL2irjpvsKVys5W2cmKJYss82rNCy" target="_blank" rel="noopener">первому же адресу</a> из примера удалось обнаружить немного реальных денег (574 сатоши, уже забрали из этого кошелька).</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><section class="comments"><div id="disqus_thread"></div><script>var disqus_shortname = 'spiiin-github-io';
+(function () {
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//#{theme.disqus}.disqus.com/count.js" async></script></section><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/563455770/">Next</a><a class="pagination__link pagination__next" href="/blog/848593933/">Back</a></div></main><footer class="footer metadata"><p class="footer__text">© 2022 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
