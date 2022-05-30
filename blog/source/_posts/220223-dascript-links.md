@@ -16,9 +16,8 @@ tags: gamedev
 
 Модули
 [dasCurl](https://github.com/VasiliyRyabtsev/dasCurl) - байндинги и libcurl
-https://github.com/VasiliyRyabtsev/dasRequests
-[dasRequers](https://github.com/VasiliyRyabtsev/dasRequests) - обёртка над dasCurl
-[dasPhys2d](https://github.com/VasiliyRyabtsev/dasPhys2d) - байндинги к box2d
+[dasRequests](https://github.com/VasiliyRyabtsev/dasRequests) - сгенерированная обёртка над curl
+[dasPhys2d](https://github.com/VasiliyRyabtsev/dasPhys2d) - сгенерированные байндинги к box2d
 [dasVulkan](https://github.com/olegus8/dasVulkan) - байндинги к Vulkan
 [das-web](https://github.com/profelis/das-web) - работа с сетью
 [das-web-samples](https://github.com/profelis/das-web-samples) - примеры работы с web
