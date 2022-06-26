@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | daScript - как учить</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h3 class="article__title">daScript - как учить</h3><div class="article__date metadata"><div class="post-info">2022/06/26</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>На что в первую очередь посмотреть при изучении нового языка программирования, на примере daScript, но можно и применительно к другим языкам. Сырой список.</p>
+<p><code>Обзор языка, мотивация</code></p>
+<ul>
+<li>Кто и зачем делает ещё один язык программирования, какие проблемы он решает</li>
+<li>Какие возможности даёт язык, позволяет ли сочетание этих возможностей потеницально решить какие-либо ещё мои проблемы, кроме декларируемых авторами</li>
+<li>Официальная документация, обзорные статьи, поиск существующих комьюнити</li>
+<li>Лицензия, support</li>
+<li>Планы, роадмап, периодичность обновлений, стабильность ядра языка</li>
+<li>Поддерживаемые платформы и архитектуры, использование бекэндов/фронтэндов (llvm)</li>
+</ul>
+<p><code>Чтение кода</code></p>
+<ul>
+<li>Примеры от авторов, код тестов</li>
+<li>Чтение кода стандартной библиотеки</li>
+<li>Сторонние библиотеки</li>
+</ul>
+<p><code>Практика 1. Простые примеры</code></p>
+<ul>
+<li>Как хранятся в памяти типы<br>— работа со значениями/указателями/ссылками<br>— когда неожиданное дополнительное копирование, когда можно избежать, есть ли быстрые способы настройки/проверки<br>— особенности преобразования и приведения типов, что можно настроить для своих типов<br>— базовые типы<br>— особенности типизации<br>— настройки мутабельности/чистоты<br>— Глобальные/статические переменные</li>
+<li>Конструкции управления</li>
+<li>Часто используемые фичи языка (ленивость, аннотации, генераторы etc)</li>
+<li>Строки<br>— какие есть типы для представления строк<br>— представление в памяти различных типов<br>— кодировки</li>
+<li>Композия типов<br>— Классы, типы наследования, способы композиции данных<br>— модули</li>
+<li>Стандартные контейнеры/коллекции/последовательности</li>
+</ul>
+<p><code>Практика 2</code></p>
+<ul>
+<li>Стандартная библиотека<br>— работы с вводом/выводом, файлами и путями, сетью<br>— асинхронность - потоки, файберы, примитива синхронизации, корутины, асинхронное выполнение кода. Jobque<br>— идиомы языка</li>
+<li>приёмы обработки ошибок</li>
+<li>generic-программирование</li>
+<li>макросы, работа с AST языка</li>
+<li>compile-time вычисления</li>
+<li>способы генерации кода</li>
+<li>rtti, рефлексия — возможности настройки</li>
+</ul>
+<p><code>DSL языка</code></p>
+<ul>
+<li>форматирование и способы вывода различных типов данных</li>
+<li>json_boost, regexp_boost, decs_boost, opengl_boost</li>
+<li>способы создания своих dsl</li>
+</ul>
+<p><code>Работа с памятью</code></p>
+<ul>
+<li>Способы аллокации и освобождения памяти</li>
+<li>Принятые паттерны работы с выделением и освобождением памяти, время жизни объектов<br>— gc<br>— raii<br>— опции и настройки компилятора<br>— способа кастомизации объектов в памяти — кастомная аллокация, выравнивание, способы переопределить расположение данных в памяти<br>— способы реификации стандартных систем языка в памяти (для изучения стоимости этих фич) — способы наследования, корутины, генераторы, continuations, функторы, замыкания, внутренности контейнеров</li>
+</ul>
+<p><code>Работа с мультимедиа</code></p>
+<ul>
+<li>рендер, графика, анимация, звук, гуи, работа со стандартными форматами файлов, 3d-математика</li>
+<li>шейдеры, системы материалов, способы реализации эффектов</li>
+</ul>
+<p><code>Отладка</code></p>
+<ul>
+<li>Особенности обнаружения и сигналов о различных типах ошибок компилятором</li>
+<li>Отладочные контексты</li>
+<li>Профайлер</li>
+<li>Отладчик</li>
+<li>Настройки компилятора для режимов отладки</li>
+<li>Способы работы с тестами</li>
+<li>Возможность настроить язык (уровень проверки ошибок, всякие прагмы -Wall, -pedantic) и расширять язык, диалекты</li>
+</ul>
+<p> <code>Среда разработки</code></p>
+<ul>
+<li>Поддержка интеграции в IDE (подсветка, автодополнение, подсказки, переходы по коду, апи связи с существующими тулзами, language server plugin etc)</li>
+<li>Проверка наличия и качеств собственной среды разработки. Dasbox</li>
+<li>Сочетаемость с инструментами (санитайзеры, профайлеры etc)</li>
+<li>Особенности системы сборки</li>
+<li>Способы сборки (интерпретация, компиляция, транспиляция, настройки vm, jit/aot)</li>
+<li>Линтеры</li>
+<li>Работа с документацией</li>
+</ul>
+<p><code>Встраивание, кросс-языковое взаимодействие</code></p>
+<ul>
+<li>FFI, вызовы кода на других языках</li>
+<li>Модули расширения языка</li>
+<li>Написание и генерация обёрток для своих и чужих классов и готовых библиотек</li>
+<li>Передача управления между кодом на разных языках</li>
+<li>Настройки встраивания языка в программу</li>
+<li>Возможные архитектуры программы на C++ + daScript (настройка AoT, хот релоадинг, расширение классов C++ на daScript)</li>
+<li>Способы работы со скриптовыми контекстами из C++</li>
+<li>Способы межпроцессного/междуконтекстного взаимодействия</li>
+</ul>
+<p><code>Поддержка паттернов и парадигм программирования</code></p>
+<ul>
+<li>ECS</li>
+<li>Функциональное программирование</li>
+<li>Особенности ООП</li>
+</ul>
+<p><code>Оптимизация</code></p>
+<ul>
+<li>Настройки компилятора</li>
+<li>Возможности по улучшению производительности существующего кода</li>
+<li>Best practicies от авторов языка и библиотек</li>
+<li>Возможности векторизации</li>
+<li>Доступ к особенностям железа (интринсики, инлайн кода на ассемблере)</li>
+<li>Бенчмарки с различными языками</li>
+</ul>
+<p><code>Особенности сборки под различные платформы</code></p>
+<ul>
+<li>win/mac/linux</li>
+<li>мобильные платформы</li>
+<li>консоли</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><section class="comments"><div id="disqus_thread"></div><script>var disqus_shortname = 'spiiin-github-io';
+(function () {
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//#{theme.disqus}.disqus.com/count.js" async></script></section><div class="pagination"><a class="pagination__link pagination__next" href="/blog/1160489034/">Back</a></div></main><footer class="footer metadata"><p class="footer__text">© 2022 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
