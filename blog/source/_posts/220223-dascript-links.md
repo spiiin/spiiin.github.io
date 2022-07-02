@@ -2,7 +2,9 @@
 title: daScript ссылки
 abbrlink: 2371214813
 date: 2022-02-23 17:07:49
-tags: gamedev
+tags:
+ - gamedev
+ - dascript
 ---
 
 Ссылки по библиотекам и примерам на daScript

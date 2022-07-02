@@ -2,7 +2,9 @@
 title: daScript OpenGL
 abbrlink: 4232971949
 date: 2022-02-20 19:45:39
-tags: gamedev
+tags:
+ - gamedev
+ - dascript
 ---
 
 Пример использования байдингов OpenGL для языка daScript

@@ -53,7 +53,7 @@ ECS - паттерн программирования, используемый 
 ## Обзоры библиотек
 [Entity Component System FAQ](https://github.com/SanderMertens/ecs-faq ) - общий обзор подхода, терминология, список библиотек, примеры применения в продакшене.
 [Entity-Component-Systems Benchmark](https://github.com/abeimler/ecs_benchmark) - бенчмарк различных библиотек
-[EnTT](https://github.com/skypjack/entt) - production-ready c++ библиотека, с примерами использования (самый простой - [pacman](https://github.com/Kerndog73/EnTT-Pacman), [документацией](https://github.com/skypjack/entt/wiki/EnTT-in-Action) и [блогом](https://skypjack.github.io/tags/#entt)
+[EnTT](https://github.com/skypjack/entt) - production-ready c++ библиотека, используемая в `Minecraft`, с примерами использования (самый простой - [pacman](https://github.com/Kerndog73/EnTT-Pacman)), [документацией](https://github.com/skypjack/entt/wiki/EnTT-in-Action) и [блогом](https://skypjack.github.io/tags/#entt)
 [flecs](https://github.com/SanderMertens/flecs) - c/c++ библиотека с большим количеством [примеров](https://github.com/SanderMertens/flecs/tree/master/examples) и функционала (есть модули для сериализации, рефлексии, продвинутое api для обращения с сущностями). [Мануал](https://github.com/SanderMertens/flecs/blob/master/docs/Manual.md)
 [Entitas](https://github.com/sschmid/Entitas-CSharp) - библиотека на C# для использования с Unity (порты на другие языки можно не смотреть. Возможно, стоит смотреть сразу штатный ECS для Unity - Unity DOTS.
 
@@ -73,6 +73,6 @@ ECS - паттерн программирования, используемый 
 [DOD в Battlefield](https://media.contentapi.ea.com/content/dam/eacom/frostbite/files/introduction-to-data-oriented-design.pdf) - исследование прироста скорости от правильного расположения структур в памяти, полезные ссылки в конце доклада
 [Stoyan Nikolov “OOP Is Dead, Long Live Data-oriented Design”](https://www.youtube.com/watch?v=yy8jQgmhbAU) - видео доклада Стояна Николова с примером разницы подходов к решению практической задачи - OOP vs DoD.
 
-Примеры проектов, используещие подход:
+Примеры библиотек, спроектированных с применением подхода data-oriented design:
 [Dear ImGui](https://github.com/ocornut/imgui)
 [bgfx](https://github.com/bkaradzic/bgfx)

@@ -2,7 +2,9 @@
 title: daScript macro
 abbrlink: 1547564887
 date: 2022-02-06 21:04:42
-tags: gamedev
+tags: 
+  - gamedev
+  - dascript
 ---
 
 [dacript](https://dascript.org/) - скриптовый язык для игр от Gaijin Entertaiment.
