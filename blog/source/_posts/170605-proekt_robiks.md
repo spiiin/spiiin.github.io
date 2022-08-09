@@ -2,8 +2,9 @@
 title: Проект Робикс
 tags:
   - clay
-  - dev
+  - gamedev
   - log
+  - android
 abbrlink: 2024416243
 date: 2017-06-05 12:42:00
 ---

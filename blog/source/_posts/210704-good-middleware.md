@@ -2,7 +2,9 @@
 title: Хорошие библиотеки
 abbrlink: 1152347544
 date: 2021-07-04 16:00:08
-tags: gamedev
+tags:
+ - gamedev
+ - dev_method
 ---
 
 Очень вольный перевод идей старой, но по прежнему актуальной статьи – [Good Middleware](http://gamearchitect.net/2008/09/19/good-middleware/).

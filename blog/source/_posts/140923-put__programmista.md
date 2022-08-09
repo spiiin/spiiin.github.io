@@ -1,6 +1,8 @@
 ---
 title: Путь программиста
-tags: log
+tags:
+ - dev_evolution
+ - log
 abbrlink: 3784279738
 date: 2014-09-23 18:43:00
 ---

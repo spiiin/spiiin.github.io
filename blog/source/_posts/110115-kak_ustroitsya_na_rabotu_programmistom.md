@@ -1,6 +1,6 @@
 ---
 title: Как устроиться на работу программистом
-tags: dev
+tags: dev_evolution
 abbrlink: 1048
 date: 2011-01-15 13:08:00
 ---

@@ -1,6 +1,6 @@
 ---
 title: Заметки о языках программирования
-tags: code
+tags: dev_method
 abbrlink: 2297379949
 date: 2021-05-26 18:57:06
 ---

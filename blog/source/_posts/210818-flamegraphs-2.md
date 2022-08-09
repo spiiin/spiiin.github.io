@@ -1,6 +1,6 @@
 ---
 title: Flamegraph. Windows/iOS/Android
-tags: dev
+tags: dev_method
 abbrlink: 2526702897
 date: 2021-07-18 12:45:41
 ---

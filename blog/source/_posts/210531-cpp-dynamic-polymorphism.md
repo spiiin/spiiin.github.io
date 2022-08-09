@@ -1,6 +1,7 @@
 ---
 title: Runtime-полиморфизм в C++
-tags: dev
+tags:
+  - cpp
 abbrlink: 1552834708
 date: 2021-05-31 22:50:18
 ---

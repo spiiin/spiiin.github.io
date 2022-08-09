@@ -6,5 +6,4 @@ tags: games
 ---
 
 <http://www.bubblebox.com/play/adventure/1848.htm>  
-[![](http://pics.livejournal.com/spiiin/pic/0002bypd/s640x480)](http://pics.livejournal.com/spiiin/pic/0002bypd/)  
 крутая игра про амёбу

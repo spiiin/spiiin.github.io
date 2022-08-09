@@ -1,6 +1,7 @@
 ---
 title: Мотивация "честного" программиста
-tags: dev
+tags:
+ - dev_evolution
 abbrlink: 1363625753
 date: 2021-08-16 21:28:10
 ---

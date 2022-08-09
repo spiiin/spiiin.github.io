@@ -1,7 +1,7 @@
 title: 'Уровень программирования: Middle'
 abbrlink: 15798
 tags:
-  - code
+  - dev_evolution
 categories: []
 date: 2020-08-12 11:58:00
 ---

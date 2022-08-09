@@ -2,7 +2,7 @@
 title: Про строителей и ломателей
 tags:
   - fun
-  - dev
+  - dev_evolution
 abbrlink: 503948690
 date: 2016-03-29 19:27:00
 ---

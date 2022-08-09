@@ -1,7 +1,6 @@
 ---
 title: Milight
 tags:
-  - dev
   - hardware
   - python
   - codespell

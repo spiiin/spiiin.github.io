@@ -10,7 +10,7 @@ date: 2009-06-01 17:08:00
 Запись из архива. 
 
 Играл в `James Bond Jr.` на NES : 
-[![](http://pics.livejournal.com/spiiin/pic/000027rh/s320x240)](http://pics.livejournal.com/spiiin/pic/000027rh/)
+![1](090601-python-in-imaginary-world/jb0.jpg)
 
 В этой игрушке в первой зоне сын известного спецагента Джеймса Бонда должен деактивировать 5 ракет главзлодея. Чтобы "выключить" ракету, необходимо решить головоломку - заданы исходное поле из разноцветных клеток и целевая позиция, в которую надо перевести поле, сдвигая любую строку или столбец. 
 
@@ -40,7 +40,7 @@ date: 2009-06-01 17:08:00
 ---
 
 И, собственно, решения: 
-[![](http://pics.livejournal.com/spiiin/pic/00003e0w/s320x240)](http://pics.livejournal.com/spiiin/pic/00003e0w/) 
+![1](090601-python-in-imaginary-world/jb1.jpg)
 
 ====== 1 ======
 source:[1, 2, 3, 4, 4, 1, 2, 3, 3, 4, 1, 2, 2, 3, 4, 1]
@@ -49,7 +49,7 @@ target:[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
 ['left' , 2]
 ['left' , 2]
 ['right' , 3]
-[![](http://pics.livejournal.com/spiiin/pic/00004w04/s320x240)](http://pics.livejournal.com/spiiin/pic/00004w04/)
+![1](090601-python-in-imaginary-world/jb2.jpg)
 ====== 2 ======
 source:[1,1,1,1, 1,2,3,1, 1,3,2,1, 1,1,1,1]
 target:[1,1,1,1, 1,3,3,1, 1,2,2,1, 1,1,1,1]
@@ -57,7 +57,7 @@ target:[1,1,1,1, 1,3,3,1, 1,2,2,1, 1,1,1,1]
 ['up' , 1]
 ['right', 1]
 ['down' , 1]
-[![](http://pics.livejournal.com/spiiin/pic/00005cg3/s320x240)](http://pics.livejournal.com/spiiin/pic/00005cg3/)
+![1](090601-python-in-imaginary-world/jb3.jpg)
 ====== 3 ======
 source:[1,2,1,3, 3,2,1,2, 1,1,3,1, 1,2,1,3]
 target:[3,1,2,3, 2,1,1,1, 1,1,1,2, 3,2,1,3]
@@ -66,7 +66,7 @@ target:[3,1,2,3, 2,1,1,1, 1,1,1,2, 3,2,1,3]
 ['down' , 3]
 ['up' , 0]
 ['left' , 1]
-[![](http://pics.livejournal.com/spiiin/pic/00006g9d/s320x240)](http://pics.livejournal.com/spiiin/pic/00006g9d/)
+![1](090601-python-in-imaginary-world/jb4.jpg)
 ====== 4 ======
 source:[1,2,2,1, 3,4,4,3, 3,4,4,3, 2,4,4,2]
 target:[4,3,4,2, 3,1,2,4, 4,2,4,3, 2,4,3,1]
@@ -80,7 +80,7 @@ only difs:
 ['right', 0]
 ['left' , 2]
 ['left' , 2]
-[![](http://pics.livejournal.com/spiiin/pic/00007c3f/s320x240)](http://pics.livejournal.com/spiiin/pic/00007c3f/)
+![1](090601-python-in-imaginary-world/jb5.jpg)
 ====== 5 ======
 source:[1,1,2,2, 1,1,2,2, 3,3,4,4, 3,3,4,4]
 target:[1,1,2,2, 1,3,4,2, 3,3,4,4, 1,3,4,2]
@@ -90,4 +90,4 @@ target:[1,1,2,2, 1,3,4,2, 3,3,4,4, 1,3,4,2]
 ['left', 1]
 ['up' , 3]
 ['left', 1]
-[![](http://pics.livejournal.com/spiiin/pic/00008d4x/s320x240)](http://pics.livejournal.com/spiiin/pic/00008d4x/)
+![1](090601-python-in-imaginary-world/jb6.jpg)

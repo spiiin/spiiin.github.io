@@ -1,7 +1,7 @@
 ---
 title: Храброе львиное сердце
 tags:
-  - dev
+  - gamedev
   - log
   - games
 abbrlink: 12483

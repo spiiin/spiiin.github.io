@@ -2,7 +2,6 @@
 title: Asus Transformer with Two Gamepads - 2
 tags:
   - nes
-  - soft
   - hack
   - android
 abbrlink: 3734994597

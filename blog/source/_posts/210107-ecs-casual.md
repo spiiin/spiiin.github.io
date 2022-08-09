@@ -2,6 +2,8 @@
 title: ECS для казуальных игр
 tags:
   - gamedev
+  - dev_method
+  - ecs
 abbrlink: 1488389622
 date: 2021-01-07 23:11:49
 ---

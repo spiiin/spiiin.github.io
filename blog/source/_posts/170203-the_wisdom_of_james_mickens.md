@@ -3,7 +3,6 @@ title: The Wisdom of James Mickens
 tags:
   - fun
   - link
-  - dev
   - книги
 abbrlink: 62278
 date: 2017-02-03 04:53:00

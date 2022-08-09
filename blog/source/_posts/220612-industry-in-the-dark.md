@@ -65,7 +65,7 @@ ZeptoLab - 2009
 Pixonic - 2009
 MyTona - 2012
 Game Insight - 2009 - 2022 https://app2top.ru/industry/game-insight-ushla-na-samolikvidatsiyu-raboty-lishilis-do-600-spetsialistov-199488.html
-Playgendary - 2016
+Playgendary - 2016 - https://www.forbes.ru/tekhnologii/469235-deneg-net-delajte-cto-hotite-kak-gejmstudii-uhodat-iz-rossii-i-sokrasaut-personal
 KamaGames - 2010
 CrazyPanda - 2010
 Easybrain - 2016

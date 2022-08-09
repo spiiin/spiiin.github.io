@@ -3,7 +3,7 @@ title: daScript OpenGL
 abbrlink: 4232971949
 date: 2022-02-20 19:45:39
 tags:
- - gamedev
+ - opengl
  - dascript
 ---
 

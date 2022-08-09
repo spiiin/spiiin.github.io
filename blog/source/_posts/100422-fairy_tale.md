@@ -1,6 +1,8 @@
 ---
 title: Fairy tale
-tags: tales
+tags:
+ - tales
+ - dev_method
 abbrlink: 30718
 date: 2010-04-22 02:15:00
 ---

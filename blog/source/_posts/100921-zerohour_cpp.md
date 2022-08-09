@@ -1,6 +1,8 @@
 ---
 title: ZeroHour++
-tags: fun
+tags:
+  - fun
+  - cpp
 abbrlink: 45458
 date: 2010-09-21 19:36:00
 ---

@@ -1,6 +1,8 @@
 ---
 title: Суперфанаты
-tags: gamedev
+tags:
+ - gamedev
+ - gamedesign
 abbrlink: 1402387497
 date: 2021-09-22 01:21:21
 ---

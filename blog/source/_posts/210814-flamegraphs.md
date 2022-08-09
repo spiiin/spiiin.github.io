@@ -2,7 +2,7 @@
 title: Flamegraphs
 abbrlink: 2779627234
 date: 2021-07-14 09:53:59
-tags: dev
+tags: dev_method
 ---
 
 [Флеймграфы](https://www.brendangregg.com/flamegraphs.html) - удобный способ представления информации, собранной профайлером.

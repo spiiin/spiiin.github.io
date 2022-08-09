@@ -3,7 +3,8 @@ title: Метод Lean Startup
 abbrlink: 2486671624
 date: 2021-09-20 01:02:21
 tags:
-  - dev
+  - dev_method
+  - gamedesign
   - книги
 ---
 

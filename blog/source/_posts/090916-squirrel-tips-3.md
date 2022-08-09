@@ -5,7 +5,6 @@ tags: squirell
 abbrlink: 43997
 ---
 
-![](http://pics.livejournal.com/spiiin/pic/0000hy29)  
 `Squirrel` простой, как 5 копеек, язык. Но документации по нему очень мало. Официальный [мануал](http://squirrel-lang.org/doc/squirrel2.html), и полупустые [вики](http://wiki.squirrel-lang.org/default.aspx/SquirrelWiki/SquirrelWiki.html) и [форум](http://squirrel-lang.org/forums/default.aspx) - все, что удалось найти (ну и исходный текст, если его считать за документацию). Поэтому я себе и пишу такие типсы о том, что не указано явно в доках.  
   
   

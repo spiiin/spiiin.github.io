@@ -1,7 +1,7 @@
 ---
 title: Rosalind
 tags:
-  - algo
+  - био
   - fun
   - link
 abbrlink: 2708237616

@@ -1,9 +1,10 @@
 ---
 title: С++ в геймдеве
 tags:
-  - c++
+  - cpp
   - gamedev
   - dascript
+  - dev_method
 abbrlink: 1728194429
 date: 2022-01-30 16:58:23
 ---

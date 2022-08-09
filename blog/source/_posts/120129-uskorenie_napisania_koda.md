@@ -1,7 +1,7 @@
 ---
 title: Ускорение написания кода
 date: 2012-01-29 14:08:00
-tags: dev
+tags: dev_method
 abbrlink: 19419
 ---
 

@@ -3,7 +3,7 @@ title: "daScript: C++ auto-bindings, assimp"
 abbrlink: 500729544
 date: 2022-06-12 15:41:20
 tags:
- - gamedev
+ - 3d
  - dascript
 ---
 

@@ -2,7 +2,7 @@
 title: Модульность в дизайне уровней
 tags:
   - link
-  - dev
+  - gamedesign
   - 3d
   - games
 abbrlink: 3291927125

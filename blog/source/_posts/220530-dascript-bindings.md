@@ -3,7 +3,6 @@ title: "daScript: C++ auto-bindings, msgpack"
 abbrlink: 4090909622
 date: 2022-05-30 14:36:23
 tags:
- - gamedev
  - dascript
 ---
 

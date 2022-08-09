@@ -2,7 +2,6 @@
 title: GoogleLookup
 tags:
   - fun
-  - google
 abbrlink: 40741
 date: 2011-01-19 01:22:00
 ---

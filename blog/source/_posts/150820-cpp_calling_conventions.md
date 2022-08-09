@@ -2,9 +2,7 @@
 title: C++ calling conventions
 tags:
   - link
-  - c++
-  - dev
-  - hack
+  - cpp
 abbrlink: 3173260250
 date: 2015-08-20 19:08:00
 ---

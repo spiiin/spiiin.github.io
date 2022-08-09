@@ -1,7 +1,7 @@
 ---
 title: Скрытые игровые механики
 tags:
-  - dev
+  - gamedesign
   - link
 abbrlink: 1998861373
 date: 2021-08-19 00:21:17

@@ -1,6 +1,8 @@
 ---
 title: Fuck yeah
-tags: log
+tags:
+ - log
+ - книги
 abbrlink: 24358
 date: 2010-03-29 00:48:00
 ---

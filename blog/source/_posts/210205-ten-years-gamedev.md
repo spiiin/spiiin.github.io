@@ -1,7 +1,8 @@
 ---
 title: 10 лет в геймдеве
 tags:
-  - dev
+  - dev_evolution
+  - dev_method
   - log
   - games
 abbrlink: 3652741154
