@@ -13,7 +13,7 @@ tags: meta
 [Dev](https://spiiin.github.io/tags/dev/) - общее
 [Dev_evolution](https://spiiin.github.io/tags/dev-evolution/) - развитие в геймдеве
 [Dev_method](https://spiiin.github.io/tags/dev-method/) - идеи, методы и подходы к разработке (в основном игр)
-[Gamedesign](https://spiiin.github.io/tags/gamedesign/) - геймдизайн
+[Gamedesign](https://spiiin.github.io/tags/gamedesign/) - геймдизайн (больше лудология, чем практика)
 
 ## Программирование
 [daScript](https://spiiin.github.io/tags/dascript/)
