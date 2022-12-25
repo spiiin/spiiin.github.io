@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2022-12-16T18:39:17.161Z</updated>
+  <updated>2022-12-25T14:29:47.619Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>daScript tiny renderer port</title>
+    <link href="http://spiiin.github.io/blog/3563373441/"/>
+    <id>http://spiiin.github.io/blog/3563373441/</id>
+    <published>2022-12-25T14:02:28.000Z</published>
+    <updated>2022-12-25T14:29:47.619Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Портировал первые несколько примеров <a href="https://github.com/ssloy/tinyrenderer/wiki" target="_blank" rel="noopener">Tiny renderer or how OpenGL works: software rendering in 500 lines of code</a> софт-рендера с C++ на daScript. Механически и неоптимально, но близко к коду оригинального туториала, для желающих потренироваться в базовых алгоритмах растеризации на daScript.<br><a href="https://github.com/spiiin/dascript_soft_render" target="_blank" rel="noopener">https://github.com/spiiin/dascript_soft_render</a></p><p>Растеризация отрезков, wireframe<br><img src="/blog/3563373441/1.png" alt=""><br>Растеризация треугольников line sweeping, flat shading, отсечение задних граней<br><img src="/blog/3563373441/2.png" alt=""><br>Z-буфер, наложение текстурных координат<br><img src="/blog/3563373441/3.png" alt=""><br>Перспективная проекция<br><img src="/blog/3563373441/4.png" alt=""><br>Камера, Gouraud shading<br><img src="/blog/3563373441/5.png" alt=""><br>Коррекция перспективных искажений текстурных координат, растеризация треугольника проверкой барицентрических координат точки, пиксельный и вершинный шейдеры<br><img src="/blog/3563373441/6.png" alt=""></p><p>В оригинале есть ещё детальный разбор матриц (model, view, projection), наложение карты нормалей, тени и ambient occlusion. Но, мне кажется где-то с этого уровня можно продолжать разбираться с графикой уже с помощью графического API.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Портировал
+      
+    
+    </summary>
+    
+    
+    
+      <category term="opengl" scheme="http://spiiin.github.io/tags/opengl/"/>
+    
+      <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Итоги 2021-2022</title>
@@ -474,30 +500,6 @@
       
       
         &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Еще немног
-      
-    
-    </summary>
-    
-    
-    
-      <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>daScript - как учить</title>
-    <link href="http://spiiin.github.io/blog/2301621444/"/>
-    <id>http://spiiin.github.io/blog/2301621444/</id>
-    <published>2022-06-26T20:25:24.000Z</published>
-    <updated>2022-12-12T17:26:09.733Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>На что в первую очередь посмотреть при изучении нового языка программирования, на примере daScript, но можно и применительно к другим языкам. Сырой список.</p><p><code>Обзор языка, мотивация</code></p><ul><li>Кто и зачем делает ещё один язык программирования, какие проблемы он решает</li><li>Какие возможности даёт язык, позволяет ли сочетание этих возможностей потеницально решить какие-либо ещё мои проблемы, кроме декларируемых авторами</li><li>Официальная документация, обзорные статьи, поиск существующих комьюнити</li><li>Лицензия, support</li><li>Планы, роадмап, периодичность обновлений, стабильность ядра языка</li><li>Поддерживаемые платформы и архитектуры, использование бекэндов/фронтэндов (llvm)</li></ul><a href="/blog/1728194429/" title="С++ в геймдеве">С++ в геймдеве</a><br><a href="/blog/2630317622/" title="daScript - перевод интервью с создателем языка">daScript - перевод интервью с создателем языка</a><p><code>Чтение кода</code></p><ul><li>Примеры от авторов, код тестов</li><li>Чтение кода стандартной библиотеки</li><li>Сторонние библиотеки</li></ul><a href="/blog/2371214813/" title="daScript ссылки">daScript ссылки</a><p><code>Практика 1. Простые примеры</code></p><ul><li>Как хранятся в памяти типы<br>— работа со значениями/указателями/ссылками<br>— когда неожиданное дополнительное копирование, когда можно избежать, есть ли быстрые способы настройки/проверки<br>— особенности преобразования и приведения типов, что можно настроить для своих типов<br>— базовые типы<br>— особенности типизации<br>— настройки мутабельности/чистоты<br>— Глобальные/статические переменные</li><li>Конструкции управления</li><li>Часто используемые фичи языка (ленивость, аннотации, генераторы etc)</li><li>Строки<br>— какие есть типы для представления строк<br>— представление в памяти различных типов<br>— кодировки</li><li>Композия типов<br>— Классы, типы наследования, способы композиции данных<br>— модули</li><li>Стандартные контейнеры/коллекции/последовательности</li></ul><a href="/blog/2385889062/" title="daScript - решение задачек">daScript - решение задачек</a><p><code>Практика 2</code></p><ul><li>Стандартная библиотека<br>— работы с вводом/выводом, файлами и путями, сетью<br>— идиомы языка<br>— асинхронность - потоки, файберы, примитива синхронизации, корутины, асинхронное выполнение кода. Jobque</li></ul><a href="/blog/2550823652/" title="Итераторы, колстеки, корутины">Итераторы, колстеки, корутины</a><br><a href="/blog/2826376146/" title="Файберы, диспетчеры, асинки">Файберы, диспетчеры, асинки</a><ul><li>приёмы обработки ошибок</li><li>generic-программирование</li><li>макросы, работа с AST языка</li></ul><a href="/blog/1547564887/" title="daScript macro">daScript macro</a><br><a href="/blog/4046309382/" title="daScript macro - 2">daScript macro - 2</a><ul><li>compile-time вычисления</li><li>способы генерации кода</li><li>rtti, рефлексия — возможности настройки</li></ul><p><code>DSL языка</code></p><ul><li>форматирование и способы вывода различных типов данных</li><li>json_boost, regexp_boost, decs_boost, opengl_boost</li><li>способы создания своих dsl</li></ul><a href="/blog/621874082/" title="daScript. Brainfuck и оптимизации">daScript. Brainfuck и оптимизации</a><p><code>Работа с памятью</code></p><ul><li>Способы аллокации и освобождения памяти</li><li>Принятые паттерны работы с выделением и освобождением памяти, время жизни объектов<br>— gc<br>— raii<br>— опции и настройки компилятора<br>— способа кастомизации объектов в памяти — кастомная аллокация, выравнивание, способы переопределить расположение данных в памяти<br>— способы реификации стандартных систем языка в памяти (для изучения стоимости этих фич) — способы наследования, корутины, генераторы, continuations, функторы, замыкания, внутренности контейнеров</li></ul><p><code>Работа с мультимедиа</code></p><ul><li>рендер, графика, анимация, звук, гуи, работа со стандартными форматами файлов, 3d-математика</li><li>шейдеры, системы материалов, способы реализации эффектов</li></ul><a href="/blog/4232971949/" title="daScript OpenGL">daScript OpenGL</a><br><a href="/blog/3006126295/" title="daScript - live-режим">daScript - live-режим</a><br><a href="/blog/4060902549/" title="daScript. SFML, dasBox и semi-transparent render target">daScript. SFML, dasBox и semi-transparent render target</a><br><a href="/blog/887709799/" title="daScript. SFML, dasBox и спайны">daScript. SFML, dasBox и спайны</a><p><code>Отладка</code></p><ul><li>Особенности обнаружения и сигналов о различных типах ошибок компилятором</li><li>Отладочные контексты</li><li>Профайлер</li><li>Отладчик</li><li>Настройки компилятора для режимов отладки</li><li>Способы работы с тестами</li><li>Возможность настроить язык (уровень проверки ошибок, всякие прагмы -Wall, -pedantic) и расширять язык, диалекты</li></ul><p> <code>Среда разработки</code></p><ul><li>Поддержка интеграции в IDE (подсветка, автодополнение, подсказки, переходы по коду, апи связи с существующими тулзами, language server plugin etc)</li><li>Проверка наличия и качеств собственной среды разработки. Dasbox</li><li>Сочетаемость с инструментами (санитайзеры, профайлеры etc)</li><li>Особенности системы сборки</li><li>Способы сборки (интерпретация, компиляция, транспиляция, настройки vm, jit/aot)</li><li>Линтеры</li><li>Работа с документацией</li></ul><p><code>Встраивание, кросс-языковое взаимодействие</code></p><ul><li>FFI, вызовы кода на других языках</li><li>Модули расширения языка</li><li>Написание и генерация обёрток для своих и чужих классов и готовых библиотек</li><li>Передача управления между кодом на разных языках</li><li>Настройки встраивания языка в программу</li><li>Возможные архитектуры программы на C++ + daScript (настройка AoT, хот релоадинг, расширение классов C++ на daScript)</li><li>Способы работы со скриптовыми контекстами из C++</li><li>Способы межпроцессного/междуконтекстного взаимодействия</li></ul><a href="/blog/4090909622/" title="daScript: C++ auto-bindings, msgpack">daScript: C++ auto-bindings, msgpack</a><br><a href="/blog/500729544/" title="daScript: C++ auto-bindings, assimp">daScript: C++ auto-bindings, assimp</a><p><code>Поддержка паттернов и парадигм программирования</code></p><ul><li>ECS</li><li>Функциональное программирование</li><li>Особенности ООП</li></ul><a href="/blog/1601029690/" title="ECS - типы и проблемы">ECS - типы и проблемы</a><p><code>Практика 3</code></p><ul><li>Реализация/портирование библиотеки или программы на ~1000 строк</li><li>Разбиение кода на модули</li><li>Настройка нескольких целей сборки, тестирование, документация, профилирование, средства рефакторинга</li></ul><p><code>Оптимизация</code></p><ul><li>Настройки компилятора</li><li>Возможности по улучшению производительности существующего кода</li><li>Best practicies от авторов языка и библиотек</li><li>Возможности векторизации</li><li>Доступ к особенностям железа (интринсики, инлайн кода на ассемблере)</li><li>Бенчмарки с различными языками</li></ul><a href="/blog/1160489034/" title="daScript in imaginery world">daScript in imaginery world</a><br><a href="/blog/1067581840/" title="daScript - скорость">daScript - скорость</a><br><a href="/blog/2115627465/" title="Устройство интерпретаторов lua-jit и daScript">Устройство интерпретаторов lua-jit и daScript</a><p><code>Особенности сборки под различные платформы</code></p><ul><li>win/mac/linux</li><li>мобильные платформы</li><li>консоли</li></ul><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;На что в п
       
     
     </summary>
