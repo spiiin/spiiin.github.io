@@ -4,6 +4,7 @@ tags:
   - nes
   - games
   - hack
+  - lua
 abbrlink: 56249
 date: 2010-04-19 14:27:00
 ---

@@ -70,3 +70,7 @@ tags: [lua, nes, hack]
  или просто красивого совмещения частей сцены:  
  [![](https://spiiin.dreamwidth.org/file/200x200/14865.gif)](https://spiiin.dreamwidth.org/file/14865.gif)  
  На этом у меня пока всё ^_^.
+
+*update* гифки убились при переносе блога, но остались в статьях на хабре
+ https://habr.com/ru/post/353726/
+ https://habr.com/ru/post/354774/

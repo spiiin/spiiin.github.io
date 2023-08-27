@@ -67,7 +67,7 @@ for num in natural |> take(3)
 ```
 
 ## Композиция функций и ленивые вычисления
-Попробуем "просеять" натуральные числа, оставив только простые. Пример реализации функции [prime](https://github.com/spiiin/dascript_macro_tutorial/blob/master/primes/primes_mix_compile_runtime.das) (самая быстрая реализация, без учёта потребляемой памяти -- просто посчитать первые n чисел заранее в compile-time :) ).
+Попробуем "просеять" натуральные числа, оставив только простые. Пример реализации функции [prime](https://github.com/spiiin/dascript_trivial_examples/tree/main/primes/primes_mix_compile_runtime.das) (самая быстрая реализация, без учёта потребляемой памяти -- просто посчитать первые n чисел заранее в compile-time :) ).
 
 ```cpp
 for num in natural |> filter(@@is_prime) |> take(10)

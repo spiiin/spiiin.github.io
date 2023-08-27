@@ -50,6 +50,11 @@ ECS - паттерн программирования, используемый 
 {% youtuber video WB5bRKKGRUk %}
 {% endyoutuber %}
 
+`Game Engine Entity/Object Models`
+Game Engine Entity/Object Models, Bobby Anguelov. Обзор различных архитектур, плюсы и минусы подходов EC и ECS в различных движках
+{% youtuber video jjEsB611kxs %}
+{% endyoutuber %}
+
 ## Обзоры библиотек
 [Entity Component System FAQ](https://github.com/SanderMertens/ecs-faq ) - общий обзор подхода, терминология, список библиотек, примеры применения в продакшене.
 [Entity-Component-Systems Benchmark](https://github.com/abeimler/ecs_benchmark) - бенчмарк различных библиотек
@@ -66,8 +71,7 @@ ECS - паттерн программирования, используемый 
 ## Data-oriented Design (DoD)
 Теория, если сходу не очень понятны идеи ECS.
 [Data-Oriented Design](https://www.dataorienteddesign.com/dodbook/) - фундаментальная книжка по DoD от Richard Fabian
-[Data Oriented Design Resources
-](https://github.com/dbartolini/data-oriented-design) - список материалов по DOD
+[Data Oriented Design Resources](https://github.com/dbartolini/data-oriented-design) - список материалов по DOD
 [Data-Oriented Design (или почему, используя ООП, вы, возможно, стреляете себе в ногу)](https://habr.com/ru/post/472052/) - перевод статьи Noel Llopis
 [Data-Oriented Design - Links and Thoughts](https://asawicki.info/news_1422_data-oriented_design_-_links_and_thoughts.html) - коллекция ссылок на статьи, многие gamedev-related.
 [DOD в Battlefield](https://media.contentapi.ea.com/content/dam/eacom/frostbite/files/introduction-to-data-oriented-design.pdf) - исследование прироста скорости от правильного расположения структур в памяти, полезные ссылки в конце доклада
@@ -76,3 +80,15 @@ ECS - паттерн программирования, используемый 
 Примеры библиотек, спроектированных с применением подхода data-oriented design:
 [Dear ImGui](https://github.com/ocornut/imgui)
 [bgfx](https://github.com/bkaradzic/bgfx)
+
+**update 2023.11.03**
+Еще пара ссылок по замерам производительности:
+
+["Clean" Code, Horrible Performance](https://www.youtube.com/watch?v=tD5NrevFtbU) -- доклад от Casey Muratory, замеры на простых примерах Shape/Square/Circle
+`Practical Optimizations` -- Jason Booth, замеры производительности и некоторые приёмы организации кода, связанные с DoD. 
+{% youtuber video NAVbI1HIzCE %}
+{% endyoutuber %}
+
+Важные идеи:
+**`Optimization is DESIGN time problem`**
+**`Performance is a feature`**

@@ -50,7 +50,7 @@ tags: gamedev
 
 >до 2007 типа российские компании делали по его мнению крутые и душевные игры, на которых мы все выросли, но "почему-то" в один момент развалилось всё (из крупных компаний, образованных до 2007 года, которые немобилками занимались, ща остались только гайдзины и wargaming - первые потому что под нексген консоли игры делали для sony и microsoft, вторые танки в 2009 выпустили), отчасти потому что в таком режиме делали фигню разную не задумываясь, и издатели в один момент забили на финансирование местных полностью и стали выпускать и локализовать иностранные игры, отчасти потому, что пропустили 2 новых аудитории - соц игры фейсбука и мобильные игры. Теперь говорит "а давайте как раньше делать, как будто ничего не изменилось, а мобилки эти ваши новомодные скоро умрут", и реклама своей компании напоследок. В западной индустрии и инди-сцене году так в 2010 уже приняли, что есть кор игры и социальные (там против зинги вначале тоже выступали кор-разработчики), а в российской ещё местами есть люди, которые считают, что кроме кор-игр других нет, и должно быть стыдно тем, кто делает не игры "для души" (если точнее, то игры основных тем для аудитории мужчины 15-30, первые "большие продающиеся идеи" - sports, dragons, robots, guns, jumping & climbing, and car) https://www.raphkoster.com/2010/03/18/what-core-gamers-should-know-about-social-games/
 
-Зачем я собрал все эти срачи, обсуждения, тревоги и мнения в одну кучу? Хотел найти список компаний, перечисленных Ярославом, как спонсоров Девгамма по годам их открытия, чтобы посмотреть, какие выживут через несколько месяцев/лет.
+Зачем я собрал все эти срачи, обсуждения, тревоги и мнения в одну кучу? Хотел найти список компаний, перечисленных Ярославом, как спонсоров Девгамма по годам их открытия, чтобы посмотреть, какие выживут как российские (оставят хоть один офис/юрлицо в россии) через несколько месяцев/лет.
 
 ## No future
 
@@ -60,12 +60,13 @@ tags: gamedev
 
 ![bk](220612-industry-in-the-dark/bk.png)
 
+(российские офисы)
 ```
+~~MyTona~~ - 2012 - 2022 https://yakutia.info/article/206258
+~~Game Insight~~ - 2009 - 2022 https://app2top.ru/industry/game-insight-ushla-na-samolikvidatsiyu-raboty-lishilis-do-600-spetsialistov-199488.html
+~~Playgendary~~ - 2016 - 2022 https://www.forbes.ru/tekhnologii/469235-deneg-net-delajte-cto-hotite-kak-gejmstudii-uhodat-iz-rossii-i-sokrasaut-personal
 ZeptoLab - 2009
 Pixonic - 2009
-MyTona - 2012
-Game Insight - 2009 - 2022 https://app2top.ru/industry/game-insight-ushla-na-samolikvidatsiyu-raboty-lishilis-do-600-spetsialistov-199488.html
-Playgendary - 2016 - https://www.forbes.ru/tekhnologii/469235-deneg-net-delajte-cto-hotite-kak-gejmstudii-uhodat-iz-rossii-i-sokrasaut-personal
 KamaGames - 2010
 CrazyPanda - 2010
 Easybrain - 2016
@@ -76,9 +77,12 @@ Belka Games - 2010
 Vizor Games - 2007
 Rocket Jump (RJ Games) - 2012
 
-Playrix - 2004 - казуальные игры
-G5 - 2001 - мобильные и казуальные игры
+~~Playrix~~ - 2004 - казуальные игры - https://dtf.ru/gameindustry/1384763-smi-playrix-reshila-zakryt-vse-svoi-ofisy-v-rossii-i-belarusi-sotrudnikov-relociruyut-v-drugie-strany
+~~G5~~ - 2001 - мобильные и казуальные игры - https://web.archive.org/web/20220622183844/https://jobs.g5e.com/russia (прямым текстом не писали, но закрыли все вакансии после начала войны)
+~~Wargaming~~ - 1998 - выход World of Tanks в 2009 - https://dtf.ru/gameindustry/1146592-komanda-prosto-v-transe-nikto-takogo-ne-ozhidal-v-minskom-ofise-wargaming-prokommentirovali-zakrytie (внезапное закрытие офиса в Белоруссии)
 Nekki - 2002 - браузерки
 Gaijin Entertainment - 2002 - релизы на консолях
-Wargaming - 1998 - выход World of Tanks в 2009
 ```
+
+*update*
+[Тайминг](https://youtu.be/sFqbmVpGuUw?t=1348) из интервью с Сергеем Орловским, про ситуацию на мобильном рынке 
