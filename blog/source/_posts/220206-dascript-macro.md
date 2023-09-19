@@ -87,7 +87,7 @@ struct Mesh {
 
 Прежде, чем начинать шаманить с макросами, нужно набросать наивную реализацию "быстрой" версии класса, хранящего свои данные в одном блоке памяти. Для этого можно использовать [онлайн компилятор tio](https://tiorun.gaijin.team/##S0ksTi7KLCj5/z86taIgv6gklislNU0hNzEzj0sBCAqKMvNKNJQ8UnNy8nUUwvOLclIUlTS5/v8HAA).
 
-```c++
+```python
 struct Memblock
     mem : array<uint8>
     a: int?
@@ -120,10 +120,9 @@ def initMemblock(var memblock: Memblock; aCount:int; bCount:int)
 
 [export]
 def main
-    unsafe
-        var memblock: Memblock
-        memblock |> initMemblock(5,5)
-        print("Memblock = {memblock}")
+    var memblock: Memblock
+    memblock |> initMemblock(5,5)
+    print("Memblock = {memblock}")
 
 //Output:
 //  Memblock = [[ [[0x44; 0x33; 0x22; 0x11; 0x0; 0x0; 0x0; 0x0; 0xff; 0xff; 0xff; 0xff; 0x0; 0x0;
@@ -364,11 +363,10 @@ def fillMemblock(var memblock: Memblock)
 //Тест
 [export]
 def test
-    unsafe
-        var memblock: Memblock
-        memblock |> initMemblock(5,5,5) //кол-во аргументов конструктора, зависит от количества полей структуры
-        memblock |> fillMemblock
-        print("Memblock = {memblock}")
+    var memblock: Memblock
+    memblock |> initMemblock(5,5,5) //кол-во аргументов конструктора, зависит от количества полей структуры
+    memblock |> fillMemblock
+    print("Memblock = {memblock}")
 ```
 
 Прежде, чем приступать к написанию макроса, генерирующего функцию `initMemblock`, стоит разобраться с парой примеров:

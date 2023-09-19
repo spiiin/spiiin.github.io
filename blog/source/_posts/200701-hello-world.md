@@ -4,6 +4,7 @@ tag: hexo
 abbrlink: 16107
 date: 2020-07-01 15:45:28
 ---
+
 **Hello, world!**
 Немного тестов разметки
 <!-- more -->
@@ -22,6 +23,12 @@ date: 2020-07-01 15:45:28
 
 ```nim
 echo "code without line numbers"
+```
+
+```python
+def t1
+  pass
+  NotImplemented
 ```
 
 {% codeblock hello.cpp lang:cpp line_number:true first_line:100 mark:2-5 %}
@@ -150,16 +157,6 @@ Backticks escape: \`are\` these!
 Плагин для youtube:
 {% youtuber video GR18emXxAi0 %}
 {% endyoutuber %}
-
----
-Плагин valkyr-url:
-
-{% valkyrurl
-[url=https://github.com/spiiin/CadEditor]
-[title="Cad Editor"]
-[avatar="https://raw.githubusercontent.com/spiiin/CadEditor/master/CadEditor/cadIco.png"]
-[desc="CadEditor is level editor for many classic console games"]
-%}
 
 ---
 Nomnoml diagram

@@ -2,7 +2,9 @@
 title: AI prompts
 abbrlink: 1596814086
 date: 2023-04-08 16:02:32
-tags: ai
+tags:
+  - ai
+  - procgen
 ---
 
 Потестил немного, что умеют нейронки.

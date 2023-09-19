@@ -11,24 +11,22 @@ date: 2017-04-06 12:24:00
   
 `Как личный дневничок для заметок про то, чем занимаюсь.`
 **Полезное**  
-- про исследование nes-игр и всякого (больше для себя, чтобы не забыть чего, статьи поупорядоченнее писал для хабры). tags: [nes](http://spiiin.livejournal.com/tag/nes), [hack](http://spiiin.livejournal.com/tag/hack).  
-- иногда всякие софтово-хардовые мелочи. tag: [dev](http://spiiin.livejournal.com/tag/dev), [soft](http://spiiin.livejournal.com/tag/soft), [hardware](http://spiiin.livejournal.com/tag/hardware), [codespell](http://spiiin.livejournal.com/tag/codespell), половина остальных тегов журнала  
-- про жонглирование. tag: [juggling](http://spiiin.livejournal.com/tag/juggling)  
+- про исследование nes-игр и всякого (больше для себя, чтобы не забыть чего, статьи поупорядоченнее писал для хабры). tags: [nes](https://spiiin.github.io/tags/nes), [hack](https://spiiin.github.io/tags/hack).  
+- иногда всякие софтово-хардовые мелочи. tag: [dev](https://spiiin.github.io/tags/dev), [soft](https://spiiin.github.io/tags/soft), [hardware](https://spiiin.github.io/tags/hardware/), [codespell](https://spiiin.github.io/tags/codespell), половина остальных тегов журнала  
+- про жонглирование. tag: [juggling]https://spiiin.github.io/tags/juggling)  
   
 **Бесполезное**  
-- ещё частенько про игры (как с позиции геймера, так и разработчика). tag: [games](http://spiiin.livejournal.com/tag/games)  
-- шутки-самосмейки. tag: [fun](http://spiiin.livejournal.com/tag/fun)  
-- цитатки из книг. tag: [книги](http://spiiin.livejournal.com/tag/книги)  
-  
-**Глянул статистику, по каким запросам меня находят в поисковиках - кроме разных ромхакерских запросов это ещё "*[*сборка otg кабеля с зарядкой*](http://spiiin.livejournal.com/98058.html)*" (я это написал от удивления, что у меня эта хрень заработала) и неизменно популярное "*[*пауки и наркотики*](http://spiiin.livejournal.com/48912.html)*" (хз, чего это так интересно всем).*  
+- ещё частенько про игры (как с позиции геймера, так и разработчика). tag: [games](https://spiiin.github.io/tags/games)  
+- шутки-самосмейки. tag: [fun](https://spiiin.github.io/tags/fun)  
+- цитатки из книг. tag: [книги](https://spiiin.github.io/tags/книги)  
   
 Про жонглирование и ромхакинг отдельные проекты, наверное, стоило бы вести, и писать туда более развёрнуто не только для себя, может быть, поищу какую-нибудь платформу для этого. Medium выглядит красиво, не знаю, насколько он удобен для такого формата. Ну или standalone вообще.  
   
-`Склад ссылок`, которые не хочется потерять. tag: [link](http://spiiin.livejournal.com/tag/link)  
+`Склад ссылок`, которые не хочется потерять. tag: [link](https://spiiin.github.io/tags/link)  
   
 `Пометки о том, что хочу сделать`.  
   
-`Тексты ни о чём и для себя`. tag: [tales](http://spiiin.livejournal.com/tag/tales)  
+`Тексты ни о чём и для себя`. tag: [tales](https://spiiin.github.io/tags/tales)  
   
 `Хотелось бы ещё писать, но не получается`:  
 – про путешествия по миру, походы, и необычные крымские места (про это вечно лень подбирать фото, да и очень много людей пишут про путешествия в общем, непонятно для кого писать - в жж я мало кого знаю лично, ну и надо уметь писать интересно). Обычно всё заканчивается выкладыванием фоточек в социальные сети.  

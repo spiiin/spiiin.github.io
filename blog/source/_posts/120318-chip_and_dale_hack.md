@@ -7,8 +7,6 @@ tags:
   - hack
 ---
 
-Начало [тут](http://spiiin.livejournal.com/51087.html).
-
 ROM для теста Chip 'n Dale Rescue Rangers (U) [!].nes
 
 **ЧАСТЬ 2. Устройство уровней.**

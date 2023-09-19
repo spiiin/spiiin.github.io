@@ -6,6 +6,7 @@ tags:
   - ai
   - link
   - 3d
+  - procgen
 ---
 
 ## Stable Diffusion

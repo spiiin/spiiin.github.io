@@ -168,5 +168,16 @@ https://docs.unrealengine.com/en-US/InteractiveExperiences/Networking/NetworkPro
   - обязательно необходимо симулировать плохую сеть, чтобы понять, как будет вести себя клиент в экстремальных условиях
   - подсчёт трафика : поднимаете дедикейтед. устраиваете на нём плейтест. Смотрите траффик на отдельно взятом порту. Оцениваете, сколько в среднем траффика на вход и на выход.
 
+---
+**update от 2023-09-18**
+
+[Development and Deployment of Multiplayer Online Games: from social games to MMOFPS, with stock exchanges in between](http://ithare.com/contents-of-development-and-deployment-of-massively-multiplayer-games-from-social-games-to-mmofps-with-stock-exchanges-in-between/) - лучшая книга по теме, с разбором всего, что есть выше. Advanced уровня, с обсуждением не деталей, а общих подходов и большим количеством ссылок
+
+[I Shot You First Networking](https://www.gdcvault.com/play/1014345/I-Shot-You-First-Networking) - доклад Bungie о мультиплейере в Halo
+[Networking Overview](https://docs.unrealengine.com/5.3/en-US/networking-overview-for-unreal-engine/) - обзор сетевых фич unreal
+[Architecture and Techniques for an MMORTS](https://www.gamedeveloper.com/programming/-i-massively-multiplayer-game-development-2-i-architecture-and-techniques-for-an-mmorts) - идеи для построения сетевого протокола с авторитарным сервером для стратегий
+[Fast-Paced Multiplayer: Sample Code and Live Demo](https://www.gabrielgambetta.com/client-side-prediction-live-demo.html) - визуальный пример движения кружков с различными настройками борьбы с лагами
+[Code Mystics Explains Netcode: Input Delay vs. Rollback](https://www.youtube.com/watch?v=1JHetORRpfQ) - еще один визуальный пример влияния параметров input delay и rollback на качество геймплея
+
 
 

@@ -1,6 +1,8 @@
 ---
 title: Муравей Лэнгтона
-tags: link
+tags:
+  - link
+  - procgen
 abbrlink: 1654464955
 date: 2016-06-30 15:42:00
 ---
