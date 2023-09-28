@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://spiiin.github.io/blog/3298324261/</loc>
+    <loc>http://spiiin.github.io/blog/1908536621/</loc>
     
     <lastmod>2023-09-28</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/blog/1908536621/</loc>
+    <loc>http://spiiin.github.io/blog/3778037319/</loc>
     
     <lastmod>2023-09-28</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/blog/3778037319/</loc>
+    <loc>http://spiiin.github.io/blog/3298324261/</loc>
     
     <lastmod>2023-09-28</lastmod>
     
@@ -2405,13 +2405,6 @@
 
   
   <url>
-    <loc>http://spiiin.github.io/tags/meta/</loc>
-    <lastmod>2023-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://spiiin.github.io/tags/cpp/</loc>
     <lastmod>2023-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2419,7 +2412,21 @@
   </url>
   
   <url>
+    <loc>http://spiiin.github.io/tags/meta/</loc>
+    <lastmod>2023-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://spiiin.github.io/tags/nes/</loc>
+    <lastmod>2023-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://spiiin.github.io/tags/asm/</loc>
     <lastmod>2023-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2441,13 +2448,6 @@
   
   <url>
     <loc>http://spiiin.github.io/tags/squirell/</loc>
-    <lastmod>2023-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://spiiin.github.io/tags/asm/</loc>
     <lastmod>2023-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2685,14 +2685,14 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/music/</loc>
+    <loc>http://spiiin.github.io/tags/%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE/</loc>
     <lastmod>2023-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE/</loc>
+    <loc>http://spiiin.github.io/tags/music/</loc>
     <lastmod>2023-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
