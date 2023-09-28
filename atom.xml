@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2023-09-28T08:50:10.252Z</updated>
+  <updated>2023-09-28T10:45:59.924Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Подсветка daScript для hexo</title>
+    <link href="http://spiiin.github.io/blog/3460926079/"/>
+    <id>http://spiiin.github.io/blog/3460926079/</id>
+    <published>2023-09-28T10:21:41.000Z</published>
+    <updated>2023-09-28T10:45:59.924Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>daScript в <code>vscode</code> для подсветки может использовать файл с описанием <a href="https://github.com/GaijinEntertainment/vscode-dascript/blob/master/syntaxes/dascript.tmLanguage.yaml" target="_blank" rel="noopener">синтаксиса</a>, или <a href="https://github.com/profelis/daScript-plugin" target="_blank" rel="noopener">language server</a> (само хост приложение знает больше о своих данных и коде, чтобы подсказывать редактору).</p><p>Формат описания синтаксиса языков подсветки для <code>hexo</code> отличается, поэтому всё время до этого я использовал для подсветки похожие на <code>daScript</code> языки — <code>c++, python, ml</code>. Я немного повозился с попытками перевода, но решил попробовать взять результаты от самой <code>vscode</code>. Она не предназначена для того, чтобы работать со сторонними скриптами в двустороннем режиме (принимать данные и отдавать обратно), но и не запрещает сделать это.</p><p><a href="https://github.com/spiiin/hexo_vscode_dascript_highlight/tree/main/highlight-server" target="_blank" rel="noopener">Наколенный плагин</a> - добавляет команду <strong><code>Start highlight server</code></strong>, которая стартует http-сервер и слушает порт, по которому можно передать текст для подсветки.<br>Для работы плагина необходимы:</p><ul><li>один из указанных выше <a href="https://marketplace.visualstudio.com/items?itemName=eguskov.dascript" target="_blank" rel="noopener">плагинов для подсветки в vscode</a></li><li>плагин <a href="https://github.com/d3v-one/vscode-paste-special" target="_blank" rel="noopener">Paste special</a>, который позволяет заменить подсвеченный код на его html эквивалент</li></ul><p><a href="https://github.com/spiiin/hexo_vscode_dascript_highlight/blob/main/highlight-client/hexo_search_all_post_snippets.py" target="_blank" rel="noopener">Клиент на python</a> - тоже наколенный скрипт, который проходит по всем постам моего блога, и заменяет сниппеты кода на их html эквивалент в сгенерированной статической версии (чтобы не потерять исходник). Криво и косо, но выполняет задачу, теперь код постом про <a href="https://spiiin.github.io/tags/dascript/">daScript</a> подсвечен красивее.</p><p><img src="/blog/3460926079/fix_small.png" alt=""></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;daScript в
+      
+    
+    </summary>
+    
+    
+    
+      <category term="hexo" scheme="http://spiiin.github.io/tags/hexo/"/>
+    
+      <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
+    
+  </entry>
   
   <entry>
     <title>daScript. BGFX и WeightedBlended Order-Independent Transparency</title>
@@ -482,29 +508,6 @@
     
     
       <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Making tools for big games</title>
-    <link href="http://spiiin.github.io/blog/2767873544/"/>
-    <id>http://spiiin.github.io/blog/2767873544/</id>
-    <published>2022-12-25T14:57:07.000Z</published>
-    <updated>2022-12-25T17:51:51.467Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Тезисы из доклада технического директора <code>Guerilla</code> Michiel van der Leeuw <a href="https://www.guerrilla-games.com/read/making-tools-for-big-games" target="_blank" rel="noopener">Making tools for big games</a></p><a id="more"></a><p><strong><code>Вступление</code></strong></p><ul><li>Технология в геймдеве перестала определять игру и её геймдизайн, а является одной из фич игры</li><li>Технология сейчас — это не только движок игры, а её тулсет</li><li>Тулсет позволяет поддерживать масштабирование количества контента игр, а также следить за качеством и процессом производства</li><li>Респект автора доклада <code>Naughty Dog</code>, часть идей оттуда</li></ul><p><strong><code>Идея 1. Сокращение &quot;зоны сумерек&quot;, когда QA находятся между игрой, таск-трекером, браузером, vcs, мессенджером и почтовым клиентом</code></strong></p><ul><li>Кастомный интерфейс к vcs, шаблоны для заполнения полей близкие к стандартам компании</li><li>Соединение перед пуллом с билд сервером для сверки, в порядке ли ревизия, которую собираешься получить</li><li>In-game gui для оформления задач в Jira — запись видео, логгирование игровых ресурсов в кадре</li><li>Редактор видео, в котором можно отметить тайминг бага/задачи, связанные ассеты, разметить зоны и отрезать лишнее. Ссылки на фрейм видео можно добавлять в задачи</li><li>Ассеты хранятся в базе данных с метаинформацией. Среди прочего, хранят обратные ссылки на баги, ссылающиеся на эти ассеты.</li></ul><p>Выявить точки, из которых удобнее всего совершать действия, и из этих точек с помощью api к другим приложениям дать возможность работать с этими приложениями без переключения контекста. Убрать рутину.<br>Пара бонусных идей не из доклада:</p><ul><li>В code-review вычислять, какие из прошлых коммитов/мердж реквестов затрагивает диф кода и выводить список этих коммитов (“чей код ты потенциально мог сломать”).</li><li>Подтягивать к багу в Jira данные из всех систем аналатики (доступ ко всей полезной инфе на одной страничке)</li></ul><p><strong><code>Идея 2. Слежение за здоровьем билда позволяет увеличить количество итераций</code></strong></p><ul><li>Бот-фермы из девкитов, которые выполняют скрипты телепортации по миру и сохраняют профилирование, телеметрию и игровую информацию в виде карты мира, отдельный редактор для визуализации и изучения этой карты</li><li>Примеры применения — визуализатор информации для гейм-дизайнеров и непосредственно отладка геометрических данных (карты рек, эрозии, нормалей, карты видимости неба), heat-map тормозящих мест, визуализация мест багов в jira. Всю информацию можно посмотреть в других местах, но такое картографирование позволяет оценить общую картину</li><li>Запросы к данным для отображения на карте исторических данных (диффы, графики, экспорт в json/csv)</li><li>Вьюер карты тесно связан с игрой (можно получать графики производительности с девайсов и кол-во потребляемой памяти, а также делать отметки на графиках и ссылаться на них)</li><li>Метрика — количество изменений, которое команда может позволить себе без страха делать в последние дни/недели перед релизом</li></ul><p><a href="/blog/1687824628/" title="Паттерны организации разработки уровней игр">Паттерны организации разработки уровней игр</a> - итерации делают игру лучше, упрощая процесс разработки<br><a href="/blog/3309518526/" title="Системы поиска сокровищ">Системы поиска сокровищ</a> - итерации кроме полировки могут позволить найти новые уникальные решения</p><p>Глобальная карта для отображения оверлеями различной информации — отличный инструмент, кажется, впервые видел идею с тепловой картой производительности еще в докладе про <code>starcraft 2</code>. Я такое тоже делал, чтобы отслеживать ассеты, которые артисты/геймдизайнеры забыли правильно разметить.</p><p><strong><code>Идея 3. Работу с ассетами всегда можно улучшить</code></strong></p><ul><li>Всё висит на сервере в памяти и стримится на девелоперские машины (10 Gb сеть в локалке)</li><li>Позволило серьёзно уменьшить размер дубликатов ресурсов</li><li>Можно сгенерить строковый айдишник, по которому другой человек может запустить в точности такую же версию игры</li><li>Самописный сервер на 650 строк, БД с парами ключ значение, быстрее шеринг через SMB, NFS, файловый сервер Apache, etc</li><li>Виртуальная файловая система, ОС не видит изменений</li><li>18 core cpu, 768 Gb ram, 80 Gb network, 16 tb ssd на 300 человек</li></ul><p>Наиболее радикальная идея, работать локально с исходными версиями ассетов, и стримить ресурсы через глобальный общий сервер. Доклад 2019 года, когда все сидели в одном офисе, но в <a href="https://twitter.com/MvdLeeuwGG/status/1606268200143970304" target="_blank" rel="noopener">твиттере</a> автор упоминает, что адаптировали и для домашней работы. Кроме блоба ассета хранится также метаинформация (например, ссылки, в каких тасках он задействован).</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Тезисы из доклада технического директора &lt;code&gt;Guerilla&lt;/code&gt; Michiel van der Leeuw &lt;a href=&quot;https://www.guerrilla-games.com/read/making-tools-for-big-games&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Making tools for big games&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="dev_method" scheme="http://spiiin.github.io/tags/dev-method/"/>
-    
-      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
     
   </entry>
   
