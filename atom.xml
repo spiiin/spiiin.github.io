@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2023-09-28T10:45:59.924Z</updated>
+  <updated>2023-09-28T10:50:22.738Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://spiiin.github.io/blog/3460926079/"/>
     <id>http://spiiin.github.io/blog/3460926079/</id>
     <published>2023-09-28T10:21:41.000Z</published>
-    <updated>2023-09-28T10:45:59.924Z</updated>
+    <updated>2023-09-28T10:50:22.738Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>daScript в <code>vscode</code> для подсветки может использовать файл с описанием <a href="https://github.com/GaijinEntertainment/vscode-dascript/blob/master/syntaxes/dascript.tmLanguage.yaml" target="_blank" rel="noopener">синтаксиса</a>, или <a href="https://github.com/profelis/daScript-plugin" target="_blank" rel="noopener">language server</a> (само хост приложение знает больше о своих данных и коде, чтобы подсказывать редактору).</p><p>Формат описания синтаксиса языков подсветки для <code>hexo</code> отличается, поэтому всё время до этого я использовал для подсветки похожие на <code>daScript</code> языки — <code>c++, python, ml</code>. Я немного повозился с попытками перевода, но решил попробовать взять результаты от самой <code>vscode</code>. Она не предназначена для того, чтобы работать со сторонними скриптами в двустороннем режиме (принимать данные и отдавать обратно), но и не запрещает сделать это.</p><p><a href="https://github.com/spiiin/hexo_vscode_dascript_highlight/tree/main/highlight-server" target="_blank" rel="noopener">Наколенный плагин</a> - добавляет команду <strong><code>Start highlight server</code></strong>, которая стартует http-сервер и слушает порт, по которому можно передать текст для подсветки.<br>Для работы плагина необходимы:</p><ul><li>один из указанных выше <a href="https://marketplace.visualstudio.com/items?itemName=eguskov.dascript" target="_blank" rel="noopener">плагинов для подсветки в vscode</a></li><li>плагин <a href="https://github.com/d3v-one/vscode-paste-special" target="_blank" rel="noopener">Paste special</a>, который позволяет заменить подсвеченный код на его html эквивалент</li></ul><p><a href="https://github.com/spiiin/hexo_vscode_dascript_highlight/blob/main/highlight-client/hexo_search_all_post_snippets.py" target="_blank" rel="noopener">Клиент на python</a> - тоже наколенный скрипт, который проходит по всем постам моего блога, и заменяет сниппеты кода на их html эквивалент в сгенерированной статической версии (чтобы не потерять исходник). Криво и косо, но выполняет задачу, теперь код постом про <a href="https://spiiin.github.io/tags/dascript/">daScript</a> подсвечен красивее.</p><p><img src="/blog/3460926079/fix_small.png" alt=""></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
@@ -35,6 +35,8 @@
     </summary>
     
     
+    
+      <category term="log" scheme="http://spiiin.github.io/tags/log/"/>
     
       <category term="hexo" scheme="http://spiiin.github.io/tags/hexo/"/>
     
