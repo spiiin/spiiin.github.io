@@ -10,7 +10,7 @@ date: 2022-07-02 18:11:26
 В {% post_link 220206-dascript-macro 'предыдущей заметке про макросы' %} описывались способы сгенерировать код выражений на языке.
 
 Можно строить выражения с помощью ручной генерации абстрактного синтаксического дерева. Например, код для генерации выражения `let a = 40 + 2`:
-```cpp
+```fsharp
 
 var expr40 <- new [[ExprConstInt() value=40]]                               //40
 var expr2 <- new [[ExprConstInt() value=2]]                                //2
@@ -26,7 +26,7 @@ exprLet_aSize.variables |> emplace_new() <| new [[Variable()
 
 Генерировать большие функции с использованием ExprXXX-кирпичиков утомительно, поэтому можно использовать макрос `quote`, который трансформирует переданное в него выражение в синтаксическое дерево этого выражения:
 
-```cpp
+```fsharp
 var exprLet <- quote <|
     let a = 40 + 2
 print(describe(exprLet))
@@ -36,7 +36,7 @@ let  /*unused*/ a:auto const = (40 + 2);
 
 В случае, если какую-либо часть выражения нужно сделать изменяемой, можно воспользовать макросом `apply_template`:
 
-```cpp
+```fsharp
 require daslib/templates
 require daslib/templates_boost
 
@@ -51,7 +51,7 @@ apply_template(exprLet_rules, exprLet.at, exprLet)
 
 Недавно в язык была добавлена фича по упрощению генерации правил переписываний выражений -- [expression reification](https://dascript.org/doc/reference/language/reification.html?highlight=reification) ([аналогичная фича из haxe](https://haxe.org/manual/macro-reification-expression.html)).
 Её можно описать как DSL для задания правил переписывания выражений в шаблонах. Теперь генерацию того же самого выражения можно описать так:
-```cpp
+```fsharp
 let variableName = "a"
 let op1 = 40
 let op2 = 2
@@ -62,7 +62,7 @@ var exprLet <-qmacro <|
 
 Переписанная кодо-генерированная функция инициализации структуры с использованием реификации получается где-то вдвое короче и проще:
 
-```cpp
+```fsharp
 def generateStructureInitFunction(var st:StructurePtr; ptrsTypeIndexes:array<int>&)
     let ptrFieldsLen = ptrsTypeIndexes |> length
     var blk : array<ExpressionPtr>; defer_delete(blk)
@@ -136,7 +136,7 @@ def generateStructureInitFunction(var st:StructurePtr; ptrsTypeIndexes:array<int
 `qmacro_function` -- макрос для генерации сигнатуры функции и её определения
 
 Получившаяся функция инициализации аналогична той, которая генерировалась в предыдущей заметке:
-```cpp
+```fsharp
 struct Vec2
     x, y : float
 

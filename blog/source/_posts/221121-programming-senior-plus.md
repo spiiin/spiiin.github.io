@@ -2,6 +2,7 @@
 title: 'Уровень программирования: Senior++'
 tags:
   - dev_evolution
+  - longread
 abbrlink: 1976052536
 date: 2022-11-21 11:16:32
 ---

@@ -50,7 +50,7 @@ n[0+plus],n[1+plus],n[2+plus],n[3+plus] = n[3+plus],n[0+plus],n[1+plus],n[2+plus
 
 **` - Нельзя сравнить два массива с помощью оператора проверки равенства`**
 Что логично из-за неопределенности поведения такого оператора (сравнивать ли содержимое или указатели). Из-за этого используется самописная функция `same`:
-```python
+```fsharp
 def same(var a,b: int[16])
     for ai, bi in a, b
         if ai != bi
@@ -60,7 +60,7 @@ def same(var a,b: int[16])
 
 **`- Поддержка именованных именованных кортежей без необходимости использовать отдельный класс`**
 `Python` позволяет использовать [именованные кортежи](https://docs.python.org/3.6/library/collections.html?highlight=namedtuple#collections.namedtuple) вместо обычных там, где не хочется заводить структуру. В `daScript` возможность именовать поля кортежа встроена в язык:
-```python
+```fsharp
 typedef FieldPathInfo = tuple<field:int[16]; fieldFrom:int[16];  rate:int>
 var a = [[FieldPathInfo val, vert, rate(val)]]
 ```
@@ -70,7 +70,7 @@ https://github.com/GaijinEntertainment/daScript/issues/309
 
 **`- Нет встроенного аналога list из Python и DoubleLinkedList из Nim`**
 Вместо этого кортежи хранятся в классе `array`, представляющем собой динамический массив. Для того, чтобы избежать лишнего копирования данных при сортировке, память под кортежи выделяется на стеке:
-```python
+```fsharp
 //медленный вариант
 var open: array<FieldPathInfo>
 open |> push <| [[FieldPathInfo source, rate(source), zeros]] //хранение в массиве объектов
@@ -80,7 +80,7 @@ open |> push <| new [[FieldPathInfo source, zeros, rate(source)]] //хранен
 ```
 
 Также можно отметить, что объекты на хипе выделяются в соседних областях памяти, аллокатор контекста по умолчанию выделяет память из предвыделенного линейного блока:
-```python
+```fsharp
  for i in range(16)
     var xxx = new [[FieldPathInfo val, vert, rate(val)]]
     unsafe
@@ -132,12 +132,12 @@ daScript.exe -aot james_bond_jr.das james_bond_jr.das.cpp
 
 **`Векторизация!`**
 В daScript есть встроенные векторные типы int4 и float4, и описание поля логичнее переделать на их использование:
-```
+```fsharp
 //typedef Field = int[16]
 typedef Field = int4[4]
 ```
 Тогда горизонтальные сдвиги можно описать так:
-```
+```fsharp
 def right(var v:Field; line: int)
     var ans = v
     ans[line] = ans[line].yzwx

@@ -1,6 +1,8 @@
 ---
 title: Философия борьбы с ошибками
-tags: dev_method
+tags:
+ - dev_method
+ - longread
 abbrlink: 1807815468
 date: 2021-07-04 19:37:24
 ---

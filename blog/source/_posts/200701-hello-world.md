@@ -151,6 +151,9 @@ Backticks escape: \`are\` these!
 Картинки
 
 ![fox](200701-hello-world/fox.png)
+![totoro](200701-hello-world/totoro.png)
+![2d](200701-hello-world/2d.jpg)
+![mir_vokrug](200701-hello-world/mir_vokrug.jpg)
 ---
 
 ---

@@ -2,7 +2,7 @@
 title: Nim in imaginary world
 abbrlink: 1808122922
 date: 2021-05-04 14:00:08
-tags: [nes, hack, nim]
+tags: [nes, hack, nim, longread]
 ---
 
 Когда я изучаю новый язык, то после базового изучения синтаксиса пробую решать на нём выдуманную задачку, взятую из игры `James Bond Jr` для платформы NES. Попробовал решить её на [Nim](https://nim-lang.org/) и сравнить с решениями на других языках.

@@ -41,6 +41,7 @@ tags: meta
 
 ## Страница всех тегов
 [Meta](https://spiiin.github.io/tags/meta/) - все теги и мета-посты вроде этого
+[Longread](https://spiiin.github.io/tags/longread) - длинные заметки
 
 
 

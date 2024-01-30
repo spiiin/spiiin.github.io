@@ -48,7 +48,7 @@ int main( int, char * [] ) {
 
 Пустое окно на glfw + imgui можно создать так:
 
-```cpp
+```fsharp
 def imgui_app(title:string; blk : block)
     if glfwInit()==0
 		panic("can't init glfw")
@@ -110,7 +110,7 @@ def test
 
 Исходная демка использует библиотеки three.js и ColladaLoader.js для загрузки меша из dae файла, но можно [конвертировать](https://products.aspose.app/3d/ru/conversion/dae-to-obj) dae в obj, чтобы использовать код загрузки меша из примера daScript. Загрузка меша:
 
-```cpp
+```fsharp
 require opengl/opengl_gen
 
 let mesh_file_name = "{get_das_root()}/house.obj"
@@ -121,7 +121,7 @@ var mesh <- load_obj_mesh(mesh_file_name) |> create_geometry_fragment
 
 Задание стандартных шейдеров:
 
-```cpp
+```fsharp
 require glsl/glsl_common
 require glsl/glsl_internal
 
@@ -167,7 +167,7 @@ def fs_preview
 
 Интересная штука -- DSL для работы с шейдерами ([glsl_internal](https://github.com/GaijinEntertainment/daScript/blob/master/modules/dasGlsl/glsl/glsl_internal.das), набор макросов для того, чтобы писать шейдеры как обычные функции в daScript, а также работать с uniform переменными почти как с обычными переменными языка. Пример передачи uniform-ов в шейдер:
 
-```cpp
+```fsharp
 var [[uniform]] v_projection : float4x4                                     //объявление uniform переменной для шейдера
 
 let aspect = display_h!=0 ? float(display_w)/float(display_h) : 1.
@@ -182,7 +182,7 @@ fs_preview_bind_uniform(program_front)                                      // v
 
 Отрисовка:
 
-```cpp
+```fsharp
 glUseProgram(program)
 vs_preview_bind_uniform(program)
 fs_preview_bind_uniform(program)
@@ -194,7 +194,7 @@ draw_geometry_fragment(mesh)
 ## Клиппинг плоскостями отсечения
 
 Изменим пиксельный шейдер отрисовки объекта:
-```cpp
+```fsharp
 [fragment_program (version=400)]
 def fs_preview
     //если вершина отсекается плоскостями -- отбросить её
@@ -203,7 +203,7 @@ def fs_preview
 ...
 
 Установка uniform-переменных через панель imGui
-```cpp
+```fsharp
     Begin("Crop params");
     SliderFloat("Crop plane X", safe_addr(f_crop_plane_x), -1.0f, 1.0f)
     SliderFloat("Crop plane Xnax", safe_addr(f_crop_plane_x_max), -1.0f, 1.0f)
@@ -219,7 +219,7 @@ def fs_preview
 
 Исходная демка на three.js использует для описания состояния рендера концепцию [материалов](https://github.com/daign/clipping-with-caps/blob/master/js/material.js) этой библиотеки, но несложно сопоставить свойства материлов с параметрами OpenGL
 
-```cpp
+```fsharp
 //упрощенный шейдер для вывода в буфер трафарета
 [fragment_program (version=400)]
 def fs_preview_front
@@ -257,7 +257,7 @@ draw_geometry_fragment(mesh)
 
 Вывод отсекающих граней:
 
-```
+```fsharp
 //функция генерации прямоугольника заданного размера
 def gen_axis_rect(plt : GenDirection; x1, x2, y1, y2, coord: float)
     var frag : GeometryFragment
@@ -307,7 +307,7 @@ draw_geometry_fragment(planeYMax)
 
 На этом этапе обнаруживаются отличия между демкой-референсом и примером из daScript. Позиция камеры в референсной демке попадает в шейдера "автоматически", эта переменная [устанавливается](https://threejs.org/docs/#api/en/renderers/webgl/WebGLProgram) библиотекой three.js. Для примера на daScript нужно передать её вручную и учесть то, что системы координат в демках различаются. Поворот в примере daScript задаётся через матрицу `v_model`, так что для трансформации камеры в систему координат модели и плоскостей отсечения нужно также "довернуть" её, умножив на матрицу модели.
 
-```cpp
+```fsharp
 //позиция камеры в пространстве координат модели
 var [[uniform]] f_camera_position_rotated : float3
 

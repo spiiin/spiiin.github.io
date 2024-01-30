@@ -5,6 +5,7 @@ date: 2022-08-09 22:08:42
 tags:
   - dev_method
   - gamedesign
+  - longread
 ---
 
 В эссе [Treasure Hunting Systems Found in the History of Video Games

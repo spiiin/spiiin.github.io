@@ -4,6 +4,7 @@ abbrlink: 1547564887
 date: 2022-02-06 21:04:42
 tags: 
   - dascript
+  - longread
 ---
 
 [daScript](https://dascript.org/) - скриптовый язык для игр от Gaijin Entertaiment.
@@ -87,7 +88,7 @@ struct Mesh {
 
 Прежде, чем начинать шаманить с макросами, нужно набросать наивную реализацию "быстрой" версии класса, хранящего свои данные в одном блоке памяти. Для этого можно использовать [онлайн компилятор tio](https://tiorun.gaijin.team/##S0ksTi7KLCj5/z86taIgv6gklislNU0hNzEzj0sBCAqKMvNKNJQ8UnNy8nUUwvOLclIUlTS5/v8HAA).
 
-```python
+```fsharp
 struct Memblock
     mem : array<uint8>
     a: int?
@@ -146,7 +147,7 @@ def main
 
 В репозитории языка валяется готовый [пример](https://github.com/GaijinEntertainment/daScript/blob/073bc29145207b39180069ae60f00ed43fad6ea7/examples/test/misc/dump_fields.das) такого макроса, но в учебных целях немного перепишем его:
 
-```cpp
+```fsharp
 module macro_test
 
 require ast
@@ -164,7 +165,7 @@ class DumpFields : AstStructureAnnotation
 
 Макрос наследуется от класса `AstStructureAnnotation`, определённого в модуле [ast](https://github.com/GaijinEntertainment/daScript/blob/073bc29145207b39180069ae60f00ed43fad6ea7/src/builtin/ast.das#L75), который представляет собой шаблон для аннотации структуры. К самому классу также применяется аннотация `structure_macro`, которая регистрирует данный макрос для применения к каждой структуре, отмеченной аннотацией `memblock`.
 
-```cpp
+```fsharp
 class AstStructureAnnotation
     def abstract apply ( var st:StructurePtr; var group:ModuleGroup; args:AnnotationArgumentList; var errors : das_string ) : bool
     def abstract finish ( var st:StructurePtr; var group:ModuleGroup; args:AnnotationArgumentList; var errors : das_string ) : bool
@@ -176,7 +177,7 @@ class AstStructureAnnotation
 Если теперь отметить описание структуры аннотацией `memblock`, то компилятор "пропустит" её определение через макрос, который выведет названия полей на экран. В момент обработки информация о создаваемой структуре хранится в классе `StructurePtr`, определение которого можно найти поиском по C++ коду. На данном этапе макрос просто проходит по всем полям структуры и выводит информацию о каждом из них на экран. `describe_cpp` - это функция, которая выводит определения типа, как если бы он был объявлен в C++.
 
 При запуске приложения на экран выведется:
-```
+```cpp
 struct Memblock {
     TArray<uint8_t> mem;
     int32_t * a;
@@ -188,7 +189,7 @@ struct Memblock {
 
 Можно немного поиграться с определением макроса:
 
-```cpp
+```fsharp
 [structure_macro(name=memblock)]
 class GenMemblock : AstStructureAnnotation
     def override apply ( var st:StructurePtr; var group:ModuleGroup; args:AnnotationArgumentList; var errors : das_string ) : bool
@@ -221,7 +222,7 @@ print("MemblockTest = {memblock2}")
 
 Следующим шагом попробуем убрать поле `mem` из исходной структуры, и создать его из макроса.
 
-```cpp
+```fsharp
 [structure_macro(name=memblock)]
 class GenMemblock : AstStructureAnnotation
     def override apply ( var st:StructurePtr; var group:ModuleGroup; args:AnnotationArgumentList; var errors : das_string ) : bool
@@ -264,7 +265,7 @@ print("MemblockTest = {memblock.mem}")
 
 Таким же образом можно перенести поля `aCount` и `bCount` в генерирующий макрос:
 
-```cpp
+```fsharp
 [structure_macro(name=memblock)]
 class GenMemblock : AstStructureAnnotation
     def override apply ( var st:StructurePtr; var group:ModuleGroup; args:AnnotationArgumentList; var errors : das_string ) : bool
@@ -319,7 +320,7 @@ struct Memblock {
 
 Для начала стоит немного переписать код `initMemblock`, чтобы отделить часть инициализации структуры, которую нужно сгенерировать. Также добавлено третье поле, для того, чтобы увидеть, какие изменения потребуется сейчас внести в код `initMemblock`
 
-```cpp
+```fsharp
 //аннотация того, что к структуре надо применить 2 макроса, добавляющий поля, и дебажный, отображающий все поля
 [memblock, dump_fields]
 struct Memblock
@@ -428,7 +429,7 @@ int main( int, char * [] ) {
 
 Макрос `ast_print_expression` применённый к функции initMemblock, выводит на экран:
 
-```cpp
+```fsharp
 ---das------------------// [modifyExternal][modifyArgument]
 def initMemblock ( var memblock : Memblock -const; aCount : int const; bCount : int const; cCount : int const )
         ExprVar memblock. ExprField a`count ExprCopyRight = ExprVar aCount
@@ -465,7 +466,7 @@ def initMemblock ( var memblock : Memblock -const; aCount : int const; bCount : 
 
 Практически готовый пример нужного кода есть в примерах из daScript-a `gen_field.das`.
 
-```cpp
+```fsharp
 def generateStructureFields(var st:StructurePtr)
     //create "mem" field of type array<uint8>
     var uint8Type <- new [[TypeDecl() baseType=Type tUInt8]]
@@ -521,14 +522,14 @@ def generateStructureInitFunction(var st:StructurePtr; ptrsTypeIndexes:array<int
 
 Теперь если сгенерировать макросом функцию, и передать эту функцию в макрос, который возвращает исходный текст функции, то получится такой результат:
 
-```cpp
+```fsharp
 def init`struct`Memblock ( var memblock : Memblock; var a`count : int; var b`count : int; var c`count : int )
     print("Hello, world!",__context__)
 ```
 
 **`Присваивание и объявление переменной`**
 
-```cpp
+```fsharp
 //-------------------------
 //1. Make Expressions
 //-------------------------
@@ -543,7 +544,7 @@ blk.list |> emplace(exprCopy)
 
 Тут всё достаточно тривиально, пока составляем только первую строку "memblock.a`count = aCount"
 
-```cpp
+```fsharp
 //-------------------------
 //2. Quotes
 //-------------------------
@@ -573,7 +574,7 @@ blk.list |> emplace(exprCall_printUnused)
 - макрос ast_print, применённый к сгенерированной функции, не показывает неиспользуемые переменные, так как они были выброшены компилятором, так что увидеть их можно, если добавить использование (print"{aSize}" в данном случае).
 
 Кроме генерации выражений, здесь показано использование макроса `quote`, который превращает код в выражение:
-```cpp
+```fsharp
 var exprLet_aSize_value <- quote(
     typeinfo(sizeof * memblock.a) * a`count
 )
@@ -581,7 +582,7 @@ var exprLet_aSize_value <- quote(
 
 Вот [пример](https://github.com/GaijinEntertainment/daScript/blob/726d440be7618fb431815b18e6f785c37a335d5d/examples/test/misc/template_example.das) ([Fixed version](https://github.com/spiiin/dascript_macro_tutorial/blob/master/examples/template_example.das)) более продвинутого использования цитирования, с возможностью задать правила переписывания выражения. Это можно использовать для того, чтобы перейти от явного указания названия поля структуры к переменной, в которую можно передать любое имя или выражение:
 
-```cpp
+```fsharp
 require daslib/templates
 require daslib/templates_boost
 
@@ -624,18 +625,18 @@ for i in range(0, ptrFieldsLen)
 **`Вызов функции memblock.mem |> resize(aSize + bSize + cSize)`**
 
 Здесь есть небольшая хитрость. Строка `aSize + bSize + cSize`, трансформируется в выражение:
-```cpp
+```fsharp
 ExprOp2( ExprOp2(ExprVar aSize ExprOp2Right + ExprVar bSize) ExprOp2Right + ExprVar cSize))
 ```
 
 У выражения есть определённый шаблон:
-```cpp
+```fsharp
 ((((a+b)+c)+d)+...)
 ```
 
 Подобные выражения удобно сгенерировать с помощью функции [свёртки](https://en.wikipedia.org/wiki/Fold_(higher-order_function)). Я зачём-то использовал правостороннюю свёртку, но для ассоциативных операторов конечный результат будет одинаковым (не нашёл готовой в стандартной библиотеке):
 
-```cpp
+```fsharp
 def foldR(var a:array<ExpressionPtr>; foldOp:function<(arg1, arg2: ExpressionPtr) : ExpressionPtr> )
     let aLen = a |> length
     var from <- a[aLen-1]
@@ -682,14 +683,14 @@ blk.list |> emplace(exprCall_printUnused2)
 **`memblock.a = reinterpret<int?> addr(memblock.mem[0])`**
 
 Можно немного изменить функцию `foldr`, чтобы она могла генерировать частичные суммы для получения кода вида:
-```cpp
+```fsharp
 memblock.a = reinterpret<int?> addr(memblock.mem[0])
 memblock.b = reinterpret<float?> addr(memblock.mem[(aSize + 0)])
 memblock.c = reinterpret<int?> addr(memblock.mem[(aSize + (bSize + 0))])
 ...
 ```
 
-```cpp
+```fsharp
 //теперь можно задать, какую часть массива превратить в выражение
 def foldR_partial(var a:array<ExpressionPtr>; foldOp:function<(arg1, arg2: ExpressionPtr) : ExpressionPtr>; initial: ExpressionPtr; endIndex:int)
     let aLen = a |> length
@@ -733,7 +734,7 @@ for i in range(0, ptrFieldsLen)
 ```
 
 Все части генерации, составленные вместе, генерируют теперь такую функцию:
-```cpp
+```fsharp
 def init`struct`Memblock ( var memblock : Memblock; var a`count : int; var b`count : int; var c`count : int )
         memblock.a`count = a`count
         memblock.b`count = b`count
@@ -753,7 +754,7 @@ def init`struct`Memblock ( var memblock : Memblock; var a`count : int; var b`cou
 ## Наследование
 
 Теперь можно использовать макрос, чтобы сгенерировать поля структуры и конструктор:
-```cpp
+```fsharp
 [memblock]
 struct Memblock
     a: int?
@@ -773,7 +774,7 @@ def test
 
 Но что будет, если отнаследоваться от такой структуры?
 
-```cpp
+```fsharp
 struct Vec2
     x, y : float
 
@@ -842,7 +843,7 @@ struct MemblockInheritor {
 Для пометки полей можно использовать аннотации типов (пример -- [аннотации типов шейдеров](https://github.com/borisbat/dasBGFX/blob/a1e10ab439e5996a0a4d8722689e2b0fab4e72d9/examples/01_hello_triangle.das#L7)).
 
 Простой макрос, который проверяет список аннотаций типа:
-```cpp
+```fsharp
 def checkFields(var st:StructurePtr)
     for field in st.fields
         var memblockAnnExist = find_arg("in_memblock", field.annotation) ?as tBool ?? false
@@ -855,7 +856,7 @@ def checkFields(var st:StructurePtr)
 
 Теперь можно реализовать логику добавления новых полей в уже существующий мемблок, а также генерацию конструктора с правильным количестом полей:
 
-```cpp
+```fsharp
 
 struct Vec2
     x, y : float

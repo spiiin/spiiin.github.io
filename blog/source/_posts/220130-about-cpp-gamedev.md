@@ -5,6 +5,7 @@ tags:
   - gamedev
   - dascript
   - dev_method
+  - longread
 abbrlink: 1728194429
 date: 2022-01-30 16:58:23
 ---

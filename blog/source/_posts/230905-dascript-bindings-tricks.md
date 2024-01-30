@@ -42,7 +42,7 @@ public:
 };
 ```
 
-```python
+```fsharp
 //возможный вызов метода в daScript
 var c: MyStruct
 print("{c |> mystruct_test()}")
@@ -73,7 +73,7 @@ addExtern<DAS_BIND_FUN(getRef), SimNode_ExtFuncCallRef>(*this, lib, "getRef", Si
 addExternTempRef<DAS_BIND_FUN(getRefInline), SimNode_ExtFuncCallRef>(*this, lib, "getRefInline", SideEffects::accessExternal, "getRefInline");
 ``````
 
-```python
+```fsharp
 getRef() = 333
 print("{getRef()}\n") //333
 
@@ -256,7 +256,7 @@ addExtern<DAS_BIND_FUN(getArrayRef), SimNode_ExtFuncCallRef>(*this, lib, "getArr
     SideEffects::accessExternal, "getArrayRef");
 ```
 
-```python
+```fsharp
 //теперь можно пройти по C++-контейнеру из daScript без дополнительных затрат на итерации
 for v in getArrayRef()
     print("{v}\n")

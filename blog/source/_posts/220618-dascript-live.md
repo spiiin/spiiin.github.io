@@ -6,6 +6,7 @@ tags:
   - dascript
   - opengl
   - ecs
+  - longread
 ---
 
 Попробую описать live-режим работы с приложением в `daScript` (aka **`Hot Reloading`**). Это режим работы программы, в котором можно обновлять данные и код без её перезапуска.
@@ -147,7 +148,7 @@ context_state_example.das
 ##Получение информации из другого контекста
 Нет каких-либо особенных сложностей в том, чтобы получить в одном контексте информацию из другого, как из С++, так и из daScript -- можно как выполнить функцию в другом контексте (как в примерах выше), так и проверить её существование. Именно это и реализовано в модуле [live](https://github.com/GaijinEntertainment/daScript/blob/master/daslib/live.das):
 
-```python
+```fsharp
 var private appPtr : smart_ptr<Context> //указатель на пересоздаваемый живой контекст
 
 def private live_lookup(fn)
@@ -182,7 +183,7 @@ def public invoke_live ( fn:string )
 
 Типы компонентов в decs задаются с помощью обычных структур, с применённым к ним атрибутом `[decs_template]`, который является макросом, регистрирующим функции `apply_decs_template` и `remove_decs_template`. Эти функции позволяют добавлять/удалять компнонент на сущностях.
 
-```python
+```fsharp
 //компонент "пушка"
 [decs_template]
 struct Turret
@@ -211,12 +212,12 @@ def make_tank ( pos:float3 )
 ```
 
 Компоненты в системе `decs` прозрачно для пользователя добавляются в "мир" ("пул", "состояние") -- базу данных, описывающих состояние игровой сцены.
-```python
+```fsharp
 var public decsState : DecsState    //! Full state of the ESC system.
 ```
 
 Переключающий контекст получает эту переменную из предыдущего контекста и сериализует в память, а затем вызывает функцию десериализации в новом контексте:
-```python
+```fsharp
 var private appPtr : smart_ptr<Context> //указатель на пересоздаваемый живой контекст
 
  //сохранение ecs-состояния
@@ -238,7 +239,7 @@ invoke_in_context(appPtr, css, decsLiveData)
 ```
 
 Функции `saveLiveContext` и `restoreLiveContext` выглядят тривиально, вызывают generic-функции сериализации из модуля [archive](https://github.com/GaijinEntertainment/daScript/blob/e7992b384dad13c1a201f9eee1c6a6ae1e0cf8b8/daslib/archive.das):
-```
+```fsharp
 def saveLiveContext
     to_log(LOG_TRACE, "LIVE: saveLiveContext\n");
     decsLiveData <- mem_archive_save(decsState)
@@ -251,7 +252,7 @@ def restoreLiveContext
 При этом -- если изменения не затрагивали названия полей в ECS-компонентах, то приложение может продолжить работать без переинициализации (можно, например, увеличить скорость снарядов танка прямо во время игры -- уже выпущенные снаряды продолжат двигаться с той же скоростью, а новые станут быстрее).
 
 Если же изменить название поля ECS-компонента (к примеру, автозаменой названия поля `reload_time` на `reload_time_11111`), десериализовать текущее состояние игры не выйдет , но приложение всё равно не нужно перезапускать, и оно не крешит, для продолжения работы можно просто нажать кнопку переинициализации уровня:
-```python
+```fsharp
 def public live_keypressed ( keycode, scancode, action, mods : int )
     invoke_live("keypressed", keycode, scancode, action, mods )
     if is_live()
@@ -265,7 +266,7 @@ def public live_keypressed ( keycode, scancode, action, mods : int )
 
 Последний шаг, для связывания живого приложения с обновляемым контекстом -- цикл переключения контекстов, который также тривиален ([glfw_live](https://github.com/borisbat/dasGlfw/blob/master/dasglfw/glfw_live.das#L41)):
 
-```python
+```fsharp
 def public glfw_live(title,appf,appd:string)
     .. //различная инициализация и настройка glfw
     go_live(appf, appd)

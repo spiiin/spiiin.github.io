@@ -2,7 +2,9 @@
 title: "daScript: обобщенное программирование"
 abbrlink: 2629978232
 date: 2023-01-21 23:33:14
-tags: dascript
+tags:
+ - dascript
+ - longread
 ---
 
 Обобщенное программирование -- одна из серых, но важных и интересных сторон daScript. "Серость" темы связана с тем, что, во-первых, система типов не очень детально описана в документации, во-вторых -- в рассуждениях о типизации можно от практики быстро уйти в дебри академических терминов, в-третьих, тема плохо укладывается в голову C++-программисту.
@@ -13,7 +15,7 @@ tags: dascript
 
 Перегруженные функции (ad-hoc полиморфизм) -- простейший способ определить функцию для двух различных типов
 
-```cpp
+```fsharp
 def func(a : int)
     print("{a}\n")
 def func(a : float)
@@ -27,7 +29,7 @@ def main
 **`Константность`**
 
 Напечатаем тип параметра-аргумента:
-```cpp
+```fsharp
 def func(a : int)
     print("{typeinfo(typename a)}\n")
 //Output:
@@ -35,7 +37,7 @@ int const
 ```
 
 По умолчанию к типу был добавлен спецификатор `const`, который не позволяет поменять значение аргумента. Его можно убрать, добавив ключевое слово `var`:
-```cpp
+```fsharp
 def func(var a: int)
     print("{typeinfo(typename a)}\n")
 //Output
@@ -43,7 +45,7 @@ int
 ```
 
 При выборе перегрузки, константная и неконстантная версия, в отличие от C++, не имеют приоритета друг перед другом и при нахождении двух вариантов функции `daScript` выдаст ошибку ([Правила выбора функции](https://dascript.org/doc/reference/language/functions.html#function-overloading)). 
-```cpp
+```fsharp
 var a: int
 func(a)
 //Output
@@ -54,7 +56,7 @@ candidates:
 ```
 
 Для того, чтобы daScript различил функции, можно добавить [спецификатор типа](https://dascript.org/doc/reference/language/generic_programming.html#type-contracts-and-type-operations) `== const` ("константность аргумента должна совпадать).
-```cpp
+```fsharp
 def func(a : int ==const)
     print("{typeinfo(typename a)}\n")
 
@@ -74,7 +76,7 @@ int const ==const
 **`Ссылки`**
 
 В предыдущем примере аргумент передавался по значению, поэтому даже `var int` не позволяет изменить переданную переменную (меняется **значение аргумента**, а не оригинальная переменная). Возможно передать аргумент по ссылке:
-```cpp
+```fsharp
 def func(var a : int&)
     a = 42
 
@@ -88,7 +90,7 @@ def main
 
 ** Все непримитивные типы передаются по ссылке, независимо от того, был ли описан аргумент со спецификатором `&` или без него. **
 
-```cpp
+```fsharp
 struct A
     a : int
 
@@ -109,7 +111,7 @@ A
 
 При этом, как и с константностью, компилятор не различает приоритета перегрузки функций с аргументом-ссылкой и значением, и выдаёт ошибку неоднозначности разрешения перегрузки.
 
-```cpp
+```fsharp
 def func(var a: int)
     pass
 def func(var a : int&)
@@ -129,7 +131,7 @@ def main
 
 Макросы работают раньше разрешения перегрузки, что позволяет реализовать паттерн [contracts](https://github.com/GaijinEntertainment/daScript/blob/e7992b384dad13c1a201f9eee1c6a6ae1e0cf8b8/daslib/contracts.das) -- произвольную функцию, которая предварительно проверяет тип аргументов:
 
-```cpp
+```fsharp
 require daslib/contracts
 
 [!expect_ref(arg)]
@@ -165,6 +167,9 @@ Module_Tutorial03() : Module("tutorial_03") {   // module name, when used from d
     ...
     addCtorAndUsing<Color>(*this, lib, "Color", "Color");
 }
+```
+
+```fsharp
 //das
 
 require tutorial_03
@@ -189,7 +194,7 @@ tutorial_03::Color const#
 
 Чаще всего нет необходимости в раздельной обработке обычных и временных ссылок, в этом случае можно добавить к типу аргумента спецификатор `implicit`:
 
-```cpp
+```fsharp
 def printColor(c:Color implicit)
     print("{typeinfo(typename c)}\n")
 //Output
@@ -198,7 +203,7 @@ tutorial_03::Color const implicit
 ```
 
 Небольшое отличие в том, как будет трактоваться аргумент:
-```cpp
+```fsharp
 def printColor(c:Color implicit)    // accepts Color and Color#, a will be treated as Color
 def printColor(c:Color# implicit)   // accepts Color and Color#, a will be treated as Color#
 ```
@@ -208,7 +213,7 @@ def printColor(c:Color# implicit)   // accepts Color and Color#, a will be treat
 
 Как и в C++, указатели -- это ссылки, которые могут указывать на `null`, также имеют чуть другую семантику, что позволяет уже без шаманства иметь перегрузки для значения и указателя.
 
-```cpp
+```fsharp
 require daslib/safe_addr
 
 def func(var a: int)
@@ -232,7 +237,7 @@ int?
 
 Базовые типы не приводятся друг другу неявно, требуется явный вызов конструктора типа (*Explicit is better than implicit*).
 
-```cpp
+```fsharp
 def func(a : int) {}
 def func(a : float) {}
 def func(a : int4) {}
@@ -255,7 +260,7 @@ def main
 
 Для типов, поддерживающих наследование, неявно выполняется приведение указателей и ссылок от дочернего к родительскомму типу ([LSP](https://en.wikipedia.org/wiki/Liskov_substitution_principle)).
 
-```cpp
+```fsharp
 struct A 
     a : int
 
@@ -277,7 +282,7 @@ A const
 ```
 
 Приведение типов структур (`cast/upcast/reinterpret`):
-```cpp
+```fsharp
     var a : A
     var b : B
 
@@ -296,7 +301,7 @@ A const
 
 **При выборе перегрузки функции выбирается та, для которой нужно выполнить наименьшее количество преобразований (при равном количестве daScript выдаст ошибку неоднозначности выбора)**
 
-```cpp
+```fsharp
 struct A 
     a : int
 
@@ -343,7 +348,7 @@ def main
 
 Для того, чтобы отключить LSP приведение типа аргумента, можно добавить ключевое слово `explicit`. Так 
 
-```cpp
+```fsharp
 struct A 
     a : int
 
@@ -386,7 +391,7 @@ variant
 
 Для таких типов, возможно явное LSP-приведение для типов их аргументов (`ковариантность`). Пример для функций:
 
-```cpp
+```fsharp
 struct A 
     a : int
 
@@ -424,7 +429,7 @@ def main
 
 Если не указан тип аргумента функции, daScript выводит его автоматически, пример функции id принимающей аргумент любого типа и возвращающий его:
 
-```cpp
+```fsharp
 options log=true, optimize=false
 
 struct S1
@@ -469,14 +474,14 @@ def public main
 **`auto`**
 
 Определение для id более развернуто выглядит так:
-```cpp
+```fsharp
 def id(a:auto): auto
     return a
 ```
 
 Такая форма синтаксиса позволяет задать для каждого из выводимых типов псевдоним, который можно использовать для сравнения типа или получения rtti информации. Несколько примеров:
 
-```cpp
+```fsharp
 //print typename
 def func(a : auto(T))
     print("{typeinfo(typename type<T>)}\n")
@@ -490,7 +495,7 @@ def sum(a, b : auto(T))
 
 Можно передать информацию о типе в качестве аргумента шаблона, как обычный `auto` аргумент.
 
-```cpp
+```fsharp
 //generic linear interpolation between int types via cast to float type
 def lerpi(a, b : auto(IntType); part : float; tempCastType : auto(CastType))
     return IntType(CastType(a) + CastType(b - a) * part)
@@ -504,7 +509,7 @@ print("{lerpi(int3(1, 2, 3), int3(2, 4, 7), 0.5f, type<float3>)}\n") // (1,3,5)
 
 Различные формы [ограчений](https://dascript.org/doc/reference/language/generic_programming.html#type-contracts-and-type-operations) для типов аргументов auto. Примеры из доки
 
-```cpp
+```fsharp
 def foo( a : auto&)           // accepts any type, passed by reference
 def foo( a : auto[])          // accepts static array of any type of any size
 def foo( a : array<auto -const>)  // matches any array, with non-const elements
@@ -520,7 +525,7 @@ def foo(a: table<int; auto>) //any tables with int keys
 
 Так же, как и к аргументам обычным функциям, к аргументам generic-функциям могут быть применены контракты, позволяющие в более общем виде описать ограничения для типа аргумента. Именно c generic-функциями видна вся мощь контрактов.
 
-```cpp
+```fsharp
 require daslib/contracts
 
 //accept any functions
@@ -543,7 +548,7 @@ def main
 
 Контракты для одного аргумента могут комбинироваться с помощью операторов !, &&, || и ^^
 
-```cpp
+```fsharp
 require daslib/contracts
 
 [expect_any_function(arg) || expect_any_tuple(arg)]
@@ -568,7 +573,7 @@ def main
 
 Еще один способ задать ограничения для типа -- перечислить разрешенные типы через символ `|` ([options](https://dascript.org/doc/reference/language/generic_programming.html#options) в доках):
 
-```cpp
+```fsharp
 def foo(var a : int | float | string) //accept int or float or string
 def foo(var a : array<int | float>) //array of int of array of float
 def foo(a : function<(a : auto) : auto> | function<(a, b : auto) : auto>) //accept any function with 1 or 2 arguments
@@ -578,7 +583,7 @@ def foo (a : Foo | #) //accept Foo and Foo#, looks like this short syntax only w
 
 Порядок проверки соответствия опций -- слева направо:
 
-```cpp
+```fsharp
 def foo(var a : auto | int&) { a = 84; }
 def bar(var a : int& | auto) { a = 42; }
 
@@ -595,7 +600,7 @@ def main
 
 Проверка наличия методов или полей структуры выполняется в момент инстанцирования generic-функции
 
-```cpp
+```fsharp
 struct S
     a : int
 
@@ -610,7 +615,7 @@ def main
 
 Ошибка возникнет только в момент инстанциирования `foo` со структурой, не имеющей поля `a`. Проверить наличие полей или другую информацию о типе в время компиляции можно с помощью оператора `static_if`:
 
-```cpp
+```fsharp
 struct S
     a : int
 struct T
@@ -630,7 +635,7 @@ foo(t) //also ok, but do nothing
 
 Более сложные конструкции вроде "вызвать конструктор того же типа, что и поле структуры `s.a` можно выразить с помощью макросов
 
-```cpp
+```fsharp
 //generics macro
 module generics_macro shared private
 
@@ -667,7 +672,7 @@ print("{t}\n")
 
 daScript распознаёт обычные или generic-функции по синтаксису, но можно также явно обозначить функцию как generic:
 
-```cpp
+```fsharp
 options log=true
 
 [generic]
@@ -695,7 +700,7 @@ def public main
 
 С помощью макроса `[instance_function]` можно попросить явно специализировать generic-функцию с определенными типами:
 
-```cpp
+```fsharp
 require daslib/instance_function
 
 def func(a : auto(TT))
@@ -713,7 +718,7 @@ def main
 
 Для generic функций, которые подразумевают переопределение для новых кастомных типов в других модулях, необходимо добавлять префикс `_::` или `__::`, чтобы обозначить, что функций должна искаться в том модуле, который её вызывает.
 
-```cpp
+```fsharp
 //module1.das
 [export]
 def call_func(a)
