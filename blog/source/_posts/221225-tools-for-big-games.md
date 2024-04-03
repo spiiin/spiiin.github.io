@@ -50,3 +50,8 @@ tags:
 - 18 core cpu, 768 Gb ram, 80 Gb network, 16 tb ssd на 300 человек
 
 Наиболее радикальная идея, работать локально с исходными версиями ассетов, и стримить ресурсы через глобальный общий сервер. Доклад 2019 года, когда все сидели в одном офисе, но в [твиттере](https://twitter.com/MvdLeeuwGG/status/1606268200143970304) автор упоминает, что адаптировали и для домашней работы. Кроме блоба ассета хранится также метаинформация (например, ссылки, в каких тасках он задействован).
+
+
+**update 24-03-05**
+[Building Tools Quickly: Blueprints, Menus, Utilities, and Widgets](https://www.youtube.com/watch?v=wJqOn88cU7o) -- доклад про различные способы расширения редактора Unreal от Embark Studios, а также различные связи тулзов и инфраструктуры через сервер [Embark Skyhook](https://github.com/EmbarkStudios/skyhook) - Unreal Remote Control API <--> Python Server <--> DCC/Slack/Jira etc.
+

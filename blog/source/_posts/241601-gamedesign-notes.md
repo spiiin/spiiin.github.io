@@ -92,7 +92,7 @@ First big ideas -  **`sports, dragons, robots, guns, jumping & climbing, and car
 - переиграть во все игры жанра.
 	- популярные все (знать конкурентов)
 	- старые (найти старые полезные идеи, понять те, от которых отказались. понять эволюцию механик)
-	- посмотреть менее популярные и инди (в поиска новых механих и идей, то что сделано лучше чем в популярных)
+	- посмотреть менее популярные и инди (в поиска новых механих и идей, то что сделано лучше чем в популярных, возможно найти "слиперы")
 - некомпьютерные игры и не-игры
 	- настолки
 	- живые игры (квесты, ларпы)
@@ -107,6 +107,7 @@ First big ideas -  **`sports, dragons, robots, guns, jumping & climbing, and car
 ## 6. Game-feel
 
 `Steve Swink: Game Feel. A Game Designer's Guide to Virtual Sensation`
+`Chris Solarski. Drawing Basics and Video Game Art + Interactive stories and video game art` - язык форм в геймдизайне.
 
 **Ощущения слияния с персонажем**
 
@@ -275,9 +276,3 @@ https://github.com/spiiin/axie_test -- я делал когда-то сбор с
 [Игры достойный изучения](http://aushestov.ru/%d0%b8%d0%b3%d1%80%d1%8b-%d0%b4%d0%be%d1%81%d1%82%d0%be%d0%b9%d0%bd%d1%8b%d0%b5-%d0%b8%d0%b7%d1%83%d1%87%d0%b5%d0%bd%d0%b8%d1%8f/)
 [«Золотой фонд» геймдева](http://aushestov.ru/gold-reserve/)
 Также часто используются в качестве примеров гейм-дизайна -- игры Nintendo, Naughty Dog, Valve, аркадная классика и инди игры.
-
-
-
-
-
-
