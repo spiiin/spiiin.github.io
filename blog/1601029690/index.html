@@ -12,7 +12,7 @@
 ga('create', 'UA-00000000-0', 'auto');
 ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/621874082/">Позже</a><a class="pagination__link pagination__next" href="/blog/887709799/">Раньше</a></div><article class="article post"><h3 class="article__title">ECS - типы и проблемы</h3><div class="article__date metadata"><div class="post-info">2022/11/06</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/link/">link</a><a class="article__tags__link metadata" href="/tags/ecs/">ecs</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2 id="Where-is-my-components"><a href="#Where-is-my-components" class="headerlink" title="Where is my components"></a>Where is my components</h2><p>Одна из идей <code>ecs</code> — держать компоненты рядом в памяти и обходить в порядке хранения в памяти. По способу организации хранения <a href="https://github.com/SanderMertens/ecs-faq#what-are-the-different-ways-to-implement-an-ecs" target="_blank" rel="noopener">ECS FAQ</a> выделяет такие группы:</p>
+<a class="article__tags__link metadata" href="/tags/link/">link</a><a class="article__tags__link metadata" href="/tags/ecs/">ecs</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h2><span id="where-is-my-components">Where is my components</span><a href="#where-is-my-components" class="header-anchor">#</a></h2><p>Одна из идей <code>ecs</code> — держать компоненты рядом в памяти и обходить в порядке хранения в памяти. По способу организации хранения <a href="https://github.com/SanderMertens/ecs-faq#what-are-the-different-ways-to-implement-an-ecs" target="_blank" rel="noopener">ECS FAQ</a> выделяет такие группы:</p>
 <ul>
 <li>Реактивные ECS</li>
 </ul>
@@ -33,7 +33,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p><a href="https://ajmmertens.medium.com/building-an-ecs-1-where-are-my-entities-and-components-63d07c7da742" target="_blank" rel="noopener">Building an ECS #1: Where are my Entities and Components</a> и<br><a href="https://ajmmertens.medium.com/building-an-ecs-2-archetypes-and-vectorization-fe21690805f9" target="_blank" rel="noopener">Building an ECS #2: Archetypes and Vectorization</a> - идея расскладыванием на архетипы</p>
 <p><a href="https://github.com/GaijinEntertainment/daScript/blob/master/daslib/decs.das#L323" target="_blank" rel="noopener">decs</a> - библиотека ecs в <code>daScript</code> на архетипах<br><a href="https://github.com/GaijinEntertainment/daScript/blob/master/daslib/decs_boost.das" target="_blank" rel="noopener">decs_boost</a> - набор макросов, с помощью которых обращение с архетипами синтаксически похоже на обычный императивный код</p>
 <p>Идеальным сочетанием для скорости выглядит использование <code>архетипов</code> в тех системах, где 1) не происходит постоянного добавления/удаления компонентов и 2) компонент используются только небольшим количеством систем (в примеры приводят низкоуровневые физические и графические подсистемы) + использование <code>sparse sets</code> там где существует большое количество типов компонент, которые постоянно добавляются/удаляются и систем, использующих разные сочетания компонентов (игровая логика).</p>
-<h2 id="Проблемы-с-ECS"><a href="#Проблемы-с-ECS" class="headerlink" title="Проблемы с ECS"></a>Проблемы с ECS</h2><p>На чистом ECS сложно выразить некоторые распространённые в геймдеве задачи:</p>
+<h2><span id="problemy-s-ecs">Проблемы с ECS</span><a href="#problemy-s-ecs" class="header-anchor">#</a></h2><p>На чистом ECS сложно выразить некоторые распространённые в геймдеве задачи:</p>
 <ul>
 <li>Иерархии</li>
 <li>Конечные автоматы</li>
@@ -49,7 +49,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li>Несколько компонентов одного типа на сущности</li>
 </ul>
 <p><a href="https://ajmmertens.medium.com/ecs-from-tool-to-paradigm-350587cdf216" target="_blank" rel="noopener">ECS: From Tool to Paradigm</a> - список проблем<br><a href="https://takinginitiative.wordpress.com/2019/09/30/ecs-questions/" target="_blank" rel="noopener">ECS Questions</a> + <a href="https://takinginitiative.wordpress.com/2019/11/09/more-ecs-questions/" target="_blank" rel="noopener">More ECS Questions</a> - еще пара разборов ситуаций в игровом коде и способов их решения — порядок вызова систем в иерархических структурах, применительно к подсистеме анимации.</p>
-<h2 id="Kruger-Engine-Entity-Model"><a href="#Kruger-Engine-Entity-Model" class="headerlink" title="Kruger Engine Entity Model"></a>Kruger Engine Entity Model</h2><style>.embed-container {
+<h2><span id="kruger-engine-entity-model">Kruger Engine Entity Model</span><a href="#kruger-engine-entity-model" class="header-anchor">#</a></h2><style>.embed-container {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
@@ -75,6 +75,15 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <ul>
 <li>Локальные<br>Чтобы передавать информацию между компонентами одной сущности (сущность не может получить доступ к компонентам напрямую, не через локальную систему, компоненты не могут ссылаться друг на друга или обновляться сами)<br>Чтобы гарантированно обновлять все компоненты родителя раньше дочерних, для систем, которым необходим порядок обновления</li>
 </ul>
-<p><img src="/blog/1601029690/slide_1_small.png" alt=""></p>
+<p><img src="/blog/1601029690/slide_1_small.png" alt></p>
 <p>Разрешено добавление нескольких компонентов одного типа на сущность, чтобы упростить построение иерархий (меш + сабмеши).<br>Разрешено явное задание пространственной иерархии между сущностями (с помощью <code>Spatial Component</code>, который имеет список дочерних Spatial Component и хранит пространственные матрицы)</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/621874082/">Позже</a><a class="pagination__link pagination__next" href="/blog/887709799/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"https://github.com/spiiin/spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/621874082/">Позже</a><a class="pagination__link pagination__next" href="/blog/887709799/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

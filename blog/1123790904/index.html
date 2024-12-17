@@ -14,12 +14,12 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2486469456/">Позже</a><a class="pagination__link pagination__next" href="/blog/3652741154/">Раньше</a></div><article class="article post"><h3 class="article__title">Шпаргалка по разработке MMO</h3><div class="article__date metadata"><div class="post-info">2021/02/10</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/gamedev/">gamedev</a><a class="article__tags__link metadata" href="/tags/link/">link</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Набор ссылок и подсказки по терминологии для разработки многопользовательских и MMO-игр.</p>
 <a id="more"></a>
-<h2 id="Начальные-материалы"><a href="#Начальные-материалы" class="headerlink" title="Начальные материалы"></a>Начальные материалы</h2><p>Книга:<br>Многопользовательские игры. Разработка сетевых приложений Глейзер Д., Мадхав С. (<a href="https://www.piter.com/collection/programmirovanie-igr/product/mnogopolzovatelskie-igry-razrabotka-setevyh-prilozheniy" target="_blank" rel="noopener">ссылка</a>).<br>Описывает основные понятия, ориентирована больше на сессионные игры, иногда отсылает к изучению более продвинутых тем на другие материалы.</p>
+<h2><span id="nachalnye-materialy">Начальные материалы</span><a href="#nachalnye-materialy" class="header-anchor">#</a></h2><p>Книга:<br>Многопользовательские игры. Разработка сетевых приложений Глейзер Д., Мадхав С. (<a href="https://www.piter.com/collection/programmirovanie-igr/product/mnogopolzovatelskie-igry-razrabotka-setevyh-prilozheniy" target="_blank" rel="noopener">ссылка</a>).<br>Описывает основные понятия, ориентирована больше на сессионные игры, иногда отсылает к изучению более продвинутых тем на другие материалы.</p>
 <p>Статьи:<br><a href="https://habr.com/ru/post/467025/" target="_blank" rel="noopener">О сетевой модели в играх для начинающих</a> - описаны базовые понятия, много отсылок на другие статьи по разным темам.<br><a href="https://web.archive.org/web/20190519135537/http://trac.bookofhook.com/bookofhook/trac.cgi/wiki/IntroductionToMultiplayerGameProgramming" target="_blank" rel="noopener">Introduction to Multiplayer Game Programming</a> - хороший разбор вариантов выбора “нижнего уровня” игрового протокола, немного об игровой логике.<br><a href="https://gafferongames.com/categories/building-a-game-network-protocol/" target="_blank" rel="noopener">Building a Game Network Protocol</a> - несколько статей о “верхнем уровне” игрового протокола.<br><a href="https://gafferongames.com/post/reading_and_writing_packets/" target="_blank" rel="noopener">Reading and Writing Packets</a> - методы сериализации.<br><a href="https://ruoyusun.com/2019/03/28/game-networking-1.html" target="_blank" rel="noopener">Game Networking Demystified, Part I: State vs. Input (series)</a> - серия статей с очень кратким обзором базовых понятий.<br><a href="http://t-machine.org/index.php/2013/06/22/mmo-scalability-is-finally-irrelevant-for-indie-mmos/" target="_blank" rel="noopener">MMO scalability is finally irrelevant for Indie MMOs</a> - небольшая статья о пропускной способности и мощности серверов.<br><a href="http://www.kegel.com/c10k.html" target="_blank" rel="noopener">The C10K problem</a> - о настройке сервера, поддерживающего 10000 TCP-соединений.</p>
-<h2 id="Общая-архитектура-игры"><a href="#Общая-архитектура-игры" class="headerlink" title="Общая архитектура игры"></a>Общая архитектура игры</h2><p>Условно “Клиент-сервер-бекенд архитектура” (client/game server/web-server(with db), three-tiered server architecture), etc).<br>Конкретное устройство сильно зависит от потребностей игры. Примеры:</p>
+<h2><span id="obshchaya-arhitektura-igry">Общая архитектура игры</span><a href="#obshchaya-arhitektura-igry" class="header-anchor">#</a></h2><p>Условно “Клиент-сервер-бекенд архитектура” (client/game server/web-server(with db), three-tiered server architecture), etc).<br>Конкретное устройство сильно зависит от потребностей игры. Примеры:</p>
 <p><a href="https://www.ibm.com/developerworks/library/ar-powerup1/index.html" target="_blank" rel="noopener">Building a simple yet powerful MMO game architecture, Part 1</a> - обзор архитектуры от IBM.<br><a href="https://www.ibm.com/developerworks/library/ar-powerup2/" target="_blank" rel="noopener">Part 2</a> - вторая часть статьи (в самой статье кривые ссылки).<br><a href="https://www.ibm.com/developerworks/library/ar-powerup3/ar-powerup3.html" target="_blank" rel="noopener">Part 3</a> - третья часть.</p>
 <p><a href="https://youtu.be/-AU_qlCu9ZI?t=361" target="_blank" rel="noopener">Бэкенд-разработка в геймдеве</a> – доклад Максима Барышников, Wargaming, тайминг на обзор архитектуры.</p>
-<h2 id="Архитектура-игрового-сервера"><a href="#Архитектура-игрового-сервера" class="headerlink" title="Архитектура игрового сервера"></a>Архитектура игрового сервера</h2><style>.embed-container {
+<h2><span id="arhitektura-igrovogo-servera">Архитектура игрового сервера</span><a href="#arhitektura-igrovogo-servera" class="header-anchor">#</a></h2><style>.embed-container {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
@@ -38,7 +38,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <div class="embed-container"><iframe src="https://www.youtube.com/embed/x_4Y2-B-THo" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
 <p>Очень хорошо и понятно описана архитектура всей игры, и возможное устройство сервера MMO (единственный найденный доклад с примером архитектуры реального проекта)</p>
 <p><img src="/blog/1123790904/arch_server.png" alt="arch_server"></p>
-<h2 id="Архитектура-клиента"><a href="#Архитектура-клиента" class="headerlink" title="Архитектура клиента"></a>Архитектура клиента</h2><p><code>Предсказание на клиенте</code></p>
+<h2><span id="arhitektura-klienta">Архитектура клиента</span><a href="#arhitektura-klienta" class="header-anchor">#</a></h2><p><code>Предсказание на клиенте</code></p>
 <ul>
 <li>чтобы не ждать ответа сервера, предсказывать информацию на основе предыдущих данных (если игрок двигается вправо - в следующем кадре скорее всего тоже будет). Если от сервера приходит другая информация, то плавно интерполировать реальные данные с предсказанными, чтобы избежать скачков.</li>
 </ul>
@@ -61,7 +61,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li><p>очередь событий<br>Не обрабатывать события напрямую, а ставить в очередь на отправку - можно оптимизировать, сделать батчинг, отбросить повторы, приоритезировать, . При приёмё - сортировать с другими событиями игровой очереди.<br><a href="https://martalex.gitbooks.io/gameprogrammingpatterns/content/chapter-5/5.2-event-queue.html" target="_blank" rel="noopener">https://martalex.gitbooks.io/gameprogrammingpatterns/content/chapter-5/5.2-event-queue.html</a></p>
 </li>
 </ul>
-<h2 id="“Нижний-уровень”-протокола"><a href="#“Нижний-уровень”-протокола" class="headerlink" title="“Нижний уровень” протокола"></a>“Нижний уровень” протокола</h2><p>Понятия, относящиеся к уровню взаимодействия с ОС.</p>
+<h2><span id="nizhniy-uroven-protokola">“Нижний уровень” протокола</span><a href="#nizhniy-uroven-protokola" class="header-anchor">#</a></h2><p>Понятия, относящиеся к уровню взаимодействия с ОС.</p>
 <p><code>Оборачивать в заменяемые компоненты</code></p>
 <p><code>Udp vs Tcp vs библиотека для смешанного решения</code></p>
 <ul>
@@ -91,7 +91,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <ul>
 <li>нужен id клиента кроме его адрес+порт (порт может внезапно измениться)</li>
 </ul>
-<h2 id="“Верхний”-уровень-протокола"><a href="#“Верхний”-уровень-протокола" class="headerlink" title="“Верхний” уровень протокола"></a>“Верхний” уровень протокола</h2><p>Прикладной уровень протокола</p>
+<h2><span id="verhniy-uroven-protokola">“Верхний” уровень протокола</span><a href="#verhniy-uroven-protokola" class="header-anchor">#</a></h2><p>Прикладной уровень протокола</p>
 <p><code>Разбиение пакетов</code></p>
 <ul>
 <li>если пришёл пакет с пропущенным номером - либо выбросить, либо положить в буфер, чтобы некоторое время подождать предыдущих</li>
@@ -127,7 +127,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 </li>
 <li>Схему данных пакетов в теории можно не хранить на клиенте, а передавать на старте сессии - тогда не надо обновлять клиент (но лучше не надо)</li>
 </ul>
-<h2 id="Игровая-логика"><a href="#Игровая-логика" class="headerlink" title="Игровая логика"></a>Игровая логика</h2><p><code>Безопасность и читеры</code></p>
+<h2><span id="igrovaya-logika">Игровая логика</span><a href="#igrovaya-logika" class="header-anchor">#</a></h2><p><code>Безопасность и читеры</code></p>
 <ul>
 <li>один читер может испортить игру 100-1000 игрокам</li>
 <li>не слать клиенту информацию вроде “рядом с вами невидимый игрок”</li>
@@ -144,7 +144,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li>Если нужно реплицировать на клиент большой кусок данных (стартовое состояние мира при подключении) - передать не за один заход, а разбить на много мелких (иначе можно перегрузить сеть и другие клиенты будут лагать).</li>
 <li>Возможная оптимизация клиента - удалять на клиенте всех акторов за пределами досягаемости камеры/гильдейских знаний игрока (не рендерить и не знать ничего о том, что он не может увидеть). Можно настроить время очистки.<br><a href="https://habr.com/ru/company/mailru/blog/352634/" target="_blank" rel="noopener">https://habr.com/ru/company/mailru/blog/352634/</a> Сетевая оптимизация для Unreal Engine 4</li>
 </ul>
-<h2 id="Отладка-сети"><a href="#Отладка-сети" class="headerlink" title="Отладка сети"></a>Отладка сети</h2><p><code>Замеры качества соеднинения</code></p>
+<h2><span id="otladka-seti">Отладка сети</span><a href="#otladka-seti" class="header-anchor">#</a></h2><p><code>Замеры качества соеднинения</code></p>
 <ul>
 <li>проверка времени - ping</li>
 <li>проверка потерь - либо считать пакеты, которые пришли с неверным порядковым номером, либо считать количество необходимых ретрансляций</li>
@@ -159,4 +159,13 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p><strong>update от 2023-09-18</strong></p>
 <p><a href="http://ithare.com/contents-of-development-and-deployment-of-massively-multiplayer-games-from-social-games-to-mmofps-with-stock-exchanges-in-between/" target="_blank" rel="noopener">Development and Deployment of Multiplayer Online Games: from social games to MMOFPS, with stock exchanges in between</a> - лучшая книга по теме, с разбором всего, что есть выше. Advanced уровня, с обсуждением не деталей, а общих подходов и большим количеством ссылок</p>
 <p><a href="https://www.gdcvault.com/play/1014345/I-Shot-You-First-Networking" target="_blank" rel="noopener">I Shot You First Networking</a> - доклад Bungie о мультиплейере в Halo<br><a href="https://docs.unrealengine.com/5.3/en-US/networking-overview-for-unreal-engine/" target="_blank" rel="noopener">Networking Overview</a> - обзор сетевых фич unreal<br><a href="https://www.gamedeveloper.com/programming/-i-massively-multiplayer-game-development-2-i-architecture-and-techniques-for-an-mmorts" target="_blank" rel="noopener">Architecture and Techniques for an MMORTS</a> - идеи для построения сетевого протокола с авторитарным сервером для стратегий<br><a href="https://www.gabrielgambetta.com/client-side-prediction-live-demo.html" target="_blank" rel="noopener">Fast-Paced Multiplayer: Sample Code and Live Demo</a> - визуальный пример движения кружков с различными настройками борьбы с лагами<br><a href="https://www.youtube.com/watch?v=1JHetORRpfQ" target="_blank" rel="noopener">Code Mystics Explains Netcode: Input Delay vs. Rollback</a> - еще один визуальный пример влияния параметров input delay и rollback на качество геймплея</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2486469456/">Позже</a><a class="pagination__link pagination__next" href="/blog/3652741154/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"https://github.com/spiiin/spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2486469456/">Позже</a><a class="pagination__link pagination__next" href="/blog/3652741154/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

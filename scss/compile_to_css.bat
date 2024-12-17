@@ -1,1 +1,1 @@
-sass --style=compressed ./main.scss ../css/main.css
+sass --style=compressed --quiet-deps ./main.scss ../css/main.css
