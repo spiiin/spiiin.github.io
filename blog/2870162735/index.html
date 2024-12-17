@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Взлом NES игр без знания ассемблера</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3673672218/">Позже</a><a class="pagination__link pagination__next" href="/blog/1361611427/">Раньше</a></div><article class="article post"><h3 class="article__title">Взлом NES игр без знания ассемблера</h3><div class="article__date metadata"><div class="post-info">2013/11/04</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Ещё один рецепт взлома данных в играх на NES, на этот раз не требующий знания ассемблера.</p>
+<p>Понадобится python для запуска скриптов и практически любой эмулятор, например, fceux.</p>
+<p>Данный способ пригодится, чтобы найти любые данные, изменение которых можно увидеть на экране.</p>
+<p>Генерируется все возможные “испорченные” версии игры, в которых меняются небольшие участки данных.<br><a href="https://gist.github.com/spiiin/7304994" target="_blank" rel="noopener">https://gist.github.com/spiiin/7304994</a></p>
+<p>Скрипт портит по 64 байта данных за раз, можно брать больше или меньше, в зависимости от потребностей.</p>
+<p>Начало области коррапта данных - 0x10, сразу после заголовка ROM, оттуда начинаются банки с кодом игры. Конец области подбирается под конкретную игру, его можно посчитать, зная размер и маппер рома или посмотреть прямо из заголовке - он записан в 5-м байте. Умножаем кол-во банков на размер банка (16 килобайт) - получаем адрес конца области для коррапта.</p>
+<p>Корраптить банки с видеопамятью не надо, что в них лежит, и так имеет строго определённый формат. На выходе получается несколько тысяч ромов, которые нужно проверить.</p>
+<p>Скрипт проверки ромов.<br><a href="https://gist.github.com/spiiin/7305188" target="_blank" rel="noopener">https://gist.github.com/spiiin/7305188</a></p>
+<p>Использует библиотеки <a href="http://sourceforge.net/projects/pywin32/" target="_blank" rel="noopener">pywin32</a> и <a href="http://www.pythonware.com/products/pil/" target="_blank" rel="noopener">Pil</a></p>
+<p>Принцип работы прост: скрипт запускает эмулятор, загружает в него очередной ром, загружает подготовленный заранее сейв (который надо предварительно сделать на оригинальной игре - сейв должен быть сделан в момент, когда загружается уровень - обычно игры используют эффект затемнения экрана, чтобы подгрузить новые данные).</p>
+<p>Нужно максимально замедлить эмулятор и сохраниться в момент затемнения экрана.</p>
+<p>Эмулятор запускается в турбо-режиме, чтобы максимально быстро загрузить уровень.</p>
+<p>Далее скрипт ненадолго засыпает, чтобы дать возможность отработать эмулятору, а потом снимает скриншот с загруженного уровня, убивает процесс эмулятора и запускает следующую версию игры. Совет для fceux - в конфиге отключить функцию бекапа сохранений (backupSavestates 0), чтобы эмулятор не создавал копию сейва для каждого из загруженных ромов, это немного ускорит обработку.</p>
+<p>После обработки всех версий рома можно посмотреть результаты - большинство скриншотов будут идентичны оригинальной версии игры, некоторые будут показывать только чёрный экран - какой-то важный код этих версий рома оказался испорчен.</p>
+<p>Но важнее всего те, на которых будут визуально видны изменения в игре.</p>
+<p>Вот пара примеров:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/32228/32228_300.png" alt="b2" title="b2"><br><img src="http://ic.pics.livejournal.com/spiiin/20318251/32281/32281_300.png" alt="gb" title="gb"></p>
+<p>также иногда удаётся найти встроенные в игру секреты, например, для battle city:</p>
+<p><img src="http://ic.pics.livejournal.com/spiiin/20318251/32764/32764_300.png" alt="tanks"> “tanks”<br> загуглив эту строчку, можно найти способ вызвать сообщение о несчастной любви программиста игры:<br> <a href="https://www.youtube.com/watch?v=qoZtgmi3Ej0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=qoZtgmi3Ej0</a></p>
+<p> Дальше можно сделать ещё один скрипт, вариант первого, который будет менять один конкретный байт на экране, а потом написать ещё один, для вырезания этого блока из скриншотов и сохранения в отдельный файл.</p>
+<p> Такие файлы поддерживаются блочным редактором <a href="http://www.romhacking.net/utilities/967/" target="_blank" rel="noopener">CadEditor</a>, в который можно загрузить экраны уровня игры, и отобразить их в том формате, в котором их показывает эмулятор (ну и передизайнить эти экраны на свой вкус).</p>
+<p> <a href="https://gist.github.com/spiiin/7305425" target="_blank" rel="noopener">https://gist.github.com/spiiin/7305425</a><br> добавил таким способом в CadEditor поддержку ещё шести игр:</p>
+<ol>
+<li>Chip ‘n Dale Rescue Rangers 2:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/32857/32857_300.png" alt="cad_chip_and_dale_2" title="cad_chip_and_dale_2"></li>
+<li>New Ghostbusters 2:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/33217/33217_300.png" alt="cad_new_ghostbusters_2" title="cad_new_ghostbusters_2"></li>
+<li>Power Blade 2:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/33472/33472_300.png" alt="cad_power_blade_2" title="cad_power_blade_2"></li>
+<li>Flintstones - The Rescue of Dino &amp; Hoppy:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/33619/33619_300.png" alt="cad_flintstones" title="cad_flintstones"></li>
+<li>Flintstones - The Surprise at Dinosaur Peak!:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/33956/33956_300.png" alt="cad_flintstones_2" title="cad_flintstones_2"></li>
+<li>Three Eyes Story (Mitsume ga Tooru):<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/34207/34207_300.png" alt="cad_editor_3eyes" title="cad_editor_3eyes"></li>
+</ol>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"https://github.com/spiiin/spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3673672218/">Позже</a><a class="pagination__link pagination__next" href="/blog/1361611427/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

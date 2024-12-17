@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Подсветка daScript для hexo</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/17440519/">Позже</a><a class="pagination__link pagination__next" href="/blog/3778037319/">Раньше</a></div><article class="article post"><h3 class="article__title">Подсветка daScript для hexo</h3><div class="article__date metadata"><div class="post-info">2023/09/28</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/log/">log</a><a class="article__tags__link metadata" href="/tags/hexo/">hexo</a><a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>daScript в <code>vscode</code> для подсветки может использовать файл с описанием <a href="https://github.com/GaijinEntertainment/vscode-dascript/blob/master/syntaxes/dascript.tmLanguage.yaml" target="_blank" rel="noopener">синтаксиса</a>, или <a href="https://github.com/profelis/daScript-plugin" target="_blank" rel="noopener">language server</a> (само хост приложение знает больше о своих данных и коде, чтобы подсказывать редактору).</p>
+<p>Формат описания синтаксиса языков подсветки для <code>hexo</code> отличается, поэтому всё время до этого я использовал для подсветки похожие на <code>daScript</code> языки — <code>c++, python, ml</code>. Я немного повозился с попытками перевода, но решил попробовать взять результаты от самой <code>vscode</code>. Она не предназначена для того, чтобы работать со сторонними скриптами в двустороннем режиме (принимать данные и отдавать обратно), но и не запрещает сделать это.</p>
+<p><a href="https://github.com/spiiin/hexo_vscode_dascript_highlight/tree/main/highlight-server" target="_blank" rel="noopener">Наколенный плагин</a> - добавляет команду <strong><code>Start highlight server</code></strong>, которая стартует http-сервер и слушает порт, по которому можно передать текст для подсветки.<br>Для работы плагина необходимы:</p>
+<ul>
+<li>один из указанных выше <a href="https://marketplace.visualstudio.com/items?itemName=eguskov.dascript" target="_blank" rel="noopener">плагинов для подсветки в vscode</a></li>
+<li>плагин <a href="https://github.com/d3v-one/vscode-paste-special" target="_blank" rel="noopener">Paste special</a>, который позволяет заменить подсвеченный код на его html эквивалент</li>
+</ul>
+<p><a href="https://github.com/spiiin/hexo_vscode_dascript_highlight/blob/main/highlight-client/hexo_search_all_post_snippets.py" target="_blank" rel="noopener">Клиент на python</a> - тоже наколенный скрипт, который проходит по всем постам моего блога, и заменяет сниппеты кода на их html эквивалент в сгенерированной статической версии (чтобы не потерять исходник). Криво и косо, но выполняет задачу, теперь код постом про <a href="https://spiiin.github.io/tags/dascript/">daScript</a> подсвечен красивее.</p>
+<p><img src="/blog/3460926079/fix_small.png" alt></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"https://github.com/spiiin/spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/17440519/">Позже</a><a class="pagination__link pagination__next" href="/blog/3778037319/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

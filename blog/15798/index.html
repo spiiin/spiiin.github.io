@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Уровень программирования: Middle</title><meta name="description" content="&lt;p&gt;Часто встречающиеся у программистов-новичков ошибки и часто встречающие у опытных программистов ошибки. С позиции “среднего” разработчика.&lt;br&gt;"><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/381238762/">Позже</a><a class="pagination__link pagination__next" href="/blog/47121/">Раньше</a></div><article class="article post"><h3 class="article__title">Уровень программирования: Middle</h3><div class="article__date metadata"><div class="post-info">2020/08/12</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/dev-evolution/">dev_evolution</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Часто встречающиеся у программистов-новичков ошибки и часто встречающие у опытных программистов ошибки. С позиции “среднего” разработчика.<br><a id="more"></a></p>
+<p>…</p>
+<hr>
+<h2><span id="oshibki-novichkov">Ошибки новичков</span><a href="#oshibki-novichkov" class="header-anchor">#</a></h2><p><code>1. Использование примитивов вместо высокоуровневых абстракций</code></p>
+<p>Новички часто пишут код “с нуля”, забывая о возможностях используемых фреймворков или библиотек. Фактически это просто неумение работать со сложными типами и игнорирование возможностей системы типов используемого языка (точнее даже - возможностей выражать через типы ограничения и связи сущностей).</p>
+<blockquote>
+<p>Каждый раз, когда необходимо завести переменную типа <code>int</code> - подумайте, действительно ли нужен просто целочисленный тип, или же с помощью типа можно сказать ещё что-то полезное о переменной</p>
+</blockquote>
+<p><code>2. Реализация всей логики в одной функции</code></p>
+<p>Если какой-то кусок кода можно вынести в именованную функцию (даже если она не будет использоваться повторно), стоит так сделать. Функции проще объединять в классы или модули, чем “голый” код и разрастающиеся безымянные функции. Это нужно, чтобы уменьшить вероятность копи-пасты кода (точнее даже, уменьшения количества необходимых для изменения логики мест в коде).</p>
+<blockquote>
+<p>Можно ли описать одним небольшим предложением, что делает функция? Что делает класс? Что описано в файле/namespace/модуле?</p>
+</blockquote>
+<p><code>3. Игнорирование инкапсуляции</code></p>
+<p>Инкапсуляция часто ошибочно трактуется новичками как необходимость делать все данные класса закрытыми. На практике лучше понимать и использовать её как средство сделать объект не ломаемым пользователем. Т.е. если изменение переменных не может привести к тому, что класс будет находиться в невалидном состоянии - то и не надо их прятать. Если же для корректной работы с объектом у него нужно вызвать 5 разных методов в строго определенном порядке (а в других случаях программа падает), значит, нет у него никакой инкапсуляции. Пользователь объекта не должен помнить о том, что нельзя делать с объектов, чтобы не сломать его внутреннюю логику - сам объект должен быть не ломаемым для пользователя.</p>
+<blockquote>
+<p>Таким образом в некоторых языках отказываются “ломающихся” абстракций и возможностей (<code>goto</code>, отказ от указателей, отказ от ручного освобождения памяти, отказ от мутабельности).</p>
+</blockquote>
+<p><code>4. Персональный стиль</code></p>
+<p>По большей части, все программы пишутся несколькими людьми, так что вместо того, что писать в строго выработанном правильном стиле, стоит учиться подстраиваться под стиль уже написанного кода. Код на некоторых языках имеет стандартные правила написания, но даже с учётом этого необходимо помнить, что программа могла писаться, когда в ходу были другие правила, или же по каким-либо другим причинам использовать другой подход. Стоит писать так, чтобы стиль всей программы был одинаковый - так у читающего код будет меньше вопросов, почему в разных местах программы используются разные варианты (и какой стиль выбрать при изменении кода).</p>
+<blockquote>
+<p>Прежде чем писать код, прочитайте уже написанный</p>
+</blockquote>
+<p><code>5. Неправильные вопросы опытным программистам</code></p>
+<p><em>“Какой язык учить?”</em> - неверно, опытные скорее могут рассказать, что уже учить не стоит. Новые знания можно копать самим, в больших количествах.<br><em>“Как быстро получить прибавку к зарплате”</em> - неверно. Самый быстрый способ прокачки - менять работу каждые полгода-год, с повышением рангов. Но с определенного уровня начинают ценить лояльность, прыгающий между проектами профессионал стоит только того, чтобы выжать из него максимум и отпустить дальше. В компаниях с грамотным управлениям вашу работу и так отметят (если отметка соответствует ожиданиям - всё отлично, если нет - лучше уточнять, что не так). К счастью, обычно с определённого уровня программистам достаточно денег для того, чтобы хватало на жизнь (дойти до этого уровня можно за год-два-три - как повезёт).</p>
+<p>Стоит максимально вникать в предметную область, опасно зависать на несколько лет в очень узкой нише.</p>
+<blockquote>
+<p>Полезно раз в месяц-два изучать как минимум одну статью профессиональной тематики, раз в полгода-год читать книгу, раз в 2-3 месяца изучать библиотеки/фреймворки/движки, похожие на те, что используются в работе.</p>
+</blockquote>
+<h2><span id="oshibki-opytnyh">Ошибки опытных</span><a href="#oshibki-opytnyh" class="header-anchor">#</a></h2><p><code>1. Нежелание трогать плохой код</code></p>
+<p>“Это надо разбираться с половиной программы” - нормальная с точки зрения опытного программиста отмазка, чтобы не выполнять рефакторинг кода. В запущенных случаях это даже перерастает в нежелание трогать свой плохой код.</p>
+<blockquote>
+<p>Иногда таки надо разобраться с половиной программы, чтобы сделать код лучше. На костылях далеко не уёдешь, рано или поздно предстоит выбросить их и сделать нормальные колёса.</p>
+</blockquote>
+<p><code>2. Нежелание отказываться от своих подходов</code></p>
+<p>Иногда (редко но бывает), нужно сделать свой код хуже, чтобы он вписывался в проект. Иногда нужно выучить новую парадигму - очень сильно неприятно, когда ты 15-20 лет писал код и решал проблемы в одном стиле, а теперь их в проекте решают по другому, так как ты ещё не умеешь. Иногда нужно выучить новый язык, когда уже очень хорошо знаешь старый.</p>
+<p>Грустно, но во многих компаниях уровни роста программиста - это скорее стаж, чем реальный опыт, а с учётом того, что в IT практически никогда не понижают при переходе между компаниями, оказывается также, что умение писать хороший код приходит (если вообще приходит)  где-то на уровне “senior+”.</p>
+<blockquote>
+<p>Время движется вперёд, и любые идеи могут устареть, даже те, которые ты считаешь основополагающими. Нужно не забывать их переоценивать</p>
+</blockquote>
+<p><code>3. Игнорирование soft-skills</code></p>
+<p>Рано или поздно в ходе роста программиста необходимо научиться нормально взаимодействовать с командой. На начальных этапах всё взаимодействие - это передача по конвейеру: получение задач от лидов/тм, передача выполненного к QA. </p>
+<p>Но на более поздних необходимо взаимодействие со всеми вокруг - уточнение формулировки задач (и умение исправить или даже переделать постановку исходной задачи), корректировки сроков. Ещё позднее - формирование команды и умение улаживать конфликты в команде. Даже если ты собираешься расти в “техническую”, а не “управленческую” сторону, всё равно не избежать растущего количества взаимодействия, а умение взаимодействовать тоже нужно прокачивать.</p>
+<p>В некоторых компаниях отрицательный отзыв по софт-скиллам блокирует твой карьерный рост.</p>
+<blockquote>
+<p>В любой сфере достаточно людей, которые умеют программировать, но не хватает тех, которые умеют программировать, и при этом разбираются в предметной области.</p>
+</blockquote>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"https://github.com/spiiin/spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/381238762/">Позже</a><a class="pagination__link pagination__next" href="/blog/47121/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

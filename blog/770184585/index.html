@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Скриптовые языки в Unreal Engine</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1364570417/">Позже</a><a class="pagination__link pagination__next" href="/blog/978393967/">Раньше</a></div><article class="article post"><h3 class="article__title">Скриптовые языки в Unreal Engine</h3><div class="article__date metadata"><div class="post-info">2024/03/02</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/nim/">nim</a><a class="article__tags__link metadata" href="/tags/unreal/">unreal</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><ul>
+<li><a href="/blog/2721099263/" title="Ещё о проектировании (движки и история)">Ещё о проектировании (движки и история)</a> — про идею разделения игрового объекта на части “для программистов” и “для гейм-дизайнеров”.</li>
+</ul>
+<p>Схема создания разделённых типов в Unreal Engine выглядит приблизительно так:</p>
+<h1><span id="c-lt-gt-blueprints">C++ &lt;—&gt; Blueprints</span><a href="#c-lt-gt-blueprints" class="header-anchor">#</a></h1><h2><span id="obshchaya-shema">Общая схема</span><a href="#obshchaya-shema" class="header-anchor">#</a></h2><p><img src="/blog/770184585/unreal1_small.png" alt><br><em><a href="/blog/770184585/unreal1.png">full size</a></em></p>
+<ul>
+<li>Исходный код обрабатывается препроцессором <code>Unreal Header Tool</code> (DSL), который генерирует метаинформацию для системы рефлексии</li>
+<li>Код на C++ собирается в exe-файл редактора/игры</li>
+<li>Код на С++ также может собираться в динамическую библиотеку, которая загружается уже после запуска редактора</li>
+<li>После запуска редактор загружает мета-информацию о типах (Reflection data), и может использовать для визуального отображения и редактирования типов</li>
+<li>Runtime geneated reflection data — новые типы могут быть созданы в рантайме, с помощью наследования от уже существующих типов и определения/переопределения новых полей, и кода из языка Blueprints (который компилируется в байткод виртуальной машины)</li>
+</ul>
+<p>Некоторые неотмеченные на схеме связи:</p>
+<ul>
+<li>Нативизация скриптов (вместо компиляции в байт-код происходит транспиляция в C++ код)</li>
+<li>Типы могут использоваться не в качестве базовых для настройки и расширения из скриптов Blueprint, а ради расширения редактора (макросы) или самого языка Blueprint (регистрация новых типов нод)</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=wJqOn88cU7o" target="_blank" rel="noopener">Building Tools Quickly: Blueprints, Menus, Utilities, and Widgets</a> — доклад про различные способы расширения редактора Unreal от Embark Studios</p>
+<h2><span id="refleksiya">Рефлексия</span><a href="#refleksiya" class="header-anchor">#</a></h2><p>Поскольку C++ не имеет встроенных средств рефлексии, движки изобретают свои средства для описания метаинформации. Так как часто уже существует основа движка на C++, выбирается вариант с добавлением разметки в сам C++ код, и стадии препроцессинга перед компиляцией (<code>Unreal Header Tool</code> в случае с Unreal), на которой разбирается метаинформация и генерируется мета-класс и код работы с ним.</p>
+<p>Кроме генерация мета-класса в виде C++-типа, необходим способ создания типов в ран-тайме — генерация кода регистрации типа в системе рефлексии времени выполнения.</p>
+<p><a href="https://awforsythe.com/unreal/blueprints_vs_cpp/" target="_blank" rel="noopener">Blueprints vs C++</a> — статья с разбором системы рефлексии, а также способов ссылок на типы C++-&gt;Blueprint и Blueprint-&gt;C++<br><a href="https://www.tomlooman.com/unreal-engine-cpp-guide/" target="_blank" rel="noopener">Unreal Engine C++ Complete Guide</a> — гайд по DSL для описания метаинформации, а также других макросов Unreal (<code>Unrealisms</code>)</p>
+<ul>
+<li><a href="/blog/1728194429/" title="С++ в геймдеве">С++ в геймдеве</a> — раздел “Высокоуровневый C++”, про ограничения языка в рефлексии, кодогенерации, compile-time вычислениях</li>
+<li><a href="/blog/4174799834/" title="C++ Metaprogramming - ссылки">C++ Metaprogramming - ссылки</a> — возможности мета-программирования</li>
+</ul>
+<h1><span id="privyazka-tekstovogo-skriptovogo-yazyka">Привязка текстового скриптового языка</span><a href="#privyazka-tekstovogo-skriptovogo-yazyka" class="header-anchor">#</a></h1><h2><span id="vybor-mezhdu-vizualnym-tekstovym-programmirovaniem">Выбор между визуальным/текстовым программированием</span><a href="#vybor-mezhdu-vizualnym-tekstovym-programmirovaniem" class="header-anchor">#</a></h2><ul>
+<li><a href="/blog/2721099263/" title="Ещё о проектировании (движки и история)">Ещё о проектировании (движки и история)</a>
+</li>
+</ul>
+<p>Выбор можно типом скриптового языка (визуальный/текстовый) зависит от конфигурации команды (кто будет пользоваться этим языком).</p>
+<ul>
+<li>По статистике от Epic — до 80% кода в больших проектах переписывается с Blueprint на C++ (<a href="https://www.youtube.com/watch?v=0YMS2wnykbc&amp;t=1276s" target="_blank" rel="noopener">линк</a>).</li>
+</ul>
+<p>Т.е. с визуальным языком вместо идеи “делаем игру без программистов” получается “программисты регулярно занимаются переписыванием логики игры на нативный язык”. Текстовые языки удобнее в плане того, что могут быть быстрее визуальных, и ближе к натуральному представлению программистов (переписывать с текстового скрипта на C++ проще, чем с Blueprint).</p>
+<p>Скриптовый язык должен быть быстрым, или хотя бы иметь возможности для ускорения (транспиляция/jit/профайлер/управление памятью/быстрый интероп с C++/примитивные типы/опции оптимизаций компиляции), чтобы минимизировать необходимость переписывания.</p>
+<ul>
+<li>Дизайн некоторых игр может подразумевать наличие большого количества level one-offs (мест с кастомной логикой), что требует большого объёма кода. Объёмные Blueprint-скрипты нечитаемы.</li>
+</ul>
+<p>Из старых примеров игр, в которых уровней с кастомной логикой больше, чем основной — Earth World Jim 2, BattleToads, сборники мини-игр (Mario Party, Adventures in The Magic Kingdom, Tiny Toon 2, симуляторы олимпиад и многоборий). Из новых — <code>It Takes Two</code>. Разработчики выбрали для этого <a href="https://angelscript.hazelight.se/" target="_blank" rel="noopener">AngelScript</a>.</p>
+<ul>
+<li><p>Текстовый язык не заменяет полностью Blueprint, небольшие кусочки всё равно удобнее реализовывать в виде Blueprint-скриптов, чтобы сохранять возможность использовать уже накопленные Unreal-разработчиками приёмы. Т.е. язык должен быть интегрирован не только с C++, так и с системой рефлексии и виртуальной машиной Blueprint.</p>
+</li>
+<li><p>В идеале, язык должен быть не хуже Blueprint в том, в чем силён Blueprint, и не хуже C++ в том, в чём хорош C++</p>
+</li>
+</ul>
+<h2><span id="gruppy-skriptovyh-yazykov">Группы скриптовых языков</span><a href="#gruppy-skriptovyh-yazykov" class="header-anchor">#</a></h2><p><code>Lua/AngelScript/Wren/Squirrel</code></p>
+<p>Lightweight-языки с простой виртуальной машиной, и небольшой стандартной библиотекой, дополнительные фичи могут реализовываться дописыванием функционала на C++.<br><a href="https://www.angelcode.com/angelscript/sdk/docs/manual/doc_addon_script.html" target="_blank" rel="noopener">Аддоны AngelScript</a>, <a href="https://github.com/Hazelight/UnrealEngine-Angelscript/blob/6b9c9a776cd339ba2b44f175a3677106ef1c8dbe/Engine/Plugins/Angelscript/Source/AngelscriptCode/Private/Preprocessor/AngelscriptPreprocessor.cpp" target="_blank" rel="noopener">препроцессор UnrealAngelScript</a> на 4к строк.</p>
+<p><code>C#/Python/JavaScript</code></p>
+<p>Языки с тяжелой виртуальной машиной, развесистой стандартной библиотекой и большим количеством готовых 3rdParty библиотек.</p>
+<p><code>Odin/Jai/daScript/Nim/Haxe</code></p>
+<p>Языки с gamedev-related фичами. Рефлексия, настройка управления памятью, компайл-тайм eval и макросы, транспиляция в C++, выбор между исполнением байт-кода и компиляцией, jit-компиляция (полный набор не поддерживает ни один язык из списка, но все поддерживают хотя бы несколько).</p>
+<p>Эта группа представляет наибольший интерес, потому что потенциально может заменить не только Blueprint, но и большую часть C++.</p>
+<h1><span id="c-lt-gt-nim-lt-gt-blueprint">C++ &lt;—&gt; Nim &lt;—&gt; Blueprint</span><a href="#c-lt-gt-nim-lt-gt-blueprint" class="header-anchor">#</a></h1><p><a href="https://github.com/jmgomez/NimForUE" target="_blank" rel="noopener">NimForUE</a> — привязка Nim к Unreal Engine, в разработке.</p>
+<h2><span id="obshchaya-shema">Общая схема</span><a href="#obshchaya-shema" class="header-anchor">#</a></h2><p><img src="/blog/770184585/unreal2_small.png" alt><br><em><a href="/blog/770184585/unreal2.png">full size</a></em></p>
+<p>Макросы позволяют написать на Nim DSL описания метаинформации.</p>
+<p>Код на Nim может компилироваться в статическую библиотеку, как и код на C++. Также существует возможность собрать код в DLL для хот-релоадинга и транспилировать в C++.<br>Для рантайм выполнения без компиляции существует формат интерпретации байт-кода виртуальной машиной NimVM.</p>
+<h2><span id="zadachi-nimforue">Задачи NimForUE</span><a href="#zadachi-nimforue" class="header-anchor">#</a></h2><ul>
+<li>Привязки методов C++ для динамического добавления типов в систему рефлексии Unreal (создание модуля, типа, полей и функций в нём, информирования рантайма о новых типах)</li>
+<li>Привязки базовых типов Unreal, строк, указателей, контейнеров, делегатов и вспомогательных классов системы рефлексии (UObject, UClass, UFunction, TSubclassOf, TSoftObjectPtr)</li>
+<li>Соответствие базовых типов языки типам системы рефлексии, идиоматические для nim хелперы вокруг unreal-типов</li>
+<li>Обёртки вокруг конвенций Unreal - конструкторов, создания компонент, статических данных и связью с системой сборки мусора, Out-параметры для Blueprint-нод</li>
+<li>Базовая инфраструктура Nim — виртуальная машина, мониторинг библиотеки для hot-reload, тесты и отладка</li>
+<li>DSL для создания типов, похожий на тот, который используется Unreal Header Tool, прокидка типов и флагов описания метаинформации</li>
+<li>Генерация привязок для всех типов системы рефлексии</li>
+<li>Генерация привязок для типов C++ (и допривязка свойств/функций), которые не добавлены в систему рефлексии, но необходимы для удобной работы со скриптами</li>
+<li>Override свойств и функций системы рефлексии (наследование от Blueprint-типов)</li>
+<li>Override для C++ функций (генерацией c++-типа обёртки)</li>
+<li>Разделение кода обёрток игры/редактора, поддержка всех платформ</li>
+</ul>
+<h2><span id="sposoby-svyazi-mezhdu-yazykami">Способы связи между языками</span><a href="#sposoby-svyazi-mezhdu-yazykami" class="header-anchor">#</a></h2><p><code>Nim &lt;--&gt; Cpp</code></p>
+<p>Nim может описать используемый метод и тип из C++ из самого языка (pragma importcpp). Аналогично код на C++ может описать прототип extern функции, которая находится в lib-файле, собранном из nim-кода.<br>Для динамической привязки — стандартные для ОС методы вызова функций из библиотек (со стороны Nim — обмазанные макросами).</p>
+<p><code>Nim &lt;--&gt; Blueprint</code></p>
+<p>Связь через систему рефлексии (Emit Type + Broadcast Asset -&gt; Blueprint знает о типе).</p>
+<p><a href="https://github.com/jmgomez/NimForUE/blob/17049537e0e92f2f796dfbc18c645939b0199629/Source/NimForUEBindings/Public/UFunctionCaller.h" target="_blank" rel="noopener">UFunctionCaller</a> — вызов зарестрированной функции по имени.</p>
+<p>Пример сгенерённой привязки функции</p>
+<figure class="highlight nim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">proc</span> getPingInMilliseconds*(self : <span class="type">APlayerStatePtr</span>): <span class="built_in">float32</span> =</span><br><span class="line">  <span class="keyword">var</span> call  = <span class="type">UECall</span>(self: <span class="number">0</span>, value: <span class="type">RuntimeField</span>(kind: <span class="type">FieldKind</span>(<span class="number">0</span>),</span><br><span class="line">      intVal: <span class="number">0</span>), kind: <span class="type">UECallKind</span>(<span class="number">0</span>), fn: <span class="type">UEFunc</span>(name: <span class="string">"GetPingInMilliseconds"</span>,</span><br><span class="line">      className: <span class="string">"APlayerState"</span>))</span><br><span class="line">  call.value = ().toRuntimeField()</span><br><span class="line">  call.self = <span class="keyword">cast</span>[<span class="built_in">int</span>](self)</span><br><span class="line">  <span class="keyword">let</span> returnVal <span class="meta">&#123;.used, inject.&#125;</span> = uCall(call)</span><br><span class="line">  <span class="keyword">when</span> <span class="built_in">float32</span> <span class="keyword">is</span> <span class="keyword">ptr</span>:</span><br><span class="line">    <span class="keyword">if</span> returnVal.get.intVal == <span class="number">0</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">nil</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">cast</span>[<span class="built_in">float32</span>](returnVal.get.intVal)</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> returnVal.get.runtimeFieldTo(<span class="built_in">float32</span>)</span><br></pre></td></tr></table></figure>
+<h2><span id="ustanovka">Установка</span><a href="#ustanovka" class="header-anchor">#</a></h2><p><a href="https://github.com/jmgomez/NimTemplate" target="_blank" rel="noopener">NimTemplate</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">choosenim devel # скачать nim</span><br><span class="line">nimble nue      # установка nue, утилиты для работы с NimForUE</span><br><span class="line">nue setup       # компиляция движка, плагина и генерация байндингов</span><br><span class="line">                # .Plugins&#x2F;NimForUE&#x2F;NimForUE.win.json - путь к движку</span><br><span class="line">...</span><br><span class="line">nue starteditor # запуск редактора</span><br><span class="line">nue game        # перекомпиляция game.dll, hot-reload библиотеки с nim-кодом</span><br><span class="line">                # .&#x2F;NimForUE&#x2F;config.nims - настройки путей</span><br><span class="line">                # .&#x2F;NimForUE&#x2F;game.nim - код примера</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/770184585/unreal3_small.png" alt><br><em><a href="/blog/770184585/unreal3.png">full size</a></em></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"https://github.com/spiiin/spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1364570417/">Позже</a><a class="pagination__link pagination__next" href="/blog/978393967/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
