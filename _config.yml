@@ -46,6 +46,8 @@ highlight:
   tab_replace: ''
   wrap: true
   hljs: false
+prismjs:
+  enable: false
 
 index_generator:
   path: ''
@@ -63,7 +65,7 @@ time_format: HH:mm:ss
 
 use_date_for_updated: false
 
-per_page: 25
+per_page: 50
 pagination_dir: page
 
 include:
@@ -81,6 +83,26 @@ kramed:
 
 server:
   compress: true
+  
+toc:
+  maxdepth: 3
+  class: toc
+  slugify: transliteration
+  decodeEntities: false
+  anchor:
+    position: after
+    symbol: '#'
+    style: header-anchor
+    
+plugins:
+  gitalk:
+    clientID: Ov23liG1mZbiQOIdi91X
+    clientSecret: INSERT_YOUR_SECRET
+    repo: spiiin.github.io
+    owner: spiiin
+    admin: 
+      - spiiin
+    distractionFreeMode: false
 
 theme: pandollo
 menu:
@@ -91,7 +113,7 @@ menu:
 
 favicon: /images/favicon.png
 syntax_highlight: darkula
-disqus: spiiin-github-io
+#disqus: spiiin-github-io
 googleAnalytics: UA-00000000-0
 
 deploy:
