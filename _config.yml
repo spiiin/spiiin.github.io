@@ -40,7 +40,7 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: false
   auto_detect: false
   tab_replace: ''
@@ -63,7 +63,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 
-use_date_for_updated: false
+updated_option: "date"
 
 per_page: 50
 pagination_dir: page
@@ -105,6 +105,7 @@ plugins:
     distractionFreeMode: false
 
 theme: pandollo
+
 menu:
     Home: /
     Archive: /archives/
@@ -112,8 +113,13 @@ menu:
     About: /blog/1
 
 favicon: /images/favicon.png
+  
 syntax_highlight: darkula
-#disqus: spiiin-github-io
+syntax_highlighter: "shiki"
+shiki:
+  theme: "dracula"
+  renderer: "djot"
+
 googleAnalytics: UA-00000000-0
 
 deploy:
