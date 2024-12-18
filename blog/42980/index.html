@@ -10,25 +10,27 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/58472/">Позже</a><a class="pagination__link pagination__next" href="/blog/32194/">Раньше</a></div><article class="article post"><h3 class="article__title">Памятка для начинающего iphone и macosx gamedeveloper'а</h3><div class="article__date metadata"><div class="post-info">2011/04/10</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/objc/">objc</a><a class="article__tags__link metadata" href="/tags/opengl/">opengl</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Cижу, изучаю маковских <a href="http://bash.org.ru/quote/408098" target="_blank" rel="noopener">юных дев</a> , курю маны. Небольшая памятка: 1. Компилятор и <a href="http://www.gnu.org/software/binutils/" target="_blank" rel="noopener">binutils</a> </p>
+<a class="article__tags__link metadata" href="/tags/objc/">objc</a><a class="article__tags__link metadata" href="/tags/opengl/">opengl</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Cижу, изучаю маковских <a target="_blank" rel="noopener" href="http://bash.org.ru/quote/408098">юных дев</a> , курю маны. Небольшая памятка: 1. Компилятор и <a target="_blank" rel="noopener" href="http://www.gnu.org/software/binutils/">binutils</a> </p>
 <h2><span id="tulzy">Тулзы</span><a href="#tulzy" class="header-anchor">#</a></h2><p><strong>gcc + cc + g++ </strong>- набор компиляторов, gcc вроде вызывает нужный, но иногда удобнее вызвать необходимый, чем подбирать командную строку, перекрывающую его умолчания. </p>
 <p>Важные параметры:<br>-x передать параметр линкеру<br>-Ox - уровень оптимизации с номером x, x больше -&gt; оптимизации сильнее. Включают в себя сразу наборы из разных опций оптимизации и генерации отладочной информации. </p>
 <p>Стадии:<br>-E препроцессинг<br>-S ассемблерный листинг -c только компиляция, не генерировать объектный код<br>-Dсимвол - передать дефайн препроцессору<br>-Wтекст - включение предупреждений<br>-Werror - считать предупреждения ошибками. Для фанатиков чистоты.<br>-iпуть - искать заголовочные файлы в заданной папке. Может встречаться в командной строке несколько раз.<br>-arch тип - архитектура, под которой будет выполняться код. Можно задать сразу несколько. </p>
 <p><strong>ld</strong> - линкер. </p>
-<p>-lлиб - подключить библиотеку с именем либ<br>-Lпуть - путь к библиотекам<br>-framework<br>-weak_framework - подключить <a href="http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html" target="_blank" rel="noopener">фреймворк</a> (являющийся набором заголовочных файлов, ресурсов, библиотек). </p>
+<p>-lлиб - подключить библиотеку с именем либ<br>-Lпуть - путь к библиотекам<br>-framework<br>-weak_framework - подключить <a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html">фреймворк</a> (являющийся набором заголовочных файлов, ресурсов, библиотек). </p>
 <p><strong>ar и ranlib</strong> - утилиты для сборки файлов в библиотеку для последующей линковки. В более широком применении - архиватор.</p>
 <p><strong>nm</strong> - просмотр информации о библиотеках и исполнимых файлах.</p>
 <p><strong>strip</strong> - вырезалка имен символов.</p>
 <p><strong>arch и lipo</strong> - позволяют управлять исполнимыми файлами, содержащими несколько архитектур (создавать и запускать разные версии). Мак под рукой поддерживает i386, x64_86 и ppc.</p>
 <p><strong>sign</strong> - подписать файл сертификатом разработчика.</p>
 <p>Еще бы gdc и shark упомянуть, но я ими не пользуюсь.</p>
-<h2><span id="cocoa">Cocoa</span><a href="#cocoa" class="header-anchor">#</a></h2><p> <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/EventOverview/Introduction/Introduction.html#//apple_ref/doc/uid/10000060i-CH1-SW1" target="_blank" rel="noopener">Cocoa Event-Handling Guide</a> </p>
-<p><a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaViewsGuide/Introduction/Introduction.html" target="_blank" rel="noopener">View programming guide</a> (часть) </p>
-<p><a href="http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_drawing/opengl_drawing.html" target="_blank" rel="noopener">Opengl programming guide</a> </p>
-<p><a href="http://developer.apple.com/" target="_blank" rel="noopener">http://developer.apple.com/</a> - доки по NSObject, NSResponder, NSBundle, NSApplication, NSRunLoop, NSWindow, NSView, NSOpenGLView, NSTimer, NSApplicationDelegate, NSViewController </p>
-<p>Как создать приложение без главного nib-файла : <a href="http://lapcatsoftware.com/blog/2007/06/10/working-without-a-nib-part-5-no-3" target="_blank" rel="noopener">http://lapcatsoftware.com/blog/2007/06/10/working-without-a-nib-part-5-no-3</a> (правка info.plist + перегрузка NSApplication + подстановка своего класса вместо NSBundle + настройки стилей NSWindow для приема событий мыши и клавиатуры и внешнего вида) </p>
+<h2><span id="cocoa">Cocoa</span><a href="#cocoa" class="header-anchor">#</a></h2><p> <a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/EventOverview/Introduction/Introduction.html#//apple_ref/doc/uid/10000060i-CH1-SW1">Cocoa Event-Handling Guide</a> </p>
+<p><a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaViewsGuide/Introduction/Introduction.html">View programming guide</a> (часть) </p>
+<p><a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_drawing/opengl_drawing.html">Opengl programming guide</a> </p>
+<p><a target="_blank" rel="noopener" href="http://developer.apple.com/">http://developer.apple.com/</a> - доки по NSObject, NSResponder, NSBundle, NSApplication, NSRunLoop, NSWindow, NSView, NSOpenGLView, NSTimer, NSApplicationDelegate, NSViewController </p>
+<p>Как создать приложение без главного nib-файла : <a target="_blank" rel="noopener" href="http://lapcatsoftware.com/blog/2007/06/10/working-without-a-nib-part-5-no-3">http://lapcatsoftware.com/blog/2007/06/10/working-without-a-nib-part-5-no-3</a> (правка info.plist + перегрузка NSApplication + подстановка своего класса вместо NSBundle + настройки стилей NSWindow для приема событий мыши и клавиатуры и внешнего вида) </p>
 <h2><span id="render">Render</span><a href="#render" class="header-anchor">#</a></h2><p>Нативными для GUI являются <code>Cocoa</code> или <code>Carbon</code>. </p>
 <p>Cocoa лежит во фреймфорке ApplicationKit/UIKit (для macosx / iphone)<br>В Cocoa для рисования можно использовать Quartz или OpenGL. </p>
 <p><code>OpenGL</code> представлена в виде фреймворка OpenGL, в котором содержатся библиотеки <code>gl, glu, glut, glx</code>.</p>
@@ -44,4 +46,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/58472/">Позже</a><a class="pagination__link pagination__next" href="/blog/32194/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/58472/">Позже</a><a class="pagination__link pagination__next" href="/blog/32194/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

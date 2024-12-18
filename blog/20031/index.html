@@ -10,7 +10,9 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/47716/">Позже</a><a class="pagination__link pagination__next" href="/blog/53133/">Раньше</a></div><article class="article post"><h3 class="article__title">Препарирование Tecmo World Cup Soccer [NES]</h3><div class="article__date metadata"><div class="post-info">2011/05/07</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Игра посвящена событиям двадцатилетней давности, а именно <code>Чемпионату Мира по футболу в США 1990 года</code>.<br>Понять, что именно этому, а не какого-нибудь другому, можно только по дате выхода игры, потому что разработчики из Tecmo взяли из 24 реально участвующих там команд 13, добавили к ним зачем-то Францию, Польшу и Японию (Впрочем, Японию понятно зачем).</p>
 <p>Регламент турнира они тоже изменили, и поэтому выбранной игроком команде в борьбе за чемпионский тутил предстоит победить всех остальных. Так как турнир при таком раскладе получается для одной из команд довольно длинный, то игроку представлена возможность начать игру не сначала, а с некоторым количеством уже выбитых команд, указав для удостоверения своих результатов выдаваемый игрой пароль.</p>
@@ -20,34 +22,58 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>То есть просто выбирая случайные цифры, подобрать правильный пароль сложно. Но можно взять один из правильных паролей, сгенерированных игрой, и попробовать менять пары его символов. Данный метод изредка работает, из одного правильного пароля таким образом удается получить еще 3-4, что для начала неплохо, но получить из этого какие-то правила пока сложно.</p>
 <p>Дальше можно набрать как можно больше паролей и сравнивать разность наиболее близких по смыслу пар паролей (метод “черного ящика” - внутренности системы неизвестны, зато можно легко анализировать её входы и выходы). Для получение большого числа паролей нужно как-то ускорить процесс их получения. Например, можно использовать поиск читов в эмуляторе <code>FceUltra</code> или <code>ArtMoney</code>.</p>
 <p>С помощью поиска нужно найти в памяти ячейки, которые отвечают за кол-во минут до конца матча и счет. Так можно за несколько секунд прописывать себе победу и сохранять сгенерированный игрой пароль. Полученная таблица для всех побежденных 1-х соперников сборной Бразилии :</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Германия    GDJGMBAFA</span><br><span class="line">Италия      LLKGMFONI</span><br><span class="line">Голландия   FLKGABPGI</span><br><span class="line">Аргентина   DLLHNBCNA</span><br><span class="line">СССР        DNMGMBCNA</span><br><span class="line">Польша      JLMGMBCNA</span><br><span class="line">Англия      DLHIMBONA</span><br><span class="line">Испания     GDLIMBAFA</span><br><span class="line">Колумбия    LLMIMBOPI</span><br><span class="line">Шотландия   FPMIMBPGI</span><br><span class="line">Франция     ELJINBCOA</span><br><span class="line">Кореея      DLKIMBCOE</span><br><span class="line">Япония      FLKIMBDCA</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Германия    GDJGMBAFA</span></span>
+<span class="line"><span style="color: #F8F8F2">Италия      LLKGMFONI</span></span>
+<span class="line"><span style="color: #F8F8F2">Голландия   FLKGABPGI</span></span>
+<span class="line"><span style="color: #F8F8F2">Аргентина   DLLHNBCNA</span></span>
+<span class="line"><span style="color: #F8F8F2">СССР        DNMGMBCNA</span></span>
+<span class="line"><span style="color: #F8F8F2">Польша      JLMGMBCNA</span></span>
+<span class="line"><span style="color: #F8F8F2">Англия      DLHIMBONA</span></span>
+<span class="line"><span style="color: #F8F8F2">Испания     GDLIMBAFA</span></span>
+<span class="line"><span style="color: #F8F8F2">Колумбия    LLMIMBOPI</span></span>
+<span class="line"><span style="color: #F8F8F2">Шотландия   FPMIMBPGI</span></span>
+<span class="line"><span style="color: #F8F8F2">Франция     ELJINBCOA</span></span>
+<span class="line"><span style="color: #F8F8F2">Кореея      DLKIMBCOE</span></span>
+<span class="line"><span style="color: #F8F8F2">Япония      FLKIMBDCA</span></span></code></pre></div></div></figure>
 <p>Соседние пароли отличаются друг от друга довольно сильно :( Тут мне не повезло, так как я взял в качестве своей команды сборную Бразилии, стоящую в списке команд первой, и долго не замечал той вещи, что если “выбивать” Бразилию, то разность паролей от этого меняется меньше всего, что должно было бы сразу сигнализировать, что на пароль влияют не только выбитые команды, но и номер побежденного соперника. </p>
 <p>Но к этому я пришел только, когда заметил, что при выбивании команд в разном порядке можно получить разные пароли. Зато в ходе экспериментов оказалось, что правильных паролей существует во 30 раз больше (каждый раз игра может сгенерировать 15 разных, в зависимости от текущей команды соперника, и, кроме того, при поражении выдается специальный пароль, который позволяет сыграть с той же самой командой, без жеребьевки, что еще вдвое удваивает количество верных пассов). После этого осталось только найти в памяти с помощью того же поиска читов номер текущего соперника и занулять его сразу после финального свистка судьи. Так получилась “чистая таблица” в которой были исключительно эффекты от победы над командой:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Германия    EDJGMDONA</span><br><span class="line">Уругвай     EFJGMDONI</span><br><span class="line">Англия      EFFGMDONI</span><br><span class="line">Голландия   EFFGADOOI</span><br><span class="line">Италия      MFFGAHOOI</span><br><span class="line">Испания     LNMOIHPOI</span><br><span class="line">Аргентина   LNOPIHPOI</span><br><span class="line">Япония      LNOPIHAKI</span><br><span class="line">Польша      PNOPJHACA</span><br><span class="line">Корея       PNOPJHACM</span><br><span class="line">Колумбия    IFOPJHAEM</span><br><span class="line">СССР        AFNDIHADM</span><br><span class="line">Франция     BFPDIHADM</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Германия    EDJGMDONA</span></span>
+<span class="line"><span style="color: #F8F8F2">Уругвай     EFJGMDONI</span></span>
+<span class="line"><span style="color: #F8F8F2">Англия      EFFGMDONI</span></span>
+<span class="line"><span style="color: #F8F8F2">Голландия   EFFGADOOI</span></span>
+<span class="line"><span style="color: #F8F8F2">Италия      MFFGAHOOI</span></span>
+<span class="line"><span style="color: #F8F8F2">Испания     LNMOIHPOI</span></span>
+<span class="line"><span style="color: #F8F8F2">Аргентина   LNOPIHPOI</span></span>
+<span class="line"><span style="color: #F8F8F2">Япония      LNOPIHAKI</span></span>
+<span class="line"><span style="color: #F8F8F2">Польша      PNOPJHACA</span></span>
+<span class="line"><span style="color: #F8F8F2">Корея       PNOPJHACM</span></span>
+<span class="line"><span style="color: #F8F8F2">Колумбия    IFOPJHAEM</span></span>
+<span class="line"><span style="color: #F8F8F2">СССР        AFNDIHADM</span></span>
+<span class="line"><span style="color: #F8F8F2">Франция     BFPDIHADM</span></span></code></pre></div></div></figure>
 <p>Здесь уже точно видно, что каждая из команд _почти_ всегда выбивается взаимным изменением пары символов (например, для устранения Франции 1-й символ увеличивается на 1, а третий - на 2). Запомнив эту разность, ее можно проверить на другом исходном правильном пароле и убедиться, что действительно выбивается та же команда. _почти_ всегда. </p>
 <p>Примерно в одном из восьми случаев внезапно вместо пары символов меняются почти все. Это показывает, что в генераторе пароля где-то присутствует обратная связь, мешающая просто убирать команды таким методом.</p>
 <p>Кажется, что этот иногда работающий способ - лучший, которого можно добиться, просто анализируя генерируемые игрой пароли, если только вы не Шерлок Холмс и не прогнозирующая нейронная сеть. </p>
-<h3><span id="chast-3">Часть 3.</span><a href="#chast-3" class="header-anchor">#</a></h3><p>Так как простые методы не дают результата, приходится использовать более мощные инструменты. Далее понадобится сборка эмулятора для отладки <a href="http://www.the-interweb.com/serendipity/index.php?/categories/9-FCEUXD-SP" target="_blank" rel="noopener">FCEUltra SP</a> и дизассемблер <a href="http://www.idapro.ru/" target="_blank" rel="noopener">Ida Pro</a>, понимающий архитектуру 6502 для интерактивного анализа кода.</p>
+<h3><span id="chast-3">Часть 3.</span><a href="#chast-3" class="header-anchor">#</a></h3><p>Так как простые методы не дают результата, приходится использовать более мощные инструменты. Далее понадобится сборка эмулятора для отладки <a target="_blank" rel="noopener" href="http://www.the-interweb.com/serendipity/index.php?/categories/9-FCEUXD-SP">FCEUltra SP</a> и дизассемблер <a target="_blank" rel="noopener" href="http://www.idapro.ru/">Ida Pro</a>, понимающий архитектуру 6502 для интерактивного анализа кода.</p>
 <p>Сначала необходимо получить образ памяти для анализа, так как просто открыть ROM в дизассемблере мало - в нем может быть несколько банков памяти, отражающихся на одно адресное пространство процессора. </p>
 <p>Вместо этого лучше открыть в эмуляторе просмотр памяти (ёTools-&gt;HexEditorё) и скопировать ее всю в отдельный файл.</p>
 <p>Необходимо найти в памяти функцию, проверяющую правильность введенного пользователем пароля. Сложная, иногда требующая интуиции и удачи часть. Здесь решается относительно просто. Нужно в игре набрать случайный пароль и дальше найти его в памяти эмулятора. Там он есть в виде аски символов на экране и в виде чисел от 0 до 15. </p>
 <p>Теперь на найденные адреса в отладчике ставятся точки остановки на чтение (нужно узнать, какая инструкция попытается считать введенные значения). Далее следует еще один сложный шаг - пошаговое слежение за выполнением функции в отладчике, с целью отловить ее окончание, чтобы понять, куда вернется программа, выполнив проверку на корректность пароля.</p>
 <p>В результате выясняется, что вызов функции проверки находится по адресу $A816 [JSR A8A2], которая с адреса $A95E [RTS] возвращает управление обратно. Эти 328 байт необходимо из машинных инструкций мысленно превратить в код и понять его смысл.</p>
-<p>Настоятельно рекомендую делать это с помощью отдельного дизассемблера ( например Ida Pro, <a href="http://griever.magicteam.net/doc/?doc=NES_IDA" target="_blank" rel="noopener">туториал</a> по использованию есть у Griever’а), потому что в отладчике делать это очень неудобно.</p>
-<p>Дизассемблированный код алгоритма (с комментариями): <a href="http://www.everfall.com/paste/id.php?bpgzprxyq26j" target="_blank" rel="noopener">http://www.everfall.com/paste/id.php?bpgzprxyq26j</a></p>
-<p>Дальше код алгоритма надо переписать в отдельную программу (на любом языке, например, <code>python</code>), которая будет проверять его на корректность и выдавать результат - <code>(команда игрока, команда соперника, какие команды выбиты и будет ли жеребьевка перед стартом очередного матча)</code>.<br>Код: <a href="http://www.everfall.com/paste/id.php?coljec5m2j2r" target="_blank" rel="noopener">http://www.everfall.com/paste/id.php?coljec5m2j2r</a></p>
+<p>Настоятельно рекомендую делать это с помощью отдельного дизассемблера ( например Ida Pro, <a target="_blank" rel="noopener" href="http://griever.magicteam.net/doc/?doc=NES_IDA">туториал</a> по использованию есть у Griever’а), потому что в отладчике делать это очень неудобно.</p>
+<p>Дизассемблированный код алгоритма (с комментариями): <a target="_blank" rel="noopener" href="http://www.everfall.com/paste/id.php?bpgzprxyq26j">http://www.everfall.com/paste/id.php?bpgzprxyq26j</a></p>
+<p>Дальше код алгоритма надо переписать в отдельную программу (на любом языке, например, <code>python</code>), которая будет проверять его на корректность и выдавать результат - <code>(команда игрока, команда соперника, какие команды выбиты и будет ли жеребьевка перед стартом очередного матча)</code>.<br>Код: <a target="_blank" rel="noopener" href="http://www.everfall.com/paste/id.php?coljec5m2j2r">http://www.everfall.com/paste/id.php?coljec5m2j2r</a></p>
 <p>Так можно запустить подборщик паролей. А пока он работает, еще чуть посчитать. Правильное число правильных паролей - <code>256*256*16*16*2</code> (два байта на выбитые команды, 256 пар и бит жеребьевки) = 33 554 432, в 64 раза больше начальных прикидок.</p>
 <p>Среди правильных паролей имеются такие, которые игра никогда не выдаст, и даже такие, которые по логике не должны выпадать никогда.</p>
-<p>Например, игра с уже побежденной командой, выбивание своей собственной команды, “пустой пароль” без выбитых команд и “зеркальная игра” одной сборной:<br><a href="http://pics.livejournal.com/spiiin/pic/0001c2r4/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0001c2r4" alt></a></p>
+<p>Например, игра с уже побежденной командой, выбивание своей собственной команды, “пустой пароль” без выбитых команд и “зеркальная игра” одной сборной:<br><a target="_blank" rel="noopener" href="http://pics.livejournal.com/spiiin/pic/0001c2r4/"><img src="http://pics.livejournal.com/spiiin/pic/0001c2r4" alt></a></p>
 <p>Первый найденный брутфорсом пароль <code>AAAAEBPFJ</code>. </p>
 <p>Собственно, подборщик лучше остановить, так как он будет работать очень долго, и заняться процедурой генерации пароля.</p>
 <p>Ее можно получить, “развернув” все действия в обратном направлении или просто найти в памяти, поставив точку остановки отладчика на чтение на адрес $A6F1, где хранятся константы трансформации, найденные во время реверсирования процедуры проверки.</p>
-<p>Версия генератора на питоне:<br><a href="http://www.everfall.com/paste/id.php?ou56bj09642s" target="_blank" rel="noopener">http://www.everfall.com/paste/id.php?ou56bj09642s</a></p>
+<p>Версия генератора на питоне:<br><a target="_blank" rel="noopener" href="http://www.everfall.com/paste/id.php?ou56bj09642s">http://www.everfall.com/paste/id.php?ou56bj09642s</a></p>
 <p>Попутно можно исследовать байт, в котором хранится бит жеребьевки. Другие биты и байты по соседству управляют состоянием матча и номерами-указателями на цвета команда.</p>
-<p>Лулзов ради можно сдвинуть эти указатели за границу стандартных шестнадцати цветов команд и сыграть матч между сборной Фиолетововолосых Травяных Людей и сборной Пандорры:<br><a href="http://pics.livejournal.com/spiiin/pic/0001d96p/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0001d96p" alt></a> </p>
+<p>Лулзов ради можно сдвинуть эти указатели за границу стандартных шестнадцати цветов команд и сыграть матч между сборной Фиолетововолосых Травяных Людей и сборной Пандорры:<br><a target="_blank" rel="noopener" href="http://pics.livejournal.com/spiiin/pic/0001d96p/"><img src="http://pics.livejournal.com/spiiin/pic/0001d96p" alt></a> </p>
 <p>Напоследок можно вырвать из видеопамяти кусок, хранящий шрифт игры ( Tools-&gt;PPU Viewer… в FCEUltra в момент, когда на экране есть текст), и отрисовывать пароли именно им.</p>
 <p>Пароли на все возможные финалы:</p>
-<p><a href="http://pics.livejournal.com/spiiin/pic/0001ewyz/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0001ewyz/s640x480" alt></a></p>
+<p><a target="_blank" rel="noopener" href="http://pics.livejournal.com/spiiin/pic/0001ewyz/"><img src="http://pics.livejournal.com/spiiin/pic/0001ewyz/s640x480" alt></a></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -57,4 +83,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/47716/">Позже</a><a class="pagination__link pagination__next" href="/blog/53133/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/47716/">Позже</a><a class="pagination__link pagination__next" href="/blog/53133/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

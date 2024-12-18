@@ -10,21 +10,46 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3784279738/">Позже</a><a class="pagination__link pagination__next" href="/blog/2447113730/">Раньше</a></div><article class="article post"><h3 class="article__title">Формат уровней EarthWorm Jim 1, EarthWorm Jim 2, Alladin [SEGA]</h3><div class="article__date metadata"><div class="post-info">2014/08/30</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/hack/">hack</a><a class="article__tags__link metadata" href="/tags/sega/">sega</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><strong>1. Конфиги уровней</strong></p>
-<p>Уровни описываются конфигами по 64 байта. Формат конфигов на примере первого уровня <strong>EarthWorm Jim 2</strong> (адрес в rom:<strong><em>0x27543E</em></strong>):<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0010 03D0 стартовая позиция</span><br><span class="line">10AE 1090 стартовая позиция</span><br><span class="line">001ECD7E obj.rnc - архив с описанием типов блоков</span><br><span class="line">001DE00A grp.rnc - архив с видеопамятью</span><br><span class="line">001E95E0 map.rnc - архив с картой тайлов</span><br><span class="line">000044A0 anim </span><br><span class="line">0054 0400 anim&#x2F;sound</span><br><span class="line">001E1AF8 back.rnc - архив с задним фоном (описывается маппингом)</span><br><span class="line">0024DE42 pal - указатель на палитру</span><br><span class="line">001E1FC0 tilemap - описание блоков (4 ворда на один блок 2x2, каждый ворд описывает маппинг одного тайла из блока), несжатое</span><br><span class="line">0025A33A func1</span><br><span class="line">0025A3BE func2</span><br><span class="line">00E1 0050 map size - размер карты</span><br><span class="line">0025842C func3 </span><br><span class="line">00000000</span><br><span class="line">00003700</span><br></pre></td></tr></table></figure></p>
+<p>Уровни описываются конфигами по 64 байта. Формат конфигов на примере первого уровня <strong>EarthWorm Jim 2</strong> (адрес в rom:<strong><em>0x27543E</em></strong>):<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">0010 03D0 стартовая позиция</span></span>
+<span class="line"><span style="color: #F8F8F2">10AE 1090 стартовая позиция</span></span>
+<span class="line"><span style="color: #F8F8F2">001ECD7E obj.rnc - архив с описанием типов блоков</span></span>
+<span class="line"><span style="color: #F8F8F2">001DE00A grp.rnc - архив с видеопамятью</span></span>
+<span class="line"><span style="color: #F8F8F2">001E95E0 map.rnc - архив с картой тайлов</span></span>
+<span class="line"><span style="color: #F8F8F2">000044A0 anim </span></span>
+<span class="line"><span style="color: #F8F8F2">0054 0400 anim/sound</span></span>
+<span class="line"><span style="color: #F8F8F2">001E1AF8 back.rnc - архив с задним фоном (описывается маппингом)</span></span>
+<span class="line"><span style="color: #F8F8F2">0024DE42 pal - указатель на палитру</span></span>
+<span class="line"><span style="color: #F8F8F2">001E1FC0 tilemap - описание блоков (4 ворда на один блок 2x2, каждый ворд описывает маппинг одного тайла из блока), несжатое</span></span>
+<span class="line"><span style="color: #F8F8F2">0025A33A func1</span></span>
+<span class="line"><span style="color: #F8F8F2">0025A3BE func2</span></span>
+<span class="line"><span style="color: #F8F8F2">00E1 0050 map size - размер карты</span></span>
+<span class="line"><span style="color: #F8F8F2">0025842C func3 </span></span>
+<span class="line"><span style="color: #F8F8F2">00000000</span></span>
+<span class="line"><span style="color: #F8F8F2">00003700</span></span></code></pre></div></div></figure></p>
 <p>Дальше конфиги от других уровней.</p>
 <p>Отсюда для рисования карты используются архив <code>map.rnc</code> и массив с описанием блоков <code>tilemap</code> для переднего фона и <code>back.rnc</code> для заднего.</p>
 <p><strong>2. Копирование архивов RNC из ROM’а.</strong></p>
 <p>Формат массива RNC - сначала идут три байта идентификации массива (<strong>“RNC”</strong>), дальше метод сжатия (01 или 02), 4 байта размера несжатых данных, 4 байта размера сжатых данных и непосредственно сами данные архива.</p>
 <p>К размеру сжатых данных нужно прибавить 0x12 и скопировать это количество байт (начиная с букв “RNC”, в отдельный файл).</p>
-<p>На примере архива <em>obj.rnc</em> для 1-го уровня:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">52 4E 43 - заголовок RNC</span><br><span class="line">01 - первый метод сжатия</span><br><span class="line">00 00 3B 10 - размер данных, которые получатся после извлечения (0x3B10 или 15120 байт).</span><br><span class="line">00 00 07 96 - размер сжатых данных.</span><br></pre></td></tr></table></figure></p>
+<p>На примере архива <em>obj.rnc</em> для 1-го уровня:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">52 4E 43 - заголовок RNC</span></span>
+<span class="line"><span style="color: #F8F8F2">01 - первый метод сжатия</span></span>
+<span class="line"><span style="color: #F8F8F2">00 00 3B 10 - размер данных, которые получатся после извлечения (0x3B10 или 15120 байт).</span></span>
+<span class="line"><span style="color: #F8F8F2">00 00 07 96 - размер сжатых данных.</span></span></code></pre></div></div></figure></p>
 <p>Прибавляем к размеру 0x12 байт и получаем 0x7A8 (1960 в десятичной системе) байт. Копируем 1960 байт, начиная с букв “RNC” в отдельный файл, например, EA2_OBJ00.RNC.</p>
 <p><strong>3. Копирование и запаковка архивов RNC.</strong></p>
-<p>Архиватор <em>ppibm.exe</em> (<a href="http://spiiin.livejournal.com/81725.html" target="_blank" rel="noopener">RNC_ProPack</a>). Архиватор 16-битный, возможно, для его запуска в современных ос понадобится эмулятор <em>dosbox</em>.</p>
+<p>Архиватор <em>ppibm.exe</em> (<a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/81725.html">RNC_ProPack</a>). Архиватор 16-битный, возможно, для его запуска в современных ос понадобится эмулятор <em>dosbox</em>.</p>
 <p><strong>4. Маппинг.</strong></p>
-<p>Стандартный формат описания одного тайла размером 8x8 - маппинг. Это 16 бит информации о тайле, которые кодируют:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pccvhnnnnnnnnnnn</span><br><span class="line">p &#x3D; Priority flag (за или перед персонажем будет отрисован тайл).</span><br><span class="line">c &#x3D; Palette select (два бита выбора одной из 4х палитр)</span><br><span class="line">v &#x3D; Vertical flip (вертикальное отражение)</span><br><span class="line">h &#x3D; Horizontal flip (горизонтальное отражение)</span><br><span class="line">n &#x3D; Pattern name (номер тайла видеопамяти)</span><br></pre></td></tr></table></figure></p>
+<p>Стандартный формат описания одного тайла размером 8x8 - маппинг. Это 16 бит информации о тайле, которые кодируют:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">pccvhnnnnnnnnnnn</span></span>
+<span class="line"><span style="color: #F8F8F2">p = Priority flag (за или перед персонажем будет отрисован тайл).</span></span>
+<span class="line"><span style="color: #F8F8F2">c = Palette select (два бита выбора одной из 4х палитр)</span></span>
+<span class="line"><span style="color: #F8F8F2">v = Vertical flip (вертикальное отражение)</span></span>
+<span class="line"><span style="color: #F8F8F2">h = Horizontal flip (горизонтальное отражение)</span></span>
+<span class="line"><span style="color: #F8F8F2">n = Pattern name (номер тайла видеопамяти)</span></span></code></pre></div></div></figure></p>
 <p><strong>5. Карта.</strong></p>
 <p>Передний слой описывается номерами блоков 2x2(номера умножены на 8), описание блоков хранится в массиве tilemap (4096 блоков), он не сжат из-за уникальности каждого блока. Задний слой описан в массиве back размером 64x64, каждый тайл которого хранится в формате маппинга (2 байта на один тайл).</p>
 <p><strong>6. Свойства блоков.</strong> Кроме маппинга, каждому из 4096 блоков присвоены еще 4 байта информации, хранящейся в сжатом массиве obj.rnc. Эти байты описывают свойства блока:<br>1 - Пол. 0x00 если тайл проходим или 0xFF если тайл непроходим.<br>2 - Условный пол. Тайл проходим, если определённый байт в оперативной памяти == 0, и непроходим в другом случае.<br>3 - Триггер. Объект, который “срабатывает”, когда игрок его касается.<br>4 - Объект. Появляется как только тайл становится видимым на экране.</p>
@@ -41,4 +66,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3784279738/">Позже</a><a class="pagination__link pagination__next" href="/blog/2447113730/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3784279738/">Позже</a><a class="pagination__link pagination__next" href="/blog/2447113730/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

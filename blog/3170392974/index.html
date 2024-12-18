@@ -10,12 +10,14 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2297379949/">Позже</a><a class="pagination__link pagination__next" href="/blog/1808122922/">Раньше</a></div><article class="article post"><h3 class="article__title">Nim vk-get-pictures</h3><div class="article__date metadata"><div class="post-info">2021/05/21</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/vk/">vk</a><a class="article__tags__link metadata" href="/tags/nim/">nim</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Вторая программа на Nim – скрипт скачивания картинок из альбома Vkontakte.</p>
-<a id="more"></a>
-<a href="/blog/1798415512/" title="(2015) - Версия на Scala">(2015) - Версия на Scala</a> 
-<p>Следующий эксперимент после решения <a href="/blog/1808122922/" title="задачи Джеймса Бонда-младшего">задачи Джеймса Бонда-младшего</a> - скрипт для выкачивания всех картинок из альбома вконтакте в несколько потоков.</p>
+<span id="more"></span>
+<a href="/blog/1798415512/" title="scala_vk_get_pictures">(2015) - Версия на Scala</a> 
+<p>Следующий эксперимент после решения <a href="/blog/1808122922/" title="Nim in imaginary world">задачи Джеймса Бонда-младшего</a> - скрипт для выкачивания всех картинок из альбома вконтакте в несколько потоков.</p>
 <div class="spoiler collapsed">
     <div class="spoiler-title">
         gist
@@ -26,10 +28,10 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 </div>
 <p>Смысл выбора задачи - попробовать использовать Nim в качестве скриптового языка, для написания <em>quick-and-dirty</em> кода.</p>
 <p>Код на <strong><code>Nim</code></strong>, написанный в таком стиле, похож на <strong><code>Pascal</code></strong>. Однако после изучения стиля нескольких библиотек становятся ощутимее различия. Разница в том, что импортируется из модулей в программу. Это не просто “структуры данных и алгоритмы”, а элементы синтаксиса. В <strong><code>Nim</code></strong>, по сравнению с <strong><code>Python</code></strong>, меньше синтаксического сахара в языке, но его можно добавить, импортируя “сахарные” библиотеки. Практически, каждый модуль может быть написан на своём “микро-языке”, в зависимости от того, что он импортирует.</p>
-<p>Примеры библиотек:<br><a href="https://youtu.be/i0RB7UqxERE" target="_blank" rel="noopener">Async/await</a><br><a href="https://nim-lang.org/blog/2021/03/10/fusion-and-pattern-matching.html" target="_blank" rel="noopener">Pattern matching</a><br><a href="https://github.com/juancarlospaco/nim-html-dsl" target="_blank" rel="noopener">HTML DSL</a></p>
+<p>Примеры библиотек:<br><a target="_blank" rel="noopener" href="https://youtu.be/i0RB7UqxERE">Async/await</a><br><a target="_blank" rel="noopener" href="https://nim-lang.org/blog/2021/03/10/fusion-and-pattern-matching.html">Pattern matching</a><br><a target="_blank" rel="noopener" href="https://github.com/juancarlospaco/nim-html-dsl">HTML DSL</a></p>
 <p>В терминах Фаулера из книги “Предметно-ориентированные языки программирования”, библиотеки могут представлять <code>свободные API</code> (fluent interface, “языкообразные апи”) или <code>API командных запросов</code> (“обычные” для объектного программирования вызовы методов у объектов), причем одна и та же библиотека может представлять различные API для работы с ней.</p>
-<p>Гибкий синтаксис приближает <strong><code>Nim</code></strong> к таким языкам, как <strong><code>Lisp</code></strong> или <strong><code>Smalltalk</code></strong>. Возможно, правильный выбор языков может сильно <a href="https://www.computerra.ru/183817/steps/" target="_blank" rel="noopener">уменьшать количество строк кода</a>, необходимого для решения задач, хотя пока о том, что даст языково-ориентированное программирование, больше мечтают (<a href="https://rsdn.org/article/philosophy/LOP.xml" target="_blank" rel="noopener">MPS</a>, <a href="https://martinfowler.com/articles/languageWorkbench.html" target="_blank" rel="noopener">Language Workbenches</a>, <a href="https://youtu.be/z8Pz4bJV3Tk" target="_blank" rel="noopener">Racket</a>).</p>
-<p>Вдобавок к изменениям синтаксиса, компилятор имеет переключатели, существенно меняющие поведение (<a href="https://nim-lang.org/docs/hcr.html" target="_blank" rel="noopener">hot code reload</a>, <a href="https://forum.nim-lang.org/t/5734" target="_blank" rel="noopener">ARC garbage collector</a>, <a href="https://nim-lang.org/docs/threads.html" target="_blank" rel="noopener">threads</a>) и использовать C++ в качестве <a href="https://youtu.be/8SoJR3sCaR4" target="_blank" rel="noopener">“ассемблера”</a> для сборки под разные платформы.</p>
+<p>Гибкий синтаксис приближает <strong><code>Nim</code></strong> к таким языкам, как <strong><code>Lisp</code></strong> или <strong><code>Smalltalk</code></strong>. Возможно, правильный выбор языков может сильно <a target="_blank" rel="noopener" href="https://www.computerra.ru/183817/steps/">уменьшать количество строк кода</a>, необходимого для решения задач, хотя пока о том, что даст языково-ориентированное программирование, больше мечтают (<a target="_blank" rel="noopener" href="https://rsdn.org/article/philosophy/LOP.xml">MPS</a>, <a target="_blank" rel="noopener" href="https://martinfowler.com/articles/languageWorkbench.html">Language Workbenches</a>, <a target="_blank" rel="noopener" href="https://youtu.be/z8Pz4bJV3Tk">Racket</a>).</p>
+<p>Вдобавок к изменениям синтаксиса, компилятор имеет переключатели, существенно меняющие поведение (<a target="_blank" rel="noopener" href="https://nim-lang.org/docs/hcr.html">hot code reload</a>, <a target="_blank" rel="noopener" href="https://forum.nim-lang.org/t/5734">ARC garbage collector</a>, <a target="_blank" rel="noopener" href="https://nim-lang.org/docs/threads.html">threads</a>) и использовать C++ в качестве <a target="_blank" rel="noopener" href="https://youtu.be/8SoJR3sCaR4">“ассемблера”</a> для сборки под разные платформы.</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -39,4 +41,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2297379949/">Позже</a><a class="pagination__link pagination__next" href="/blog/1808122922/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2297379949/">Позже</a><a class="pagination__link pagination__next" href="/blog/1808122922/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

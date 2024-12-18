@@ -10,16 +10,56 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/43611/">Позже</a><a class="pagination__link pagination__next" href="/blog/58486/">Раньше</a></div><article class="article post"><h3 class="article__title">New Ghostbusters Hard Mode Lua Script</h3><div class="article__date metadata"><div class="post-info">2011/06/25</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a><a class="article__tags__link metadata" href="/tags/lua/">lua</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>После <a href="/blog/51050/" title="изучения кода">изучения кода</a> игры New GhostBusters 2 у меня появилась расшифрованная информация о привидениях по уровням. </p>
-<p>Чтобы ей не пропадать зря, решил сделать редактор врагов и усложнить игру наподобии того, как делал с <a href="/blog/2739621311/" title="Battletoads">Battletoads</a>, чтобы пройти её со своим мелким племянником.</p>
+<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a><a class="article__tags__link metadata" href="/tags/lua/">lua</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>После <a href="/blog/51050/" title="New Ghostbusters 2 (E) [NES] All bonuses">изучения кода</a> игры New GhostBusters 2 у меня появилась расшифрованная информация о привидениях по уровням. </p>
+<p>Чтобы ей не пропадать зря, решил сделать редактор врагов и усложнить игру наподобии того, как делал с <a href="/blog/2739621311/" title="Battletoads Hyper Tunnel.">Battletoads</a>, чтобы пройти её со своим мелким племянником.</p>
 <p>Но писать на асме код, который мог бы считывать данные из другого места картриджа, которое еще надо найти свободное, это ад. </p>
-<p>Но в современных эмуляторах есть встроенный скриптовый язык, позволяющий вмешаться в стандартный поток инструкций процессора. С помощью этого языка хакеры делали с играми вещи, напоминающие <a href="/blog/56249/" title="магию">магию</a>.</p>
+<p>Но в современных эмуляторах есть встроенный скриптовый язык, позволяющий вмешаться в стандартный поток инструкций процессора. С помощью этого языка хакеры делали с играми вещи, напоминающие <a href="/blog/56249/" title="6502 asm, lua и немного магии">магию</a>.</p>
 <p>Но любая магия является просто сложной технологией, поэтому решил попробовать пошаманить со скриптами сам. Алгоритм загрузки данных о врагах комнаты в <code>&quot;Охотниках за привидениями&quot;</code> выглядит примерно так:<br><img src="http://pics.livejournal.com/spiiin/pic/0001qqr2/s640x480" alt></p>
 <p>Записи о комнатах храняться в виде списка из команд и номеров типов призраков. За командой следует переменной число аргументов, за номером типа координаты места появления (4 байта) и переменное число байт дополнительной информации (0 до 3 байт).</p>
 <p>Игра узнает объем дополнительной информации из массива, в котором для каждого типа призрака есть набор из 3 флажков “имеет ли данный призрак доп. инфу заданного типа”. Такой информацией может быть, например, признак, что привидение неуязвимо (стулья в конце первого уровня и самовоспламеняющиеся свечи в последнем), подтип (головы в конце второго уровня) или направление поворота (импы в третьем уровне). </p>
-<p>Таблица с описанием команд:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Коды команд New GhostBusters 2</span><br><span class="line">Код	Описание</span><br><span class="line">FF 0	Команда конца уровня.</span><br><span class="line">FF 1 X	Команда указателя на следующую комнату. Описание комнат уровня с номерами хранится отдельно.</span><br><span class="line">FF 2	Чекпоинт. После проигрыша игра начнется не с начала уровня, а с последней сохраненной комнаты.</span><br><span class="line">0D	Мешок-приз.</span><br><span class="line">0E	Свечи из последнего уровня.</span><br><span class="line">11	Сценка в конце 3-го уровня.</span><br><span class="line">12	Стрелка прибора (появляется после отлова всех призраков. доп. байты - направление и номер комнаты)</span><br><span class="line">13	Лизун</span><br><span class="line">14	Ускоренный лизун</span><br><span class="line">15	Лизун с телегой</span><br><span class="line">1	Лизун-метатель еды</span><br><span class="line">17	Зеленый пацан</span><br><span class="line">18	Тень с бензопилой</span><br><span class="line">19	Змея из стены</span><br><span class="line">1A	Пара и тостого и худого призраков (первый босс)</span><br><span class="line">1B	Прыгающий стул</span><br><span class="line">1C	Розовые крутяшки</span><br><span class="line">1D	Шахтер с дрелью</span><br><span class="line">1E	Шахтер с киркой</span><br><span class="line">1F	Шахтер с граблями</span><br><span class="line">20	Шахтер на вагонетке</span><br><span class="line">21	Мелкая голова из поезда</span><br><span class="line">22	Лизун с лопатой</span><br><span class="line">23	Тыквоголов</span><br><span class="line">24	Летающий имп</span><br><span class="line">25	Имп с гарпуном</span><br><span class="line">26	Дух ниндзя с мечом</span><br><span class="line">27	Дух ниндзя с сюрекенами</span><br><span class="line">28	Тесто</span><br><span class="line">29	Блин из канализации</span><br><span class="line">2A	Тролль с цепью</span><br><span class="line">2B	Лизун-метатель мусора</span><br><span class="line">2C	Лизун-метатель быстрый</span><br><span class="line">2D	Вращающаяся труба</span><br><span class="line">2E	Босс Ящеры</span><br><span class="line">2F	Босс Венс</span><br><span class="line">30	Босс Виго</span><br></pre></td></tr></table></figure></p>
+<p>Таблица с описанием команд:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Коды команд New GhostBusters 2</span></span>
+<span class="line"><span style="color: #F8F8F2">Код	Описание</span></span>
+<span class="line"><span style="color: #F8F8F2">FF 0	Команда конца уровня.</span></span>
+<span class="line"><span style="color: #F8F8F2">FF 1 X	Команда указателя на следующую комнату. Описание комнат уровня с номерами хранится отдельно.</span></span>
+<span class="line"><span style="color: #F8F8F2">FF 2	Чекпоинт. После проигрыша игра начнется не с начала уровня, а с последней сохраненной комнаты.</span></span>
+<span class="line"><span style="color: #F8F8F2">0D	Мешок-приз.</span></span>
+<span class="line"><span style="color: #F8F8F2">0E	Свечи из последнего уровня.</span></span>
+<span class="line"><span style="color: #F8F8F2">11	Сценка в конце 3-го уровня.</span></span>
+<span class="line"><span style="color: #F8F8F2">12	Стрелка прибора (появляется после отлова всех призраков. доп. байты - направление и номер комнаты)</span></span>
+<span class="line"><span style="color: #F8F8F2">13	Лизун</span></span>
+<span class="line"><span style="color: #F8F8F2">14	Ускоренный лизун</span></span>
+<span class="line"><span style="color: #F8F8F2">15	Лизун с телегой</span></span>
+<span class="line"><span style="color: #F8F8F2">1	Лизун-метатель еды</span></span>
+<span class="line"><span style="color: #F8F8F2">17	Зеленый пацан</span></span>
+<span class="line"><span style="color: #F8F8F2">18	Тень с бензопилой</span></span>
+<span class="line"><span style="color: #F8F8F2">19	Змея из стены</span></span>
+<span class="line"><span style="color: #F8F8F2">1A	Пара и тостого и худого призраков (первый босс)</span></span>
+<span class="line"><span style="color: #F8F8F2">1B	Прыгающий стул</span></span>
+<span class="line"><span style="color: #F8F8F2">1C	Розовые крутяшки</span></span>
+<span class="line"><span style="color: #F8F8F2">1D	Шахтер с дрелью</span></span>
+<span class="line"><span style="color: #F8F8F2">1E	Шахтер с киркой</span></span>
+<span class="line"><span style="color: #F8F8F2">1F	Шахтер с граблями</span></span>
+<span class="line"><span style="color: #F8F8F2">20	Шахтер на вагонетке</span></span>
+<span class="line"><span style="color: #F8F8F2">21	Мелкая голова из поезда</span></span>
+<span class="line"><span style="color: #F8F8F2">22	Лизун с лопатой</span></span>
+<span class="line"><span style="color: #F8F8F2">23	Тыквоголов</span></span>
+<span class="line"><span style="color: #F8F8F2">24	Летающий имп</span></span>
+<span class="line"><span style="color: #F8F8F2">25	Имп с гарпуном</span></span>
+<span class="line"><span style="color: #F8F8F2">26	Дух ниндзя с мечом</span></span>
+<span class="line"><span style="color: #F8F8F2">27	Дух ниндзя с сюрекенами</span></span>
+<span class="line"><span style="color: #F8F8F2">28	Тесто</span></span>
+<span class="line"><span style="color: #F8F8F2">29	Блин из канализации</span></span>
+<span class="line"><span style="color: #F8F8F2">2A	Тролль с цепью</span></span>
+<span class="line"><span style="color: #F8F8F2">2B	Лизун-метатель мусора</span></span>
+<span class="line"><span style="color: #F8F8F2">2C	Лизун-метатель быстрый</span></span>
+<span class="line"><span style="color: #F8F8F2">2D	Вращающаяся труба</span></span>
+<span class="line"><span style="color: #F8F8F2">2E	Босс Ящеры</span></span>
+<span class="line"><span style="color: #F8F8F2">2F	Босс Венс</span></span>
+<span class="line"><span style="color: #F8F8F2">30	Босс Виго</span></span></code></pre></div></div></figure></p>
 <p> Проглядел доступную документацию по <code>EmuLua</code>, нашел функцию <code>memory.register</code>, про которую сказано, что она может установить произвольную функцию, отслеживающую изменения в ячейке памяти.</p>
 <p> Если установить обработчики на шаги, помеченные на блок-схеме красными кружками с цифрами, то можно выставлять свои данные вместо игровых в аккумулятор вместо реальных данных и заглушать реальный счетчик, подсчитывая сколько байт уже было отдано, а в конце вернуть указатель на реальные данные.</p>
 <p> Но такому простому способу препятствует то, что <code>memory.register</code> а) работает только в режиме ослеживания записей. б) как следствие работает только в области изменяемой памяти (0x0000-0x8000), а данные уровня лежат в ROM. Хендлер на чтение из ROM установить нельзя.</p>
@@ -47,8 +87,8 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
   </style>
 
 <div class="embed-container"><iframe src="https://www.youtube.com/embed/aSGLA1R96Gc" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div></p>
-<p>Код скрипта:<br><a href="http://www.everfall.com/paste/id.php?az548wj3t37t" target="_blank" rel="noopener">http://www.everfall.com/paste/id.php?az548wj3t37t</a></p>
-<p>Ссылка на архив (содержит эмулятор, игру на русском, скрипт и инструкции для запуска):<br><a href="http://dl.dropbox.com/u/852723/NewGhostBusters_hard.zip" target="_blank" rel="noopener">http://dl.dropbox.com/u/852723/NewGhostBusters_hard.zip</a></p>
+<p>Код скрипта:<br><a target="_blank" rel="noopener" href="http://www.everfall.com/paste/id.php?az548wj3t37t">http://www.everfall.com/paste/id.php?az548wj3t37t</a></p>
+<p>Ссылка на архив (содержит эмулятор, игру на русском, скрипт и инструкции для запуска):<br><a target="_blank" rel="noopener" href="http://dl.dropbox.com/u/852723/NewGhostBusters_hard.zip">http://dl.dropbox.com/u/852723/NewGhostBusters_hard.zip</a></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -58,4 +98,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/43611/">Позже</a><a class="pagination__link pagination__next" href="/blog/58486/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/43611/">Позже</a><a class="pagination__link pagination__next" href="/blog/58486/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

@@ -10,10 +10,12 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2779627234/">Позже</a><a class="pagination__link pagination__next" href="/blog/2626761735/">Раньше</a></div><article class="article post"><h3 class="article__title">Как разобраться в большой кодовой базе</h3><div class="article__date metadata"><div class="post-info">2021/07/13</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/dev-evolution/">dev_evolution</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Как читать и изучать код в больших кодовых базах.<br><a id="more"></a></p>
-<p><a href="https://solid-angle.blogspot.com/2015/08/tips-for-navigating-large-game-code.html" target="_blank" rel="noopener">Tips for Navigating Large Game Code Bases</a> - как начать, если устроился разработчиком игр.</p>
+<a class="article__tags__link metadata" href="/tags/dev-evolution/">dev_evolution</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Как читать и изучать код в больших кодовых базах.<br><span id="more"></span></p>
+<p><a target="_blank" rel="noopener" href="https://solid-angle.blogspot.com/2015/08/tips-for-navigating-large-game-code.html">Tips for Navigating Large Game Code Bases</a> - как начать, если устроился разработчиком игр.</p>
 <ul>
 <li>разобраться, как собрать проект и запустить игру</li>
 <li>спросить, есть ли инструкция, документация, или туториалы</li>
@@ -37,7 +39,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li>изучить используемые средства профилирования</li>
 <li>изучить способы сборки игры под различные платформы</li>
 </ul>
-<p><a href="https://aras-p.info/texts/files/2018Academy%20-%20About%20Code.pdf" target="_blank" rel="noopener">Random Things About Code</a><br>Раздел <code>Navigating large codebases</code></p>
+<p><a target="_blank" rel="noopener" href="https://aras-p.info/texts/files/2018Academy%20-%20About%20Code.pdf">Random Things About Code</a><br>Раздел <code>Navigating large codebases</code></p>
 <p>Смириться с тем, что большие кодовые базы:</p>
 <ul>
 <li>содежат много legacy кода</li>
@@ -51,12 +53,12 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li>30% что причины нет, и код просто кривой</li>
 <li>10% что Ктулху Рльех Фтагн</li>
 </ul>
-<p><a href="https://aras-p.info/blog/2013/07/07/reviewing-all-the-code/" target="_blank" rel="noopener">Reviewing ALL THE CODE</a> - как следить за всем, что происходит в кодовой базе, Aras Pranckevičius (Unity)<br>Средства, упрощающие изучение всех изменений в кодовой базе</p>
+<p><a target="_blank" rel="noopener" href="https://aras-p.info/blog/2013/07/07/reviewing-all-the-code/">Reviewing ALL THE CODE</a> - как следить за всем, что происходит в кодовой базе, Aras Pranckevičius (Unity)<br>Средства, упрощающие изучение всех изменений в кодовой базе</p>
 <p>Что изучать:<br><code>Unity</code><br><code>Unreal Engine</code><br><code>Godot</code><br><code>Doom 3</code><br><code>Cocos2d-x</code></p>
 <p>Возможно:<br>(что-то не поддерживается, что-то сложно получить)<br><code>MonoGame</code><br><code>CryEngine</code><br><code>Unigine</code><br><code>Defold</code><br><code>GameMaker</code></p>
-<p>Код в Doom 3<br><a href="https://kotaku.com/the-exceptional-beauty-of-doom-3s-source-code-5975610" target="_blank" rel="noopener">The Exceptional Beauty of Doom 3’s Source Code</a><br><a href="https://fabiensanglard.net/doom3/index.php" target="_blank" rel="noopener">Doom 3 source code review</a></p>
-<p>Интервью с одним из лид-программистов Unreal<br><a href="https://youtu.be/bzHevRs-cd4" target="_blank" rel="noopener">Как Делают Игры 172. Unreal Engine</a><br><a href="https://youtu.be/Q-2Nf5j71m0" target="_blank" rel="noopener">Как Делают Игры 289. Unreal Engine 5</a></p>
-<p>Про пайплайны:<br><a href="https://hookrace.net/blog/hana-cpp-development/" target="_blank" rel="noopener">HANA C++ Development Environment and Processes</a> - не относится к играм, но есть ссылки на пару интересных тулзов для работы с тяжёлой кодовой базой.<br><a href="https://aras-p.info/texts/files/201410-TUM-HobbyEngineToGameEngine.pdf" target="_blank" rel="noopener">Hobby engine to game engine</a> - отличия в пайплайне небольших движков и больших, на примере Unity.</p>
+<p>Код в Doom 3<br><a target="_blank" rel="noopener" href="https://kotaku.com/the-exceptional-beauty-of-doom-3s-source-code-5975610">The Exceptional Beauty of Doom 3’s Source Code</a><br><a target="_blank" rel="noopener" href="https://fabiensanglard.net/doom3/index.php">Doom 3 source code review</a></p>
+<p>Интервью с одним из лид-программистов Unreal<br><a target="_blank" rel="noopener" href="https://youtu.be/bzHevRs-cd4">Как Делают Игры 172. Unreal Engine</a><br><a target="_blank" rel="noopener" href="https://youtu.be/Q-2Nf5j71m0">Как Делают Игры 289. Unreal Engine 5</a></p>
+<p>Про пайплайны:<br><a target="_blank" rel="noopener" href="https://hookrace.net/blog/hana-cpp-development/">HANA C++ Development Environment and Processes</a> - не относится к играм, но есть ссылки на пару интересных тулзов для работы с тяжёлой кодовой базой.<br><a target="_blank" rel="noopener" href="https://aras-p.info/texts/files/201410-TUM-HobbyEngineToGameEngine.pdf">Hobby engine to game engine</a> - отличия в пайплайне небольших движков и больших, на примере Unity.</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -66,4 +68,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2779627234/">Позже</a><a class="pagination__link pagination__next" href="/blog/2626761735/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2779627234/">Позже</a><a class="pagination__link pagination__next" href="/blog/2626761735/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

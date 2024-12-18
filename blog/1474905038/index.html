@@ -10,12 +10,14 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3669999465/">Позже</a><a class="pagination__link pagination__next" href="/blog/3028346426/">Раньше</a></div><article class="article post"><h3 class="article__title">Jungle Book With The Compass [NES]</h3><div class="article__date metadata"><div class="post-info">2016/04/25</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>После просмотра фильма Jungle Book решил вернуться к ромхак-анализу игр этой серии.</p>
 <p>Существует несколько различных портов Jungle Book для разных консолей, выпущенных одной и той же командой разработчиков.</p>
 <p>Версии для PC и Sega практически идентичны, Snes версия обладает схожей графикой, но полностью другими уровнями, а NES и GameBoy – очень похожими по структуре уровнями, но отличаются по используемому физическому движку и графике.</p>
-<p>Для примера карты уровней для NES и SMD версии (можно сравнить позиции деревьев).<br><a href="http://ic.pics.livejournal.com/spiiin/20318251/43301/43301_original.png" target="_blank" rel="noopener"><img src="http://ic.pics.livejournal.com/spiiin/20318251/43301/43301_600.png" alt></a></p>
+<p>Для примера карты уровней для NES и SMD версии (можно сравнить позиции деревьев).<br><a target="_blank" rel="noopener" href="http://ic.pics.livejournal.com/spiiin/20318251/43301/43301_original.png"><img src="http://ic.pics.livejournal.com/spiiin/20318251/43301/43301_600.png" alt></a></p>
 <p>Однако при всей схожести сеговская версия проходится легко и приятно, а NES-версия – хардкорный ад, как будто разработчики намерянно решили усложнить игру в разы.</p>
 <p>Смотрите сами:</p>
 <p>Во-первых, физический движок на NES написан так, чтобы усложнить жизнь игроку – медленно летящие снаряды, вроде осколков ореха наносят урон не один раз, а 4-5, что отбирает почти всё здоровье, попасть на врага сверху очень сложно, нужно чётко знать область повреждения, чтобы не промахнуться по ней (в сега версии можно хоть ударить врага снизу, игра всё равно вытолкнет Маугли наверх и нанесёт урон врагу), вдобавок иногда Маугли просто промахивается мимо лианы, пролетая сквозь неё.</p>
@@ -25,8 +27,8 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>Часто приходится отыскивать по всему уровню последний лучше всего спрятанный кристал в условиях, когда кончается время (для справедливости отмечу, что в GameBoy версии всё ещё сложнее, в ней кристалы часто спрятаны внутри врагов, и для их отыскания приходится устраивать уничтожение всех животных, встреченных на пути в поисках драгоценностей).</p>
 <p>В-третьих, Балу. В мультфильме есть эпизод, в котором он обучает Маугли жизни в джунглях и поёт песню/</p>
 <p>Уровень The River в игре про этот момент. В Sega версии Маугли доходит до Балу со стороны реки, рядом три камня, Балу бросает фрукты, их надо ловить, если упасть в речку, бонус закончится, и начнётся следующий уровень. В NES же Балу просто пытается утопить Маугли, и его нужно победить. Друг называется… Чтобы хоть немного облегчить NES-версию, я написал Lua-скрипт для эмулятора FCEUX, который добавляет в игру компас, который, как и в Sega-версии показывает направление к ближайшему ещё не собранному кристалу.</p>
-<p><a href="https://gist.github.com/spiiin/14acca27ded1989f86622eaa3ad1b515" target="_blank" rel="noopener">https://gist.github.com/spiiin/14acca27ded1989f86622eaa3ad1b515</a></p>
-<p>Так что можно перепройти игру, не путаясь в лабиринтах из лиан:<br><a href="https://www.youtube.com/watch?v=_SVjgF7rcbs" target="_blank" rel="noopener">https://www.youtube.com/watch?v=_SVjgF7rcbs</a></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/spiiin/14acca27ded1989f86622eaa3ad1b515">https://gist.github.com/spiiin/14acca27ded1989f86622eaa3ad1b515</a></p>
+<p>Так что можно перепройти игру, не путаясь в лабиринтах из лиан:<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=_SVjgF7rcbs">https://www.youtube.com/watch?v=_SVjgF7rcbs</a></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -36,4 +38,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3669999465/">Позже</a><a class="pagination__link pagination__next" href="/blog/3028346426/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3669999465/">Позже</a><a class="pagination__link pagination__next" href="/blog/3028346426/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

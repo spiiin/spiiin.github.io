@@ -10,9 +10,11 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2767873544/">Позже</a><a class="pagination__link pagination__next" href="/blog/2738337723/">Раньше</a></div><article class="article post"><h3 class="article__title">daScript tiny renderer port</h3><div class="article__date metadata"><div class="post-info">2022/12/25</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/opengl/">opengl</a><a class="article__tags__link metadata" href="/tags/3d/">3d</a><a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Портировал первые несколько примеров <a href="https://github.com/ssloy/tinyrenderer/wiki" target="_blank" rel="noopener">Tiny renderer or how OpenGL works: software rendering in 500 lines of code</a> софт-рендера с C++ на daScript. Механически и неоптимально, но близко к коду оригинального туториала, для желающих потренироваться в базовых алгоритмах растеризации на daScript.<br><a href="https://github.com/spiiin/dascript_soft_render" target="_blank" rel="noopener">https://github.com/spiiin/dascript_soft_render</a></p>
+<a class="article__tags__link metadata" href="/tags/opengl/">opengl</a><a class="article__tags__link metadata" href="/tags/3d/">3d</a><a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Портировал первые несколько примеров <a target="_blank" rel="noopener" href="https://github.com/ssloy/tinyrenderer/wiki">Tiny renderer or how OpenGL works: software rendering in 500 lines of code</a> софт-рендера с C++ на daScript. Механически и неоптимально, но близко к коду оригинального туториала, для желающих потренироваться в базовых алгоритмах растеризации на daScript.<br><a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_soft_render">https://github.com/spiiin/dascript_soft_render</a></p>
 <p>Растеризация отрезков, wireframe<br><img src="/blog/3563373441/1.png" alt><br>Растеризация треугольников line sweeping, flat shading, отсечение задних граней<br><img src="/blog/3563373441/2.png" alt><br>Z-буфер, наложение текстурных координат<br><img src="/blog/3563373441/3.png" alt><br>Перспективная проекция<br><img src="/blog/3563373441/4.png" alt><br>Камера, Gouraud shading<br><img src="/blog/3563373441/5.png" alt><br>Коррекция перспективных искажений текстурных координат, растеризация треугольника проверкой барицентрических координат точки, пиксельный и вершинный шейдеры<br><img src="/blog/3563373441/6.png" alt></p>
 <p>В оригинале есть ещё детальный разбор матриц (model, view, projection), наложение карты нормалей, тени и ambient occlusion. Но, мне кажется где-то с этого уровня можно продолжать разбираться с графикой уже с помощью графического API.</p>
 
@@ -24,4 +26,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2767873544/">Позже</a><a class="pagination__link pagination__next" href="/blog/2738337723/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2767873544/">Позже</a><a class="pagination__link pagination__next" href="/blog/2738337723/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

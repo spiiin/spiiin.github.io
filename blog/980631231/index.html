@@ -10,19 +10,27 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/327458899/">Позже</a><a class="pagination__link pagination__next" href="/blog/1410102002/">Раньше</a></div><article class="article post"><h3 class="article__title">Milight</h3><div class="article__date metadata"><div class="post-info">2016/02/17</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/python/">python</a><a class="article__tags__link metadata" href="/tags/codespell/">codespell</a><a class="article__tags__link metadata" href="/tags/hardware/">hardware</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Лампочки для дистанционного управления через интернет через WiFi — неотъемлемый компонент умного дома в моём понимании.</p>
 <p>Если компьютер в состоянии принести пиво из холодильника, приготовить чай, изменить температуру с минимальными усилиями, то твой достаточно дом умён.</p>
-<p>Пока что есть хотя бы лампочки. В отличие от от <a href="http://www2.meethue.com/en-us/products/" target="_blank" rel="noopener">Philips Hue</a>, которые стоят не-Hue-во, комплект из 4-х RGBW Milight-лампочек, пульта управления и Wi-Fi приёмника можно приобрести за 50-60$.</p>
+<p>Пока что есть хотя бы лампочки. В отличие от от <a target="_blank" rel="noopener" href="http://www2.meethue.com/en-us/products/">Philips Hue</a>, которые стоят не-Hue-во, комплект из 4-х RGBW Milight-лампочек, пульта управления и Wi-Fi приёмника можно приобрести за 50-60$.</p>
 <p>Есть белые лампочки, в которых изменяется только яркость освещения, но мне, как фанату цветного освещения, больше понравились лампы с заявленными 24 миллионами цветов, некоторые из которых ещё и флюрные.</p>
 <p>На лампочках есть несколько простых программ смены цветов, в стиле новогодних гирлянд, но возможно программировать их и самому.</p>
 <p>Минус — закрытый протокол лампочек, в отличие от филипсовских, у которых торчит API для программиста.</p>
-<p>Но народные умельцы <a href="https://hackaday.io/project/5888-reverse-engineering-the-milight-on-air-protocol" target="_blank" rel="noopener">разобрали</a> его, и можно хоть написать свою библиотеку, хоть воспользоваться одной из нескольких уже готовых, например, <a href="https://github.com/McSwindler/python-milight" target="_blank" rel="noopener">этой</a>.</p>
+<p>Но народные умельцы <a target="_blank" rel="noopener" href="https://hackaday.io/project/5888-reverse-engineering-the-milight-on-air-protocol">разобрали</a> его, и можно хоть написать свою библиотеку, хоть воспользоваться одной из нескольких уже готовых, например, <a target="_blank" rel="noopener" href="https://github.com/McSwindler/python-milight">этой</a>.</p>
 <p>Код, как обычно на Python, выглядит просто:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> milight</span><br><span class="line"><span class="comment">#соединяемся с WiFi-контроллером лампочек</span></span><br><span class="line">controller = milight.MiLight(&#123;<span class="string">'host'</span>: <span class="string">'10.10.100.254'</span>, <span class="string">'port'</span>: <span class="number">8899</span>&#125;, wait_duration=<span class="number">0</span>)</span><br><span class="line"><span class="comment">#включаем первую лампочку</span></span><br><span class="line">controller.send(light.on(<span class="number">1</span>))</span><br><span class="line"><span class="comment">#меняем цвет 1-й включенной лампочки на красный</span></span><br><span class="line">controller.send(light.color(milight.color_from_rgb(<span class="number">0xff</span>, <span class="number">0x00</span>, <span class="number">0x00</span>), <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p>Если же не хочется писать свой код, можно воспользоваться какой-нибудь готовой программой, лучшая из опробованных — <a href="http://epocapp.bitbucket.org/milight/" target="_blank" rel="noopener">Milight Controller</a>, которая умеет подстраивать цвет лампочек под цвет картинки на экране либо под звук с колонок по нескольким алгоритмам.</p>
-<p>Получается что-то вроде такого:<br><a href="https://www.youtube.com/watch?v=6pSpwF6W0Kg" target="_blank" rel="noopener">https://www.youtube.com/watch?v=6pSpwF6W0Kg</a></p>
+<figure class="shiki python"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #FF79C6">import</span><span style="color: #F8F8F2"> milight</span></span>
+<span class="line"><span style="color: #6272A4">#соединяемся с WiFi-контроллером лампочек</span></span>
+<span class="line"><span style="color: #F8F8F2">controller </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> milight.MiLight({</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">host</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">: </span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">10.10.100.254</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">port</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">: </span><span style="color: #BD93F9">8899</span><span style="color: #F8F8F2">}, </span><span style="color: #FFB86C; font-style: italic">wait_duration</span><span style="color: #FF79C6">=</span><span style="color: #BD93F9">0</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #6272A4">#включаем первую лампочку</span></span>
+<span class="line"><span style="color: #F8F8F2">controller.send(light.on(</span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">))</span></span>
+<span class="line"><span style="color: #6272A4">#меняем цвет 1-й включенной лампочки на красный</span></span>
+<span class="line"><span style="color: #F8F8F2">controller.send(light.color(milight.color_from_rgb(</span><span style="color: #FF79C6">0x</span><span style="color: #BD93F9">ff</span><span style="color: #F8F8F2">, </span><span style="color: #FF79C6">0x</span><span style="color: #BD93F9">00</span><span style="color: #F8F8F2">, </span><span style="color: #FF79C6">0x</span><span style="color: #BD93F9">00</span><span style="color: #F8F8F2">), </span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">))</span></span></code></pre></div></div></figure>
+<p>Если же не хочется писать свой код, можно воспользоваться какой-нибудь готовой программой, лучшая из опробованных — <a target="_blank" rel="noopener" href="http://epocapp.bitbucket.org/milight/">Milight Controller</a>, которая умеет подстраивать цвет лампочек под цвет картинки на экране либо под звук с колонок по нескольким алгоритмам.</p>
+<p>Получается что-то вроде такого:<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6pSpwF6W0Kg">https://www.youtube.com/watch?v=6pSpwF6W0Kg</a></p>
 <p>Первые пробы на Мортал Комбате показали, что иногда лампы живут собственной жизнью, но в основном подсвечивают фон и яркие выстрелы бойцов. Но главный их эффект в этой игре — они на порядок усиливают эффект добиваний, теперь при успешном фаталити не только экран, но и вся комната окрашивается в зловещий красный цвет.</p>
 
 <div id="gitalk-container"></div>
@@ -33,4 +41,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/327458899/">Позже</a><a class="pagination__link pagination__next" href="/blog/1410102002/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/327458899/">Позже</a><a class="pagination__link pagination__next" href="/blog/1410102002/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

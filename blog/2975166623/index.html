@@ -10,28 +10,30 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1023396573/">Позже</a><a class="pagination__link pagination__next" href="/blog/847579411/">Раньше</a></div><article class="article post"><h3 class="article__title">daScript -> dasLang?</h3><div class="article__date metadata"><div class="post-info">2023/01/01</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/dev-method/">dev_method</a><a class="article__tags__link metadata" href="/tags/gamedev/">gamedev</a><a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Год назад в первых же заметках про <code>daScript</code>:<br><a href="/blog/1728194429/" title="С++ в геймдеве">С++ в геймдеве</a><br><a href="/blog/1547564887/" title="daScript macro">daScript macro</a><br>я отметил для себя такой парадокс - <strong><code>Гайдзины делают не замену Lua, они делают замену C++!</code></strong>, т.е. дизайн языка — это совсем не про скрипты, это generic язык, удобный, чтобы делать с его помощью игры.</p>
-<a id="more"></a>
-<p>Сам Борис, видимо, устал отвечать на вопросы новичков в стиле “это такая альтернатива lua?” и написал <a href="https://borisbat.github.io/dascf-blog/2022/12/31/its-not-a-script/" target="_blank" rel="noopener">заметку</a> про то, что название сильно сбивает с толку.</p>
+<span id="more"></span>
+<p>Сам Борис, видимо, устал отвечать на вопросы новичков в стиле “это такая альтернатива lua?” и написал <a target="_blank" rel="noopener" href="https://borisbat.github.io/dascf-blog/2022/12/31/its-not-a-script/">заметку</a> про то, что название сильно сбивает с толку.</p>
 <h2><span id="sloi-yazyka">Слои языка</span><a href="#sloi-yazyka" class="header-anchor">#</a></h2><p><strong><code>Разделение по уровню понимания языка</code></strong></p>
-<p><code>daScript</code> — это айсберг, в котором новичкам видно его верхушку — скриптовый слой, на котором можно описывать логику и дёргать API движка, например, <a href="https://github.com/imp5imp5/dasbox/blob/main/doc/api.txt" target="_blank" rel="noopener">dasbox api</a>. Это первый слой — glue-язык, на котором можно писать семантически сжатый компактный код как на каком-нибудь python/lua/javascript.<br>Но при синтаксической похожести уже явно будут видны отличия:</p>
+<p><code>daScript</code> — это айсберг, в котором новичкам видно его верхушку — скриптовый слой, на котором можно описывать логику и дёргать API движка, например, <a target="_blank" rel="noopener" href="https://github.com/imp5imp5/dasbox/blob/main/doc/api.txt">dasbox api</a>. Это первый слой — glue-язык, на котором можно писать семантически сжатый компактный код как на каком-нибудь python/lua/javascript.<br>Но при синтаксической похожести уже явно будут видны отличия:</p>
 <ul>
 <li>язык типизированный — при изучении приходится потратить некоторое время на то, чтобы научиться правильно работать с его типами. В этом он местами сложнее не только луа, но и на C, скорее похож на языки из ml-семейства. Это сделано by-design, ради того, чтобы компилятор ловил больше ошибок, и легче было рефакторить код.<br><em>Некоторые простые для lua паттерны мета-программирования, в котором rtti-информация о типе — это просто таблица, к которой можно получить доступ, необходимо переделывать с помощью магических макросов, что требует намного более глубокого понимания языка</em></li>
 <li>язык позволяет работать на низком уровне — на котором можно делать практически то же, что и C. Местами про lifetime объектов нужно думать больше, а не меньше, чем в C++, и уж точно не на уровне “включил GC и выключил голову”.</li>
 <li>язык быстрый — наивный код получается +/- таким же производительным, как и наивный С++, а gamedev-specific код (много работы с векторами/матрицами) — часто и сильно быстрее. Сам код возможно оптимизировать на самом daScript, без подхода “перепишем то, что тормозит на C”.</li>
-<li>виртуальную машину языка можно рассматривать не как абстрактную машину, а как AoT-компилятор в C++, который используется как <a href="https://www.youtube.com/watch?v=8SoJR3sCaR4" target="_blank" rel="noopener">платформа</a>.</li>
+<li>виртуальную машину языка можно рассматривать не как абстрактную машину, а как AoT-компилятор в C++, который используется как <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8SoJR3sCaR4">платформа</a>.</li>
 </ul>
 <p>Т.е. уже на этом уровне свойства языка существенно отличаются от того, что обычно понимают под скриптовым языком в геймдеве. Что представляет проблему, так как с позиции изучающего язык новичка “с высоты птичьего полёта” язык кажется не тем, чем он есть на самом деле.</p>
-<p><img src="/blog/2975166623/iceberg_small.png" alt><br>При этом сам айсберг — это генерики и макросы, с помощью которых можно создавать edsl, изменять синтаксис: от добавления привычных для ООП вещей, которых нет в ядре языка, вроде <a href="https://raw.githubusercontent.com/GaijinEntertainment/daScript/master/daslib/interfaces.das" target="_blank" rel="noopener">интерфейсов</a>, или привычных для асинхронного программирования <a href="https://github.com/GaijinEntertainment/daScript/blob/138f625c7f95943341a5e96cca114ae7d0772ba6/daslib/coroutines.das" target="_blank" rel="noopener">корутин</a>, до dsl: языки-обёртки над <a href="https://github.com/GaijinEntertainment/daScript/blob/master/modules/dasOpenGL/glsl/glsl_opengl.das" target="_blank" rel="noopener">шейдерными языками</a>, и чёрной магии reader macro, позволяющей встраивать альтернативные синтаксисы вроде <a href="https://github.com/GaijinEntertainment/daScript/blob/master/daslib/regex_boost.das" target="_blank" rel="noopener">регулярных выражений</a>, а также модифицировать AST-языка.</p>
+<p><img src="/blog/2975166623/iceberg_small.png" alt><br>При этом сам айсберг — это генерики и макросы, с помощью которых можно создавать edsl, изменять синтаксис: от добавления привычных для ООП вещей, которых нет в ядре языка, вроде <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/GaijinEntertainment/daScript/master/daslib/interfaces.das">интерфейсов</a>, или привычных для асинхронного программирования <a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/daScript/blob/138f625c7f95943341a5e96cca114ae7d0772ba6/daslib/coroutines.das">корутин</a>, до dsl: языки-обёртки над <a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/daScript/blob/master/modules/dasOpenGL/glsl/glsl_opengl.das">шейдерными языками</a>, и чёрной магии reader macro, позволяющей встраивать альтернативные синтаксисы вроде <a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/daScript/blob/master/daslib/regex_boost.das">регулярных выражений</a>, а также модифицировать AST-языка.</p>
 <p>Парсинг и модификация/генерация AST также упрощает создание инструментов для работы с кодом:</p>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=profelis.dascript-plugin" target="_blank" rel="noopener">daScript language support for vs code</a> — отладчик, подсветка кода и вывод типов, помощь с выводом выражений</li>
-<li><a href="https://borisbat.github.io/dascf-blog/2022/12/11/instruments/" target="_blank" rel="noopener">профайлер</a></li>
-<li>генерация <a href="https://github.com/GaijinEntertainment/daScript/tree/master/modules/dasClangBind/bind" target="_blank" rel="noopener">привязок</a> к C/C++ библиотекам (можно смотреть, к примеру, <code>bind_opengl</code> — генерится daScript код, для других может генериться и c++-код привязки)</li>
-<li><a href="https://github.com/GaijinEntertainment/daScript/blob/073bc29145207b39180069ae60f00ed43fad6ea7/examples/test/misc/ast_print.das" target="_blank" rel="noopener">описание выражений</a> в runtime</li>
-<li><a href="https://github.com/GaijinEntertainment/daScript/blob/9e217204864177cf6886c7d8ecc86be1d47dbfca/daslib/lint.das" target="_blank" rel="noopener">линтеры</a></li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=profelis.dascript-plugin">daScript language support for vs code</a> — отладчик, подсветка кода и вывод типов, помощь с выводом выражений</li>
+<li><a target="_blank" rel="noopener" href="https://borisbat.github.io/dascf-blog/2022/12/11/instruments/">профайлер</a></li>
+<li>генерация <a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/daScript/tree/master/modules/dasClangBind/bind">привязок</a> к C/C++ библиотекам (можно смотреть, к примеру, <code>bind_opengl</code> — генерится daScript код, для других может генериться и c++-код привязки)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/daScript/blob/073bc29145207b39180069ae60f00ed43fad6ea7/examples/test/misc/ast_print.das">описание выражений</a> в runtime</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/daScript/blob/9e217204864177cf6886c7d8ecc86be1d47dbfca/daslib/lint.das">линтеры</a></li>
 <li>hot code reload — <a href="/blog/3006126295/" title="daScript - live-режим">daScript - live-режим</a><br>и многое другое.</li>
 </ul>
 <p>Такое разделения по испольуемым фичам похоже на то, чем отличается код приложения от кода библиотек на C++ — прикладной уровень требует знания только основ языка, тогда как написание библиотеки может требовать умений использовать наиболее мощные фичи.</p>
@@ -46,12 +48,30 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>Ни один из уровней не предназначен для решения проблем, которыми обычно занимаются скриптовые языки — <code>daScript</code> не для написания игровой логики, а для написания <em>всего</em> для игры, от логики, до движка — рендера, шейдеров и физики, и до тулзов - редактора игры, компилятора данных, сервера, скриптов сборки и прочей инфраструктуры вокруг, и соединения всего этого вместе.</p>
 <h2><span id="problema-nazvaniya">Проблема названия</span><a href="#problema-nazvaniya" class="header-anchor">#</a></h2><p>Вывод заметки — если <em>script</em> в названии не соответствует тому, что представляет собой язык, и только отвлекает от того, на что он потенциально способен (да и <em>da</em> - в названии, отсылка к названию движка Gaijin — <strong>Da</strong>gor Engine, язык начинался как попытка сделать замену предыдущим скриптовым языкам для движка, но уже может использовать и без него), то этого достаточно для того, чтобы переименовать язык во что-то типа <strong><code>dasLang</code></strong>, так как <strong>das</strong>-часть уже закрепилась в качестве расширения файлов для языка.</p>
 <p>Как по мне — прикольный ход, новое название сохраняет узнаваемость для знакомых со старым, и перестаёт исправляться “умным” поиском на что-то другое и выдавать нерелевантные результаты, хотя и читается по немецки как “так долго”.</p>
-<p>Побалуюсь немного на тему того, сокращением от чего могло бы быть это название, по аналогии, как <code>Nimrod</code>, сократилось до <a href="https://nim-lang.org/" target="_blank" rel="noopener">nim-lang</a> для nim. Случайные свойства и идеи языка, которые первыми пришли мне на ум после изучения <code>daScript</code>:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- скорость цикла разработки</span><br><span class="line">- выразительность</span><br><span class="line">- экономность ресурсов</span><br><span class="line">- создание абстракций</span><br><span class="line">- чистота (stateless)</span><br><span class="line">- контроль ошибок</span><br><span class="line">- встраиваемость (комбинируемость с другими)</span><br><span class="line">- типизация</span><br><span class="line">- быстрая интерпретация</span><br><span class="line">- дружественность к особенностям железа (hardware-friendly)</span><br><span class="line">- открытость</span><br><span class="line">- бесплатность</span><br><span class="line">- быстрые контексты (fast context reset)</span><br></pre></td></tr></table></figure>
+<p>Побалуюсь немного на тему того, сокращением от чего могло бы быть это название, по аналогии, как <code>Nimrod</code>, сократилось до <a target="_blank" rel="noopener" href="https://nim-lang.org/">nim-lang</a> для nim. Случайные свойства и идеи языка, которые первыми пришли мне на ум после изучения <code>daScript</code>:</p>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">- скорость цикла разработки</span></span>
+<span class="line"><span style="color: #F8F8F2">- выразительность</span></span>
+<span class="line"><span style="color: #F8F8F2">- экономность ресурсов</span></span>
+<span class="line"><span style="color: #F8F8F2">- создание абстракций</span></span>
+<span class="line"><span style="color: #F8F8F2">- чистота (stateless)</span></span>
+<span class="line"><span style="color: #F8F8F2">- контроль ошибок</span></span>
+<span class="line"><span style="color: #F8F8F2">- встраиваемость (комбинируемость с другими)</span></span>
+<span class="line"><span style="color: #F8F8F2">- типизация</span></span>
+<span class="line"><span style="color: #F8F8F2">- быстрая интерпретация</span></span>
+<span class="line"><span style="color: #F8F8F2">- дружественность к особенностям железа (hardware-friendly)</span></span>
+<span class="line"><span style="color: #F8F8F2">- открытость</span></span>
+<span class="line"><span style="color: #F8F8F2">- бесплатность</span></span>
+<span class="line"><span style="color: #F8F8F2">- быстрые контексты (fast context reset)</span></span></code></pre></div></div></figure>
 <p>Если попробовать аппроксимировать слова вместе, максимально абстрактно склеивая их друг с другом, можно получить что-то такое:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">скорость (4) &lt;- скорость разработки + быстрая интерпретация + hardware friendly + fast context reset</span><br><span class="line">низкоуровневость (2) &lt;- экономность + hardware friendly</span><br><span class="line">защита (3) &lt;- контроль + типизация + чистота</span><br><span class="line">свобода (4) &lt;- выразительность + комбинируемость + бесплатность + открытость</span><br><span class="line">виртуальность (2) &lt;- выразительность + создание абстракций</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">скорость (4) &lt;- скорость разработки + быстрая интерпретация + hardware friendly + fast context reset</span></span>
+<span class="line"><span style="color: #F8F8F2">низкоуровневость (2) &lt;- экономность + hardware friendly</span></span>
+<span class="line"><span style="color: #F8F8F2">защита (3) &lt;- контроль + типизация + чистота</span></span>
+<span class="line"><span style="color: #F8F8F2">свобода (4) &lt;- выразительность + комбинируемость + бесплатность + открытость</span></span>
+<span class="line"><span style="color: #F8F8F2">виртуальность (2) &lt;- выразительность + создание абстракций</span></span></code></pre></div></div></figure>
 <p>И еще разок:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">производительность&#x2F;performance (6) &lt;- низкоуровневость + скорость</span><br><span class="line">свобода&#x2F;freedom (4)</span><br><span class="line">безопасность&#x2F;safety (5) &lt;- защита + виртуальность</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">производительность/performance (6) &lt;- низкоуровневость + скорость</span></span>
+<span class="line"><span style="color: #F8F8F2">свобода/freedom (4)</span></span>
+<span class="line"><span style="color: #F8F8F2">безопасность/safety (5) &lt;- защита + виртуальность</span></span></code></pre></div></div></figure>
 <p>Уже похоже на motto:</p>
 <blockquote><p>“Performance &amp; creative freedom in safety environment”</p>
 </blockquote>
@@ -81,4 +101,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1023396573/">Позже</a><a class="pagination__link pagination__next" href="/blog/847579411/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1023396573/">Позже</a><a class="pagination__link pagination__next" href="/blog/847579411/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

@@ -10,17 +10,30 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/721018428/">Позже</a><a class="pagination__link pagination__next" href="/blog/2375234922/">Раньше</a></div><article class="article post"><h3 class="article__title">Реверс Duck Tales 2. Часть 2 [NES]</h3><div class="article__date metadata"><div class="post-info">2013/07/29</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="http://spiiin.livejournal.com/66511.html" target="_blank" rel="noopener">Начало</a><br>Доразобрался с форматом уровней для <strong>Duck Tales 2</strong>.</p>
+<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/66511.html">Начало</a><br>Доразобрался с форматом уровней для <strong>Duck Tales 2</strong>.</p>
 <p>Цвет кодируется сжато по 4 пары бит в одном байте для 4 тайлов.</p>
 <p>Тип тайла не кодируется, а вычисляется по его номеру (первые A0 тайлов считаются проходимыми, остальные - непроходимые).</p>
 <p>Видеопамять сжата алгоритмом RLE - первый байт означает символ повтора, дальше любая последовательность из 3х или более повторяющихся байт кодируется тройкой байт - (символ повтора, кол-во повторяющихся байт и сам байт для повтора).</p>
-<p>Объекты кодируются последовательными тройками байт:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BANK6:9478 level1_line1:   .BYTE $FF              - маркер конца</span><br><span class="line">BANK6:9479                 .BYTE 0                - общая позиция Y экрана</span><br><span class="line">BANK6:947A                 .BYTE  $20,   0, $A0   - (1. сжатая пара из 3х бит X экрана и 5 бит X объекта, уменьшенное в 8 раз, 2 - Y объекта, 3 - номер объекта)</span><br><span class="line">BANK6:947A                 .BYTE  $20,   0, $9B</span><br><span class="line">BANK6:947A                 .BYTE  $29, $AF, $66</span><br><span class="line">BANK6:947A                 .BYTE  $29, $BF, $67</span><br><span class="line">BANK6:947A                 .BYTE  $37, $BF, $33</span><br><span class="line">BANK6:947A                 .BYTE  $54, $57, $23</span><br><span class="line">BANK6:947A                 .BYTE  $60,   0, $9B</span><br><span class="line">BANK6:947A                 .BYTE  $69, $7F, $67</span><br><span class="line">BANK6:947A                 .BYTE  $6B, $7F, $68</span><br><span class="line">BANK6:947A                 .BYTE  $7B, $47, $33</span><br></pre></td></tr></table></figure></p>
+<p>Объекты кодируются последовательными тройками байт:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">BANK6:9478 level1_line1:   .BYTE $FF              - маркер конца</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:9479                 .BYTE 0                - общая позиция Y экрана</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $20,   0, $A0   - (1. сжатая пара из 3х бит X экрана и 5 бит X объекта, уменьшенное в 8 раз, 2 - Y объекта, 3 - номер объекта)</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $20,   0, $9B</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $29, $AF, $66</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $29, $BF, $67</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $37, $BF, $33</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $54, $57, $23</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $60,   0, $9B</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $69, $7F, $67</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $6B, $7F, $68</span></span>
+<span class="line"><span style="color: #F8F8F2">BANK6:947A                 .BYTE  $7B, $47, $33</span></span></code></pre></div></div></figure></p>
 <p>Перед списком объектов хранится список абсолютных указателей на каждую строку экрана каждого уровня (6:9424-9476)</p>
 <p>Среди объектов попадаются переключатели банков памяти объектов, с помощью которых можно поставить на любом уровне врагов из любой части игры.</p>
 <p>Добавил поддержку Утиных Историй 2 в CadEditor, теперь он поддерживает уже 4 игры:<br>(Darkwing Duck, Duck Tales 1, Duck Tales 2, Chip &amp; Dale).</p>
-<p><img src="http://ic.pics.livejournal.com/spiiin/20318251/27244/27244_600.png" alt="cad_editor_v11_4" title="cad_editor_v11_4"><br><a href="https://github.com/spiiin/CadEditor/blob/master/Release/cad_editor_v13.zip" target="_blank" rel="noopener">cad_editor_v13.zip</a></p>
+<p><img src="http://ic.pics.livejournal.com/spiiin/20318251/27244/27244_600.png" alt="cad_editor_v11_4" title="cad_editor_v11_4"><br><a target="_blank" rel="noopener" href="https://github.com/spiiin/CadEditor/blob/master/Release/cad_editor_v13.zip">cad_editor_v13.zip</a></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -30,4 +43,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/721018428/">Позже</a><a class="pagination__link pagination__next" href="/blog/2375234922/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/721018428/">Позже</a><a class="pagination__link pagination__next" href="/blog/2375234922/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

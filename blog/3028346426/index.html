@@ -10,19 +10,21 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1474905038/">Позже</a><a class="pagination__link pagination__next" href="/blog/1562805408/">Раньше</a></div><article class="article post"><h3 class="article__title">Реверс Flintstones Rescue Dino & Hoppy и Surprise at The Dinosaur Peak! [NES]</h3><div class="article__date metadata"><div class="post-info">2016/04/05</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Когда-то я для тестов автоматического корраптера игр я <a href="http://spiiin.livejournal.com/73202.html" target="_blank" rel="noopener">находил</a> массивы с описаниями экранов уровней обеих игр серии Flintstones для NES.</p>
+<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Когда-то я для тестов автоматического корраптера игр я <a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/73202.html">находил</a> массивы с описаниями экранов уровней обеих игр серии Flintstones для NES.</p>
 <p>С помощью цепочки логических рассуждений (и скриптов для их автоматизации) можно получить полное описание формата уровней.</p>
 <p><strong>Теория</strong><br>Раньше для оптимизации поиска-коррапта я использовал только знание о том, что в nes-файле хранятся как банки с кодом и данными (PRG-банки), так и банки только с видеопамятью (CHR-банки), в которых данных не может быть по определению.</p>
 <p>Количество банков в файле можно прочитать сразу в начале заголовка nes-файла (первые 16 байт файла), и не искать ничего в CHR-банках.</p>
 <p>Однако, можно пойти ещё дальше, и разделить данные и код.</p>
-<p>Идея показана в видео CaH4e3’а с <a href="http://spiiin.livejournal.com/91296.html" target="_blank" rel="noopener">разбором Чёрного Плаща</a>.</p>
+<p>Идея показана в видео CaH4e3’а с <a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/91296.html">разбором Чёрного Плаща</a>.</p>
 <p>Эмулятор Fceux умеет (в меню <strong><em>Debug -&gt; Code/Data Logger</em></strong>) во время проигрывания игры запоминать, какие байты каким образом использовались - были ли они выполнены или рассматривались как данные.</p>
 <p>Эти данные он сохраняет в простом по формату cdl-файле (для каждого байта в ROM создаётся байт с флажками, которые сигнализируют о его типе). Этот файл можно использовать в своих скриптах, чтобы корраптить только данные, но не код, либо же загрузить в дизассемблер IDA.</p>
-<p>Для этого понадобятся плагин-загрузчик nes-ромов и скрипт загрузки для наложения на открытый файл cdl-файла (ссылки на них <a href="https://tcrf.net/User:Cah4e3" target="_blank" rel="noopener">тут</a>).</p>
+<p>Для этого понадобятся плагин-загрузчик nes-ромов и скрипт загрузки для наложения на открытый файл cdl-файла (ссылки на них <a target="_blank" rel="noopener" href="https://tcrf.net/User:Cah4e3">тут</a>).</p>
 <p><strong>Конвертация адресов</strong></p>
-<p>Проходим игру, с запущенным Code-Data Logger, запуская все возможные сценарии (полное проигрывание заставки и диалогов, нахождение секреток, использование способностей, все варианты поражения и победы). Дальше применяем полученный в результате cdl-файл к открытой в IDA базе (Run script и открыть файл cdl.idc, который считает что файл cdl называется также, как и rom с игрой, но имеет разширение не nes, а cdl). Получаем листинг с размеченным кодом и данными. Чтобы конвертировать абсолютный адрес в ROM (который используется в конфигах <a href="https://github.com/spiiin/CadEditor" target="_blank" rel="noopener">CadEditor</a>) в адрес вида Bank:Offset в листинге IDA (загрузчик ines.ldw от Cah4eЗ), вычитаем из абсолютного адреса 0x10 и делим на размер банка - 0x2000 в загрузчике, а затем прибавляем смещение самого банка.</p>
+<p>Проходим игру, с запущенным Code-Data Logger, запуская все возможные сценарии (полное проигрывание заставки и диалогов, нахождение секреток, использование способностей, все варианты поражения и победы). Дальше применяем полученный в результате cdl-файл к открытой в IDA базе (Run script и открыть файл cdl.idc, который считает что файл cdl называется также, как и rom с игрой, но имеет разширение не nes, а cdl). Получаем листинг с размеченным кодом и данными. Чтобы конвертировать абсолютный адрес в ROM (который используется в конфигах <a target="_blank" rel="noopener" href="https://github.com/spiiin/CadEditor">CadEditor</a>) в адрес вида Bank:Offset в листинге IDA (загрузчик ines.ldw от Cah4eЗ), вычитаем из абсолютного адреса 0x10 и делим на размер банка - 0x2000 в загрузчике, а затем прибавляем смещение самого банка.</p>
 <p>Для примера сверим данные для конфига второго уровня (Settings_Flintstones_2.cs) - загружаем конфиг в CadEditor и переключаем на режим отображения номеров макроблоков <img src="http://ic.pics.livejournal.com/spiiin/20318251/42261/42261_300.png" alt> Теперь можно проверить, что в Ida по вычисленному смещению находятся те же самые данные, что и отображает CadEditor.</p>
 <p>Для примера со скрина это: <em>0x00, 0x00, 0x50, 0xD0, 0x11, 0x06</em> и т.д. (данные читаются не по строкам, а по столбцам!).</p>
 <p>Абсолютное смещение этих данных 0x1519, относительное вычисляем по приведённой выше формуле: 0x1519 % 0x2000 - 0x10 + bank0_base = 0x1509 + 0x8000 = 0x9509 в банке 0.</p>
@@ -43,7 +45,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>Автоматизация</p>
 <p>Дальше для удобства разметки всех уровней удобно прикинуть количество макроблоков и блоков в уровне автоматически. Для этого я использую немного магии - загружу редактор CadEditor как сборку в Python с помощью модуля Python.Net, и использую Jupyter Notebook, чтобы написать интерактивный скрипт подсчёта количества макроблоков и блоков на уровне.</p>
 <p>Рассчёт количества сделан из простого соображения - если пройтись по всем номерам макроблоков в массиве, описывающем экран, самый самый старший номер покажет, сколько всего макроблоков было использовано.</p>
-<p>Аналогично для количества блоков - проходим по описаниям всех макроблоков и ищем самый старший индекс.<br><a href="http://nbviewer.jupyter.org/github/spiiin/CadEditor/blob/master/JupyterCadEditor/CadEditor-FlinstonesRDH.ipynb" target="_blank" rel="noopener">http://nbviewer.jupyter.org/github/spiiin/CadEditor/blob/master/JupyterCadEditor/CadEditor-FlinstonesRDH.ipynb</a></p>
+<p>Аналогично для количества блоков - проходим по описаниям всех макроблоков и ищем самый старший индекс.<br><a target="_blank" rel="noopener" href="http://nbviewer.jupyter.org/github/spiiin/CadEditor/blob/master/JupyterCadEditor/CadEditor-FlinstonesRDH.ipynb">http://nbviewer.jupyter.org/github/spiiin/CadEditor/blob/master/JupyterCadEditor/CadEditor-FlinstonesRDH.ipynb</a></p>
 <p>Для Flintstones : Surprise at The Dinosaur Peak все рассчёты аналогичны.</p>
 <p>Получаем практически готовые конфиги для CadEditor’а (осталось только эмпирическим путём подобрать палитру и используемую на уровне видеопамять из доступных 16):<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/43233/43233_300.png" alt></p>
 <p><strong>Заметки по формату уровней</strong></p>
@@ -52,7 +54,7 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>После разметки обнаруживается небольшое различие в экранах для европейской, американской и японской версии игры, для уровня 3 данные не влезли в первые два банка, поэтому он находится в последнем банке с данными, в котором хранятся и строки, из-за чего смещения отличаются.</p>
 <p>В Surprise at the Dinosaur Peak размер макроблока уменьшен до 4x2, при этом удалось достичь того, что уровни состоят из намного меньшего числа макроблоков, при таком размере их функциональность намного увеличена.</p>
 <p>В описании уровней нету данных о физике блоков, она хранится где-то среди других данных, возможно, рядом со списками объектов.</p>
-<p>(<a href="http://spiiin.livejournal.com/photo/album/924/?page=1" target="_blank" rel="noopener">полноразмерные скрины</a>)</p>
+<p>(<a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/photo/album/924/?page=1">полноразмерные скрины</a>)</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -62,4 +64,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1474905038/">Позже</a><a class="pagination__link pagination__next" href="/blog/1562805408/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1474905038/">Позже</a><a class="pagination__link pagination__next" href="/blog/1562805408/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

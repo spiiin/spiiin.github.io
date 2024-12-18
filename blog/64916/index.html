@@ -10,14 +10,22 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/32085/">Позже</a><a class="pagination__link pagination__next" href="/blog/43997/">Раньше</a></div><article class="article post"><h3 class="article__title">Логи ниочем - 2</h3><div class="article__date metadata"><div class="post-info">2010/03/12</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/iphone/">iphone</a><a class="article__tags__link metadata" href="/tags/objc/">objc</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Писать на Objective C пришлось намного быстрее, чем хотелось :)</p>
-<p>Сегодня занимался налаживанием отношений между <a href="http://www.khronos.org/openkode/" target="_blank" rel="noopener">OpenKODE</a> и <a href="http://www.crystalsdk.com/" target="_blank" rel="noopener">Crystal SDK</a>. В мануале по интеграции <code>Crystal</code> очень доступно, с иллюстрациями описывается, как добавить библиотеку в стандартный XCode проект. Только после проведения описанных действий не работает часть кнопок и залогиниться невозможно.</p>
-<p>Наводку на решение нашел тут -<a href="http://permalink.gmane.org/gmane.comp.lib.sdl/46505" target="_blank" rel="noopener">http://permalink.gmane.org/gmane.comp.lib.sdl/46505</a>.<br>Там на первый взгляд другая проблема - интеграция <a href="http://www.openfeint.com/" target="_blank" rel="noopener">OpenFeint</a> и <a href="http://www.libsdl.org/" target="_blank" rel="noopener">SDL</a>, а решение такое же.</p>
+<p>Сегодня занимался налаживанием отношений между <a target="_blank" rel="noopener" href="http://www.khronos.org/openkode/">OpenKODE</a> и <a target="_blank" rel="noopener" href="http://www.crystalsdk.com/">Crystal SDK</a>. В мануале по интеграции <code>Crystal</code> очень доступно, с иллюстрациями описывается, как добавить библиотеку в стандартный XCode проект. Только после проведения описанных действий не работает часть кнопок и залогиниться невозможно.</p>
+<p>Наводку на решение нашел тут -<a target="_blank" rel="noopener" href="http://permalink.gmane.org/gmane.comp.lib.sdl/46505">http://permalink.gmane.org/gmane.comp.lib.sdl/46505</a>.<br>Там на первый взгляд другая проблема - интеграция <a target="_blank" rel="noopener" href="http://www.openfeint.com/">OpenFeint</a> и <a target="_blank" rel="noopener" href="http://www.libsdl.org/">SDL</a>, а решение такое же.</p>
 <p>Надо сделать в главном цикле приложения OpenKODE (скорее всего в kdMain) дополнительную проверку, активно ли окно Crystal и если нужно, вызвать дополнительную обработку сообщений, чтобы дать возможность библиотеке отреагировать на тапы по экрану.<br>Как-то так:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kdAdditionalUpdate</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   </span><br><span class="line">    <span class="keyword">if</span>( achivLib-&gt;IsActive() )</span><br><span class="line">    &#123;</span><br><span class="line">        CFRunLoopRunInMode(kCFRunLoopDefaultMode, <span class="number">1</span>, TRUE);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>А для отрисовки сообщений внутри игры надо еще сказать <code>Crystal</code>‘у, что в приложении используется <code>OpenGL</code> (точнее ему надо сказать, что <a href="http://cocos2d.org/" target="_blank" rel="noopener">Cocos</a>, он поймет). Как это сделать, сказано тут - <a href="http://devsupport.crystalsdk.com/default.asp?W24" target="_blank" rel="noopener">http://devsupport.crystalsdk.com/default.asp?W24</a> (доступно только при регистрации).  </p>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">kdAdditionalUpdate</span><span style="color: #F8F8F2">()</span></span>
+<span class="line"><span style="color: #F8F8F2">{   </span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">if</span><span style="color: #F8F8F2">( achivLib</span><span style="color: #FF79C6">-&gt;</span><span style="color: #50FA7B">IsActive</span><span style="color: #F8F8F2">() )</span></span>
+<span class="line"><span style="color: #F8F8F2">    {</span></span>
+<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #50FA7B">CFRunLoopRunInMode</span><span style="color: #F8F8F2">(kCFRunLoopDefaultMode, </span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">, TRUE);</span></span>
+<span class="line"><span style="color: #F8F8F2">    };</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure>
+<p>А для отрисовки сообщений внутри игры надо еще сказать <code>Crystal</code>‘у, что в приложении используется <code>OpenGL</code> (точнее ему надо сказать, что <a target="_blank" rel="noopener" href="http://cocos2d.org/">Cocos</a>, он поймет). Как это сделать, сказано тут - <a target="_blank" rel="noopener" href="http://devsupport.crystalsdk.com/default.asp?W24">http://devsupport.crystalsdk.com/default.asp?W24</a> (доступно только при регистрации).  </p>
 <p>Тогда взлетит.  </p>
 <p><em>upd</em> Взлетит, но упадет. Чтобы полет шел без осложнений, надо еще установать свойство <code>CrystalSession activateCrystalSetting в @&quot;YES&quot;</code>, чтобы Crystal не пытался поворачивать свой интерфейс при повороте устройства, потому что иначе приложение может упасть, если начать танцевать с айфоном.</p>
 
@@ -29,4 +37,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/32085/">Позже</a><a class="pagination__link pagination__next" href="/blog/43997/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/32085/">Позже</a><a class="pagination__link pagination__next" href="/blog/43997/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

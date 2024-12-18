@@ -10,10 +10,12 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1067581840/">Позже</a><a class="pagination__link pagination__next" href="/blog/2316905704/">Раньше</a></div><article class="article post"><h3 class="article__title">Эволюция программиста в геймдеве</h3><div class="article__date metadata"><div class="post-info">2022/07/27</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/gamedev/">gamedev</a><a class="article__tags__link metadata" href="/tags/dev-evolution/">dev_evolution</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Модели развития сотрудника в геймдеве.</p>
-<h2><span id="t-model-ot-valve">Т-модель от Valve</span><a href="#t-model-ot-valve" class="header-anchor">#</a></h2><p><img src="/blog/4256110900/tmodel.png" alt="tmodel"><br>Из <a href="http://media.steampowered.com/apps/valve/hbook-RU.pdf" target="_blank" rel="noopener">руководства новых сотрудников Valve</a><br>Программист растёт не линейно, а в нескольких областях, и чтобы отразить это, в <code>Valve</code> придумали T-модель развития сотрудников:</p>
+<h2><span id="t-model-ot-valve">Т-модель от Valve</span><a href="#t-model-ot-valve" class="header-anchor">#</a></h2><p><img src="/blog/4256110900/tmodel.png" alt="tmodel"><br>Из <a target="_blank" rel="noopener" href="http://media.steampowered.com/apps/valve/hbook-RU.pdf">руководства новых сотрудников Valve</a><br>Программист растёт не линейно, а в нескольких областях, и чтобы отразить это, в <code>Valve</code> придумали T-модель развития сотрудников:</p>
 <p>На картинке Heavy - класс из Team Fortress 2. Он широко расставил руки, что показывает его атрибуты — Хэви понемногу разбирается в:</p>
 <ul>
 <li>Приготовлении бутербродов,</li>
@@ -21,8 +23,8 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li>Русских народных танцах</li>
 <li>Уберзарядах.<br>Он прокачивает широкий спектр навыков, чтобы уметь всего понемногу, но основная его компетенция - это Тяжёлое оружие (высокий скилл -&gt; рост персонажа)</li>
 </ul>
-<p>Похожая схема от <a href="https://www.dropbox.com/s/0z2p0qokdmm6eaw/Roblox%20Rendering%20-%20Career%20Guide%20v1.1public.pdf?dl=0" target="_blank" rel="noopener">Roblox</a> — приоритет отдаётся не узконаправленным “дельта-диракам”, а “гауссиана-специалистам”, который кроме основного навыка немного ориентируются в других (им проще взаимодействовать со специалистами из других областей и могут принести инсайты из других областей в своей основной специализации)</p>
-<h2><span id="model-kostyumov-mario-ot-betheda">Модель костюмов Марио от Betheda</span><a href="#model-kostyumov-mario-ot-betheda" class="header-anchor">#</a></h2><p><img src="/blog/4256110900/mario_model.png" alt="mario_model"><br><a href="https://www.slideshare.net/JoelBurgess/3-10gdc2014-iterativeleveldesignprocess" target="_blank" rel="noopener">Отсюда</a><br><code>Betheda</code> практически не расширяет команды в ходе разработки проекта, поэтому  незанятые на текущем этапе отделы могут заняться чем-либо другим (переодеваются в другой костюм-профессию). В примере из доклада, на ранних стадиях левел-дизайнеры могут помогать в написании сюжета, геймдизайне механик (Layout, Gameplay, Markup, Scripting, Performance, Writing, Systems, Prototyping, Tools, more…), попутно прокачиваясь в том, что может быть полезно команде. Цель — создание небольших команд, состоящих из широкопрофильных специалистов.</p>
+<p>Похожая схема от <a target="_blank" rel="noopener" href="https://www.dropbox.com/s/0z2p0qokdmm6eaw/Roblox%20Rendering%20-%20Career%20Guide%20v1.1public.pdf?dl=0">Roblox</a> — приоритет отдаётся не узконаправленным “дельта-диракам”, а “гауссиана-специалистам”, который кроме основного навыка немного ориентируются в других (им проще взаимодействовать со специалистами из других областей и могут принести инсайты из других областей в своей основной специализации)</p>
+<h2><span id="model-kostyumov-mario-ot-betheda">Модель костюмов Марио от Betheda</span><a href="#model-kostyumov-mario-ot-betheda" class="header-anchor">#</a></h2><p><img src="/blog/4256110900/mario_model.png" alt="mario_model"><br><a target="_blank" rel="noopener" href="https://www.slideshare.net/JoelBurgess/3-10gdc2014-iterativeleveldesignprocess">Отсюда</a><br><code>Betheda</code> практически не расширяет команды в ходе разработки проекта, поэтому  незанятые на текущем этапе отделы могут заняться чем-либо другим (переодеваются в другой костюм-профессию). В примере из доклада, на ранних стадиях левел-дизайнеры могут помогать в написании сюжета, геймдизайне механик (Layout, Gameplay, Markup, Scripting, Performance, Writing, Systems, Prototyping, Tools, more…), попутно прокачиваясь в том, что может быть полезно команде. Цель — создание небольших команд, состоящих из широкопрофильных специалистов.</p>
 <h2><span id="model-professiy-iz-final-fantasy-tactics">Модель профессий из Final Fantasy Tactics</span><a href="#model-professiy-iz-final-fantasy-tactics" class="header-anchor">#</a></h2><p>Если выбирать аналогии из игр, на мой взгляд профессии в геймдеве напоминают систему профессий из <code>Final Fintasy Tactics</code>.</p>
 <p>Изначально специалисту доступны “примитивные” профессии, совершенствуясь в которых он осваивает некоторые навыки. После полноценного освоения нескольких навыков специалист может как оставаться в рамках этой же профессии и продолжать качаться в ней. Более продвинутые профессии имеют требования к наличию навыков в более низких.</p>
 <p><img src="/blog/4256110900/viera_jobs.png" alt="viera_jobs"><br>(ветка профессий для одной из рас в FFTA)</p>
@@ -45,4 +47,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1067581840/">Позже</a><a class="pagination__link pagination__next" href="/blog/2316905704/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1067581840/">Позже</a><a class="pagination__link pagination__next" href="/blog/2316905704/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

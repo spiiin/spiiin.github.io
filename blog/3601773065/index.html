@@ -10,12 +10,14 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3139044644/">Позже</a><a class="pagination__link pagination__next" href="/blog/1495987502/">Раньше</a></div><article class="article post"><h3 class="article__title">Рандомные мысли про код, дизайн, C++ и геймдев</h3><div class="article__date metadata"><div class="post-info">2024/05/20</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/cpp/">cpp</a><a class="article__tags__link metadata" href="/tags/dev-method/">dev_method</a><a class="article__tags__link metadata" href="/tags/gamedev/">gamedev</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><ul>
 <li><a href="/blog/1728194429/" title="С++ в геймдеве">С++ в геймдеве</a> — предыдущий пост на похожую тему</li>
 </ul>
-<p>Несколько общих статей от разработчиков игр:<br>[1] - <a href="https://loglog.games/blog/leaving-rust-gamedev/" target="_blank" rel="noopener">Leaving Rust gamedev after 3 years</a> — про то, что фичи Rust-а не особо помогают для геймдева, а периодически и мешают.<br>[2] - <a href="https://www.elopezr.com/life-and-death-of-a-graphics-programmer/" target="_blank" rel="noopener">Life and Death of a Graphics Programmer</a> — взгляд на геймдев со стороны графического разработчика. Достаточно высокий, чтобы быть интересным любому разработчику игр.</p>
+<p>Несколько общих статей от разработчиков игр:<br>[1] - <a target="_blank" rel="noopener" href="https://loglog.games/blog/leaving-rust-gamedev/">Leaving Rust gamedev after 3 years</a> — про то, что фичи Rust-а не особо помогают для геймдева, а периодически и мешают.<br>[2] - <a target="_blank" rel="noopener" href="https://www.elopezr.com/life-and-death-of-a-graphics-programmer/">Life and Death of a Graphics Programmer</a> — взгляд на геймдев со стороны графического разработчика. Достаточно высокий, чтобы быть интересным любому разработчику игр.</p>
 <p>Важные моменты из статей:</p>
 <blockquote>
 <p>Generalized systems don’t lead to fun gameplay</p>
@@ -43,8 +45,8 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li><a href="/blog/2721099263/" title="Ещё о проектировании (движки и история)">Ещё о проектировании (движки и история)</a> — одна из больших идей этой статьи, что проектирование (не только тулзов, но и архитектуры) изначально должно учитывать конфигурацию команды.</li>
 </ul>
 <h2><span id="geymdev-problematika">Геймдев проблематика</span><a href="#geymdev-problematika" class="header-anchor">#</a></h2><p>Программисты сталкиваются в первую очередь с техническими требованиями к игре — код должен быть быстрым и надёжным (больше ошибок ловит ловит компилятор). Но кроме этих требований у гейм-дизайнеров, создающих игровые механики, есть другие.</p>
-<p><a href="https://www.youtube.com/watch?v=o5K0uqhxgsE" target="_blank" rel="noopener">This Problem Changes Your Perspective On Game Dev</a> — обзор процесса поиска в дизайне. Критична простота экспериментов, и скорость итерации. В видео нет никаких новых идей — это стандартные требования геймдизайнеров к инструментам, чтобы иметь возможность создавать интересный геймплей. Причём не только к инди или инновационным играм, а вообще к играм любого жанра.</p>
-<p><a href="https://www.youtube.com/watch?v=72y2EC5fkcE" target="_blank" rel="noopener">Tomorrow Corporation Tech Demo</a> — небольшой пример хот-релоада<br><a href="https://www.youtube.com/watch?v=PUv66718DII" target="_blank" rel="noopener">Inventing on Principle</a> — еще пример<br><a href="https://youtu.be/-zc8LcDwVUc?si=1RkL-OX3RNfc6gk_&amp;t=132" target="_blank" rel="noopener">NimForUE 101: uStructs</a> — перезагрузка в vm unreal с помощью кода на nim<br><a href="https://www.youtube.com/watch?v=inGb9R1NowY" target="_blank" rel="noopener">Live Stream Coding on daScript - Breakoid</a> — Arcanoid на daScript с нуля без перезапуска игры</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=o5K0uqhxgsE">This Problem Changes Your Perspective On Game Dev</a> — обзор процесса поиска в дизайне. Критична простота экспериментов, и скорость итерации. В видео нет никаких новых идей — это стандартные требования геймдизайнеров к инструментам, чтобы иметь возможность создавать интересный геймплей. Причём не только к инди или инновационным играм, а вообще к играм любого жанра.</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=72y2EC5fkcE">Tomorrow Corporation Tech Demo</a> — небольшой пример хот-релоада<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=PUv66718DII">Inventing on Principle</a> — еще пример<br><a target="_blank" rel="noopener" href="https://youtu.be/-zc8LcDwVUc?si=1RkL-OX3RNfc6gk_&amp;t=132">NimForUE 101: uStructs</a> — перезагрузка в vm unreal с помощью кода на nim<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=inGb9R1NowY">Live Stream Coding on daScript - Breakoid</a> — Arcanoid на daScript с нуля без перезапуска игры</p>
 <ul>
 <li><a href="/blog/3309518526/" title="Системы поиска сокровищ">Системы поиска сокровищ</a> — системы поиска сокровищ в песочницах</li>
 </ul>
@@ -57,8 +59,8 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>Как сделать разработку легче? </p>
 <p><strong>Не пытаться использовать C++ там, где это неудобно, использовать другой язык или языки для описания игровой логики</strong>. Такой на котором проще решать проблемы гейм-дизайнеров, не программистов (этот язык даже скорее всего будет <em>менее</em> удобен программистам, во всяком случае вначале).</p>
 <p><img src="/blog/3601773065/lobster_pre_small.png" alt><br><em>старая архитектура, много c++, немного в скриптах</em></p>
-<p><img src="/blog/3601773065/lobster_small.png" alt><br><em>новый подход, что-то типа <a href="https://enginearchitecture.org/downloads/reac2023_scripting_language.pdf" target="_blank" rel="noopener">такого</a> (доклад сам по себе про похожие идеи). автор языка lobster, также flatbuffers и программист в нескольких AAA-проектах</em><br>(в unity — C#, в unreal — blueprints, в dagor engine — daScript)</p>
-<p><a href="https://grimfandango.network/features/articles/lua-in-grim-fandango" target="_blank" rel="noopener">Lua in Grim Fandango</a> — история <a href="https://www.lua.org/doc/hopl.pdf" target="_blank" rel="noopener">первого</a> использования lua в качестве скриптового языка.</p>
+<p><img src="/blog/3601773065/lobster_small.png" alt><br><em>новый подход, что-то типа <a target="_blank" rel="noopener" href="https://enginearchitecture.org/downloads/reac2023_scripting_language.pdf">такого</a> (доклад сам по себе про похожие идеи). автор языка lobster, также flatbuffers и программист в нескольких AAA-проектах</em><br>(в unity — C#, в unreal — blueprints, в dagor engine — daScript)</p>
+<p><a target="_blank" rel="noopener" href="https://grimfandango.network/features/articles/lua-in-grim-fandango">Lua in Grim Fandango</a> — история <a target="_blank" rel="noopener" href="https://www.lua.org/doc/hopl.pdf">первого</a> использования lua в качестве скриптового языка.</p>
 <p>Телефоны/консоли также на поздней фазе развития — запаса мощности часто хватает для того, чтобы запихнуть “дорогие” абстракции, увеличивающие как время компиляции, так и время выполнения кода. Для казуальных и прочих “простых” игр — раз в 5-10. Т.е. в принципе можно вообще использовать в 5-10 раз более медленный язык для реализации всей логики, ради того, чтобы сделать удобнее гейм-дизайнерам.</p>
 
 <div id="gitalk-container"></div>
@@ -69,4 +71,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3139044644/">Позже</a><a class="pagination__link pagination__next" href="/blog/1495987502/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3139044644/">Позже</a><a class="pagination__link pagination__next" href="/blog/1495987502/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

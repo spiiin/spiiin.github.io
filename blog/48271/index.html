@@ -10,7 +10,9 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/10414/">Позже</a><a class="pagination__link pagination__next" href="/blog/41820/">Раньше</a></div><article class="article post"><h3 class="article__title">Chip and Dale Hack</h3><div class="article__date metadata"><div class="post-info">2012/03/18</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>ROM для теста Chip ‘n Dale Rescue Rangers (U) [!].nes</p>
 <p><strong>ЧАСТЬ 2. Устройство уровней.</strong></p>
@@ -20,16 +22,129 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p>Чтобы было понятнее, тайл видеопамяти /объект уровня/строительный блок уровня: <img src="http://pics.livejournal.com/spiiin/pic/0002ge1s" alt="block0">/<img src="http://pics.livejournal.com/spiiin/pic/0002h0rf" alt>/<img src="http://pics.livejournal.com/spiiin/pic/0002kgzb" alt> </p>
 <p>Дальше надо разобраться с алгоритмом вытаскивания старших бит цветов. Это место уже нашлось в ходе реверса функции горизонтального скроллинга - в отрисовке большого блока есть выборка 4х байт, для каждого из маленьких блоков по одному.</p>
 <p>Начало таблицы маппится на адрес $BEE0 в памяти.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ROM:DFA3 LDY byte_2</span><br><span class="line">ROM:DFA5 LDA $E04F,Y</span><br><span class="line">ROM:DFA8 STA byte_3</span><br><span class="line">ROM:DFAA LDA (0),Y</span><br><span class="line">ROM:DFAC TAX</span><br><span class="line">ROM:DFAD LDA $BEE0,X ;базовый адрес старших байт цвета в памяти + смещение блока</span><br></pre></td></tr></table></figure>
-<p>Палитру уровня можно взять из fceud (Tools-&gt;PPU viewer) и написать функцию замены цветов тайла по палитре, чтобы подмешать полученные цвета в уровень.<br>Результат: <a href="http://pics.livejournal.com/spiiin/pic/0002p5xk/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0002p5xk/s320x240" alt></a><br><a href="http://pics.livejournal.com/spiiin/gallery/0002xkeg" target="_blank" rel="noopener">остальные картинки</a></p>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">ROM:DFA3 LDY byte_2</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:DFA5 LDA $E04F,Y</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:DFA8 STA byte_3</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:DFAA LDA (0),Y</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:DFAC TAX</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:DFAD LDA $BEE0,X ;базовый адрес старших байт цвета в памяти + смещение блока</span></span></code></pre></div></div></figure>
+<p>Палитру уровня можно взять из fceud (Tools-&gt;PPU viewer) и написать функцию замены цветов тайла по палитре, чтобы подмешать полученные цвета в уровень.<br>Результат: <a target="_blank" rel="noopener" href="http://pics.livejournal.com/spiiin/pic/0002p5xk/"><img src="http://pics.livejournal.com/spiiin/pic/0002p5xk/s320x240" alt></a><br><a target="_blank" rel="noopener" href="http://pics.livejournal.com/spiiin/gallery/0002xkeg">остальные картинки</a></p>
 <p><strong>ЧАСТЬ 3. Описание объектов</strong></p>
 <p>$70 - счетчик активных предметов (враги, предметы в ящиках, скрытые бонусы и специальные объекты типа яблок или сундуков). </p>
 <p>Ставим брейкпоинт на первое чтение при запуске уровня и останавливаемся на считывании кода врага.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ROM:80BD LDY byte_70</span><br><span class="line">ROM:80BF JSR make_enemy_coord</span><br><span class="line">ROM:80C2 BNE loc_80CB</span><br><span class="line">ROM:80C4 JSR make_enemy</span><br><span class="line">ROM:80C7 INC byte_70</span><br><span class="line">ROM:80C9 BNE loc_80BD</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">ROM:80BD LDY byte_70</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:80BF JSR make_enemy_coord</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:80C2 BNE loc_80CB</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:80C4 JSR make_enemy</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:80C7 INC byte_70</span></span>
+<span class="line"><span style="color: #F8F8F2">ROM:80C9 BNE loc_80BD</span></span></code></pre></div></div></figure>
 <p><strong>Начала описаний объектов в ROM:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">уровень 0 - 10388-103D3</span><br><span class="line">уровень А - 10456</span><br><span class="line">уровень B - 105A1</span><br><span class="line">уровень C - 106D1-10709</span><br><span class="line">уровень D - 10890-108F0</span><br><span class="line">уровень E - 10A1D-10A66</span><br><span class="line">уровень F - 10B0E-10B36</span><br><span class="line">уровень G - 10C88-10СDA</span><br><span class="line">уровень H - 10DB3-10DE7</span><br><span class="line">уровень I - 10EA1-10ECD</span><br><span class="line">уровень J - 10FED-11033</span><br><span class="line">ИСКЛЮЧЕНИЯ (порядок описания отличный от того, как он идет в игре).</span><br><span class="line">Уровень 0 - Сначала идет комната с боссом, потом комната с сыром для рокки.</span><br><span class="line">Уровень D - Босс расписан перед уровнем, а не после. Не хватает одного байта описания координат, из-за долго которого ломался мой парсер. Из-за этого &quot;проебайта&quot; у босса за спиной не рисуется заводной ключик :)</span><br><span class="line">уровень E - Кусок сначала из 4х последних экранов, потом продолжение &#x3D;\</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">уровень 0 - 10388-103D3</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень А - 10456</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень B - 105A1</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень C - 106D1-10709</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень D - 10890-108F0</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень E - 10A1D-10A66</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень F - 10B0E-10B36</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень G - 10C88-10СDA</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень H - 10DB3-10DE7</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень I - 10EA1-10ECD</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень J - 10FED-11033</span></span>
+<span class="line"><span style="color: #F8F8F2">ИСКЛЮЧЕНИЯ (порядок описания отличный от того, как он идет в игре).</span></span>
+<span class="line"><span style="color: #F8F8F2">Уровень 0 - Сначала идет комната с боссом, потом комната с сыром для рокки.</span></span>
+<span class="line"><span style="color: #F8F8F2">Уровень D - Босс расписан перед уровнем, а не после. Не хватает одного байта описания координат, из-за долго которого ломался мой парсер. Из-за этого &quot;проебайта&quot; у босса за спиной не рисуется заводной ключик :)</span></span>
+<span class="line"><span style="color: #F8F8F2">уровень E - Кусок сначала из 4х последних экранов, потом продолжение =\</span></span></code></pre></div></div></figure>
 <p><strong>ТИПЫ ВРАГОВ</strong> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">00 - механическая собака</span><br><span class="line">01 - механический мышь</span><br><span class="line">02 - пчела</span><br><span class="line">03 - гусеница</span><br><span class="line">04 - белка-летяга вправо</span><br><span class="line">05 - белка-летяга влево</span><br><span class="line">06 - &quot;кидальщик 3 штучек и убегальщик&quot;:)</span><br><span class="line">07 - хамелеон</span><br><span class="line">08 - муха</span><br><span class="line">09 - яблоко</span><br><span class="line">0A - скрытая звезда</span><br><span class="line">0B - цветок</span><br><span class="line">0C - звезда</span><br><span class="line">0D - желудь</span><br><span class="line">0E - светящийся желудь</span><br><span class="line">0F - светящаяся звезда</span><br><span class="line"></span><br><span class="line">10 - ящик с баночкой</span><br><span class="line">11 - ящик с сыром для Рокки</span><br><span class="line">12 - ящик со светящейся звездой</span><br><span class="line">13 - ящик со светящимся желудем</span><br><span class="line">14 - ящик с вжиком</span><br><span class="line">15 - ящик с вжиком (другие тайлы вжика)</span><br><span class="line">16 - бомба (тайлы уровня B)</span><br><span class="line">17 - ящик с лодкой</span><br><span class="line">18 - ящик с молотком</span><br><span class="line">19 - бомба (тайлы уровня E)</span><br><span class="line">1A - скрытая святящаяся звезда</span><br><span class="line">1B - неоткрывающийся ящик</span><br><span class="line">1C - козлик с коврами</span><br><span class="line">1D - птица-качок</span><br><span class="line">1E - прыгающий ящик</span><br><span class="line">1F - кенгуру с ракеткой</span><br><span class="line"></span><br><span class="line">20 - птица с железным шаром</span><br><span class="line">21 - игрушечная боевая юла</span><br><span class="line">22 - клоун</span><br><span class="line">23 - куколка бабочки</span><br><span class="line">24 - жук в засаде</span><br><span class="line">25 - рогатый жук</span><br><span class="line">26 - крокодил в шляпе</span><br><span class="line">27 - прыгающий крокодил в шляпе</span><br><span class="line">28 - носорог-качок</span><br><span class="line">29 - краб</span><br><span class="line">2A - пеликан</span><br><span class="line">2B - стрелок с присосками</span><br><span class="line">2C - искра длинный</span><br><span class="line">2D - искра средний</span><br><span class="line">2E - искра короткий</span><br><span class="line">2F - огонь под кастрюлей. безвреден.</span><br><span class="line"></span><br><span class="line">30 - падающий насвозь металлический шар</span><br><span class="line">31 - выдвижная платформа</span><br><span class="line">32 - вентиль для блокировки потока</span><br><span class="line">33 - катящийся металлический шар</span><br><span class="line">34 - катящийся металлический шар</span><br><span class="line">35 - резалка</span><br><span class="line">36 - выключатель резалки</span><br><span class="line">37 - падающие стены</span><br><span class="line">38 - быстрый катящийся металлический шар</span><br><span class="line">39 - &quot;спихивалка&quot; с игровых автоматов</span><br><span class="line">3A - топор</span><br><span class="line">3B - выключатель падающих шаров</span><br><span class="line">3C - катящийся металлический шар</span><br><span class="line">3D - вентилятор влево</span><br><span class="line">3E - вентилятор вправо</span><br><span class="line">3F - движущийся кусок?</span><br><span class="line"></span><br><span class="line">40 - босс 1 (голова)</span><br><span class="line">41 - босс 1 (левая рука)</span><br><span class="line">42 - босс 1 (правая рука)</span><br><span class="line">43 - босс 2 (сова)</span><br><span class="line">44 - босс 3 (летающая ракета)</span><br><span class="line">45 - босс 4 (сердце и метатель)</span><br><span class="line">46 - босс 4 (заводной ключ)</span><br><span class="line">47 - босс 4 (шины)</span><br><span class="line">48 - катящийся металлический шар</span><br><span class="line">49 - босс 6 (кролик в автомате)</span><br><span class="line">4A - босс 5 (сом)</span><br><span class="line">4B - босс 7 (сороконожка)</span><br><span class="line">4C - босс 7 (часть сороконожки)</span><br><span class="line">4D - босс 7 (часть сороконожки)</span><br><span class="line">4E - босс 7 (часть сороконожки)</span><br><span class="line">4F - босс 7 (часть сороконожки)</span><br><span class="line"></span><br><span class="line">50 - босс 8 (толстопуз, рука с сигарой)</span><br><span class="line">51 - босс 8 (толстопуз, морда)</span><br><span class="line">52 - гнилая доска</span><br><span class="line">53 - красный шарик</span><br><span class="line">FF - невидимый непроходимый блок, конец зоны</span><br></pre></td></tr></table></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">00 - механическая собака</span></span>
+<span class="line"><span style="color: #F8F8F2">01 - механический мышь</span></span>
+<span class="line"><span style="color: #F8F8F2">02 - пчела</span></span>
+<span class="line"><span style="color: #F8F8F2">03 - гусеница</span></span>
+<span class="line"><span style="color: #F8F8F2">04 - белка-летяга вправо</span></span>
+<span class="line"><span style="color: #F8F8F2">05 - белка-летяга влево</span></span>
+<span class="line"><span style="color: #F8F8F2">06 - &quot;кидальщик 3 штучек и убегальщик&quot;:)</span></span>
+<span class="line"><span style="color: #F8F8F2">07 - хамелеон</span></span>
+<span class="line"><span style="color: #F8F8F2">08 - муха</span></span>
+<span class="line"><span style="color: #F8F8F2">09 - яблоко</span></span>
+<span class="line"><span style="color: #F8F8F2">0A - скрытая звезда</span></span>
+<span class="line"><span style="color: #F8F8F2">0B - цветок</span></span>
+<span class="line"><span style="color: #F8F8F2">0C - звезда</span></span>
+<span class="line"><span style="color: #F8F8F2">0D - желудь</span></span>
+<span class="line"><span style="color: #F8F8F2">0E - светящийся желудь</span></span>
+<span class="line"><span style="color: #F8F8F2">0F - светящаяся звезда</span></span>
+<span class="line"><span style="color: #F8F8F2"></span></span>
+<span class="line"><span style="color: #F8F8F2">10 - ящик с баночкой</span></span>
+<span class="line"><span style="color: #F8F8F2">11 - ящик с сыром для Рокки</span></span>
+<span class="line"><span style="color: #F8F8F2">12 - ящик со светящейся звездой</span></span>
+<span class="line"><span style="color: #F8F8F2">13 - ящик со светящимся желудем</span></span>
+<span class="line"><span style="color: #F8F8F2">14 - ящик с вжиком</span></span>
+<span class="line"><span style="color: #F8F8F2">15 - ящик с вжиком (другие тайлы вжика)</span></span>
+<span class="line"><span style="color: #F8F8F2">16 - бомба (тайлы уровня B)</span></span>
+<span class="line"><span style="color: #F8F8F2">17 - ящик с лодкой</span></span>
+<span class="line"><span style="color: #F8F8F2">18 - ящик с молотком</span></span>
+<span class="line"><span style="color: #F8F8F2">19 - бомба (тайлы уровня E)</span></span>
+<span class="line"><span style="color: #F8F8F2">1A - скрытая святящаяся звезда</span></span>
+<span class="line"><span style="color: #F8F8F2">1B - неоткрывающийся ящик</span></span>
+<span class="line"><span style="color: #F8F8F2">1C - козлик с коврами</span></span>
+<span class="line"><span style="color: #F8F8F2">1D - птица-качок</span></span>
+<span class="line"><span style="color: #F8F8F2">1E - прыгающий ящик</span></span>
+<span class="line"><span style="color: #F8F8F2">1F - кенгуру с ракеткой</span></span>
+<span class="line"><span style="color: #F8F8F2"></span></span>
+<span class="line"><span style="color: #F8F8F2">20 - птица с железным шаром</span></span>
+<span class="line"><span style="color: #F8F8F2">21 - игрушечная боевая юла</span></span>
+<span class="line"><span style="color: #F8F8F2">22 - клоун</span></span>
+<span class="line"><span style="color: #F8F8F2">23 - куколка бабочки</span></span>
+<span class="line"><span style="color: #F8F8F2">24 - жук в засаде</span></span>
+<span class="line"><span style="color: #F8F8F2">25 - рогатый жук</span></span>
+<span class="line"><span style="color: #F8F8F2">26 - крокодил в шляпе</span></span>
+<span class="line"><span style="color: #F8F8F2">27 - прыгающий крокодил в шляпе</span></span>
+<span class="line"><span style="color: #F8F8F2">28 - носорог-качок</span></span>
+<span class="line"><span style="color: #F8F8F2">29 - краб</span></span>
+<span class="line"><span style="color: #F8F8F2">2A - пеликан</span></span>
+<span class="line"><span style="color: #F8F8F2">2B - стрелок с присосками</span></span>
+<span class="line"><span style="color: #F8F8F2">2C - искра длинный</span></span>
+<span class="line"><span style="color: #F8F8F2">2D - искра средний</span></span>
+<span class="line"><span style="color: #F8F8F2">2E - искра короткий</span></span>
+<span class="line"><span style="color: #F8F8F2">2F - огонь под кастрюлей. безвреден.</span></span>
+<span class="line"><span style="color: #F8F8F2"></span></span>
+<span class="line"><span style="color: #F8F8F2">30 - падающий насвозь металлический шар</span></span>
+<span class="line"><span style="color: #F8F8F2">31 - выдвижная платформа</span></span>
+<span class="line"><span style="color: #F8F8F2">32 - вентиль для блокировки потока</span></span>
+<span class="line"><span style="color: #F8F8F2">33 - катящийся металлический шар</span></span>
+<span class="line"><span style="color: #F8F8F2">34 - катящийся металлический шар</span></span>
+<span class="line"><span style="color: #F8F8F2">35 - резалка</span></span>
+<span class="line"><span style="color: #F8F8F2">36 - выключатель резалки</span></span>
+<span class="line"><span style="color: #F8F8F2">37 - падающие стены</span></span>
+<span class="line"><span style="color: #F8F8F2">38 - быстрый катящийся металлический шар</span></span>
+<span class="line"><span style="color: #F8F8F2">39 - &quot;спихивалка&quot; с игровых автоматов</span></span>
+<span class="line"><span style="color: #F8F8F2">3A - топор</span></span>
+<span class="line"><span style="color: #F8F8F2">3B - выключатель падающих шаров</span></span>
+<span class="line"><span style="color: #F8F8F2">3C - катящийся металлический шар</span></span>
+<span class="line"><span style="color: #F8F8F2">3D - вентилятор влево</span></span>
+<span class="line"><span style="color: #F8F8F2">3E - вентилятор вправо</span></span>
+<span class="line"><span style="color: #F8F8F2">3F - движущийся кусок?</span></span>
+<span class="line"><span style="color: #F8F8F2"></span></span>
+<span class="line"><span style="color: #F8F8F2">40 - босс 1 (голова)</span></span>
+<span class="line"><span style="color: #F8F8F2">41 - босс 1 (левая рука)</span></span>
+<span class="line"><span style="color: #F8F8F2">42 - босс 1 (правая рука)</span></span>
+<span class="line"><span style="color: #F8F8F2">43 - босс 2 (сова)</span></span>
+<span class="line"><span style="color: #F8F8F2">44 - босс 3 (летающая ракета)</span></span>
+<span class="line"><span style="color: #F8F8F2">45 - босс 4 (сердце и метатель)</span></span>
+<span class="line"><span style="color: #F8F8F2">46 - босс 4 (заводной ключ)</span></span>
+<span class="line"><span style="color: #F8F8F2">47 - босс 4 (шины)</span></span>
+<span class="line"><span style="color: #F8F8F2">48 - катящийся металлический шар</span></span>
+<span class="line"><span style="color: #F8F8F2">49 - босс 6 (кролик в автомате)</span></span>
+<span class="line"><span style="color: #F8F8F2">4A - босс 5 (сом)</span></span>
+<span class="line"><span style="color: #F8F8F2">4B - босс 7 (сороконожка)</span></span>
+<span class="line"><span style="color: #F8F8F2">4C - босс 7 (часть сороконожки)</span></span>
+<span class="line"><span style="color: #F8F8F2">4D - босс 7 (часть сороконожки)</span></span>
+<span class="line"><span style="color: #F8F8F2">4E - босс 7 (часть сороконожки)</span></span>
+<span class="line"><span style="color: #F8F8F2">4F - босс 7 (часть сороконожки)</span></span>
+<span class="line"><span style="color: #F8F8F2"></span></span>
+<span class="line"><span style="color: #F8F8F2">50 - босс 8 (толстопуз, рука с сигарой)</span></span>
+<span class="line"><span style="color: #F8F8F2">51 - босс 8 (толстопуз, морда)</span></span>
+<span class="line"><span style="color: #F8F8F2">52 - гнилая доска</span></span>
+<span class="line"><span style="color: #F8F8F2">53 - красный шарик</span></span>
+<span class="line"><span style="color: #F8F8F2">FF - невидимый непроходимый блок, конец зоны</span></span></code></pre></div></div></figure>
 <p>Вот и всё :)</p>
 
 <div id="gitalk-container"></div>
@@ -40,4 +155,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/10414/">Позже</a><a class="pagination__link pagination__next" href="/blog/41820/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/10414/">Позже</a><a class="pagination__link pagination__next" href="/blog/41820/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

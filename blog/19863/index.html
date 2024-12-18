@@ -10,15 +10,21 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/9979/">Позже</a><a class="pagination__link pagination__next" href="/blog/20340/">Раньше</a></div><article class="article post"><h3 class="article__title">Squirell Language</h3><div class="article__date metadata"><div class="post-info">2009/07/10</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/squirell/">squirell</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Несколько дней назад начал разбираться с языком Squirell.</p>
 <p>Ощущения от использования (в качестве средства написания игровой логики по сравнению с C++):</p>
 <p><strong>1</strong> Удобно, что можно запихать в параметр функции безымянную функцию или сделать из таких функций массив, да еще и “замкнуть” на них внешние переменные. Переменные для замыкания нужно указывать явно (как param1 в примере). Например, так можно выбрать в игре случайную базу игрока, в которую можно добавить пушку типа <code>param1</code>:</p>
-<figure class="highlight nim"><table><tr><td class="code"><pre><span class="line">local cp = getCheckPointFromPred(</span><br><span class="line">function(checkpoint):(param1) &#123; <span class="keyword">return</span> checkpoint.m_ConflictSide == <span class="type">SIDE_Player</span> &amp;&amp; checkpoint.canAddCannon(param1)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="shiki nim"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #8BE9FD">local </span><span style="color: #F8F8F2">cp </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">getCheckPointFromPred</span><span style="color: #F8F8F2">(</span></span>
+<span class="line"><span style="color: #8BE9FD">function</span><span style="color: #F8F8F2">(checkpoint)</span><span style="color: #FF79C6">:</span><span style="color: #F8F8F2">(param1) { </span><span style="color: #FF79C6">return</span><span style="color: #F8F8F2"> checkpoint</span><span style="color: #FF79C6">.</span><span style="color: #F8F8F2">m_ConflictSide </span><span style="color: #FF79C6">==</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">SIDE_Player</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">&amp;&amp;</span><span style="color: #F8F8F2"> checkpoint</span><span style="color: #FF79C6">.</span><span style="color: #8BE9FD">canAddCannon</span><span style="color: #F8F8F2">(param1)}</span></span>
+<span class="line"><span style="color: #F8F8F2">)</span></span></code></pre></div></div></figure>
 <p>Внутри <code>getCheckpointFromPred</code> с помощью цикла <code>foreach</code> (встроенных функций вроде <code>filter</code> и <code>reduce</code> не нашел) перебираются все базы. и проверяются на соответствие предикату.</p>
 <p><strong>2</strong> Глобальные переменные объявляются и инициализируются с помощью оперотора “&lt;-“, а локальные - с помощью слова local и “=”, таким образом интерпретатор отлавливает ошибки, связанные с тем, что программист опечатался в имени переменной:</p>
-<figure class="highlight nim"><table><tr><td class="code"><pre><span class="line"><span class="type">Var1</span> &lt;- <span class="string">"Some value"</span></span><br><span class="line">local <span class="type">Var2</span> = <span class="string">"Other value"</span></span><br><span class="line"><span class="type">Var3</span> = <span class="string">"Error value"</span> //здесь ошибка, если переменная <span class="type">Var3</span> не была объявлена где-то раньше.</span><br></pre></td></tr></table></figure>
+<figure class="shiki nim"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #8BE9FD; font-style: italic">Var1</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">&lt;-</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">Some value</span><span style="color: #E9F284">&quot;</span></span>
+<span class="line"><span style="color: #8BE9FD">local </span><span style="color: #8BE9FD; font-style: italic">Var2</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">Other value</span><span style="color: #E9F284">&quot;</span></span>
+<span class="line"><span style="color: #8BE9FD; font-style: italic">Var3</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">Error value</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">//</span><span style="color: #F8F8F2">здесь ошибка, если </span><span style="color: #8BE9FD">переменная </span><span style="color: #8BE9FD; font-style: italic">Var3</span><span style="color: #F8F8F2"> не была объявлена где</span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2">то раньше</span><span style="color: #FF79C6">.</span></span></code></pre></div></div></figure>
 <p><strong>3</strong> Поначалу напрягало отлавливание синтаксических ошибок, так как место ошибки даже примерно не узнать. но потом понял, где я обычно допускаю ошибки и стал их очень быстро находить - если Squirell ругается на остутствие “,” - значит, надо искать в таблицах между парами ключ-значение, если не хватает “)” - скорее всего ее забыли после сложного условия в <code>if</code>‘е или <code>while</code>‘е, ну а “;” не хватает обычно в <code>for</code>‘e.</p>
 <p><strong>4</strong> Порадовала возможность отладить код “на лету”, без перекомпиляции или даже без перезапуска приложения иногда получается. Ну, понятно, это фишка любого скриптового языка.</p>
 <p><strong>5</strong> Еще для игрового кода очень удобной по сравнению с С++ (да, там с помощью шаблонов можно похоже сделать) показалась возможность утиной типизации. То есть, если функция ожидает объект определенного класса (то есть, зовет функции этого класса), в нее можно запихать объект другого класса, который будет иметь те функции или члены, которые надеется увидеть в нем вызывающая функция.</p>
@@ -33,4 +39,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/9979/">Позже</a><a class="pagination__link pagination__next" href="/blog/20340/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/9979/">Позже</a><a class="pagination__link pagination__next" href="/blog/20340/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

@@ -10,10 +10,12 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/230636922/">Позже</a><a class="pagination__link pagination__next" href="/blog/972632443/">Раньше</a></div><article class="article post"><h3 class="article__title">Формат уровней Mickey Mania, Pitfall, Jungle Book [SEGA]</h3><div class="article__date metadata"><div class="post-info">2014/10/12</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/hack/">hack</a><a class="article__tags__link metadata" href="/tags/sega/">sega</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Решил проверить <a href="http://spiiin.livejournal.com/81725.html" target="_blank" rel="noopener">оставшиеся методы компрессии</a>, чтобы убедиться, что компрессор подходит для всех игр из списка.</p>
-<p>По формату все игры похожи на <a href="http://spiiin.livejournal.com/82289.html" target="_blank" rel="noopener">EarthWorm Jim’ам</a>, разобранным ранее, с небольшими отличиями. Поиск конфигов осуществлялся для теста разными способами:</p>
+<a class="article__tags__link metadata" href="/tags/hack/">hack</a><a class="article__tags__link metadata" href="/tags/sega/">sega</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Решил проверить <a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/81725.html">оставшиеся методы компрессии</a>, чтобы убедиться, что компрессор подходит для всех игр из списка.</p>
+<p>По формату все игры похожи на <a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/82289.html">EarthWorm Jim’ам</a>, разобранным ранее, с небольшими отличиями. Поиск конфигов осуществлялся для теста разными способами:</p>
 <ol>
 <li><p>Логгированием адресов lua-скриптом при запуске кода компрессора (в регистре A1 лежит адрес в ROM начала архива, а A2 - место в оперативной памяти, куда происходит распаковка, поинтер и A1 можно найти в ROM, за исплючением последнего байта, так как несколько байт заголовка архива могут быть уже прочитаны).</p>
 </li>
@@ -22,13 +24,13 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <li><p>Поиском в дампе оперативной памяти игры самой длинной последовательности из кратных 8 чисел (в формате карт Earth Worm Jim индексы блоков кодировались кратными 8 значениями).</p>
 </li>
 </ol>
-<p>Для этого использовался код на python: <a href="https://gist.github.com/spiiin/1882d49b7f21961b7aee" target="_blank" rel="noopener">https://gist.github.com/spiiin/1882d49b7f21961b7aee</a></p>
+<p>Для этого использовался код на python: <a target="_blank" rel="noopener" href="https://gist.github.com/spiiin/1882d49b7f21961b7aee">https://gist.github.com/spiiin/1882d49b7f21961b7aee</a></p>
 <p>Результаты:</p>
-<p><strong><code>Mickey Mania</code></strong><br>Размер блоков не 2x2, а 4x4, за счёт этого на описание одного блока на экране карты уходит не 2, а 1 байт (по 256 блоков на уровень).<br><a href="http://ic.pics.livejournal.com/spiiin/20318251/40572/40572_original.png" target="_blank" rel="noopener"><img src="http://ic.pics.livejournal.com/spiiin/20318251/40572/40572_300.png" alt="cad_mm" title="cad_mm"></a></p>
-<p><strong><code>Jungle Book</code></strong><br>Полностью аналогичный EWJ формат, только в конфигах уровней иногда встречается формат архивов FAKERNC, распаковывающийся аналогично обычному RNC (первые четыре байта отбрасываются).<br><a href="http://ic.pics.livejournal.com/spiiin/20318251/40745/40745_original.png" target="_blank" rel="noopener"><img src="http://ic.pics.livejournal.com/spiiin/20318251/40745/40745_300.png" alt="cad_jungle_book" title="cad_jungle_book"></a></p>
+<p><strong><code>Mickey Mania</code></strong><br>Размер блоков не 2x2, а 4x4, за счёт этого на описание одного блока на экране карты уходит не 2, а 1 байт (по 256 блоков на уровень).<br><a target="_blank" rel="noopener" href="http://ic.pics.livejournal.com/spiiin/20318251/40572/40572_original.png"><img src="http://ic.pics.livejournal.com/spiiin/20318251/40572/40572_300.png" alt="cad_mm" title="cad_mm"></a></p>
+<p><strong><code>Jungle Book</code></strong><br>Полностью аналогичный EWJ формат, только в конфигах уровней иногда встречается формат архивов FAKERNC, распаковывающийся аналогично обычному RNC (первые четыре байта отбрасываются).<br><a target="_blank" rel="noopener" href="http://ic.pics.livejournal.com/spiiin/20318251/40745/40745_original.png"><img src="http://ic.pics.livejournal.com/spiiin/20318251/40745/40745_300.png" alt="cad_jungle_book" title="cad_jungle_book"></a></p>
 <p><strong><code>Pitfall: The Mayan Adventure</code></strong><br>После распаковки архива RNC с описанием карты в оперативную память оказывается, что он сжат ещё раз - вначале распакованных данных идут 2 ворда - количество сжатых колонок и их длина, затем для каждой колонки записаны относильные адреса начала столбцов (например, для первой колонки 1-го уровня - индекс 0x0218, означает, что сжатые данные колонки начинаются с адреса 0xFF7040 + 0x218 = 0xFF7258, где 0xFF7040, начало данных столбцов, зависит от кол-ва столбцов на уровне), и далее сами столбцы, сжатые алгоритмом RLE - FF признак повтора байта, за которым следует число повторов (1 байт) и сам повторяемый ворд.</p>
-<p>Скрипт для распаковки: <a href="https://gist.github.com/spiiin/70d5d6babf8ed064e685" target="_blank" rel="noopener">https://gist.github.com/spiiin/70d5d6babf8ed064e685</a></p>
-<p>Итоговый формат после распаковки совпадает с форматом EWJ.<br><a href="http://ic.pics.livejournal.com/spiiin/20318251/41165/41165_original.png" target="_blank" rel="noopener"><img src="http://ic.pics.livejournal.com/spiiin/20318251/41165/41165_300.png" alt="cad_pitfall" title="cad_pitfall"></a></p>
+<p>Скрипт для распаковки: <a target="_blank" rel="noopener" href="https://gist.github.com/spiiin/70d5d6babf8ed064e685">https://gist.github.com/spiiin/70d5d6babf8ed064e685</a></p>
+<p>Итоговый формат после распаковки совпадает с форматом EWJ.<br><a target="_blank" rel="noopener" href="http://ic.pics.livejournal.com/spiiin/20318251/41165/41165_original.png"><img src="http://ic.pics.livejournal.com/spiiin/20318251/41165/41165_300.png" alt="cad_pitfall" title="cad_pitfall"></a></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -38,4 +40,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/230636922/">Позже</a><a class="pagination__link pagination__next" href="/blog/972632443/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/230636922/">Позже</a><a class="pagination__link pagination__next" href="/blog/972632443/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

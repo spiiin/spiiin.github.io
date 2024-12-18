@@ -10,17 +10,19 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/821680239/">Позже</a><a class="pagination__link pagination__next" href="/blog/3874274906/">Раньше</a></div><article class="article post"><h3 class="article__title">Juggling Lab experiments with juggling notation</h3><div class="article__date metadata"><div class="post-info">2013/07/24</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/juggling/">juggling</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Решил поупражняться в жонглёрской нотации.</p>
-<p>Для разбора взял вот этот трюк из своего видео<br><a href="http://www.youtube.com/watch?v=6XBpb2psLJM&amp;feature=youtu.be&amp;t=35s" target="_blank" rel="noopener">http://www.youtube.com/watch?v=6XBpb2psLJM&amp;feature=youtu.be&amp;t=35s</a></p>
+<p>Для разбора взял вот этот трюк из своего видео<br><a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=6XBpb2psLJM&amp;feature=youtu.be&amp;t=35s">http://www.youtube.com/watch?v=6XBpb2psLJM&amp;feature=youtu.be&amp;t=35s</a></p>
 <p>Примерный сайтсвоп начальной части трюка - высокого и низкого броска мяча с одновременной передачей горизонтальной передачей второго, выглядит так:<br><img src="http://ic.pics.livejournal.com/spiiin/20318251/26589/26589_original.png" alt="juggling pattern 1" title="juggling pattern 1"></p>
 <p>В жонглёрской нотации это записывается так: <code>(2x,6x)(2x,4)(0,4x)</code></p>
 <p>цифра - количество тактов, который мяч будет находится в полёте x - означает смену рук для четных цифр, по умолчанию считается что чётные цифры оставляют мяч в руке, а нечётные передают в другую.</p>
 <p>скобки - одновременный бросок правой и левой рукой.<br>описывается только один период трюка. все цифры тактов умножены на 2, потому что среднее число нотации трюка должно соответствовать количеству мячей (2+6+2+4+0+4)/6 = 3.</p>
-<p>получается что-то вроде “полукруг над кругом”, в отличие от полного <a href="http://www.jugglers.ru/content/view/113" target="_blank" rel="noopener">круга под кругом</a> 7131.</p>
-<p>с помощью <a href="http://jugglinglab.sourceforge.net/siteswap.php?" target="_blank" rel="noopener">jugglinglab</a> можно анимировать трюк.</p>
-<p><a href="http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29;hands=%2832.5%29%2810%29.;colors=mixed" target="_blank" rel="noopener">http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29;hands=%2832.5%29%2810%29.;colors=mixed</a></p>
+<p>получается что-то вроде “полукруг над кругом”, в отличие от полного <a target="_blank" rel="noopener" href="http://www.jugglers.ru/content/view/113">круга под кругом</a> 7131.</p>
+<p>с помощью <a target="_blank" rel="noopener" href="http://jugglinglab.sourceforge.net/siteswap.php?">jugglinglab</a> можно анимировать трюк.</p>
+<p><a target="_blank" rel="noopener" href="http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29;hands=%2832.5%29%2810%29.;colors=mixed">http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29;hands=%2832.5%29%2810%29.;colors=mixed</a></p>
 <p>Дальше воспользуемся генератором из Juggling Lab, чтобы найти все трюки, похожие на данный.</p>
 <p><img src="http://ic.pics.livejournal.com/spiiin/20318251/26798/26798_original.png" alt="juggling_pattern_find1" title="juggling_pattern_find1"></p>
 <p>Поиск всех паттернов с 3мя мячами, с максимальной высотой и длиной сайтсвопа 8, с синхронными бросками обеими руками, без одновременных бросков нескольких мячей, которые включают найденную нами выше комбинацию-начало трюка, а именно бросок - (2x,6x)(2x,4).</p>
@@ -34,11 +36,11 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 <p><code>(2x,6x)(2x,4)(0,4x)(4x,2)(6x,2x)(4,2x)(4x,0)(2,4x)</code></p>
 <p>Можно заметить, что вторая половина записи - это зеркально повторённая первая часть.</p>
 <p>Для сокращённой записи используется символ “*“ в конце - означает повтор цикла с отражением, то есть правая рука выполняет движения левой, а левая - правой.</p>
-<p><a href="http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29%284x,2%29*" target="_blank" rel="noopener">http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29%284x,2%29*</a></p>
+<p><a target="_blank" rel="noopener" href="http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29%284x,2%29*">http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29%284x,2%29*</a></p>
 <p>Напоследок расставляем в генераторе движения руками. Каждая пара векторов чисел в скобках - координаты правой и левой руки относительно центра (для левой автоматически меняет знак), пропущенные значения в векторе означают 0.</p>
 <p>Длина паттерна 8 - поэтому нужно расставить 8 пар значений. Чтобы не рассчитывать их самому, можно взять классические пары для outside throws и burke’s barrage (на последние 2 бита трюка),</p>
 <p><code>(32.5)(10).(32.5)(10).(32.5)(10).(32.5)(10).(32.5)(10).(32.5)(10).(30,30)(-30,50).(-10)(-32.5)-(0,30)</code></p>
-<p><a href="http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29%284x,2%29*;hands=%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2830,30%29%28-30,50%29.%28-10%29%28-32.5%29-%280,30%29.;colors=mixed" target="_blank" rel="noopener">Итоговый вид трюка</a></p>
+<p><a target="_blank" rel="noopener" href="http://jugglinglab.sourceforge.net/siteswap.php?pattern=%282x,6x%29%282x,4%29%280,4x%29%284x,2%29*;hands=%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2832.5%29%2810%29.%2830,30%29%28-30,50%29.%28-10%29%28-32.5%29-%280,30%29.;colors=mixed">Итоговый вид трюка</a></p>
 <p><img src="http://ic.pics.livejournal.com/spiiin/20318251/27015/27015_original.gif" alt="test1" title="test1"></p>
 
 <div id="gitalk-container"></div>
@@ -49,4 +51,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/821680239/">Позже</a><a class="pagination__link pagination__next" href="/blog/3874274906/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/821680239/">Позже</a><a class="pagination__link pagination__next" href="/blog/3874274906/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

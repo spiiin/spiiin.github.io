@@ -10,21 +10,29 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-00000000-0', 'auto');
-ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/30094/">Позже</a><a class="pagination__link pagination__next" href="/blog/20031/">Раньше</a></div><article class="article post"><h3 class="article__title">Система паролей и секреты Best of the Best. Championship Karate [NES]</h3><div class="article__date metadata"><div class="post-info">2011/05/12</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Чтение дизассемблированного листинга процедуры генерации (расположена по адресам <code>$9449-$94F4</code>) заставляет задуматься о том, что у разработчиков были какие-то генерирующие код инструменты, либо код писался просто не очень аккуратно, так как выполняется много лишних действий.</p>
 <p>Пароль сохраняет параметры бойца игрока и побежденных соперников (по биту на каждого), а также пройденных соперников в кумитэ (открывается после победы над <code>Ivanoff</code>).</p>
-<p>Процедура генерации пароля, переписанная на <code>Python</code>:<br><a href="http://www.everfall.com/paste/id.php?tiqnj0fqdev7" target="_blank" rel="noopener">http://www.everfall.com/paste/id.php?tiqnj0fqdev7</a><br>Последний пароль : <code>4$KW\_\_\_39</code></p>
+<p>Процедура генерации пароля, переписанная на <code>Python</code>:<br><a target="_blank" rel="noopener" href="http://www.everfall.com/paste/id.php?tiqnj0fqdev7">http://www.everfall.com/paste/id.php?tiqnj0fqdev7</a><br>Последний пароль : <code>4$KW\_\_\_39</code></p>
 <p>Функция проверки правильности сделана более защищенной, игра не позволяет указывать пароли с запредельными значениями параметров игрока.</p>
 <p>Значения все равно остаются в диапазоне 0..99 и прокачаться сильнее не удастся. Но это еще не все.</p>
 <p>Просматривая оперативную память во время боя можно найти имена и соперников бойцов по адресу <code>$804D</code>.</p>
-<p>Тут можно посмотреть параметры бойцов кумитэ, которые обычно игра не показывает (расположены на 3 байта раньше имени):<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Имя     Реакция Сила Защита</span><br><span class="line">Bear        50  70  40</span><br><span class="line">Puncher     60  75  60</span><br><span class="line">Doc Jump    70  80  70</span><br><span class="line">Crasyleg    80  85  80</span><br><span class="line">Hammer      90  90  90</span><br><span class="line">Warrior     95  95  95</span><br></pre></td></tr></table></figure></p>
+<p>Тут можно посмотреть параметры бойцов кумитэ, которые обычно игра не показывает (расположены на 3 байта раньше имени):<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Имя     Реакция Сила Защита</span></span>
+<span class="line"><span style="color: #F8F8F2">Bear        50  70  40</span></span>
+<span class="line"><span style="color: #F8F8F2">Puncher     60  75  60</span></span>
+<span class="line"><span style="color: #F8F8F2">Doc Jump    70  80  70</span></span>
+<span class="line"><span style="color: #F8F8F2">Crasyleg    80  85  80</span></span>
+<span class="line"><span style="color: #F8F8F2">Hammer      90  90  90</span></span>
+<span class="line"><span style="color: #F8F8F2">Warrior     95  95  95</span></span></code></pre></div></div></figure></p>
 <p> По адресу $D6F1 расположены очень странные строки <code>LAYER</code> и <code>OLRAC</code>.</p>
-<p> <strong>AND WE NEED TO GO DEEPER!</strong><br> Я решил, что нашел секретных бойцов наподобие <a href="http://ru.wikipedia.org/wiki/%D0%AD%D1%80%D0%BC%D0%B0%D0%BA" target="_blank" rel="noopener">Ермака</a> в самом первом Мортал Комбате.</p>
+<p> <strong>AND WE NEED TO GO DEEPER!</strong><br> Я решил, что нашел секретных бойцов наподобие <a target="_blank" rel="noopener" href="http://ru.wikipedia.org/wiki/%D0%AD%D1%80%D0%BC%D0%B0%D0%BA">Ермака</a> в самом первом Мортал Комбате.</p>
 <p> LAYER показалось очень похожим на имя игрока 1, после вычеркивания оттуда ненужных символов (P и 1) ничего особого не происходит, но после начала боя оказывается, что у соперника остается только один почти потухший фонарик жизни.</p>
 <p> Видимо это код, введенный разработчиками для тестирования нокдаунов и не убранный в финальной версии игры.</p>
 <p> Если же ввести в качестве имени игрока вместо <code>LAYER OLRAC</code> (два пробела в начале и 3 в конце), то перед началом боя получаем секретное сообщение от девелопера.</p>
-<p> А вот и этот парень в фейсбуке: <a href="http://www.facebook.com/carlo.perconti" target="_blank" rel="noopener">http://www.facebook.com/carlo.perconti</a> Bonjour Carlo!</p>
+<p> А вот и этот парень в фейсбуке: <a target="_blank" rel="noopener" href="http://www.facebook.com/carlo.perconti">http://www.facebook.com/carlo.perconti</a> Bonjour Carlo!</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -34,4 +42,25 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/30094/">Позже</a><a class="pagination__link pagination__next" href="/blog/20031/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/30094/">Позже</a><a class="pagination__link pagination__next" href="/blog/20031/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
