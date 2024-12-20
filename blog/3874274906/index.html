@@ -16,43 +16,43 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2375234922/">Позже</a><a class="pagination__link pagination__next" href="/blog/173473106/">Раньше</a></div><article class="article post"><h3 class="article__title">Устройство игровых объектов Darkwing Duck и Chip & Dale [nes]</h3><div class="article__date metadata"><div class="post-info">2013/07/08</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Решил разобрать последний из оставшихся крупных игровых элементов игр Capcom</p>
 <h2><span id="format-igrovyh-obektov">Формат игровых объектов</span><a href="#format-igrovyh-obektov" class="header-anchor">#</a></h2><p>После <a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/65758.html">предыдущего разбора</a> у меня были адреса хранения номеров загружаемых объектов в памяти - 05A4 - 05AF.</p>
-<p>Точка остановки на запись по этому диапазону адресов показывает место, откуда загружаются характеристики объектов:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">LDA (06), y. [cpu addr 8C57-&gt;rom addr 10C67] - 4 байта описания (жизни)</span></span>
-<span class="line"><span style="color: #F8F8F2">LDA (04), y. [cpu addr 8AB3-&gt;rom addr 10AC0] - 4 байта описания (характеристики)</span></span></code></pre></div></div></figure></p>
-<p>нашлись 2 массива из 4х байтных структур, в одном из которых хранится количество жизней объектов и 3 пустых поля, а в другом характеристики объектов:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">1 байт - тип объекта.</span></span>
-<span class="line"><span style="color: #F8F8F2">2 байт - номер функции поведения объекта</span></span>
-<span class="line"><span style="color: #F8F8F2">3 байт - начальный номер анимации объекта</span></span>
-<span class="line"><span style="color: #F8F8F2">4 байт - дополнительное поле - статус объекта или второй номер анимации.</span></span></code></pre></div></div></figure></p>
+<p>Точка остановки на запись по этому диапазону адресов показывает место, откуда загружаются характеристики объектов:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">LDA (06), y. [cpu addr 8C57-&gt;rom addr 10C67] - 4 байта описания (жизни)</span></span>
+<span class="line"><span style="color: #E6E6E6">LDA (04), y. [cpu addr 8AB3-&gt;rom addr 10AC0] - 4 байта описания (характеристики)</span></span></code></pre></div></div></figure></p>
+<p>нашлись 2 массива из 4х байтных структур, в одном из которых хранится количество жизней объектов и 3 пустых поля, а в другом характеристики объектов:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">1 байт - тип объекта.</span></span>
+<span class="line"><span style="color: #E6E6E6">2 байт - номер функции поведения объекта</span></span>
+<span class="line"><span style="color: #E6E6E6">3 байт - начальный номер анимации объекта</span></span>
+<span class="line"><span style="color: #E6E6E6">4 байт - дополнительное поле - статус объекта или второй номер анимации.</span></span></code></pre></div></div></figure></p>
 <p>номер функции поведения объекта попадает в память по адресу 4E0-4EF.</p>
 <p>Остановка на чтение по этому адресу показывает массив хранения адресов функции поведения каждого игрового объекта.</p>
 <p>(массив состоит из двух частей, в разных банках памяти) 825F , 82A7 - набор из указателей на поведение (72 штук) </p>
 <p>1:8837 , 1:88B6 - набор из еще 128 штук указателей на поведение (первые 72 занулены).</p>
 <p>Функции поведения позволяют детально изучить поведения врагов, но на их дизассемблирование нужно много времени, поэтому я ограничился разбором объектов только первого уровня, чтобы понять маппинг параметров в оперативную память.</p>
-<p>Так, у всех врагов обычно есть:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">4D0 - стадия (сторожит/следует за ЧП/стреляет/спит/бежит etc.)</span></span>
-<span class="line"><span style="color: #F8F8F2">420 - номер анимации</span></span>
-<span class="line"><span style="color: #F8F8F2">580 - направление движения</span></span>
-<span class="line"><span style="color: #F8F8F2">5A0 - оставшееся здоровье (80, если объект бессмертный)</span></span>
-<span class="line"><span style="color: #F8F8F2">410 - кадр анимации</span></span>
-<span class="line"><span style="color: #F8F8F2">430 - таймер между кадрами анимации</span></span>
-<span class="line"><span style="color: #F8F8F2">400 - флажки (направление движения, мерцание, присутствие на экране, etc.)</span></span></code></pre></div></div></figure></p>
+<p>Так, у всех врагов обычно есть:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">4D0 - стадия (сторожит/следует за ЧП/стреляет/спит/бежит etc.)</span></span>
+<span class="line"><span style="color: #E6E6E6">420 - номер анимации</span></span>
+<span class="line"><span style="color: #E6E6E6">580 - направление движения</span></span>
+<span class="line"><span style="color: #E6E6E6">5A0 - оставшееся здоровье (80, если объект бессмертный)</span></span>
+<span class="line"><span style="color: #E6E6E6">410 - кадр анимации</span></span>
+<span class="line"><span style="color: #E6E6E6">430 - таймер между кадрами анимации</span></span>
+<span class="line"><span style="color: #E6E6E6">400 - флажки (направление движения, мерцание, присутствие на экране, etc.)</span></span></code></pre></div></div></figure></p>
 <p>Дальше интерес представляет разворачивание номера анимации, для чего надо остановиться на считывание номера по адресам 420-42F.</p>
 <p>Этот номер является индексом в массиве адресов 5:B4F0/B429 (адреса анимаций, первый массив младшие байты адресов, второй - старшие).</p>
-<h2><span id="format-animacii">Формат анимации</span><a href="#format-animacii" class="header-anchor">#</a></h2><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">{</span></span>
-<span class="line"><span style="color: #F8F8F2">  1 байт - кол-во кадров N</span></span>
-<span class="line"><span style="color: #F8F8F2">  1 байт. таймер</span></span>
-<span class="line"><span style="color: #F8F8F2">  N байт - номера кадров</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure>
+<h2><span id="format-animacii">Формат анимации</span><a href="#format-animacii" class="header-anchor">#</a></h2><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">{</span></span>
+<span class="line"><span style="color: #E6E6E6">  1 байт - кол-во кадров N</span></span>
+<span class="line"><span style="color: #E6E6E6">  1 байт. таймер</span></span>
+<span class="line"><span style="color: #E6E6E6">  N байт - номера кадров</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
 <p>дальше по таймеру отлавливается загрузка следующего кадра: </p>
 <p>кадр - индекс в массиве 5:9B0B/9C45 (если положительный, или если отрицательный, то 5:9C0B/9D45)</p>
-<p>формат кадра:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">{</span></span>
-<span class="line"><span style="color: #F8F8F2">  количество тайлов в кадре</span></span>
-<span class="line"><span style="color: #F8F8F2">  индекс описания координат</span></span>
-<span class="line"><span style="color: #F8F8F2">  номера тайлов (через 1. тайл - аттрибуты)</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure></p>
+<p>формат кадра:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">{</span></span>
+<span class="line"><span style="color: #E6E6E6">  количество тайлов в кадре</span></span>
+<span class="line"><span style="color: #E6E6E6">  индекс описания координат</span></span>
+<span class="line"><span style="color: #E6E6E6">  номера тайлов (через 1. тайл - аттрибуты)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure></p>
 <p>Описание координат массив 5:AE53-AF23 (из пар байт X и Y).<br>данные о тайлах и координатах считываются на страницу памяти 200-2FF и передаются контролеру SpriteDMA.</p>
-<p>Для чипа и дейла всё аналогично, адреса:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">5:B55F-B4B6 (168 штук) описание анимаций</span></span>
-<span class="line"><span style="color: #F8F8F2">5:9CAE-9B82/ </span></span>
-<span class="line"><span style="color: #F8F8F2">5:9DAE-9C82 (300 штук) описание кадров</span></span>
-<span class="line"><span style="color: #F8F8F2">5:B145-B08E (183 штук) описание координат</span></span></code></pre></div></div></figure></p>
+<p>Для чипа и дейла всё аналогично, адреса:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">5:B55F-B4B6 (168 штук) описание анимаций</span></span>
+<span class="line"><span style="color: #E6E6E6">5:9CAE-9B82/ </span></span>
+<span class="line"><span style="color: #E6E6E6">5:9DAE-9C82 (300 штук) описание кадров</span></span>
+<span class="line"><span style="color: #E6E6E6">5:B145-B08E (183 штук) описание координат</span></span></code></pre></div></div></figure></p>
 <p>Утилита для просмотра анимаций и редактирования кадров:<br><a target="_blank" rel="noopener" href="http://ic.pics.livejournal.com/spiiin/20318251/26334/26334_600.png"><img src="http://ic.pics.livejournal.com/spiiin/20318251/26334/26334_300.png" alt="cad_enemy_editor_v02" title="cad_enemy_editor_v02"></a><br><a target="_blank" rel="noopener" href="https://dl.dropboxusercontent.com/u/852723/cad_editor/cad_enemy_editor_v2.zip">cad_enemy_editor_v2.zip</a></p>
 
 <div id="gitalk-container"></div>

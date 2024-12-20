@@ -18,79 +18,79 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Нашёл редактор уровней для игры Earth Worm Jim - <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=itIvzBWZcY8">EWJ2edit</a>, со ссылкой на скачивание.</p>
 <p>Редактор поставляется в сыром виде, по сути в нём есть только работа с тайловой картой (как в <a target="_blank" rel="noopener" href="http://spiiin.livejournal.com/79971.html">CadEditor</a>‘е), для получения этой тайловой карты необходимо “обработать напильником” ром - выдрать из оперативной памяти видеоданные и данные тайловой карты и макроблоков (или извлечь их с помощью архиватора).</p>
 <p><strong>RNC_ProPack.</strong> Интересно, что в мануале к редактору было описано как извлечь архивы из игры с помощью утилит <a target="_blank" rel="noopener" href="http://aminet.net/package/util/pack/RNC_ProPack">RNC_ProPack</a>, а также упоминалось, что архиватор подходит для ещё нескольких игр (Alladin, Jungle Book).</p>
-<p>Решил проверить, в каких играх используется данный тип архивов. В наборе RNC_ProPack есть код распаковки под платформы SNES, Mips, M68000 (Sega и Amiga), Lynx, IBM PC, GameBoy. Для данного поста я проверял сеговские игры, для них существуют 4 версии исходников - 2 вариации метода, полный и компактный. Сверив их, можно написать небольшой кусочек кода, который присутствует во в разных версиях и скомпилировать его ассемблером <a target="_blank" rel="noopener" href="http://elektropage.ru/publ/programmy_dlja_romkhakinga/asm_disasm_etc/asm68k_assembler_dlja_m68000/39-1-0-141">asm68k</a>:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">BUFSIZE EQU 16*8*3 lea -BUFSIZE(sp),sp #захватывает нестандартную константу.</span></span>
-<span class="line"><span style="color: #F8F8F2">move.l sp,a2 #и несколько байт вокруг неё. </span></span>
-<span class="line"><span style="color: #F8F8F2">addq.w #4,a0</span></span></code></pre></div></div></figure></p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">ASM68K.EXE /p путь_к_asm,путь_к_bin</span></span></code></pre></div></div></figure>
+<p>Решил проверить, в каких играх используется данный тип архивов. В наборе RNC_ProPack есть код распаковки под платформы SNES, Mips, M68000 (Sega и Amiga), Lynx, IBM PC, GameBoy. Для данного поста я проверял сеговские игры, для них существуют 4 версии исходников - 2 вариации метода, полный и компактный. Сверив их, можно написать небольшой кусочек кода, который присутствует во в разных версиях и скомпилировать его ассемблером <a target="_blank" rel="noopener" href="http://elektropage.ru/publ/programmy_dlja_romkhakinga/asm_disasm_etc/asm68k_assembler_dlja_m68000/39-1-0-141">asm68k</a>:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">BUFSIZE EQU 16*8*3 lea -BUFSIZE(sp),sp #захватывает нестандартную константу.</span></span>
+<span class="line"><span style="color: #E6E6E6">move.l sp,a2 #и несколько байт вокруг неё. </span></span>
+<span class="line"><span style="color: #E6E6E6">addq.w #4,a0</span></span></code></pre></div></div></figure></p>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">ASM68K.EXE /p путь_к_asm,путь_к_bin</span></span></code></pre></div></div></figure>
 <p>После этого можно проверить собранный файл в <a target="_blank" rel="noopener" href="http://www.onlinedisassembler.com/odaweb/#view/tab-assembly/offset/00000000">онлайн-дизассемблере</a> (в поле <strong><em>Arch</em></strong> выставить <em>m68k:68000</em>, в поле <strong><em>Endian</em></strong> оставить <em>Default</em>, в поле с бинарными данными вставить содержимое полученного бинарного файла - его можно скопировать открыв его в любом шестнадцатеричном редакторе).</p>
 <p>Дальше можно прогнать поиск бинарного куска кода по всем файлам из набора <em>GoodGen</em>. Дополнительно можно отсечь случайно найденные игры, проверив, содержится ли в роме сигнатура архива из букв “<strong>RNC</strong>“ и повторно провести поиск больших кусков кода, чтобы разделить игры на используемые внутри них версии компрессора/декомпрессора.</p>
 <p>Результаты (игры, в которых используется одна из версии компрессора/декомпрессора RNC_<strong>ProPack</strong>):</p>
-<p><strong>Версия EarthWorm Jim Method 1, сигнатура 4FEFFE80244F47E800117800181B5344.</strong><br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">asterix and the power of the gods</span></span>
-<span class="line"><span style="color: #F8F8F2">blockbuster world game championship II</span></span>
-<span class="line"><span style="color: #F8F8F2">bugs bunny in double trouble</span></span>
-<span class="line"><span style="color: #F8F8F2">duffy duck in hollywood</span></span>
-<span class="line"><span style="color: #F8F8F2">disney&#39;s alladin</span></span>
-<span class="line"><span style="color: #F8F8F2">earth worm jim</span></span>
-<span class="line"><span style="color: #F8F8F2">earth worm jim 2</span></span>
-<span class="line"><span style="color: #F8F8F2">incredible hulk</span></span>
-<span class="line"><span style="color: #F8F8F2">judge dredd - the movie</span></span>
-<span class="line"><span style="color: #F8F8F2">jungle book</span></span>
-<span class="line"><span style="color: #F8F8F2">mary shelley&#39;s frankenstein</span></span>
-<span class="line"><span style="color: #F8F8F2">mortal kombat</span></span>
-<span class="line"><span style="color: #F8F8F2">mortal kombat 2</span></span>
-<span class="line"><span style="color: #F8F8F2">ncaa college football</span></span>
-<span class="line"><span style="color: #F8F8F2">no escape</span></span>
-<span class="line"><span style="color: #F8F8F2">pagemaster</span></span>
-<span class="line"><span style="color: #F8F8F2">primal rage</span></span>
-<span class="line"><span style="color: #F8F8F2">second samurai</span></span>
-<span class="line"><span style="color: #F8F8F2">sceleton crew</span></span>
-<span class="line"><span style="color: #F8F8F2">spirou</span></span>
-<span class="line"><span style="color: #F8F8F2">spot goes of hollywood</span></span>
-<span class="line"><span style="color: #F8F8F2">street racer</span></span>
-<span class="line"><span style="color: #F8F8F2">striker</span></span>
-<span class="line"><span style="color: #F8F8F2">tinhead</span></span>
-<span class="line"><span style="color: #F8F8F2">tintin au tibet 2.</span></span></code></pre></div></div></figure><br><strong>Версия EarthWorm Jim Method 2, сигнатура 4FEFFE80244F5848610000EC47E8000A</strong>.<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">3 ninjas kick back</span></span>
-<span class="line"><span style="color: #F8F8F2">addams family values</span></span>
-<span class="line"><span style="color: #F8F8F2">asterix and the great rescue</span></span>
-<span class="line"><span style="color: #F8F8F2">asterix and the power of the gods</span></span>
-<span class="line"><span style="color: #F8F8F2">bubba n stix</span></span>
-<span class="line"><span style="color: #F8F8F2">bugs bunny in double trouble</span></span>
-<span class="line"><span style="color: #F8F8F2">huricanes</span></span>
-<span class="line"><span style="color: #F8F8F2">incredible</span></span>
-<span class="line"><span style="color: #F8F8F2">hulk</span></span>
-<span class="line"><span style="color: #F8F8F2">disney&#39;s alladin</span></span>
-<span class="line"><span style="color: #F8F8F2">earth worm jim</span></span>
-<span class="line"><span style="color: #F8F8F2">earth worm jim 2</span></span>
-<span class="line"><span style="color: #F8F8F2">incredible hulk</span></span>
-<span class="line"><span style="color: #F8F8F2">jungle book</span></span>
-<span class="line"><span style="color: #F8F8F2">last action hero</span></span>
-<span class="line"><span style="color: #F8F8F2">mortal kombat</span></span>
-<span class="line"><span style="color: #F8F8F2">mortal kombat 2</span></span>
-<span class="line"><span style="color: #F8F8F2">primal rage</span></span>
-<span class="line"><span style="color: #F8F8F2">spirou</span></span>
-<span class="line"><span style="color: #F8F8F2">spot goes of hollywood</span></span>
-<span class="line"><span style="color: #F8F8F2">terminator 2</span></span>
-<span class="line"><span style="color: #F8F8F2">judgement day</span></span>
-<span class="line"><span style="color: #F8F8F2">tintin au tibet 3</span></span></code></pre></div></div></figure></p>
-<p><strong>Версия Pitfall : The Mayan Adventure, cигнатура 4FEFFE80244F6100016C72000C80524E</strong><br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">pitfall - the mayan adventure</span></span>
-<span class="line"><span style="color: #F8F8F2">adventures of mighty max</span></span>
-<span class="line"><span style="color: #F8F8F2">brutal - paws of fury</span></span>
-<span class="line"><span style="color: #F8F8F2">chaos engine</span></span>
-<span class="line"><span style="color: #F8F8F2">chuck II - son of chuck</span></span>
-<span class="line"><span style="color: #F8F8F2">frank tomas big hurt baseball</span></span>
-<span class="line"><span style="color: #F8F8F2">humans</span></span>
-<span class="line"><span style="color: #F8F8F2">itchy and scratchy game</span></span>
-<span class="line"><span style="color: #F8F8F2">kick off 3</span></span>
-<span class="line"><span style="color: #F8F8F2">marsupilami</span></span>
-<span class="line"><span style="color: #F8F8F2">rise of the robots</span></span>
-<span class="line"><span style="color: #F8F8F2">soldiers of fortune 4</span></span></code></pre></div></div></figure></p>
-<p><strong>Версия Toy Story, сигнатура 4FEFFE80244F6100016C7200B0BC524E</strong><br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">toy story</span></span>
-<span class="line"><span style="color: #F8F8F2">bram stoker&#39;s draсula</span></span>
-<span class="line"><span style="color: #F8F8F2">family feud</span></span>
-<span class="line"><span style="color: #F8F8F2">mickey mania timeless adventures of mickey mouse</span></span>
-<span class="line"><span style="color: #F8F8F2">lemmings 2 - the tribes</span></span>
-<span class="line"><span style="color: #F8F8F2">puggsy</span></span>
-<span class="line"><span style="color: #F8F8F2">sonic 3d blast</span></span></code></pre></div></div></figure></p>
+<p><strong>Версия EarthWorm Jim Method 1, сигнатура 4FEFFE80244F47E800117800181B5344.</strong><br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">asterix and the power of the gods</span></span>
+<span class="line"><span style="color: #E6E6E6">blockbuster world game championship II</span></span>
+<span class="line"><span style="color: #E6E6E6">bugs bunny in double trouble</span></span>
+<span class="line"><span style="color: #E6E6E6">duffy duck in hollywood</span></span>
+<span class="line"><span style="color: #E6E6E6">disney&#39;s alladin</span></span>
+<span class="line"><span style="color: #E6E6E6">earth worm jim</span></span>
+<span class="line"><span style="color: #E6E6E6">earth worm jim 2</span></span>
+<span class="line"><span style="color: #E6E6E6">incredible hulk</span></span>
+<span class="line"><span style="color: #E6E6E6">judge dredd - the movie</span></span>
+<span class="line"><span style="color: #E6E6E6">jungle book</span></span>
+<span class="line"><span style="color: #E6E6E6">mary shelley&#39;s frankenstein</span></span>
+<span class="line"><span style="color: #E6E6E6">mortal kombat</span></span>
+<span class="line"><span style="color: #E6E6E6">mortal kombat 2</span></span>
+<span class="line"><span style="color: #E6E6E6">ncaa college football</span></span>
+<span class="line"><span style="color: #E6E6E6">no escape</span></span>
+<span class="line"><span style="color: #E6E6E6">pagemaster</span></span>
+<span class="line"><span style="color: #E6E6E6">primal rage</span></span>
+<span class="line"><span style="color: #E6E6E6">second samurai</span></span>
+<span class="line"><span style="color: #E6E6E6">sceleton crew</span></span>
+<span class="line"><span style="color: #E6E6E6">spirou</span></span>
+<span class="line"><span style="color: #E6E6E6">spot goes of hollywood</span></span>
+<span class="line"><span style="color: #E6E6E6">street racer</span></span>
+<span class="line"><span style="color: #E6E6E6">striker</span></span>
+<span class="line"><span style="color: #E6E6E6">tinhead</span></span>
+<span class="line"><span style="color: #E6E6E6">tintin au tibet 2.</span></span></code></pre></div></div></figure><br><strong>Версия EarthWorm Jim Method 2, сигнатура 4FEFFE80244F5848610000EC47E8000A</strong>.<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">3 ninjas kick back</span></span>
+<span class="line"><span style="color: #E6E6E6">addams family values</span></span>
+<span class="line"><span style="color: #E6E6E6">asterix and the great rescue</span></span>
+<span class="line"><span style="color: #E6E6E6">asterix and the power of the gods</span></span>
+<span class="line"><span style="color: #E6E6E6">bubba n stix</span></span>
+<span class="line"><span style="color: #E6E6E6">bugs bunny in double trouble</span></span>
+<span class="line"><span style="color: #E6E6E6">huricanes</span></span>
+<span class="line"><span style="color: #E6E6E6">incredible</span></span>
+<span class="line"><span style="color: #E6E6E6">hulk</span></span>
+<span class="line"><span style="color: #E6E6E6">disney&#39;s alladin</span></span>
+<span class="line"><span style="color: #E6E6E6">earth worm jim</span></span>
+<span class="line"><span style="color: #E6E6E6">earth worm jim 2</span></span>
+<span class="line"><span style="color: #E6E6E6">incredible hulk</span></span>
+<span class="line"><span style="color: #E6E6E6">jungle book</span></span>
+<span class="line"><span style="color: #E6E6E6">last action hero</span></span>
+<span class="line"><span style="color: #E6E6E6">mortal kombat</span></span>
+<span class="line"><span style="color: #E6E6E6">mortal kombat 2</span></span>
+<span class="line"><span style="color: #E6E6E6">primal rage</span></span>
+<span class="line"><span style="color: #E6E6E6">spirou</span></span>
+<span class="line"><span style="color: #E6E6E6">spot goes of hollywood</span></span>
+<span class="line"><span style="color: #E6E6E6">terminator 2</span></span>
+<span class="line"><span style="color: #E6E6E6">judgement day</span></span>
+<span class="line"><span style="color: #E6E6E6">tintin au tibet 3</span></span></code></pre></div></div></figure></p>
+<p><strong>Версия Pitfall : The Mayan Adventure, cигнатура 4FEFFE80244F6100016C72000C80524E</strong><br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">pitfall - the mayan adventure</span></span>
+<span class="line"><span style="color: #E6E6E6">adventures of mighty max</span></span>
+<span class="line"><span style="color: #E6E6E6">brutal - paws of fury</span></span>
+<span class="line"><span style="color: #E6E6E6">chaos engine</span></span>
+<span class="line"><span style="color: #E6E6E6">chuck II - son of chuck</span></span>
+<span class="line"><span style="color: #E6E6E6">frank tomas big hurt baseball</span></span>
+<span class="line"><span style="color: #E6E6E6">humans</span></span>
+<span class="line"><span style="color: #E6E6E6">itchy and scratchy game</span></span>
+<span class="line"><span style="color: #E6E6E6">kick off 3</span></span>
+<span class="line"><span style="color: #E6E6E6">marsupilami</span></span>
+<span class="line"><span style="color: #E6E6E6">rise of the robots</span></span>
+<span class="line"><span style="color: #E6E6E6">soldiers of fortune 4</span></span></code></pre></div></div></figure></p>
+<p><strong>Версия Toy Story, сигнатура 4FEFFE80244F6100016C7200B0BC524E</strong><br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">toy story</span></span>
+<span class="line"><span style="color: #E6E6E6">bram stoker&#39;s draсula</span></span>
+<span class="line"><span style="color: #E6E6E6">family feud</span></span>
+<span class="line"><span style="color: #E6E6E6">mickey mania timeless adventures of mickey mouse</span></span>
+<span class="line"><span style="color: #E6E6E6">lemmings 2 - the tribes</span></span>
+<span class="line"><span style="color: #E6E6E6">puggsy</span></span>
+<span class="line"><span style="color: #E6E6E6">sonic 3d blast</span></span></code></pre></div></div></figure></p>
 <p>Напоследок, добавил редактор EWJ2Edit и RNC_ProPack в папку с <a target="_blank" rel="noopener" href="https://www.dropbox.com/sh/mn6sanuwtu0gbac/AACBbu3_HlnpyI-3MjeGooxwa">сега-компрессорами</a>.</p>
 
 <div id="gitalk-container"></div>

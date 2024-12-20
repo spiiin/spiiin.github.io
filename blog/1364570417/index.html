@@ -18,32 +18,32 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <li><a href="/blog/2721099263/" title="Ещё о проектировании (движки и история)">Ещё о проектировании (движки и история)</a> — заметка о GameObject в движках</li>
 </ul>
 <h2><span id="scenegraph-false-start">SceneGraph (False start)</span><a href="#scenegraph-false-start" class="header-anchor">#</a></h2><p>GameObject-ы на сцене часто собраны в иерархию, которую нужно как-то отрисовывать на экране. Наивная идея — отрисовка дерева GameObject-ов в порядке обхода.</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #FF79C6">class</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">GameObject</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">preRender</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">render</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">postRender</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">    TArray</span><span style="color: #FF79C6">&lt;</span><span style="color: #F8F8F2">GameObject</span><span style="color: #FF79C6">*&gt;</span><span style="color: #F8F8F2"> children;</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">GameObject</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">preRender</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">render</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">postRender</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">    TArray</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">GameObject</span><span style="color: #D4D4D4">*&gt;</span><span style="color: #E6E6E6"> children;</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">GameObject</span><span style="color: #FF79C6">::</span><span style="color: #50FA7B">preRender</span><span style="color: #F8F8F2">() {</span></span>
-<span class="line"><span style="color: #6272A4">    //set render state</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"><span style="color: #E6E6E6">GameObject::</span><span style="color: #DCDCAA">preRender</span><span style="color: #E6E6E6">() {</span></span>
+<span class="line"><span style="color: #6A9955">    //set render state</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">GameObject</span><span style="color: #FF79C6">::</span><span style="color: #50FA7B">render</span><span style="color: #F8F8F2">() {</span></span>
-<span class="line"><span style="color: #6272A4">    //render self</span></span>
-<span class="line"><span style="color: #F8F8F2">    ...</span></span>
+<span class="line"><span style="color: #E6E6E6">GameObject::</span><span style="color: #DCDCAA">render</span><span style="color: #E6E6E6">() {</span></span>
+<span class="line"><span style="color: #6A9955">    //render self</span></span>
+<span class="line"><span style="color: #E6E6E6">    ...</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">    //render children</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">for</span><span style="color: #F8F8F2"> (</span><span style="color: #FF79C6">auto</span><span style="color: #F8F8F2"> child : children) {</span></span>
-<span class="line"><span style="color: #F8F8F2">        child</span><span style="color: #FF79C6">-&gt;</span><span style="color: #50FA7B">preRender</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">        child</span><span style="color: #FF79C6">-&gt;</span><span style="color: #50FA7B">render</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">        child</span><span style="color: #FF79C6">-&gt;</span><span style="color: #50FA7B">postRender</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">    }</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"><span style="color: #6A9955">    //render children</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">for</span><span style="color: #E6E6E6"> (</span><span style="color: #569CD6">auto</span><span style="color: #E6E6E6"> child : children) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">child</span><span style="color: #E6E6E6">-&gt;</span><span style="color: #DCDCAA">preRender</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">child</span><span style="color: #E6E6E6">-&gt;</span><span style="color: #DCDCAA">render</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">child</span><span style="color: #E6E6E6">-&gt;</span><span style="color: #DCDCAA">postRender</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">GameObject</span><span style="color: #FF79C6">::</span><span style="color: #50FA7B">postRender</span><span style="color: #F8F8F2">() {</span></span>
-<span class="line"><span style="color: #6272A4">    //restore render state</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #E6E6E6">GameObject::</span><span style="color: #DCDCAA">postRender</span><span style="color: #E6E6E6">() {</span></span>
+<span class="line"><span style="color: #6A9955">    //restore render state</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
 <p>Имеет множество проблем в реализации даже для старых render api — различные алгоритмы требуют различных способов обхода сцены, не укладывающихся в единый граф (как для 2D сцен, так и для 3D). Возникают альтернативные Visitor-ы, списки, флаги управления порядком. Примеры задач:</p>
 <ul>
 <li>для оптимизации выполнения команд рендера данные могут не отправляться на отрисовку сразу, а группироваться (batching) — добавляются хранимые списки данных для рендера и условия синхронизации этих списков с основным обходом объектов</li>
@@ -62,35 +62,35 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <li><strong>разные стратегии на разных платформах</strong> — для различных платформ можно эмпирически настроить поведение, например, эмулировать устравшие immediate api,  подобрать оптимальный размер данных в очереди команд перед передачей на отрисовку (flush несколько раз за кадр), или настроить размер конвейера в зависимости от количества потоков (iOS - great single core/Android - many cores)<br>  <a target="_blank" rel="noopener" href="https://github.com/donaldwuid/unreal_source_explained/blob/master/main/rendering_parallel.md">Unreal Source Explained, Parallel Rendering</a> — настройки параллельного рендера в Unreal</li>
 </ul>
 <p>Получается API вроде такого:</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #FF79C6">class</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">GameObject</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">    ResourceHandler resHandler;</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">initResources</span><span style="color: #F8F8F2">(</span><span style="color: #8BE9FD; font-style: italic">RenderCommandList</span><span style="color: #F8F8F2"> </span><span style="color: #FFB86C; font-style: italic">cmdList</span><span style="color: #F8F8F2">) { resHandler </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> cmdList.</span><span style="color: #50FA7B">addCommand</span><span style="color: #F8F8F2">(CreateSomeResource{Parameters}); }</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">freeResourses</span><span style="color: #F8F8F2">(</span><span style="color: #8BE9FD; font-style: italic">RenderCommandList</span><span style="color: #F8F8F2"> </span><span style="color: #FFB86C; font-style: italic">cmdList</span><span style="color: #F8F8F2">) { cmdList.</span><span style="color: #50FA7B">addCommand</span><span style="color: #F8F8F2">(FreeResourceAsync{ resHandler }); }</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">render</span><span style="color: #F8F8F2">(</span><span style="color: #8BE9FD; font-style: italic">RenderCommandList</span><span style="color: #F8F8F2"> </span><span style="color: #FFB86C; font-style: italic">cmdList</span><span style="color: #F8F8F2">) { cmdList.</span><span style="color: #50FA7B">addCommand</span><span style="color: #F8F8F2">(DrawSomeResourceCommand { resHandler }); }</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">GameObject</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    ResourceHandler resHandler;</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">initResources</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">RenderCommandList</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">cmdList</span><span style="color: #E6E6E6">) { resHandler </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">cmdList</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">addCommand</span><span style="color: #E6E6E6">(CreateSomeResource{Parameters}); }</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">freeResourses</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">RenderCommandList</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">cmdList</span><span style="color: #E6E6E6">) { </span><span style="color: #9CDCFE">cmdList</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">addCommand</span><span style="color: #E6E6E6">(FreeResourceAsync{ resHandler }); }</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">render</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">RenderCommandList</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">cmdList</span><span style="color: #E6E6E6">) { </span><span style="color: #9CDCFE">cmdList</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">addCommand</span><span style="color: #E6E6E6">(DrawSomeResourceCommand { resHandler }); }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">class</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">RenderCommandList</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #6272A4">    //threading, commands optimization, and batching things</span></span>
-<span class="line"><span style="color: #F8F8F2">    DelayedCommandListMT delayedCommands;</span></span>
+<span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">RenderCommandList</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #6A9955">    //threading, commands optimization, and batching things</span></span>
+<span class="line"><span style="color: #E6E6E6">    DelayedCommandListMT delayedCommands;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">addCommand</span><span style="color: #F8F8F2">(</span><span style="color: #8BE9FD; font-style: italic">Command</span><span style="color: #F8F8F2"> </span><span style="color: #FFB86C; font-style: italic">cmd</span><span style="color: #F8F8F2">) {</span></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #FF79C6">if</span><span style="color: #F8F8F2"> (</span><span style="color: #50FA7B">inRenderThread</span><span style="color: #F8F8F2">() </span><span style="color: #FF79C6">&amp;&amp;</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">allowImmediate</span><span style="color: #F8F8F2">()) {</span></span>
-<span class="line"><span style="color: #F8F8F2">            </span><span style="color: #50FA7B">translateCommandToRenderDevice</span><span style="color: #F8F8F2">(cmd);</span></span>
-<span class="line"><span style="color: #F8F8F2">        }</span></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #FF79C6">else</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #6272A4">            //maybe not just add, but also pre-process</span></span>
-<span class="line"><span style="color: #F8F8F2">            delayedCommands.</span><span style="color: #50FA7B">addNew</span><span style="color: #F8F8F2">(</span><span style="color: #50FA7B">MOVE</span><span style="color: #F8F8F2">(cmd))</span></span>
-<span class="line"><span style="color: #F8F8F2">        }</span></span>
-<span class="line"><span style="color: #F8F8F2">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">addCommand</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">Command</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">cmd</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (</span><span style="color: #DCDCAA">inRenderThread</span><span style="color: #E6E6E6">() </span><span style="color: #D4D4D4">&amp;&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">allowImmediate</span><span style="color: #E6E6E6">()) {</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span><span style="color: #DCDCAA">translateCommandToRenderDevice</span><span style="color: #E6E6E6">(cmd);</span></span>
+<span class="line"><span style="color: #E6E6E6">        }</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">else</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #6A9955">            //maybe not just add, but also pre-process</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span><span style="color: #9CDCFE">delayedCommands</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">addNew</span><span style="color: #E6E6E6">(</span><span style="color: #DCDCAA">MOVE</span><span style="color: #E6E6E6">(cmd))</span></span>
+<span class="line"><span style="color: #E6E6E6">        }</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">processDelayedCommands</span><span style="color: #F8F8F2">(){</span></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #50FA7B">ENSURE_IN_RENDER_THREAD</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2">        delayedCommands.</span><span style="color: #50FA7B">preprocessCommands</span><span style="color: #F8F8F2">();</span><span style="color: #6272A4"> //sort/optimize/fuse/batch</span></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #FF79C6">for</span><span style="color: #F8F8F2"> (</span><span style="color: #FF79C6">auto</span><span style="color: #F8F8F2"> cmd: delayedCommands) {</span></span>
-<span class="line"><span style="color: #F8F8F2">            </span><span style="color: #50FA7B">translateCommandToRenderDevice</span><span style="color: #F8F8F2">(cmd);</span></span>
-<span class="line"><span style="color: #F8F8F2">        }</span></span>
-<span class="line"><span style="color: #F8F8F2">    }</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">processDelayedCommands</span><span style="color: #E6E6E6">(){</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #DCDCAA">ENSURE_IN_RENDER_THREAD</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">delayedCommands</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">preprocessCommands</span><span style="color: #E6E6E6">();</span><span style="color: #6A9955"> //sort/optimize/fuse/batch</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">for</span><span style="color: #E6E6E6"> (</span><span style="color: #569CD6">auto</span><span style="color: #E6E6E6"> cmd: delayedCommands) {</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span><span style="color: #DCDCAA">translateCommandToRenderDevice</span><span style="color: #E6E6E6">(cmd);</span></span>
+<span class="line"><span style="color: #E6E6E6">        }</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
 <p><a target="_blank" rel="noopener" href="https://medium.com/realities-io/creating-a-custom-mesh-component-in-ue4-part-1-an-in-depth-explanation-of-vertex-factories-4a6fd9fd58f2">Creating a Custom Mesh Component in UE4</a> — серия из 4х статей, про добавление в пайплайн своего компонента, и структур для его обработки.<br><a target="_blank" rel="noopener" href="https://medium.com/@lordned">Unreal Engine 4 Rendering</a> — ещё одна серия, небольшой обзор структур рендера.</p>
 <h2><span id="intermediate-3d-api">Intermediate 3D API</span><a href="#intermediate-3d-api" class="header-anchor">#</a></h2><p>Так как графических API много и они разные, а движки часто хотят быть мультиплатформенными, то возникают попытки выделения нижнего уровня абстракции RHI в отдельные библиотеки-прослойки между DirectX 11/12/Vulkan/Metal/Opengl desktop/web/mobile. На этом уровне библиотека на заботится ни о чём, кроме быстрого формирования картинки из команд, не вникая в то, что представляют из себя эти команды (чем-то похоже на видеоплейеры).</p>
 <p><a target="_blank" rel="noopener" href="https://alain.xyz/blog/comparison-of-modern-graphics-apis">A Comparison of Modern Graphics APIs</a><br><a target="_blank" rel="noopener" href="https://alextardif.com/RenderingAbstractionLayers.html">An Opinionated Post on Modern Rendering Abstraction Layers</a><br><a target="_blank" rel="noopener" href="http://www.gijskaerts.com/wordpress/?p=98">Musings on cross-platform graphics engine architectures</a> + <a target="_blank" rel="noopener" href="https://www.gijskaerts.com/wordpress/?p=112">Multi-threaded command recording and submission</a><br><a target="_blank" rel="noopener" href="https://www.gamedeveloper.com/programming/designing-a-modern-cross-platform-low-level-graphics-library">Designing a Modern Cross-Platform Low-Level Graphics Library</a><br><a target="_blank" rel="noopener" href="https://bitsquid.blogspot.com/2017/02/stingray-renderer-walkthrough.html">Stingray Renderer Walkthrough #5: RenderDevice</a></p>

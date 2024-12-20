@@ -21,45 +21,45 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Но любая магия является просто сложной технологией, поэтому решил попробовать пошаманить со скриптами сам. Алгоритм загрузки данных о врагах комнаты в <code>&quot;Охотниках за привидениями&quot;</code> выглядит примерно так:<br><img src="http://pics.livejournal.com/spiiin/pic/0001qqr2/s640x480" alt></p>
 <p>Записи о комнатах храняться в виде списка из команд и номеров типов призраков. За командой следует переменной число аргументов, за номером типа координаты места появления (4 байта) и переменное число байт дополнительной информации (0 до 3 байт).</p>
 <p>Игра узнает объем дополнительной информации из массива, в котором для каждого типа призрака есть набор из 3 флажков “имеет ли данный призрак доп. инфу заданного типа”. Такой информацией может быть, например, признак, что привидение неуязвимо (стулья в конце первого уровня и самовоспламеняющиеся свечи в последнем), подтип (головы в конце второго уровня) или направление поворота (импы в третьем уровне). </p>
-<p>Таблица с описанием команд:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Коды команд New GhostBusters 2</span></span>
-<span class="line"><span style="color: #F8F8F2">Код	Описание</span></span>
-<span class="line"><span style="color: #F8F8F2">FF 0	Команда конца уровня.</span></span>
-<span class="line"><span style="color: #F8F8F2">FF 1 X	Команда указателя на следующую комнату. Описание комнат уровня с номерами хранится отдельно.</span></span>
-<span class="line"><span style="color: #F8F8F2">FF 2	Чекпоинт. После проигрыша игра начнется не с начала уровня, а с последней сохраненной комнаты.</span></span>
-<span class="line"><span style="color: #F8F8F2">0D	Мешок-приз.</span></span>
-<span class="line"><span style="color: #F8F8F2">0E	Свечи из последнего уровня.</span></span>
-<span class="line"><span style="color: #F8F8F2">11	Сценка в конце 3-го уровня.</span></span>
-<span class="line"><span style="color: #F8F8F2">12	Стрелка прибора (появляется после отлова всех призраков. доп. байты - направление и номер комнаты)</span></span>
-<span class="line"><span style="color: #F8F8F2">13	Лизун</span></span>
-<span class="line"><span style="color: #F8F8F2">14	Ускоренный лизун</span></span>
-<span class="line"><span style="color: #F8F8F2">15	Лизун с телегой</span></span>
-<span class="line"><span style="color: #F8F8F2">1	Лизун-метатель еды</span></span>
-<span class="line"><span style="color: #F8F8F2">17	Зеленый пацан</span></span>
-<span class="line"><span style="color: #F8F8F2">18	Тень с бензопилой</span></span>
-<span class="line"><span style="color: #F8F8F2">19	Змея из стены</span></span>
-<span class="line"><span style="color: #F8F8F2">1A	Пара и тостого и худого призраков (первый босс)</span></span>
-<span class="line"><span style="color: #F8F8F2">1B	Прыгающий стул</span></span>
-<span class="line"><span style="color: #F8F8F2">1C	Розовые крутяшки</span></span>
-<span class="line"><span style="color: #F8F8F2">1D	Шахтер с дрелью</span></span>
-<span class="line"><span style="color: #F8F8F2">1E	Шахтер с киркой</span></span>
-<span class="line"><span style="color: #F8F8F2">1F	Шахтер с граблями</span></span>
-<span class="line"><span style="color: #F8F8F2">20	Шахтер на вагонетке</span></span>
-<span class="line"><span style="color: #F8F8F2">21	Мелкая голова из поезда</span></span>
-<span class="line"><span style="color: #F8F8F2">22	Лизун с лопатой</span></span>
-<span class="line"><span style="color: #F8F8F2">23	Тыквоголов</span></span>
-<span class="line"><span style="color: #F8F8F2">24	Летающий имп</span></span>
-<span class="line"><span style="color: #F8F8F2">25	Имп с гарпуном</span></span>
-<span class="line"><span style="color: #F8F8F2">26	Дух ниндзя с мечом</span></span>
-<span class="line"><span style="color: #F8F8F2">27	Дух ниндзя с сюрекенами</span></span>
-<span class="line"><span style="color: #F8F8F2">28	Тесто</span></span>
-<span class="line"><span style="color: #F8F8F2">29	Блин из канализации</span></span>
-<span class="line"><span style="color: #F8F8F2">2A	Тролль с цепью</span></span>
-<span class="line"><span style="color: #F8F8F2">2B	Лизун-метатель мусора</span></span>
-<span class="line"><span style="color: #F8F8F2">2C	Лизун-метатель быстрый</span></span>
-<span class="line"><span style="color: #F8F8F2">2D	Вращающаяся труба</span></span>
-<span class="line"><span style="color: #F8F8F2">2E	Босс Ящеры</span></span>
-<span class="line"><span style="color: #F8F8F2">2F	Босс Венс</span></span>
-<span class="line"><span style="color: #F8F8F2">30	Босс Виго</span></span></code></pre></div></div></figure></p>
+<p>Таблица с описанием команд:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">Коды команд New GhostBusters 2</span></span>
+<span class="line"><span style="color: #E6E6E6">Код	Описание</span></span>
+<span class="line"><span style="color: #E6E6E6">FF 0	Команда конца уровня.</span></span>
+<span class="line"><span style="color: #E6E6E6">FF 1 X	Команда указателя на следующую комнату. Описание комнат уровня с номерами хранится отдельно.</span></span>
+<span class="line"><span style="color: #E6E6E6">FF 2	Чекпоинт. После проигрыша игра начнется не с начала уровня, а с последней сохраненной комнаты.</span></span>
+<span class="line"><span style="color: #E6E6E6">0D	Мешок-приз.</span></span>
+<span class="line"><span style="color: #E6E6E6">0E	Свечи из последнего уровня.</span></span>
+<span class="line"><span style="color: #E6E6E6">11	Сценка в конце 3-го уровня.</span></span>
+<span class="line"><span style="color: #E6E6E6">12	Стрелка прибора (появляется после отлова всех призраков. доп. байты - направление и номер комнаты)</span></span>
+<span class="line"><span style="color: #E6E6E6">13	Лизун</span></span>
+<span class="line"><span style="color: #E6E6E6">14	Ускоренный лизун</span></span>
+<span class="line"><span style="color: #E6E6E6">15	Лизун с телегой</span></span>
+<span class="line"><span style="color: #E6E6E6">1	Лизун-метатель еды</span></span>
+<span class="line"><span style="color: #E6E6E6">17	Зеленый пацан</span></span>
+<span class="line"><span style="color: #E6E6E6">18	Тень с бензопилой</span></span>
+<span class="line"><span style="color: #E6E6E6">19	Змея из стены</span></span>
+<span class="line"><span style="color: #E6E6E6">1A	Пара и тостого и худого призраков (первый босс)</span></span>
+<span class="line"><span style="color: #E6E6E6">1B	Прыгающий стул</span></span>
+<span class="line"><span style="color: #E6E6E6">1C	Розовые крутяшки</span></span>
+<span class="line"><span style="color: #E6E6E6">1D	Шахтер с дрелью</span></span>
+<span class="line"><span style="color: #E6E6E6">1E	Шахтер с киркой</span></span>
+<span class="line"><span style="color: #E6E6E6">1F	Шахтер с граблями</span></span>
+<span class="line"><span style="color: #E6E6E6">20	Шахтер на вагонетке</span></span>
+<span class="line"><span style="color: #E6E6E6">21	Мелкая голова из поезда</span></span>
+<span class="line"><span style="color: #E6E6E6">22	Лизун с лопатой</span></span>
+<span class="line"><span style="color: #E6E6E6">23	Тыквоголов</span></span>
+<span class="line"><span style="color: #E6E6E6">24	Летающий имп</span></span>
+<span class="line"><span style="color: #E6E6E6">25	Имп с гарпуном</span></span>
+<span class="line"><span style="color: #E6E6E6">26	Дух ниндзя с мечом</span></span>
+<span class="line"><span style="color: #E6E6E6">27	Дух ниндзя с сюрекенами</span></span>
+<span class="line"><span style="color: #E6E6E6">28	Тесто</span></span>
+<span class="line"><span style="color: #E6E6E6">29	Блин из канализации</span></span>
+<span class="line"><span style="color: #E6E6E6">2A	Тролль с цепью</span></span>
+<span class="line"><span style="color: #E6E6E6">2B	Лизун-метатель мусора</span></span>
+<span class="line"><span style="color: #E6E6E6">2C	Лизун-метатель быстрый</span></span>
+<span class="line"><span style="color: #E6E6E6">2D	Вращающаяся труба</span></span>
+<span class="line"><span style="color: #E6E6E6">2E	Босс Ящеры</span></span>
+<span class="line"><span style="color: #E6E6E6">2F	Босс Венс</span></span>
+<span class="line"><span style="color: #E6E6E6">30	Босс Виго</span></span></code></pre></div></div></figure></p>
 <p> Проглядел доступную документацию по <code>EmuLua</code>, нашел функцию <code>memory.register</code>, про которую сказано, что она может установить произвольную функцию, отслеживающую изменения в ячейке памяти.</p>
 <p> Если установить обработчики на шаги, помеченные на блок-схеме красными кружками с цифрами, то можно выставлять свои данные вместо игровых в аккумулятор вместо реальных данных и заглушать реальный счетчик, подсчитывая сколько байт уже было отдано, а в конце вернуть указатель на реальные данные.</p>
 <p> Но такому простому способу препятствует то, что <code>memory.register</code> а) работает только в режиме ослеживания записей. б) как следствие работает только в области изменяемой памяти (0x0000-0x8000), а данные уровня лежат в ROM. Хендлер на чтение из ROM установить нельзя.</p>

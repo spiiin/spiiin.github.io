@@ -45,100 +45,100 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Область 0x1000-0x7FFF - это 6-кб CHR-RAM, память доступная для записи, располагается на картридже, в дополнение к 2кб памяти NES (это один из самых больших <a target="_blank" rel="noopener" href="https://nescartdb.com/profile/view/1038/jurassic-park">картриджей</a>)</p>
 <h2><span id="dekompressiya">Декомпрессия</span><a href="#dekompressiya" class="header-anchor">#</a></h2><p>Если поставить брейкпоинт на запись в 0x60C8 (это значение прописано в игре хардкодом как область распаковки), можно выйти на адрес архива в ROM - 0x9D94 (адрес записан в ячейки памяти 95-96).</p>
 <p>Также, изучай трейслог между чтением байта из ROM и записью в RAM, стоит запомнить все ячейки, которые изменяются походу — 6F, 70, 73, 74, 75.<br>(<em>меня восхищает, что трейслог команд на ассемблере 6502 может разобрать chatgpt, очень интересно было бы узнать, на каких входных данных он обучился</em>)</p>
-<p>Первые байты архива в ROM и соответствующие им байты распакованных данных:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">0x9D94: 18 00 20 04 0C 84 00 64</span></span>
-<span class="line"><span style="color: #F8F8F2">0x60C8: 30 00 30 00 06 84 00 84</span></span></code></pre></div></div></figure></p>
+<p>Первые байты архива в ROM и соответствующие им байты распакованных данных:<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">0x9D94: 18 00 20 04 0C 84 00 64</span></span>
+<span class="line"><span style="color: #E6E6E6">0x60C8: 30 00 30 00 06 84 00 84</span></span></code></pre></div></div></figure></p>
 <p>Пока что связь между сжатыми данными и расжатыми неочевидна. Просто изменять наугад байты архива в ROM (например 0x648C) бесполезно, меняется большая группа распакованных данных, на стенках нашей тёмной пещеры из байт оказывается калейдоскоп из зеркал, отражающих лучи по непредсказуемым траекториям<br><img src="/blog/17440519/jp3.png" alt></p>
 <p>Более изящный способ — написать lua-скрипт для эмулятора, который будет трассировать в файл все чтения из архива и записи распакованных данных, а также состояние управляющих распаковкой ячеек.</p>
-<figure class="shiki lua"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> logFile </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">io.open</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">jp_unpack1.txt</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">, </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">w</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">)</span></span>
+<figure class="shiki lua"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">logFile</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">io.open</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;jp_unpack1.txt&quot;</span><span style="color: #E6E6E6">, </span><span style="color: #CE9178">&quot;w&quot;</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">readMemoryValues</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">return</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">        memory.</span><span style="color: #50FA7B">readbyte</span><span style="color: #F8F8F2">(</span><span style="color: #BD93F9">0x73</span><span style="color: #F8F8F2">),</span></span>
-<span class="line"><span style="color: #F8F8F2">        memory.</span><span style="color: #50FA7B">readbyte</span><span style="color: #F8F8F2">(</span><span style="color: #BD93F9">0x74</span><span style="color: #F8F8F2">),</span></span>
-<span class="line"><span style="color: #F8F8F2">        memory.</span><span style="color: #50FA7B">readbyte</span><span style="color: #F8F8F2">(</span><span style="color: #BD93F9">0x75</span><span style="color: #F8F8F2">),</span></span>
-<span class="line"><span style="color: #F8F8F2">        memory.</span><span style="color: #50FA7B">readbyte</span><span style="color: #F8F8F2">(</span><span style="color: #BD93F9">0x6F</span><span style="color: #F8F8F2">),</span></span>
-<span class="line"><span style="color: #F8F8F2">        memory.</span><span style="color: #50FA7B">readbyte</span><span style="color: #F8F8F2">(</span><span style="color: #BD93F9">0x70</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">    }</span></span>
-<span class="line"><span style="color: #FF79C6">end</span></span>
+<span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">function</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">readMemoryValues</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">readbyte</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">0x73</span><span style="color: #E6E6E6">),</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">readbyte</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">0x74</span><span style="color: #E6E6E6">),</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">readbyte</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">0x75</span><span style="color: #E6E6E6">),</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">readbyte</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">0x6F</span><span style="color: #E6E6E6">),</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">readbyte</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">0x70</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #C586C0">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">logMemoryOperation</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">operation</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">address</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">value</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> values </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">readMemoryValues</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #8BE9FD">logFile</span><span style="color: #F8F8F2">:</span><span style="color: #50FA7B">write</span><span style="color: #F8F8F2">(</span><span style="color: #8BE9FD">string.format</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">%s %04X %s %02X --- 73: %02X, 74: %02X, 75: %02X, 6F: %02X, 70: %02X</span><span style="color: #FF79C6">\n</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">,</span></span>
-<span class="line"><span style="color: #F8F8F2">                                operation, address, operation </span><span style="color: #FF79C6">==</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">WRITE</span><span style="color: #E9F284">&quot; </span><span style="color: #FF79C6">and</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">-&gt;</span><span style="color: #E9F284">&quot; </span><span style="color: #FF79C6">or</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">&lt;-</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">, value,</span></span>
-<span class="line"><span style="color: #F8F8F2">                                </span><span style="color: #8BE9FD">table.unpack</span><span style="color: #F8F8F2">(values)))</span></span>
-<span class="line"><span style="color: #FF79C6">end</span></span>
+<span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">function</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">logMemoryOperation</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">operation</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">values</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">readMemoryValues</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #4EC9B0">logFile</span><span style="color: #E6E6E6">:</span><span style="color: #DCDCAA">write</span><span style="color: #E6E6E6">(</span><span style="color: #DCDCAA">string.format</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;%s %04X %s %02X --- 73: %02X, 74: %02X, 75: %02X, 6F: %02X, 70: %02X</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&quot;</span><span style="color: #E6E6E6">,</span></span>
+<span class="line"><span style="color: #E6E6E6">                                </span><span style="color: #9CDCFE">operation</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">operation</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">==</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;WRITE&quot; </span><span style="color: #D4D4D4">and</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;-&gt;&quot; </span><span style="color: #D4D4D4">or</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;&lt;-&quot;</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">,</span></span>
+<span class="line"><span style="color: #E6E6E6">                                </span><span style="color: #DCDCAA">table.unpack</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">values</span><span style="color: #E6E6E6">)))</span></span>
+<span class="line"><span style="color: #C586C0">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">onRead</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">address</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">size</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">value</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #50FA7B">logMemoryOperation</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">READ </span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">, address, value)</span></span>
-<span class="line"><span style="color: #FF79C6">end</span></span>
+<span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">function</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">onRead</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">size</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">logMemoryOperation</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;READ &quot;</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #C586C0">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">onWrite</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">address</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">size</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">value</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #50FA7B">logMemoryOperation</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">WRITE</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">, address, value)</span></span>
-<span class="line"><span style="color: #FF79C6">end</span></span>
+<span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">function</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">onWrite</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">size</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">logMemoryOperation</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;WRITE&quot;</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #C586C0">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">onWriteExt</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">address</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">size</span><span style="color: #F8F8F2">, </span><span style="color: #FFB86C; font-style: italic">value</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #50FA7B">logMemoryOperation</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">     </span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">, address, value)</span></span>
-<span class="line"><span style="color: #FF79C6">end</span></span>
+<span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">function</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">onWriteExt</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">size</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">logMemoryOperation</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;     &quot;</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">value</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #C586C0">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">registerMemoryCallbacks</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> readRangeStart, readRangeEnd </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0x9D94</span><span style="color: #F8F8F2">, </span><span style="color: #BD93F9">0xA4B1</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> writeRangeStart, writeRangeEnd </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0x60C8</span><span style="color: #F8F8F2">, </span><span style="color: #BD93F9">0x72CB</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">local</span><span style="color: #F8F8F2"> extendedWriteAddresses </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> {</span><span style="color: #BD93F9">0x6F</span><span style="color: #F8F8F2">, </span><span style="color: #BD93F9">0x70</span><span style="color: #F8F8F2">, </span><span style="color: #BD93F9">0x73</span><span style="color: #F8F8F2">, </span><span style="color: #BD93F9">0x74</span><span style="color: #F8F8F2">, </span><span style="color: #BD93F9">0x75</span><span style="color: #F8F8F2">}</span></span>
+<span class="line"><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">function</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">registerMemoryCallbacks</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">readRangeStart</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">readRangeEnd</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0x9D94</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">0xA4B1</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">writeRangeStart</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">writeRangeEnd</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0x60C8</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">0x72CB</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">local</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">extendedWriteAddresses</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> {</span><span style="color: #B5CEA8">0x6F</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">0x70</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">0x73</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">0x74</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">0x75</span><span style="color: #E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">    memory.</span><span style="color: #50FA7B">registerread</span><span style="color: #F8F8F2">(readRangeStart, readRangeEnd </span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2"> readRangeStart </span><span style="color: #FF79C6">+</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">, onRead)</span></span>
-<span class="line"><span style="color: #F8F8F2">    memory.</span><span style="color: #50FA7B">registerwrite</span><span style="color: #F8F8F2">(writeRangeStart, writeRangeEnd </span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2"> writeRangeStart </span><span style="color: #FF79C6">+</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">, onWrite)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">registerread</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">readRangeStart</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">readRangeEnd</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">readRangeStart</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">onRead</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">registerwrite</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">writeRangeStart</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">writeRangeEnd</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">writeRangeStart</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">onWrite</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">for</span><span style="color: #F8F8F2"> _, address </span><span style="color: #FF79C6">in</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">ipairs</span><span style="color: #F8F8F2">(extendedWriteAddresses) </span><span style="color: #FF79C6">do</span></span>
-<span class="line"><span style="color: #F8F8F2">        memory.</span><span style="color: #50FA7B">registerwrite</span><span style="color: #F8F8F2">(address, </span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">, onWriteExt)</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">end</span></span>
-<span class="line"><span style="color: #FF79C6">end</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">for</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">_</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">in</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">ipairs</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">extendedWriteAddresses</span><span style="color: #E6E6E6">) </span><span style="color: #C586C0">do</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #9CDCFE">memory</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">registerwrite</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">address</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">, </span><span style="color: #9CDCFE">onWriteExt</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">end</span></span>
+<span class="line"><span style="color: #C586C0">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #50FA7B">registerMemoryCallbacks</span><span style="color: #F8F8F2">()</span></span>
+<span class="line"><span style="color: #DCDCAA">registerMemoryCallbacks</span><span style="color: #E6E6E6">()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">emu.</span><span style="color: #50FA7B">registerexit</span><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">function</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">if</span><span style="color: #F8F8F2"> logFile </span><span style="color: #FF79C6">then</span></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #8BE9FD">logFile</span><span style="color: #F8F8F2">:</span><span style="color: #50FA7B">close</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">end</span></span>
-<span class="line"><span style="color: #FF79C6">end</span><span style="color: #F8F8F2">)</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #9CDCFE">emu</span><span style="color: #E6E6E6">.</span><span style="color: #DCDCAA">registerexit</span><span style="color: #E6E6E6">(</span><span style="color: #C586C0">function</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">logFile</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">then</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #4EC9B0">logFile</span><span style="color: #E6E6E6">:</span><span style="color: #DCDCAA">close</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">end</span></span>
+<span class="line"><span style="color: #C586C0">end</span><span style="color: #E6E6E6">)</span></span></code></pre></div></div></figure>
 <p>Получается такой лог (большая часть незначащей информации вырезана)</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">READ  9D94 &lt;- 18    --- 73: 00, 74: 00, 75: 00, 6F: 00, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D95 &lt;- 00    --- 73: 00, 74: 02, 75: 00, 6F: 18, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60C8 -&gt; 30 --- 73: 00, 74: 00, 75: 00, 6F: 30, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D96 &lt;- 20    --- 73: 00, 74: 03, 75: 00, 6F: 00, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60C9 -&gt; 00 --- 73: 80, 74: 00, 75: 00, 6F: 00, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 75 --- 73: 00, 74: 00, 75: 02, 6F: 02, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 74 --- 73: 00, 74: 0A, 75: 02, 6F: 02, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 73 --- 73: 00, 74: 0A, 75: 02, 6F: 02, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 6F --- 73: 00, 74: 0A, 75: 02, 6F: 04, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 70 --- 73: 00, 74: 0A, 75: 02, 6F: 04, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 74 --- 73: 00, 74: 09, 75: 02, 6F: 04, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 73 --- 73: 00, 74: 09, 75: 02, 6F: 04, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 6F --- 73: 00, 74: 09, 75: 02, 6F: 08, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 70 --- 73: 00, 74: 09, 75: 02, 6F: 08, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 74 --- 73: 00, 74: 08, 75: 02, 6F: 08, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 73 --- 73: 00, 74: 08, 75: 02, 6F: 08, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 6F --- 73: 00, 74: 08, 75: 02, 6F: 10, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 70 --- 73: 00, 74: 08, 75: 02, 6F: 10, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 74 --- 73: 00, 74: 07, 75: 02, 6F: 10, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 73 --- 73: 00, 74: 07, 75: 02, 6F: 10, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 6F --- 73: 00, 74: 07, 75: 02, 6F: 20, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">                 70 --- 73: 00, 74: 07, 75: 02, 6F: 20, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D97 &lt;- 04    --- 73: 00, 74: 07, 75: 02, 6F: 20, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60CA -&gt; 30 --- 73: 00, 74: 00, 75: 02, 6F: 01, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60CB -&gt; 00 --- 73: 00, 74: 00, 75: 01, 6F: 01, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D98 &lt;- 0C    --- 73: 00, 74: 08, 75: 00, 6F: 04, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60CC -&gt; 06 --- 73: 00, 74: 00, 75: 00, 6F: 06, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D99 &lt;- 84    --- 73: 00, 74: 01, 75: 00, 6F: 0C, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D9A &lt;- 00    --- 73: 00, 74: 01, 75: 00, 6F: 84, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60CD -&gt; 84 --- 73: 00, 74: 00, 75: 00, 6F: 84, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D9B &lt;- 64    --- 73: 00, 74: 02, 75: 00, 6F: 00, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60CE -&gt; 00 --- 73: C8, 74: 00, 75: 00, 6F: 00, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D9C &lt;- 01    --- 73: 00, 74: 09, 75: 03, 6F: 64, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D9D &lt;- 00    --- 73: 00, 74: 01, 75: 03, 6F: 01, 70: 64</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60CF -&gt; 84 --- 73: 00, 74: 00, 75: 03, 6F: 01, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60D0 -&gt; 00 --- 73: 00, 74: 00, 75: 02, 6F: 01, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">   WRITE 60D1 -&gt; 84 --- 73: 00, 74: 00, 75: 01, 6F: 01, 70: 00</span></span>
-<span class="line"><span style="color: #F8F8F2">READ  9D9E &lt;- A1    --- 73: 00, 74: 02, 75: 00, 6F: 00, 70: 00</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">READ  9D94 &lt;- 18    --- 73: 00, 74: 00, 75: 00, 6F: 00, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D95 &lt;- 00    --- 73: 00, 74: 02, 75: 00, 6F: 18, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60C8 -&gt; 30 --- 73: 00, 74: 00, 75: 00, 6F: 30, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D96 &lt;- 20    --- 73: 00, 74: 03, 75: 00, 6F: 00, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60C9 -&gt; 00 --- 73: 80, 74: 00, 75: 00, 6F: 00, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 75 --- 73: 00, 74: 00, 75: 02, 6F: 02, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 74 --- 73: 00, 74: 0A, 75: 02, 6F: 02, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 73 --- 73: 00, 74: 0A, 75: 02, 6F: 02, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 6F --- 73: 00, 74: 0A, 75: 02, 6F: 04, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 70 --- 73: 00, 74: 0A, 75: 02, 6F: 04, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 74 --- 73: 00, 74: 09, 75: 02, 6F: 04, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 73 --- 73: 00, 74: 09, 75: 02, 6F: 04, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 6F --- 73: 00, 74: 09, 75: 02, 6F: 08, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 70 --- 73: 00, 74: 09, 75: 02, 6F: 08, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 74 --- 73: 00, 74: 08, 75: 02, 6F: 08, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 73 --- 73: 00, 74: 08, 75: 02, 6F: 08, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 6F --- 73: 00, 74: 08, 75: 02, 6F: 10, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 70 --- 73: 00, 74: 08, 75: 02, 6F: 10, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 74 --- 73: 00, 74: 07, 75: 02, 6F: 10, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 73 --- 73: 00, 74: 07, 75: 02, 6F: 10, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 6F --- 73: 00, 74: 07, 75: 02, 6F: 20, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">                 70 --- 73: 00, 74: 07, 75: 02, 6F: 20, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D97 &lt;- 04    --- 73: 00, 74: 07, 75: 02, 6F: 20, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60CA -&gt; 30 --- 73: 00, 74: 00, 75: 02, 6F: 01, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60CB -&gt; 00 --- 73: 00, 74: 00, 75: 01, 6F: 01, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D98 &lt;- 0C    --- 73: 00, 74: 08, 75: 00, 6F: 04, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60CC -&gt; 06 --- 73: 00, 74: 00, 75: 00, 6F: 06, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D99 &lt;- 84    --- 73: 00, 74: 01, 75: 00, 6F: 0C, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D9A &lt;- 00    --- 73: 00, 74: 01, 75: 00, 6F: 84, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60CD -&gt; 84 --- 73: 00, 74: 00, 75: 00, 6F: 84, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D9B &lt;- 64    --- 73: 00, 74: 02, 75: 00, 6F: 00, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60CE -&gt; 00 --- 73: C8, 74: 00, 75: 00, 6F: 00, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D9C &lt;- 01    --- 73: 00, 74: 09, 75: 03, 6F: 64, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D9D &lt;- 00    --- 73: 00, 74: 01, 75: 03, 6F: 01, 70: 64</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60CF -&gt; 84 --- 73: 00, 74: 00, 75: 03, 6F: 01, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60D0 -&gt; 00 --- 73: 00, 74: 00, 75: 02, 6F: 01, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">   WRITE 60D1 -&gt; 84 --- 73: 00, 74: 00, 75: 01, 6F: 01, 70: 00</span></span>
+<span class="line"><span style="color: #E6E6E6">READ  9D9E &lt;- A1    --- 73: 00, 74: 02, 75: 00, 6F: 00, 70: 00</span></span></code></pre></div></div></figure>
 <p>Из этого лога уже можно извлечь почти всё, что нужно для понимания распаковки.</p>
 <p>Это очень важный момент! Можно реверс-инжинирить алгоритм в IDA, или долго играться с отладчиком. А можно и не делать этого и перечитать раздел “вступление” ещё раз. <strong>РЕВЕРС НЕ НАВЫК, А СОСТОЯНИЕ</strong>. Т.е. можно обнаружить, что ты уже знаешь решение, просто глядя на трейс-лог, или гуляя по улице — это не фигура речи. Для проверки правильности решения придётся, конечно, использовать листик и ручку, или отладчик, и скорее всего первичная идея будет содержать ошибки, на само понимание находится где-то до использования инструментов. Всё, что дальше — уже просто проверка, тривиальная часть.</p>
 <ul>
@@ -147,111 +147,111 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <li><p>в ячейке 75 хранится число байт, который будут скопированы из самого выходного потока. Так как это значение не зависит от других управляющих ячеек, вероятно, существуют специальные команды, в которых количество повторов кодируется самой командой. Это важный вывод, который можно и нужно перепроверить</p>
 </li>
 </ul>
-<figure class="shiki asm"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #BD93F9">07</span><span style="color: #F8F8F2">:</span><span style="color: #50FA7B">D4B0:</span><span style="color: #F8F8F2"> A9 </span><span style="color: #BD93F9">02</span><span style="color: #F8F8F2">     LDA #</span><span style="color: #BD93F9">$02</span><span style="color: #F8F8F2"> //immediate set</span></span>
-<span class="line"><span style="color: #BD93F9">07</span><span style="color: #F8F8F2">:</span><span style="color: #50FA7B">D4B2:</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">85</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">75</span><span style="color: #F8F8F2">     STA </span><span style="color: #BD93F9">$75</span><span style="color: #F8F8F2"> repeats = #</span><span style="color: #BD93F9">$02</span></span></code></pre></div></div></figure>
+<figure class="shiki asm"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #B5CEA8">07</span><span style="color: #E6E6E6">:</span><span style="color: #DCDCAA">D4B0:</span><span style="color: #E6E6E6"> A9 </span><span style="color: #B5CEA8">02</span><span style="color: #E6E6E6">     LDA #</span><span style="color: #B5CEA8">$02</span><span style="color: #E6E6E6"> //immediate set</span></span>
+<span class="line"><span style="color: #B5CEA8">07</span><span style="color: #E6E6E6">:</span><span style="color: #DCDCAA">D4B2:</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">85</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">75</span><span style="color: #E6E6E6">     STA </span><span style="color: #B5CEA8">$75</span><span style="color: #E6E6E6"> repeats = #</span><span style="color: #B5CEA8">$02</span></span></code></pre></div></div></figure>
 <ul>
 <li>в ячейке 74 — количество оставшихся для считывания бит для текущей команды. Если при этом “заканчиваются” биты в очередном байте из входной последовательности, считывается следующий</li>
 </ul>
 <p>Осталось разобрать, как именно работают команды, выдающие в выходой поток значения, которые уже находились в нём ранее.<br>Можно поставить точки остановки на область записи распакованных данных и внимательно посмотреть на байты на выходе в тех случаях, когда они не читаются из входного архива.</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">WRITE 60C8 -&gt; 30  &lt;-----------\</span></span>
-<span class="line"><span style="color: #F8F8F2">WRITE 60C9 -&gt; 00              |</span></span>
-<span class="line"><span style="color: #F8F8F2">WRITE 60CA -&gt; 30 00 (2 байта) |</span></span>
-<span class="line"><span style="color: #F8F8F2">WRITE 60CC -&gt; 06</span></span>
-<span class="line"><span style="color: #F8F8F2">WRITE 60CD -&gt; 84  &lt;--------------\</span></span>
-<span class="line"><span style="color: #F8F8F2">WRITE 60CE -&gt; 00                 |</span></span>
-<span class="line"><span style="color: #F8F8F2">WRITE 60CF -&gt; 84 00 84 (3 байта) |</span></span>
-<span class="line"><span style="color: #F8F8F2">...</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">WRITE 60C8 -&gt; 30  &lt;-----------\</span></span>
+<span class="line"><span style="color: #E6E6E6">WRITE 60C9 -&gt; 00              |</span></span>
+<span class="line"><span style="color: #E6E6E6">WRITE 60CA -&gt; 30 00 (2 байта) |</span></span>
+<span class="line"><span style="color: #E6E6E6">WRITE 60CC -&gt; 06</span></span>
+<span class="line"><span style="color: #E6E6E6">WRITE 60CD -&gt; 84  &lt;--------------\</span></span>
+<span class="line"><span style="color: #E6E6E6">WRITE 60CE -&gt; 00                 |</span></span>
+<span class="line"><span style="color: #E6E6E6">WRITE 60CF -&gt; 84 00 84 (3 байта) |</span></span>
+<span class="line"><span style="color: #E6E6E6">...</span></span></code></pre></div></div></figure>
 <p>Это и есть основной принцип работы алгоритма <code>LZSS</code> — он умеет ссылаться на уже существующие в выходной последовательности цепочки байт.</p>
 <p>Можно заодно обратить внимание на интересную особенность — цепочка байт 60CF-60D1 использует ссылку на 60CD-60CF - конец этой цепочки еще не существует в выходной последовательности к моменту использования ссылки на неё (<code>overlapping-lookingahead</code>).</p>
 <p><code>LZSS</code> можно считать обобщением <code>RLE</code> — <code>RLE</code> умеет ссылаться лишь 1 последний символ в выходной последовательности, а <code>LZSS</code> — на любую уже встреченную цепочку символов. Различные разновидности <code>LZSS</code>, в зависимости от выделенных на кодирование бит, ограничены в том, насколько далеко назад они могут заглянуть (<strong><code>размер скользящего окна</code></strong>) и на длину цепочки повторяющихся байт.</p>
 <p>Раз входной поток работает на уровне бит, а не байт, то удобно было бы представить его в трейслоге в виде бит. Можно или вписать дополнительную информацию в скрипт трейса (чаще всего работа с битами осуществляется через сдвиги + проверку флага, в который попадаёт сдвинутый бит). Ну или просто набросать скрипт, который парсит уже имеющийся лог, но следит при этом за накопленными битами:</p>
-<figure class="shiki python"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #FF79C6">def</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">extract_byte_from_read_line</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">line</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">    hex_value </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> line.split(</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">&lt;-</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">)[</span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">].strip()[:</span><span style="color: #BD93F9">2</span><span style="color: #F8F8F2">]</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">return</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">format</span><span style="color: #F8F8F2">(</span><span style="color: #8BE9FD; font-style: italic">int</span><span style="color: #F8F8F2">(hex_value, </span><span style="color: #BD93F9">16</span><span style="color: #F8F8F2">), </span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">08b</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">)</span></span>
+<figure class="shiki python"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">extract_byte_from_read_line</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">line</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">    hex_value </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> line.split(</span><span style="color: #CE9178">&#39;&lt;-&#39;</span><span style="color: #E6E6E6">)[</span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">].strip()[:</span><span style="color: #B5CEA8">2</span><span style="color: #E6E6E6">]</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">format</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">(hex_value, </span><span style="color: #B5CEA8">16</span><span style="color: #E6E6E6">), </span><span style="color: #CE9178">&#39;08b&#39;</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">def</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">extract_argument_from_74_line</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">line</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">    hex_argument </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> line.split(</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">74:</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">)[</span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">].split(</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">,</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">)[</span><span style="color: #BD93F9">0</span><span style="color: #F8F8F2">].strip()</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">return</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">int</span><span style="color: #F8F8F2">(hex_argument, </span><span style="color: #BD93F9">16</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">extract_argument_from_74_line</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">line</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">    hex_argument </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> line.split(</span><span style="color: #CE9178">&#39;74:&#39;</span><span style="color: #E6E6E6">)[</span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">].split(</span><span style="color: #CE9178">&#39;,&#39;</span><span style="color: #E6E6E6">)[</span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">].strip()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">(hex_argument, </span><span style="color: #B5CEA8">16</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">def</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">process_write_command</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">accumulated_bits</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">    bit_string </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&#39;&#39;</span><span style="color: #F8F8F2">.join(accumulated_bits)</span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #8BE9FD">print</span><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">f</span><span style="color: #F1FA8C">&quot;</span><span style="color: #BD93F9">{</span><span style="color: #F8F8F2">bit_string</span><span style="color: #BD93F9">}</span><span style="color: #F1FA8C"> (</span><span style="color: #BD93F9">{</span><span style="color: #8BE9FD">len</span><span style="color: #F8F8F2">(accumulated_bits)</span><span style="color: #BD93F9">}</span><span style="color: #F1FA8C"> bits)&quot;</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">process_write_command</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">accumulated_bits</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">    bit_string </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&#39;&#39;</span><span style="color: #E6E6E6">.join(accumulated_bits)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">f</span><span style="color: #CE9178">&quot;</span><span style="color: #569CD6">{</span><span style="color: #E6E6E6">bit_string</span><span style="color: #569CD6">}</span><span style="color: #CE9178"> (</span><span style="color: #569CD6">{</span><span style="color: #DCDCAA">len</span><span style="color: #E6E6E6">(accumulated_bits)</span><span style="color: #569CD6">}</span><span style="color: #CE9178"> bits)&quot;</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">def</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">parse_and_print_bits</span><span style="color: #F8F8F2">(</span><span style="color: #FFB86C; font-style: italic">lines</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">    current_byte </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">None</span></span>
-<span class="line"><span style="color: #F8F8F2">    bit_index </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0</span></span>
-<span class="line"><span style="color: #F8F8F2">    accumulated_bits </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> []</span></span>
-<span class="line"><span style="color: #F8F8F2">    command_lengths </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">set</span><span style="color: #F8F8F2">()</span></span>
+<span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">parse_and_print_bits</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">lines</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">    current_byte </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #569CD6">None</span></span>
+<span class="line"><span style="color: #E6E6E6">    bit_index </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span></span>
+<span class="line"><span style="color: #E6E6E6">    accumulated_bits </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> []</span></span>
+<span class="line"><span style="color: #E6E6E6">    command_lengths </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">set</span><span style="color: #E6E6E6">()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FF79C6">for</span><span style="color: #F8F8F2"> line </span><span style="color: #FF79C6">in</span><span style="color: #F8F8F2"> lines:</span></span>
-<span class="line"><span style="color: #F8F8F2">        line </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> line.strip()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">for</span><span style="color: #E6E6E6"> line </span><span style="color: #C586C0">in</span><span style="color: #E6E6E6"> lines:</span></span>
+<span class="line"><span style="color: #E6E6E6">        line </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> line.strip()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #FF79C6">if</span><span style="color: #F8F8F2"> line.startswith(</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">READ</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">            current_byte </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> extract_byte_from_read_line(line)</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> line.startswith(</span><span style="color: #CE9178">&#39;READ&#39;</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">            current_byte </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> extract_byte_from_read_line(line)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #FF79C6">elif</span><span style="color: #F8F8F2"> line.startswith(</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">74 ---</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">            argument </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> extract_argument_from_74_line(line)</span></span>
-<span class="line"><span style="color: #F8F8F2">            </span><span style="color: #FF79C6">if</span><span style="color: #F8F8F2"> argument </span><span style="color: #FF79C6">!=</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">and</span><span style="color: #F8F8F2"> current_byte </span><span style="color: #FF79C6">is</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">not</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">None</span><span style="color: #F8F8F2">:</span></span>
-<span class="line"><span style="color: #F8F8F2">                accumulated_bits.append(current_byte[bit_index])</span></span>
-<span class="line"><span style="color: #F8F8F2">                bit_index </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> (bit_index </span><span style="color: #FF79C6">+</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">1</span><span style="color: #F8F8F2">) </span><span style="color: #FF79C6">%</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">8</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">elif</span><span style="color: #E6E6E6"> line.startswith(</span><span style="color: #CE9178">&#39;74 ---&#39;</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">            argument </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> extract_argument_from_74_line(line)</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> argument </span><span style="color: #D4D4D4">!=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6"> </span><span style="color: #569CD6">and</span><span style="color: #E6E6E6"> current_byte </span><span style="color: #569CD6">is</span><span style="color: #E6E6E6"> </span><span style="color: #569CD6">not</span><span style="color: #E6E6E6"> </span><span style="color: #569CD6">None</span><span style="color: #E6E6E6">:</span></span>
+<span class="line"><span style="color: #E6E6E6">                accumulated_bits.append(current_byte[bit_index])</span></span>
+<span class="line"><span style="color: #E6E6E6">                bit_index </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> (bit_index </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">) </span><span style="color: #D4D4D4">%</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">8</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #FF79C6">elif</span><span style="color: #F8F8F2"> line.startswith(</span><span style="color: #E9F284">&#39;</span><span style="color: #F1FA8C">WRITE</span><span style="color: #E9F284">&#39;</span><span style="color: #F8F8F2">):</span></span>
-<span class="line"><span style="color: #F8F8F2">            </span><span style="color: #FF79C6">if</span><span style="color: #F8F8F2"> accumulated_bits:</span></span>
-<span class="line"><span style="color: #F8F8F2">                command_lengths.add(</span><span style="color: #8BE9FD">len</span><span style="color: #F8F8F2">(accumulated_bits))</span></span>
-<span class="line"><span style="color: #F8F8F2">                process_write_command(accumulated_bits)</span></span>
-<span class="line"><span style="color: #F8F8F2">                </span><span style="color: #8BE9FD">print</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">  </span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">+</span><span style="color: #F8F8F2"> line.split(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">---</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">)[</span><span style="color: #BD93F9">0</span><span style="color: #F8F8F2">])</span></span>
-<span class="line"><span style="color: #F8F8F2">            accumulated_bits </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> []</span></span>
-<span class="line"><span style="color: #F8F8F2">            </span></span>
-<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #8BE9FD">print</span><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">f</span><span style="color: #F1FA8C">&quot;Commands lengths: </span><span style="color: #BD93F9">{</span><span style="color: #F8F8F2">command_lengths</span><span style="color: #BD93F9">}</span><span style="color: #F1FA8C">&quot;</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">elif</span><span style="color: #E6E6E6"> line.startswith(</span><span style="color: #CE9178">&#39;WRITE&#39;</span><span style="color: #E6E6E6">):</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> accumulated_bits:</span></span>
+<span class="line"><span style="color: #E6E6E6">                command_lengths.add(</span><span style="color: #DCDCAA">len</span><span style="color: #E6E6E6">(accumulated_bits))</span></span>
+<span class="line"><span style="color: #E6E6E6">                process_write_command(accumulated_bits)</span></span>
+<span class="line"><span style="color: #E6E6E6">                </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;  &quot;</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> line.split(</span><span style="color: #CE9178">&quot;---&quot;</span><span style="color: #E6E6E6">)[</span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">])</span></span>
+<span class="line"><span style="color: #E6E6E6">            accumulated_bits </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> []</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">f</span><span style="color: #CE9178">&quot;Commands lengths: </span><span style="color: #569CD6">{</span><span style="color: #E6E6E6">command_lengths</span><span style="color: #569CD6">}</span><span style="color: #CE9178">&quot;</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">with</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">open</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">jp_unpack_60C8_72CB.txt</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">, </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">rt</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">) </span><span style="color: #FF79C6">as</span><span style="color: #F8F8F2"> file:</span></span>
-<span class="line"><span style="color: #F8F8F2">    lines </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> file.readlines()</span></span>
-<span class="line"><span style="color: #F8F8F2">parse_and_print_bits(lines)</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #C586C0">with</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">open</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;jp_unpack_60C8_72CB.txt&quot;</span><span style="color: #E6E6E6">, </span><span style="color: #CE9178">&quot;rt&quot;</span><span style="color: #E6E6E6">) </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">file</span><span style="color: #E6E6E6">:</span></span>
+<span class="line"><span style="color: #E6E6E6">    lines </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">file</span><span style="color: #E6E6E6">.readlines()</span></span>
+<span class="line"><span style="color: #E6E6E6">parse_and_print_bits(lines)</span></span></code></pre></div></div></figure>
 <p>(тривиальная логика, следим за состоянием 74 - ячейки которая контроллирует, сколько бит осталось прочитать в текущей команде)</p>
 <p>Обнаруживаем, что есть всего 4 типа команд - из 9, 13, 15 и 23 бит:</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">000110000 (9 bits)</span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 60C8 -&gt; 30</span></span>
-<span class="line"><span style="color: #F8F8F2">100000000001 (12 bits)</span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 60CA -&gt; 30 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 60CB -&gt; 00</span></span>
-<span class="line"><span style="color: #F8F8F2">110010000000001 (15 bits)</span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 60CF -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 60D0 -&gt; 00 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 60D1 -&gt; 84</span></span>
-<span class="line"><span style="color: #F8F8F2">11000000001100001011101 (23 bits)</span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 729F -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A0 -&gt; 3A </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A1 -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A2 -&gt; 3A </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A3 -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A4 -&gt; 3A </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A5 -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A6 -&gt; 3A </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A7 -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A8 -&gt; 3A </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72A9 -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72AA -&gt; 3A </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72AB -&gt; 84 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72AC -&gt; 34 </span></span>
-<span class="line"><span style="color: #F8F8F2">  WRITE 72AD -&gt; 84</span></span></code></pre></div></div></figure>
-<p>Такого лога достаточно для расшифровки формата команд (в полном логе их сотни)<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">0 00110000</span></span>
-<span class="line"><span style="color: #F8F8F2">команда выдачи несжатого байта из входного потока, 0 - код команды</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">10 0000000001</span></span>
-<span class="line"><span style="color: #F8F8F2">команда копирования 2х байт (2 - константа, не закодировано в команде)</span></span>
-<span class="line"><span style="color: #F8F8F2">Биты 10 - код команды</span></span>
-<span class="line"><span style="color: #F8F8F2">Байты считываются по 10-битному смещению назад от текушей позиции выходного потока</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">11000 00000110 0001011101</span></span>
-<span class="line"><span style="color: #F8F8F2">команда копирования 9+X байт из выходного потока</span></span>
-<span class="line"><span style="color: #F8F8F2">Биты 11000 - код команды</span></span>
-<span class="line"><span style="color: #F8F8F2">Количество закодировано 8 битами (9+0b00000110 = 15 байт)</span></span>
-<span class="line"><span style="color: #F8F8F2">Смещение закодировано 10 битами</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">11 001 0000000001</span></span>
-<span class="line"><span style="color: #F8F8F2">команда копирования 2+X байт из выходного потока</span></span>
-<span class="line"><span style="color: #F8F8F2">Количество закодировано 3 битами - (2+0b001 = 3 байта)</span></span>
-<span class="line"><span style="color: #F8F8F2">Смещение закодировано 10 битами</span></span></code></pre></div></div></figure></p>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">000110000 (9 bits)</span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 60C8 -&gt; 30</span></span>
+<span class="line"><span style="color: #E6E6E6">100000000001 (12 bits)</span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 60CA -&gt; 30 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 60CB -&gt; 00</span></span>
+<span class="line"><span style="color: #E6E6E6">110010000000001 (15 bits)</span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 60CF -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 60D0 -&gt; 00 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 60D1 -&gt; 84</span></span>
+<span class="line"><span style="color: #E6E6E6">11000000001100001011101 (23 bits)</span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 729F -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A0 -&gt; 3A </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A1 -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A2 -&gt; 3A </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A3 -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A4 -&gt; 3A </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A5 -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A6 -&gt; 3A </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A7 -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A8 -&gt; 3A </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72A9 -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72AA -&gt; 3A </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72AB -&gt; 84 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72AC -&gt; 34 </span></span>
+<span class="line"><span style="color: #E6E6E6">  WRITE 72AD -&gt; 84</span></span></code></pre></div></div></figure>
+<p>Такого лога достаточно для расшифровки формата команд (в полном логе их сотни)<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">0 00110000</span></span>
+<span class="line"><span style="color: #E6E6E6">команда выдачи несжатого байта из входного потока, 0 - код команды</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">10 0000000001</span></span>
+<span class="line"><span style="color: #E6E6E6">команда копирования 2х байт (2 - константа, не закодировано в команде)</span></span>
+<span class="line"><span style="color: #E6E6E6">Биты 10 - код команды</span></span>
+<span class="line"><span style="color: #E6E6E6">Байты считываются по 10-битному смещению назад от текушей позиции выходного потока</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">11000 00000110 0001011101</span></span>
+<span class="line"><span style="color: #E6E6E6">команда копирования 9+X байт из выходного потока</span></span>
+<span class="line"><span style="color: #E6E6E6">Биты 11000 - код команды</span></span>
+<span class="line"><span style="color: #E6E6E6">Количество закодировано 8 битами (9+0b00000110 = 15 байт)</span></span>
+<span class="line"><span style="color: #E6E6E6">Смещение закодировано 10 битами</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">11 001 0000000001</span></span>
+<span class="line"><span style="color: #E6E6E6">команда копирования 2+X байт из выходного потока</span></span>
+<span class="line"><span style="color: #E6E6E6">Количество закодировано 3 битами - (2+0b001 = 3 байта)</span></span>
+<span class="line"><span style="color: #E6E6E6">Смещение закодировано 10 битами</span></span></code></pre></div></div></figure></p>
 <p>Или в виде блок-схемы:<br><img src="/blog/17440519/diagram.png" alt></p>
 <p>4612 байт карты сжимаются этим алгоритмом в 1822 байт архива.</p>
 <h2><span id="semeystvo-lzss">Семейство LZSS</span><a href="#semeystvo-lzss" class="header-anchor">#</a></h2><p>В отличие от классического <a target="_blank" rel="noopener" href="https://ru.wikipedia.org/wiki/LZSS">LZSS</a>, здесь использованы 3 типа команд копирования фразы разной длины, чтобы сэкономить немного места на более коротких повторяющихся последовательностях.</p>

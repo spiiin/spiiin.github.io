@@ -18,95 +18,95 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Практически все зоны доступны сразу, но чтобы пройти их, надо знать правильный порядок. Но даже после полного прохождения у каждого из игроков остаётся несколько вопросов. Никому неизвестно, куда ведёт закрытая дверь в холле и зачем нужны третьи ноты в библиотеке. Но вооружившись дизассемблером и монитором памяти, можно это узнать. </p>
 <p>Сначала с помощью поиска читов необходимо отсеять ячейки памяти, которые изменяются вместе с игровой зоной. Чтобы это сделать в эмуляторе fceuxd sp надо много раз, меняя комнату, в меню Tools-&gt;Cheats просеивать ячейки кнопками Equal и Not Equal. Когда останется примерно тридцать ячеек можно с помощью монитора памяти (Tools-&gt;Hex editor), следить за ними в реальном времени. При этом опытному ромхакеру в глаза сразу должна броситься ячейка $613, которая со всех сторон окружена нулями, а сама меняется с номером комнаты или при сборе предметов. В игре есть только один параметр, который меняется при таких условиях - подсказка с названием комнаты внизу экрана.  </p>
 <p>Сюда ставится точка остановки на запись и при следующей смене комнаты находится код, который пишет в эту ячейку.</p>
-<figure class="shiki asm"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">lda x, </span><span style="color: #BD93F9">$71</span><span style="color: #F8F8F2"> </span><span style="color: #6272A4">;переносим в x значение из ячейки $71  </span></span>
-<span class="line"><span style="color: #F8F8F2">lda c7d2,x </span><span style="color: #6272A4">;загружаем номер строки с названием  </span></span>
-<span class="line"><span style="color: #F8F8F2">sta </span><span style="color: #BD93F9">$613</span><span style="color: #F8F8F2"> </span><span style="color: #6272A4">;записываем номер строки в ячейку $613</span></span></code></pre></div></div></figure>
+<figure class="shiki asm"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">lda x, </span><span style="color: #B5CEA8">$71</span><span style="color: #E6E6E6"> </span><span style="color: #6A9955">;переносим в x значение из ячейки $71  </span></span>
+<span class="line"><span style="color: #E6E6E6">lda c7d2,x </span><span style="color: #6A9955">;загружаем номер строки с названием  </span></span>
+<span class="line"><span style="color: #E6E6E6">sta </span><span style="color: #B5CEA8">$613</span><span style="color: #E6E6E6"> </span><span style="color: #6A9955">;записываем номер строки в ячейку $613</span></span></code></pre></div></div></figure>
 <p>Проверка подтверждает, что номер комнаты сохраняется в ячейке $71. Теперь можно создать мобильный телепорт - переставить точку остановки на запись на ячейку $71, и после срабатывания, вручную подменять её на любое число, чтобы получить таблицу игровых комнат.</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">#	ROOM	ПОЯСНЕНИЕ</span></span>
-<span class="line"><span style="color: #F8F8F2">00	THE GARDEN	Сад</span></span>
-<span class="line"><span style="color: #F8F8F2">01	THE TREE	Дерево в саду</span></span>
-<span class="line"><span style="color: #F8F8F2">02	THE CRYPT	Склеп в саду</span></span>
-<span class="line"><span style="color: #F8F8F2">03	THE HALLWAY	Холл</span></span>
-<span class="line"><span style="color: #F8F8F2">04	THE DINING ROOM	Столовая снизу справа от входа</span></span>
-<span class="line"><span style="color: #F8F8F2">05	THE GALLERY	Галерея снизу слева от холла</span></span>
-<span class="line"><span style="color: #F8F8F2">06	THE LANDING	Коридок сверху слева, в сторону чердака</span></span>
-<span class="line"><span style="color: #F8F8F2">07	THE LANDING	Коридор сверху справа, в сторону балкона</span></span>
-<span class="line"><span style="color: #F8F8F2">08	THE FESTER&#39;S ROOM	Комната Фестера</span></span>
-<span class="line"><span style="color: #F8F8F2">09	THE PUGSLEY&#39;S ROOM	Комната Пагсли</span></span>
-<span class="line"><span style="color: #F8F8F2">0A	THE TOY ROOM	Комната игрушек</span></span>
-<span class="line"><span style="color: #F8F8F2">0B	THE WEDNESDAY&#39;S ROOM	Комната Венсдей</span></span>
-<span class="line"><span style="color: #F8F8F2">0C	THE ATTIC	Чердак</span></span>
-<span class="line"><span style="color: #F8F8F2">0D	THE ROOF	Крыша</span></span>
-<span class="line"><span style="color: #F8F8F2">0E	THE POND	Пруд в лесу</span></span>
-<span class="line"><span style="color: #F8F8F2">0F	THE SECRET ROOM	Тайник в комнате MASTER&#39;S BEDROOM</span></span>
-<span class="line"><span style="color: #F8F8F2">10	THE SECRET ROOM	Тайник в шкафу на чердаке</span></span>
-<span class="line"><span style="color: #F8F8F2">11	THE SECRET ROOM	Тайник справа в пруду</span></span>
-<span class="line"><span style="color: #F8F8F2">12	THE CHIMNEY	Камин. Вход в трубе на крыше</span></span>
-<span class="line"><span style="color: #F8F8F2">13	THE BATHROOM	Ванная</span></span>
-<span class="line"><span style="color: #F8F8F2">14	THE BALLROOM	Зал с привидениями, центральная дверь в холле</span></span>
-<span class="line"><span style="color: #F8F8F2">15	THE WOOD	Лес за залом</span></span>
-<span class="line"><span style="color: #F8F8F2">16	THE KITCHEN	Кухня, дверь справа в холле</span></span>
-<span class="line"><span style="color: #F8F8F2">17	THE LIBRARY	Библиотека</span></span>
-<span class="line"><span style="color: #F8F8F2">18	THE CHAIN ROOM	Комната с цепями. Выходы в комнаты 19,02,16,23,09</span></span>
-<span class="line"><span style="color: #F8F8F2">19	THE SECRET RIVER	Секретная река</span></span>
-<span class="line"><span style="color: #F8F8F2">1A	THE TREASURY	Сокровищница</span></span>
-<span class="line"><span style="color: #F8F8F2">1B	THE SECRET ROOM	Тайник в камине с огнем в столовой</span></span>
-<span class="line"><span style="color: #F8F8F2">1C	THE PIT	Яма-ловушка с шипами. Тупик снизу-справа в склепе</span></span>
-<span class="line"><span style="color: #F8F8F2">1D	THE BONE ROOM	Дверь сверху-слева в склепе</span></span>
-<span class="line"><span style="color: #F8F8F2">1E	THE BONE ROOM	Дверь снизу-слева в склепе</span></span>
-<span class="line"><span style="color: #F8F8F2">1F	THE BONE ROOM	Дверь сверху-слева в склепе</span></span>
-<span class="line"><span style="color: #F8F8F2">20	THE GOMEZ&#39;S ROOM	Последняя комната</span></span>
-<span class="line"><span style="color: #F8F8F2">21	THE FREEZER	Холодильник в кухне</span></span>
-<span class="line"><span style="color: #F8F8F2">22	THE FURNACE	Печка, вход справа в кухне</span></span>
-<span class="line"><span style="color: #F8F8F2">23	THE PIT	Яма-ловушка в комнате с ценями</span></span>
-<span class="line"><span style="color: #F8F8F2">24	THE STUDY	Вход в библиотеку</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">#	ROOM	ПОЯСНЕНИЕ</span></span>
+<span class="line"><span style="color: #E6E6E6">00	THE GARDEN	Сад</span></span>
+<span class="line"><span style="color: #E6E6E6">01	THE TREE	Дерево в саду</span></span>
+<span class="line"><span style="color: #E6E6E6">02	THE CRYPT	Склеп в саду</span></span>
+<span class="line"><span style="color: #E6E6E6">03	THE HALLWAY	Холл</span></span>
+<span class="line"><span style="color: #E6E6E6">04	THE DINING ROOM	Столовая снизу справа от входа</span></span>
+<span class="line"><span style="color: #E6E6E6">05	THE GALLERY	Галерея снизу слева от холла</span></span>
+<span class="line"><span style="color: #E6E6E6">06	THE LANDING	Коридок сверху слева, в сторону чердака</span></span>
+<span class="line"><span style="color: #E6E6E6">07	THE LANDING	Коридор сверху справа, в сторону балкона</span></span>
+<span class="line"><span style="color: #E6E6E6">08	THE FESTER&#39;S ROOM	Комната Фестера</span></span>
+<span class="line"><span style="color: #E6E6E6">09	THE PUGSLEY&#39;S ROOM	Комната Пагсли</span></span>
+<span class="line"><span style="color: #E6E6E6">0A	THE TOY ROOM	Комната игрушек</span></span>
+<span class="line"><span style="color: #E6E6E6">0B	THE WEDNESDAY&#39;S ROOM	Комната Венсдей</span></span>
+<span class="line"><span style="color: #E6E6E6">0C	THE ATTIC	Чердак</span></span>
+<span class="line"><span style="color: #E6E6E6">0D	THE ROOF	Крыша</span></span>
+<span class="line"><span style="color: #E6E6E6">0E	THE POND	Пруд в лесу</span></span>
+<span class="line"><span style="color: #E6E6E6">0F	THE SECRET ROOM	Тайник в комнате MASTER&#39;S BEDROOM</span></span>
+<span class="line"><span style="color: #E6E6E6">10	THE SECRET ROOM	Тайник в шкафу на чердаке</span></span>
+<span class="line"><span style="color: #E6E6E6">11	THE SECRET ROOM	Тайник справа в пруду</span></span>
+<span class="line"><span style="color: #E6E6E6">12	THE CHIMNEY	Камин. Вход в трубе на крыше</span></span>
+<span class="line"><span style="color: #E6E6E6">13	THE BATHROOM	Ванная</span></span>
+<span class="line"><span style="color: #E6E6E6">14	THE BALLROOM	Зал с привидениями, центральная дверь в холле</span></span>
+<span class="line"><span style="color: #E6E6E6">15	THE WOOD	Лес за залом</span></span>
+<span class="line"><span style="color: #E6E6E6">16	THE KITCHEN	Кухня, дверь справа в холле</span></span>
+<span class="line"><span style="color: #E6E6E6">17	THE LIBRARY	Библиотека</span></span>
+<span class="line"><span style="color: #E6E6E6">18	THE CHAIN ROOM	Комната с цепями. Выходы в комнаты 19,02,16,23,09</span></span>
+<span class="line"><span style="color: #E6E6E6">19	THE SECRET RIVER	Секретная река</span></span>
+<span class="line"><span style="color: #E6E6E6">1A	THE TREASURY	Сокровищница</span></span>
+<span class="line"><span style="color: #E6E6E6">1B	THE SECRET ROOM	Тайник в камине с огнем в столовой</span></span>
+<span class="line"><span style="color: #E6E6E6">1C	THE PIT	Яма-ловушка с шипами. Тупик снизу-справа в склепе</span></span>
+<span class="line"><span style="color: #E6E6E6">1D	THE BONE ROOM	Дверь сверху-слева в склепе</span></span>
+<span class="line"><span style="color: #E6E6E6">1E	THE BONE ROOM	Дверь снизу-слева в склепе</span></span>
+<span class="line"><span style="color: #E6E6E6">1F	THE BONE ROOM	Дверь сверху-слева в склепе</span></span>
+<span class="line"><span style="color: #E6E6E6">20	THE GOMEZ&#39;S ROOM	Последняя комната</span></span>
+<span class="line"><span style="color: #E6E6E6">21	THE FREEZER	Холодильник в кухне</span></span>
+<span class="line"><span style="color: #E6E6E6">22	THE FURNACE	Печка, вход справа в кухне</span></span>
+<span class="line"><span style="color: #E6E6E6">23	THE PIT	Яма-ловушка в комнате с ценями</span></span>
+<span class="line"><span style="color: #E6E6E6">24	THE STUDY	Вход в библиотеку</span></span></code></pre></div></div></figure>
 <p>Аналогичным отсевом можно найти в памяти место хранения полученных предметов. Если в ячейке по адресу записан 0 - предмет отсутствует, если 1 - предмет уже найден. Другие числа означают разновидность предмета. Таблица предметов (собрана для проверки существования тайного ключа от двери в холле):  </p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">ADDRESS	ITEM	ПОЯСНЕНИЕ</span></span>
-<span class="line"><span style="color: #F8F8F2">630	SNORREL	Маска для плавания в пруду</span></span>
-<span class="line"><span style="color: #F8F8F2">631	UMBRELLA	Зонт для спуска в вертикальных комнатах</span></span>
-<span class="line"><span style="color: #F8F8F2">632	BUCKET	Ведро. 1 - пустое ведро, 2 - с водой</span></span>
-<span class="line"><span style="color: #F8F8F2">633	HOUSE	Ключ от входа в дом</span></span>
-<span class="line"><span style="color: #F8F8F2">634	TREE	Ключ от двери в дереве</span></span>
-<span class="line"><span style="color: #F8F8F2">635	ATTIC	Ключ от чердака</span></span>
-<span class="line"><span style="color: #F8F8F2">636	MUSIC SCORE	Ноты. 1,2,3 - тип нот</span></span>
-<span class="line"><span style="color: #F8F8F2">637	FOG	Туман из трубы</span></span>
-<span class="line"><span style="color: #F8F8F2">638	BONE	Туман из трубы</span></span>
-<span class="line"><span style="color: #F8F8F2">639	BLUE EGG	Туман из трубы</span></span>
-<span class="line"><span style="color: #F8F8F2">63A	MORTICIA	Спасенные члены семьи</span></span>
-<span class="line"><span style="color: #F8F8F2">63B	PUGSLEY	~</span></span>
-<span class="line"><span style="color: #F8F8F2">63C	GRANNY	~</span></span>
-<span class="line"><span style="color: #F8F8F2">63D	WEDNESDAY	~</span></span>
-<span class="line"><span style="color: #F8F8F2">63E	LURCH	~</span></span>
-<span class="line"><span style="color: #F8F8F2">63F	THING	~</span></span>
-<span class="line"><span style="color: #F8F8F2">640	SPANNER	Гаечный ключ</span></span>
-<span class="line"><span style="color: #F8F8F2">```</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">Никаких секретов =\</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">Еще для надежности можно провести исследование кода вывода надписи `Locked Door`, которая появляется, если нету при попытке зайти в закрытую дверь. Для этого точка остановки снова перемещается на ячейку $613, игра стопится на попытке зайти в любую закрытую дверь, память дампится в файл и загружается в дизассемблер. Анализ процедуры, на которой остановилось выполнение, показывает 5 переходов на вывод сообщения о закрытой двери. По таблице номеров комнат и предметов легко расшифровываются условия.</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">```</span></span>
-<span class="line"><span style="color: #F8F8F2">ADDRESS	Условие</span></span>
-<span class="line"><span style="color: #F8F8F2">E76D	Секретная река. Закрыто, если не спасен PUGSLEY</span></span>
-<span class="line"><span style="color: #F8F8F2">E78E	Комната в холле. Код ниже</span></span>
-<span class="line"><span style="color: #F8F8F2">E781	Нужен ключ от входа на чердак</span></span>
-<span class="line"><span style="color: #F8F8F2">E7A2	Нужен ключ от двери в дереве</span></span>
-<span class="line"><span style="color: #F8F8F2">xxxx	Нужен ключ от входа в дом</span></span>
-<span class="line"><span style="color: #F8F8F2">```</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">Проверка условия на двери в холле</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">```asm</span></span>
-<span class="line"><span style="color: #F8F8F2">E74C: LDA byte\_71 ;загрузка номера текущей комнаты  </span></span>
-<span class="line"><span style="color: #F8F8F2">...  </span></span>
-<span class="line"><span style="color: #F8F8F2">E784: CMP #3 ; если в холле  </span></span>
-<span class="line"><span style="color: #F8F8F2">E786: BNE loc\_E793  </span></span>
-<span class="line"><span style="color: #F8F8F2">E788: LDY #0  </span></span>
-<span class="line"><span style="color: #F8F8F2">E78A: LDA ($A),Y  </span></span>
-<span class="line"><span style="color: #F8F8F2">E78C: CMP #7 ; если вход в дверь номер 7 (та самая загадочная дверь)  </span></span>
-<span class="line"><span style="color: #F8F8F2">E78E: BEQ $E7AC  </span></span>
-<span class="line"><span style="color: #F8F8F2">E7AC: LDA #$32 ; показать строку номер 32 &quot;locked door&quot;  </span></span>
-<span class="line"><span style="color: #F8F8F2">E7AE: STA byte\_613 ; дверь закрыта всегда =\</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">ADDRESS	ITEM	ПОЯСНЕНИЕ</span></span>
+<span class="line"><span style="color: #E6E6E6">630	SNORREL	Маска для плавания в пруду</span></span>
+<span class="line"><span style="color: #E6E6E6">631	UMBRELLA	Зонт для спуска в вертикальных комнатах</span></span>
+<span class="line"><span style="color: #E6E6E6">632	BUCKET	Ведро. 1 - пустое ведро, 2 - с водой</span></span>
+<span class="line"><span style="color: #E6E6E6">633	HOUSE	Ключ от входа в дом</span></span>
+<span class="line"><span style="color: #E6E6E6">634	TREE	Ключ от двери в дереве</span></span>
+<span class="line"><span style="color: #E6E6E6">635	ATTIC	Ключ от чердака</span></span>
+<span class="line"><span style="color: #E6E6E6">636	MUSIC SCORE	Ноты. 1,2,3 - тип нот</span></span>
+<span class="line"><span style="color: #E6E6E6">637	FOG	Туман из трубы</span></span>
+<span class="line"><span style="color: #E6E6E6">638	BONE	Туман из трубы</span></span>
+<span class="line"><span style="color: #E6E6E6">639	BLUE EGG	Туман из трубы</span></span>
+<span class="line"><span style="color: #E6E6E6">63A	MORTICIA	Спасенные члены семьи</span></span>
+<span class="line"><span style="color: #E6E6E6">63B	PUGSLEY	~</span></span>
+<span class="line"><span style="color: #E6E6E6">63C	GRANNY	~</span></span>
+<span class="line"><span style="color: #E6E6E6">63D	WEDNESDAY	~</span></span>
+<span class="line"><span style="color: #E6E6E6">63E	LURCH	~</span></span>
+<span class="line"><span style="color: #E6E6E6">63F	THING	~</span></span>
+<span class="line"><span style="color: #E6E6E6">640	SPANNER	Гаечный ключ</span></span>
+<span class="line"><span style="color: #E6E6E6">```</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">Никаких секретов =\</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">Еще для надежности можно провести исследование кода вывода надписи `Locked Door`, которая появляется, если нету при попытке зайти в закрытую дверь. Для этого точка остановки снова перемещается на ячейку $613, игра стопится на попытке зайти в любую закрытую дверь, память дампится в файл и загружается в дизассемблер. Анализ процедуры, на которой остановилось выполнение, показывает 5 переходов на вывод сообщения о закрытой двери. По таблице номеров комнат и предметов легко расшифровываются условия.</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">```</span></span>
+<span class="line"><span style="color: #E6E6E6">ADDRESS	Условие</span></span>
+<span class="line"><span style="color: #E6E6E6">E76D	Секретная река. Закрыто, если не спасен PUGSLEY</span></span>
+<span class="line"><span style="color: #E6E6E6">E78E	Комната в холле. Код ниже</span></span>
+<span class="line"><span style="color: #E6E6E6">E781	Нужен ключ от входа на чердак</span></span>
+<span class="line"><span style="color: #E6E6E6">E7A2	Нужен ключ от двери в дереве</span></span>
+<span class="line"><span style="color: #E6E6E6">xxxx	Нужен ключ от входа в дом</span></span>
+<span class="line"><span style="color: #E6E6E6">```</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">Проверка условия на двери в холле</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">```asm</span></span>
+<span class="line"><span style="color: #E6E6E6">E74C: LDA byte\_71 ;загрузка номера текущей комнаты  </span></span>
+<span class="line"><span style="color: #E6E6E6">...  </span></span>
+<span class="line"><span style="color: #E6E6E6">E784: CMP #3 ; если в холле  </span></span>
+<span class="line"><span style="color: #E6E6E6">E786: BNE loc\_E793  </span></span>
+<span class="line"><span style="color: #E6E6E6">E788: LDY #0  </span></span>
+<span class="line"><span style="color: #E6E6E6">E78A: LDA ($A),Y  </span></span>
+<span class="line"><span style="color: #E6E6E6">E78C: CMP #7 ; если вход в дверь номер 7 (та самая загадочная дверь)  </span></span>
+<span class="line"><span style="color: #E6E6E6">E78E: BEQ $E7AC  </span></span>
+<span class="line"><span style="color: #E6E6E6">E7AC: LDA #$32 ; показать строку номер 32 &quot;locked door&quot;  </span></span>
+<span class="line"><span style="color: #E6E6E6">E7AE: STA byte\_613 ; дверь закрыта всегда =\</span></span></code></pre></div></div></figure>
 <p>С нотами такая же штука. В момент, когда Гомез передаёт дворецкому манускрипт, единственное, что происходит в коде - выставляется значение номера мелодии в ячейку $623. Если записать в эту ячейку другие числа, можно послушать все 5 музыкальных тем игры или заставить дворецкого играть нойз из кода игры. Ячейка с номером мелодии постоянно считывается только в комнатах Library(открывается секретный проход в комнату цепей нотами 1) и Ballroom (призраки начинают танцевать и открывается вход в лес, если были выбраны ноты 3). Ноты номер 2 не используются нигде =\  </p>
 <p>Секретов нет, но теперь это хотя бы проверено.  </p>
 <p><strong>update</strong> Ненужная нота в библиотеке - это отсылка к старому черному белому сериалу</p>

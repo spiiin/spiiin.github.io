@@ -126,49 +126,49 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <li>Не нужно 3rd-party движков для кодогенерации на уровне макросов или текста</li>
 </ul>
 <h2><span id="racket">Racket</span><a href="#racket" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://racket-lang.org/">Racket</a> - язык семейства Lisp/Scheme. Позволяет создавать свои языки, в том числе и не лиспоподобные.<br><a target="_blank" rel="noopener" href="https://beautifulracket.com/">Beautiful Racket</a> - книга про создание на Racket языков.<br><a target="_blank" rel="noopener" href="https://habr.com/ru/post/445822/">Зачем ЯОП? Зачем Racket?</a> - перевод эссе из книги, со ссылками на примеры реализованных DSL.<br><a target="_blank" rel="noopener" href="https://habr.com/ru/post/467125/">Современная игра для NES, написанная на Lisp-подобном языке</a> - DSL <a target="_blank" rel="noopener" href="https://gitlab.com/nebogeo/co2">CO2</a> для генерации NES-кода на Racket<br><a target="_blank" rel="noopener" href="https://youtu.be/z8Pz4bJV3Tk">Lambda World 2019 - Language-Oriented Programming with Racket - Matthias Felleisen</a> - использование Racket для создания группы DSL для работы с видео.<br><a target="_blank" rel="noopener" href="https://youtu.be/oSmqbnhHp1c">RacketCon 2013: Dan Liebgold - Racket on the Playstation 3? It’s Not What you Think!</a> - доклад от Naughty Dog про создание языка для описания структур данных, генерирующего код десериализации, а также описание сериализаванных данных на этом языке для игры<br><a target="_blank" rel="noopener" href="https://ubm-twvideo01.s3.amazonaws.com/o1/vault/gdc08/slides/S6636i1.pdf">Adventures in Data Compilation Uncharted: Drake’s Fortune</a> - Ещё один старый доклад Naughty Dog про их Data Compiler (Naughty Dog вообще <a target="_blank" rel="noopener" href="https://en.m.wikipedia.org/wiki/Game_Oriented_Assembly_Lisp">большие экспериментаторы</a> с <a target="_blank" rel="noopener" href="https://all-things-andy-gavin.com/2011/03/12/making-crash-bandicoot-gool-part-9/">лиспом в продакшене</a>).</p>
-<p>Пример кода описания данных из книги <strong><code>&quot;Игровой движок. Программирование и внутреннее устройство&quot;</code></strong> Джейсона Грегори (лид программист Naughty Dog):<br><figure class="shiki lisp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">simple-animation.scm</span></span>
+<p>Пример кода описания данных из книги <strong><code>&quot;Игровой движок. Программирование и внутреннее устройство&quot;</code></strong> Джейсона Грегори (лид программист Naughty Dog):<br><figure class="shiki lisp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">simple-animation.scm</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">;;тип</span></span>
-<span class="line"><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">deftype</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">simple-animation</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #F8F8F2">	(name string)</span></span>
-<span class="line"><span style="color: #F8F8F2">	(</span><span style="color: #FF79C6">speed</span><span style="color: #F8F8F2"> float </span><span style="color: #FF79C6">:default</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">1.0</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">	(fade-in-seconds float </span><span style="color: #FF79C6">:default</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0.25</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">	(fade-out-seconds float </span><span style="color: #FF79C6">:default</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0.25</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #6A9955">;;тип</span></span>
+<span class="line"><span style="color: #E6E6E6">(</span><span style="color: #569CD6">deftype</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">simple-animation</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #E6E6E6">	(name string)</span></span>
+<span class="line"><span style="color: #E6E6E6">	(</span><span style="color: #C586C0">speed</span><span style="color: #E6E6E6"> float </span><span style="color: #569CD6">:default</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1.0</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">	(fade-in-seconds float </span><span style="color: #569CD6">:default</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0.25</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">	(fade-out-seconds float </span><span style="color: #569CD6">:default</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0.25</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">;;экземпляры</span></span>
-<span class="line"><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">define-export</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">anim-walk</span></span>
-<span class="line"><span style="color: #F8F8F2">	(new simple-animation</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:name</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">walk</span><span style="color: #E9F284">&quot;</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:speed</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">1.0</span></span>
-<span class="line"><span style="color: #F8F8F2">	)</span></span>
-<span class="line"><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #6A9955">;;экземпляры</span></span>
+<span class="line"><span style="color: #E6E6E6">(</span><span style="color: #569CD6">define-export</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">anim-walk</span></span>
+<span class="line"><span style="color: #E6E6E6">	(new simple-animation</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:name</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;walk&quot;</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:speed</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1.0</span></span>
+<span class="line"><span style="color: #E6E6E6">	)</span></span>
+<span class="line"><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">define-export</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">anim-walk-fast</span></span>
-<span class="line"><span style="color: #F8F8F2">	(new simple-animation</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:name</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">walk</span><span style="color: #E9F284">&quot;</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:speed</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">2.0</span></span>
-<span class="line"><span style="color: #F8F8F2">	)</span></span>
-<span class="line"><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #E6E6E6">(</span><span style="color: #569CD6">define-export</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">anim-walk-fast</span></span>
+<span class="line"><span style="color: #E6E6E6">	(new simple-animation</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:name</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;walk&quot;</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:speed</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">2.0</span></span>
+<span class="line"><span style="color: #E6E6E6">	)</span></span>
+<span class="line"><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">define-export</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">anim-jump</span></span>
-<span class="line"><span style="color: #F8F8F2">	(new simple-animation</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:name</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">jump</span><span style="color: #E9F284">&quot;</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:fade-in-seconds</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0.1</span></span>
-<span class="line"><span style="color: #F8F8F2">		</span><span style="color: #FF79C6">:fade-out-seconds</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">0.1</span></span>
-<span class="line"><span style="color: #F8F8F2">	)</span></span>
-<span class="line"><span style="color: #F8F8F2">)</span></span></code></pre></div></div></figure><br><figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #6272A4">//генерируемый по схеме c++ код</span></span>
-<span class="line"><span style="color: #FF79C6">struct</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">SimpleAnimation</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #FF79C6">const</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">char*</span><span style="color: #F8F8F2"> name</span></span>
-<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #FF79C6">float</span><span style="color: #F8F8F2"> speed;</span></span>
-<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #FF79C6">float</span><span style="color: #F8F8F2"> fadeInSeconds;</span></span>
-<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #FF79C6">float</span><span style="color: #F8F8F2"> fadeOutSeconds;</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"><span style="color: #E6E6E6">(</span><span style="color: #569CD6">define-export</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">anim-jump</span></span>
+<span class="line"><span style="color: #E6E6E6">	(new simple-animation</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:name</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;jump&quot;</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:fade-in-seconds</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0.1</span></span>
+<span class="line"><span style="color: #E6E6E6">		</span><span style="color: #569CD6">:fade-out-seconds</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0.1</span></span>
+<span class="line"><span style="color: #E6E6E6">	)</span></span>
+<span class="line"><span style="color: #E6E6E6">)</span></span></code></pre></div></div></figure><br><figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">//генерируемый по схеме c++ код</span></span>
+<span class="line"><span style="color: #569CD6">struct</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">SimpleAnimation</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">  </span><span style="color: #569CD6">const</span><span style="color: #E6E6E6"> </span><span style="color: #569CD6">char</span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> name</span></span>
+<span class="line"><span style="color: #E6E6E6">  </span><span style="color: #569CD6">float</span><span style="color: #E6E6E6"> speed;</span></span>
+<span class="line"><span style="color: #E6E6E6">  </span><span style="color: #569CD6">float</span><span style="color: #E6E6E6"> fadeInSeconds;</span></span>
+<span class="line"><span style="color: #E6E6E6">  </span><span style="color: #569CD6">float</span><span style="color: #E6E6E6"> fadeOutSeconds;</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//использование</span></span>
-<span class="line"><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">loadFunction</span><span style="color: #F8F8F2">() {</span></span>
-<span class="line"><span style="color: #F8F8F2">	SimpleAnimation</span><span style="color: #FF79C6">*</span><span style="color: #F8F8F2"> pWalkAnim </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">LookupAnimation</span><span style="color: #F8F8F2">&lt;</span><span style="color: #8BE9FD; font-style: italic">SimpleAnimation</span><span style="color: #FF79C6">*</span><span style="color: #F8F8F2">&gt;(</span><span style="color: #50FA7B">stringHash</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">anim-walk</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">));</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure></p>
+<span class="line"><span style="color: #6A9955">//использование</span></span>
+<span class="line"><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">loadFunction</span><span style="color: #E6E6E6">() {</span></span>
+<span class="line"><span style="color: #E6E6E6">	SimpleAnimation</span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> pWalkAnim </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">LookupAnimation</span><span style="color: #E6E6E6">&lt;</span><span style="color: #4EC9B0">SimpleAnimation</span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6">&gt;(</span><span style="color: #DCDCAA">stringHash</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;anim-walk&quot;</span><span style="color: #E6E6E6">));</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>

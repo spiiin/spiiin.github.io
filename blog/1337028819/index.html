@@ -86,60 +86,60 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p><img src="/blog/1337028819/reuse_small.png" alt></p>
 <p>Свойства API:</p>
 <p><code>Разделяемость (Granularity)</code><br>Возможность установить/изменить параметры за несколько вызовов — вставить действие между между ними.<br>Гибкость VS простота</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Orientation </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">GetOrientation</span><span style="color: #F8F8F2">(Object)</span></span>
-<span class="line"><span style="color: #F8F8F2">Change </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">GetOrientationChange</span><span style="color: #F8F8F2">(Object)</span></span>
-<span class="line"><span style="color: #F8F8F2">Change </span><span style="color: #FF79C6">+=</span><span style="color: #F8F8F2"> </span><span style="color: #BD93F9">3.14</span><span style="color: #FF79C6">f</span><span style="color: #6272A4">                //</span></span>
-<span class="line"><span style="color: #50FA7B">RunSomeOtherUnrelatedTthing</span><span style="color: #F8F8F2">()</span><span style="color: #6272A4">  // возможность поменять отложенно</span></span>
-<span class="line"><span style="color: #50FA7B">SetOrientation</span><span style="color: #F8F8F2">(Object, Orientation </span><span style="color: #FF79C6">+</span><span style="color: #F8F8F2"> Change)</span></span></code></pre></div></div></figure>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">Orientation </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">GetOrientation</span><span style="color: #E6E6E6">(Object)</span></span>
+<span class="line"><span style="color: #E6E6E6">Change </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">GetOrientationChange</span><span style="color: #E6E6E6">(Object)</span></span>
+<span class="line"><span style="color: #E6E6E6">Change </span><span style="color: #D4D4D4">+=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">3.14f</span><span style="color: #6A9955">                //</span></span>
+<span class="line"><span style="color: #DCDCAA">RunSomeOtherUnrelatedTthing</span><span style="color: #E6E6E6">()</span><span style="color: #6A9955">  // возможность поменять отложенно</span></span>
+<span class="line"><span style="color: #DCDCAA">SetOrientation</span><span style="color: #E6E6E6">(Object, Orientation </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> Change)</span></span></code></pre></div></div></figure>
 <p><code>Избыточность (Redundancy)</code><br>Возможность выполнить действия несколькими способами<br>Удобство VS ортогональность</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #6272A4">//установка направления с помощью матрицы</span></span>
-<span class="line"><span style="color: #50FA7B">SetOrientation3x3</span><span style="color: #F8F8F2">(Object, Matrix)</span></span>
-<span class="line"><span style="color: #6272A4">//то же самое с помощью кватерниона</span></span>
-<span class="line"><span style="color: #50FA7B">SetOrientationQ</span><span style="color: #F8F8F2">(Object, Quat)</span></span>
-<span class="line"><span style="color: #6272A4">//то же самое с помощью заготовленных разработчиками методов/констант</span></span>
-<span class="line"><span style="color: #50FA7B">IdentityOrientation</span><span style="color: #F8F8F2">(Object)</span></span>
-<span class="line"><span style="color: #50FA7B">FaceForward</span><span style="color: #F8F8F2">(Object)</span></span></code></pre></div></div></figure>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">//установка направления с помощью матрицы</span></span>
+<span class="line"><span style="color: #DCDCAA">SetOrientation3x3</span><span style="color: #E6E6E6">(Object, Matrix)</span></span>
+<span class="line"><span style="color: #6A9955">//то же самое с помощью кватерниона</span></span>
+<span class="line"><span style="color: #DCDCAA">SetOrientationQ</span><span style="color: #E6E6E6">(Object, Quat)</span></span>
+<span class="line"><span style="color: #6A9955">//то же самое с помощью заготовленных разработчиками методов/констант</span></span>
+<span class="line"><span style="color: #DCDCAA">IdentityOrientation</span><span style="color: #E6E6E6">(Object)</span></span>
+<span class="line"><span style="color: #DCDCAA">FaceForward</span><span style="color: #E6E6E6">(Object)</span></span></code></pre></div></div></figure>
 <p><code>Cвязанность (Coupling)</code><br>Зависимости между частями системы (почти всегда плохо, не часто неизбежно)<br>Несвязанность VS запутанность (<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=SxdOUGdseq4 -- более детально">“Simple Made Easy” - Rich Hickey (2011)</a>)</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #6272A4">//неразделяемый апдейт всего (к примеру, физики)</span></span>
-<span class="line"><span style="color: #50FA7B">UpdateEverything</span><span style="color: #F8F8F2">(World)</span></span>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">//неразделяемый апдейт всего (к примеру, физики)</span></span>
+<span class="line"><span style="color: #DCDCAA">UpdateEverything</span><span style="color: #E6E6E6">(World)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//нужно установить состояние, прежде чем сделать что-то,</span></span>
-<span class="line"><span style="color: #6272A4">//  возможно скрыто</span></span>
-<span class="line"><span style="color: #50FA7B">SetTime</span><span style="color: #F8F8F2">(GlobalTime) </span></span>
-<span class="line"><span style="color: #50FA7B">UpdateObject</span><span style="color: #F8F8F2">(Object)</span></span>
+<span class="line"><span style="color: #6A9955">//нужно установить состояние, прежде чем сделать что-то,</span></span>
+<span class="line"><span style="color: #6A9955">//  возможно скрыто</span></span>
+<span class="line"><span style="color: #DCDCAA">SetTime</span><span style="color: #E6E6E6">(GlobalTime) </span></span>
+<span class="line"><span style="color: #DCDCAA">UpdateObject</span><span style="color: #E6E6E6">(Object)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//возможность настройки только внутри пары вызовов</span></span>
-<span class="line"><span style="color: #6272A4">// часто подразумевает &quot;не должно быть вложенности&quot;</span></span>
-<span class="line"><span style="color: #50FA7B">BeginObjectSpecification</span><span style="color: #F8F8F2">()</span></span>
-<span class="line"><span style="color: #50FA7B">SetObjectState</span><span style="color: #F8F8F2">(Param1, Value1)</span></span>
-<span class="line"><span style="color: #F8F8F2">Object </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">EndObjectSpecification</span><span style="color: #F8F8F2">()</span></span>
+<span class="line"><span style="color: #6A9955">//возможность настройки только внутри пары вызовов</span></span>
+<span class="line"><span style="color: #6A9955">// часто подразумевает &quot;не должно быть вложенности&quot;</span></span>
+<span class="line"><span style="color: #DCDCAA">BeginObjectSpecification</span><span style="color: #E6E6E6">()</span></span>
+<span class="line"><span style="color: #DCDCAA">SetObjectState</span><span style="color: #E6E6E6">(Param1, Value1)</span></span>
+<span class="line"><span style="color: #E6E6E6">Object </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">EndObjectSpecification</span><span style="color: #E6E6E6">()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//Использование скрытого общего буфера</span></span>
-<span class="line"><span style="color: #6272A4">// на который могут указывать String1 и String2</span></span>
-<span class="line"><span style="color: #F8F8F2">String1 </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">GetMungedName</span><span style="color: #F8F8F2">(Name1)</span></span>
-<span class="line"><span style="color: #F8F8F2">String2 </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">GetMungedName</span><span style="color: #F8F8F2">(Name2)</span></span>
+<span class="line"><span style="color: #6A9955">//Использование скрытого общего буфера</span></span>
+<span class="line"><span style="color: #6A9955">// на который могут указывать String1 и String2</span></span>
+<span class="line"><span style="color: #E6E6E6">String1 </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">GetMungedName</span><span style="color: #E6E6E6">(Name1)</span></span>
+<span class="line"><span style="color: #E6E6E6">String2 </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">GetMungedName</span><span style="color: #E6E6E6">(Name2)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//Нельзя сказать &quot;у меня уже есть выделенная память, на которой нужно построить объект&quot;</span></span>
-<span class="line"><span style="color: #6272A4">// или &quot;выдели объект, но я инициализирую его, у меня кастомные инициализаторы из архивов&quot;</span></span>
-<span class="line"><span style="color: #F8F8F2">Object </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">AllocateAndInitialize</span><span style="color: #F8F8F2">()</span></span>
+<span class="line"><span style="color: #6A9955">//Нельзя сказать &quot;у меня уже есть выделенная память, на которой нужно построить объект&quot;</span></span>
+<span class="line"><span style="color: #6A9955">// или &quot;выдели объект, но я инициализирую его, у меня кастомные инициализаторы из архивов&quot;</span></span>
+<span class="line"><span style="color: #E6E6E6">Object </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">AllocateAndInitialize</span><span style="color: #E6E6E6">()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//нужно обязательно создавать кастомный тип, хотя клиент может иметь тип для представления</span></span>
-<span class="line"><span style="color: #6272A4">// пример - QString для апи QT</span></span>
-<span class="line"><span style="color: #F8F8F2">Matrix </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">MakeMatrixFrom</span><span style="color: #F8F8F2">(FloatPointer)</span></span>
-<span class="line"><span style="color: #50FA7B">SetOrientation</span><span style="color: #F8F8F2">(Object, Matrix)</span></span>
+<span class="line"><span style="color: #6A9955">//нужно обязательно создавать кастомный тип, хотя клиент может иметь тип для представления</span></span>
+<span class="line"><span style="color: #6A9955">// пример - QString для апи QT</span></span>
+<span class="line"><span style="color: #E6E6E6">Matrix </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">MakeMatrixFrom</span><span style="color: #E6E6E6">(FloatPointer)</span></span>
+<span class="line"><span style="color: #DCDCAA">SetOrientation</span><span style="color: #E6E6E6">(Object, Matrix)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//связь с форматом файла, нельзя создать самому,</span></span>
-<span class="line"><span style="color: #6272A4">//  зависимость от формата и I/O функций</span></span>
-<span class="line"><span style="color: #F8F8F2">Object </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">ReadObject</span><span style="color: #F8F8F2">(filename)</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #6A9955">//связь с форматом файла, нельзя создать самому,</span></span>
+<span class="line"><span style="color: #6A9955">//  зависимость от формата и I/O функций</span></span>
+<span class="line"><span style="color: #E6E6E6">Object </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">ReadObject</span><span style="color: #E6E6E6">(filename)</span></span></code></pre></div></div></figure>
 <p><code>Запоминание (Retention)</code><br>Сохранение переданной ранее информации<br>Ведет к дублирование описания мира “внутри” библиотеки и в пользовательском коде<br>Сложность синхронизации состояний (комбинаторный рост от количества параметров) VS автоматизация работы после настройки</p>
 <p>Immediate mode API (<a target="_blank" rel="noopener" href="https://github.com/ocornut/imgui">imgui</a> как пример) — одна из идея отказа от запоминания</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #6272A4">//Настройка значений, которые повлияют на последующие вычисления</span></span>
-<span class="line"><span style="color: #50FA7B">SetTime</span><span style="color: #F8F8F2">(GlobalTime)</span></span>
-<span class="line"><span style="color: #50FA7B">SetPi</span><span style="color: #F8F8F2">(</span><span style="color: #BD93F9">3.14</span><span style="color: #FF79C6">f</span><span style="color: #F8F8F2">)</span></span>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">//Настройка значений, которые повлияют на последующие вычисления</span></span>
+<span class="line"><span style="color: #DCDCAA">SetTime</span><span style="color: #E6E6E6">(GlobalTime)</span></span>
+<span class="line"><span style="color: #DCDCAA">SetPi</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">3.14f</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//изменение положение потомка также зависит от родителя</span></span>
-<span class="line"><span style="color: #50FA7B">SetParent</span><span style="color: #F8F8F2">(ChildObject, ParentObject)</span></span>
-<span class="line"><span style="color: #50FA7B">UpdateOrientation</span><span style="color: #F8F8F2">(ChildObject)</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #6A9955">//изменение положение потомка также зависит от родителя</span></span>
+<span class="line"><span style="color: #DCDCAA">SetParent</span><span style="color: #E6E6E6">(ChildObject, ParentObject)</span></span>
+<span class="line"><span style="color: #DCDCAA">UpdateOrientation</span><span style="color: #E6E6E6">(ChildObject)</span></span></code></pre></div></div></figure>
 <p>Возможно, к “запоминанию” состояния можно отнести также некоторые идеи, которые предлагаются паттернами и парадигмами программирования:</p>
 <ul>
 <li>Асинхронное программирование с запоминанием точек продолжения программы (async/await)</li>
@@ -153,15 +153,15 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <li><a target="_blank" rel="noopener" href="https://github.com/spiiin/CadEditor/tree/master/CadEditor/settings_nes">CadEditor</a> — мой редактор уровней для NES игр. “Стандартный” путь для редакторов уровней — декларативные конфигурационные файлы. Императивный — скриптовый язык, позволяющий описать, как загружать уровни, за счёт чего можно добавлять в редактор сотни игр, несильно отличающихся между собой, но всё же отличающихся настолько, что сложно предугадать в декларативной системе заранее.</li>
 </ul>
 <p><code>Порядок вызовов (Flow Control)</code><br>Вызывает ли библиотека колбеки приложения или приложение функции библиотеки (и зовут ли функции библиотеки колбеки из приложения). Чем чаще необходимо осуществлять передачу управления, тем сложнее отслеживать это пользователю библиотеки.<br>Контроль на стороне приложения (почти всегда лучше) VS на стороне библиотеки</p>
-<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #6272A4">//Для открытия файла будет вызван колбек Open</span></span>
-<span class="line"><span style="color: #50FA7B">SetFileCallbacks</span><span style="color: #F8F8F2">(Open, Read, Close)</span></span>
-<span class="line"><span style="color: #F8F8F2">File </span><span style="color: #FF79C6">=</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">OpenFile</span><span style="color: #F8F8F2">(Filemame)</span></span>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">//Для открытия файла будет вызван колбек Open</span></span>
+<span class="line"><span style="color: #DCDCAA">SetFileCallbacks</span><span style="color: #E6E6E6">(Open, Read, Close)</span></span>
+<span class="line"><span style="color: #E6E6E6">File </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">OpenFile</span><span style="color: #E6E6E6">(Filemame)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #6272A4">//То же самое, но спрятано за ООП,</span></span>
-<span class="line"><span style="color: #6272A4">// где-то скрыто сохранён указатель на функцию открытия</span></span>
-<span class="line"><span style="color: #FF79C6">class</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD">MyHandler</span><span style="color: #F8F8F2">: </span><span style="color: #FF79C6">public</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">LibraryHandler</span><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #FF79C6">virtual</span><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">Open</span><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">char*</span><span style="color: #F8F8F2"> </span><span style="color: #FFB86C; font-style: italic">Filename</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"><span style="color: #F8F8F2">}</span></span></code></pre></div></div></figure>
+<span class="line"><span style="color: #6A9955">//То же самое, но спрятано за ООП,</span></span>
+<span class="line"><span style="color: #6A9955">// где-то скрыто сохранён указатель на функцию открытия</span></span>
+<span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">MyHandler</span><span style="color: #E6E6E6">: </span><span style="color: #569CD6">public</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">LibraryHandler</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">  </span><span style="color: #569CD6">virtual</span><span style="color: #E6E6E6"> </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">Open</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">char*</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">Filename</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
 <p>Ещё про свойства библиотек — <a href="/blog/1152347544/" title="Хорошие библиотеки">Хорошие библиотеки</a></p>
 <h2><span id="kopirovanie-luchshih">Копирование лучших</span><a href="#kopirovanie-luchshih" class="header-anchor">#</a></h2><p>Вместо написания чего-то с нуля нужно использовать или копировать лучших (смысл не пользоваться накоплненным software capital?).</p>
 <ul>

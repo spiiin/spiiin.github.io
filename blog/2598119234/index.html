@@ -46,9 +46,9 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Чаще всего такие массивы хранятся друг за другом, при этом промежуток между началами массивов равен количеству блоков. Чтобы найти в ROM такие SoA-массивы, мы должны узнать их длину, что можно сделать перебором всех вариантов (частенько в играх используется по 256 блоков, так что начинать проверку стоит с этого числа и постепенно его уменьшать). Я для такого поиска шарахнул регулярное выражение вида:</p>
 </li>
 </ol>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">def buildReWithStride(blockStr, stride): strideStr = r&quot;.{%d}&quot;%stride #пропускаем stride символов</span></span>
-<span class="line"><span style="color: #F8F8F2">  e = re.escape</span></span>
-<span class="line"><span style="color: #F8F8F2">  return e(blockStr[0]) + strideStr + e(blockStr[1]) + strideStr + e(blockStr[2]) + strideStr + e(blockStr[3])</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">def buildReWithStride(blockStr, stride): strideStr = r&quot;.{%d}&quot;%stride #пропускаем stride символов</span></span>
+<span class="line"><span style="color: #E6E6E6">  e = re.escape</span></span>
+<span class="line"><span style="color: #E6E6E6">  return e(blockStr[0]) + strideStr + e(blockStr[1]) + strideStr + e(blockStr[2]) + strideStr + e(blockStr[3])</span></span></code></pre></div></div></figure>
 <p> что, конечно, не самое лучшее решение, зато укладывается в пару строк кода. С такими методами поиска я приступил к охоте на блоки в играх.</p>
 <p><strong>Результаты находок разных типов</strong> </p>
 <p>Блоки 2x2, линейные: <a target="_blank" rel="noopener" href="http://ic.pics.livejournal.com/spiiin/20318251/46819/46819_original.png"><img src="http://ic.pics.livejournal.com/spiiin/20318251/46819/46819_300.png" alt></a></p>

@@ -22,34 +22,34 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>То есть просто выбирая случайные цифры, подобрать правильный пароль сложно. Но можно взять один из правильных паролей, сгенерированных игрой, и попробовать менять пары его символов. Данный метод изредка работает, из одного правильного пароля таким образом удается получить еще 3-4, что для начала неплохо, но получить из этого какие-то правила пока сложно.</p>
 <p>Дальше можно набрать как можно больше паролей и сравнивать разность наиболее близких по смыслу пар паролей (метод “черного ящика” - внутренности системы неизвестны, зато можно легко анализировать её входы и выходы). Для получение большого числа паролей нужно как-то ускорить процесс их получения. Например, можно использовать поиск читов в эмуляторе <code>FceUltra</code> или <code>ArtMoney</code>.</p>
 <p>С помощью поиска нужно найти в памяти ячейки, которые отвечают за кол-во минут до конца матча и счет. Так можно за несколько секунд прописывать себе победу и сохранять сгенерированный игрой пароль. Полученная таблица для всех побежденных 1-х соперников сборной Бразилии :</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Германия    GDJGMBAFA</span></span>
-<span class="line"><span style="color: #F8F8F2">Италия      LLKGMFONI</span></span>
-<span class="line"><span style="color: #F8F8F2">Голландия   FLKGABPGI</span></span>
-<span class="line"><span style="color: #F8F8F2">Аргентина   DLLHNBCNA</span></span>
-<span class="line"><span style="color: #F8F8F2">СССР        DNMGMBCNA</span></span>
-<span class="line"><span style="color: #F8F8F2">Польша      JLMGMBCNA</span></span>
-<span class="line"><span style="color: #F8F8F2">Англия      DLHIMBONA</span></span>
-<span class="line"><span style="color: #F8F8F2">Испания     GDLIMBAFA</span></span>
-<span class="line"><span style="color: #F8F8F2">Колумбия    LLMIMBOPI</span></span>
-<span class="line"><span style="color: #F8F8F2">Шотландия   FPMIMBPGI</span></span>
-<span class="line"><span style="color: #F8F8F2">Франция     ELJINBCOA</span></span>
-<span class="line"><span style="color: #F8F8F2">Кореея      DLKIMBCOE</span></span>
-<span class="line"><span style="color: #F8F8F2">Япония      FLKIMBDCA</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">Германия    GDJGMBAFA</span></span>
+<span class="line"><span style="color: #E6E6E6">Италия      LLKGMFONI</span></span>
+<span class="line"><span style="color: #E6E6E6">Голландия   FLKGABPGI</span></span>
+<span class="line"><span style="color: #E6E6E6">Аргентина   DLLHNBCNA</span></span>
+<span class="line"><span style="color: #E6E6E6">СССР        DNMGMBCNA</span></span>
+<span class="line"><span style="color: #E6E6E6">Польша      JLMGMBCNA</span></span>
+<span class="line"><span style="color: #E6E6E6">Англия      DLHIMBONA</span></span>
+<span class="line"><span style="color: #E6E6E6">Испания     GDLIMBAFA</span></span>
+<span class="line"><span style="color: #E6E6E6">Колумбия    LLMIMBOPI</span></span>
+<span class="line"><span style="color: #E6E6E6">Шотландия   FPMIMBPGI</span></span>
+<span class="line"><span style="color: #E6E6E6">Франция     ELJINBCOA</span></span>
+<span class="line"><span style="color: #E6E6E6">Кореея      DLKIMBCOE</span></span>
+<span class="line"><span style="color: #E6E6E6">Япония      FLKIMBDCA</span></span></code></pre></div></div></figure>
 <p>Соседние пароли отличаются друг от друга довольно сильно :( Тут мне не повезло, так как я взял в качестве своей команды сборную Бразилии, стоящую в списке команд первой, и долго не замечал той вещи, что если “выбивать” Бразилию, то разность паролей от этого меняется меньше всего, что должно было бы сразу сигнализировать, что на пароль влияют не только выбитые команды, но и номер побежденного соперника. </p>
 <p>Но к этому я пришел только, когда заметил, что при выбивании команд в разном порядке можно получить разные пароли. Зато в ходе экспериментов оказалось, что правильных паролей существует во 30 раз больше (каждый раз игра может сгенерировать 15 разных, в зависимости от текущей команды соперника, и, кроме того, при поражении выдается специальный пароль, который позволяет сыграть с той же самой командой, без жеребьевки, что еще вдвое удваивает количество верных пассов). После этого осталось только найти в памяти с помощью того же поиска читов номер текущего соперника и занулять его сразу после финального свистка судьи. Так получилась “чистая таблица” в которой были исключительно эффекты от победы над командой:</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">Германия    EDJGMDONA</span></span>
-<span class="line"><span style="color: #F8F8F2">Уругвай     EFJGMDONI</span></span>
-<span class="line"><span style="color: #F8F8F2">Англия      EFFGMDONI</span></span>
-<span class="line"><span style="color: #F8F8F2">Голландия   EFFGADOOI</span></span>
-<span class="line"><span style="color: #F8F8F2">Италия      MFFGAHOOI</span></span>
-<span class="line"><span style="color: #F8F8F2">Испания     LNMOIHPOI</span></span>
-<span class="line"><span style="color: #F8F8F2">Аргентина   LNOPIHPOI</span></span>
-<span class="line"><span style="color: #F8F8F2">Япония      LNOPIHAKI</span></span>
-<span class="line"><span style="color: #F8F8F2">Польша      PNOPJHACA</span></span>
-<span class="line"><span style="color: #F8F8F2">Корея       PNOPJHACM</span></span>
-<span class="line"><span style="color: #F8F8F2">Колумбия    IFOPJHAEM</span></span>
-<span class="line"><span style="color: #F8F8F2">СССР        AFNDIHADM</span></span>
-<span class="line"><span style="color: #F8F8F2">Франция     BFPDIHADM</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">Германия    EDJGMDONA</span></span>
+<span class="line"><span style="color: #E6E6E6">Уругвай     EFJGMDONI</span></span>
+<span class="line"><span style="color: #E6E6E6">Англия      EFFGMDONI</span></span>
+<span class="line"><span style="color: #E6E6E6">Голландия   EFFGADOOI</span></span>
+<span class="line"><span style="color: #E6E6E6">Италия      MFFGAHOOI</span></span>
+<span class="line"><span style="color: #E6E6E6">Испания     LNMOIHPOI</span></span>
+<span class="line"><span style="color: #E6E6E6">Аргентина   LNOPIHPOI</span></span>
+<span class="line"><span style="color: #E6E6E6">Япония      LNOPIHAKI</span></span>
+<span class="line"><span style="color: #E6E6E6">Польша      PNOPJHACA</span></span>
+<span class="line"><span style="color: #E6E6E6">Корея       PNOPJHACM</span></span>
+<span class="line"><span style="color: #E6E6E6">Колумбия    IFOPJHAEM</span></span>
+<span class="line"><span style="color: #E6E6E6">СССР        AFNDIHADM</span></span>
+<span class="line"><span style="color: #E6E6E6">Франция     BFPDIHADM</span></span></code></pre></div></div></figure>
 <p>Здесь уже точно видно, что каждая из команд _почти_ всегда выбивается взаимным изменением пары символов (например, для устранения Франции 1-й символ увеличивается на 1, а третий - на 2). Запомнив эту разность, ее можно проверить на другом исходном правильном пароле и убедиться, что действительно выбивается та же команда. _почти_ всегда. </p>
 <p>Примерно в одном из восьми случаев внезапно вместо пары символов меняются почти все. Это показывает, что в генераторе пароля где-то присутствует обратная связь, мешающая просто убирать команды таким методом.</p>
 <p>Кажется, что этот иногда работающий способ - лучший, которого можно добиться, просто анализируя генерируемые игрой пароли, если только вы не Шерлок Холмс и не прогнозирующая нейронная сеть. </p>

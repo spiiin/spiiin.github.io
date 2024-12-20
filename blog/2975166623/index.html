@@ -49,29 +49,29 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <h2><span id="problema-nazvaniya">Проблема названия</span><a href="#problema-nazvaniya" class="header-anchor">#</a></h2><p>Вывод заметки — если <em>script</em> в названии не соответствует тому, что представляет собой язык, и только отвлекает от того, на что он потенциально способен (да и <em>da</em> - в названии, отсылка к названию движка Gaijin — <strong>Da</strong>gor Engine, язык начинался как попытка сделать замену предыдущим скриптовым языкам для движка, но уже может использовать и без него), то этого достаточно для того, чтобы переименовать язык во что-то типа <strong><code>dasLang</code></strong>, так как <strong>das</strong>-часть уже закрепилась в качестве расширения файлов для языка.</p>
 <p>Как по мне — прикольный ход, новое название сохраняет узнаваемость для знакомых со старым, и перестаёт исправляться “умным” поиском на что-то другое и выдавать нерелевантные результаты, хотя и читается по немецки как “так долго”.</p>
 <p>Побалуюсь немного на тему того, сокращением от чего могло бы быть это название, по аналогии, как <code>Nimrod</code>, сократилось до <a target="_blank" rel="noopener" href="https://nim-lang.org/">nim-lang</a> для nim. Случайные свойства и идеи языка, которые первыми пришли мне на ум после изучения <code>daScript</code>:</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">- скорость цикла разработки</span></span>
-<span class="line"><span style="color: #F8F8F2">- выразительность</span></span>
-<span class="line"><span style="color: #F8F8F2">- экономность ресурсов</span></span>
-<span class="line"><span style="color: #F8F8F2">- создание абстракций</span></span>
-<span class="line"><span style="color: #F8F8F2">- чистота (stateless)</span></span>
-<span class="line"><span style="color: #F8F8F2">- контроль ошибок</span></span>
-<span class="line"><span style="color: #F8F8F2">- встраиваемость (комбинируемость с другими)</span></span>
-<span class="line"><span style="color: #F8F8F2">- типизация</span></span>
-<span class="line"><span style="color: #F8F8F2">- быстрая интерпретация</span></span>
-<span class="line"><span style="color: #F8F8F2">- дружественность к особенностям железа (hardware-friendly)</span></span>
-<span class="line"><span style="color: #F8F8F2">- открытость</span></span>
-<span class="line"><span style="color: #F8F8F2">- бесплатность</span></span>
-<span class="line"><span style="color: #F8F8F2">- быстрые контексты (fast context reset)</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">- скорость цикла разработки</span></span>
+<span class="line"><span style="color: #E6E6E6">- выразительность</span></span>
+<span class="line"><span style="color: #E6E6E6">- экономность ресурсов</span></span>
+<span class="line"><span style="color: #E6E6E6">- создание абстракций</span></span>
+<span class="line"><span style="color: #E6E6E6">- чистота (stateless)</span></span>
+<span class="line"><span style="color: #E6E6E6">- контроль ошибок</span></span>
+<span class="line"><span style="color: #E6E6E6">- встраиваемость (комбинируемость с другими)</span></span>
+<span class="line"><span style="color: #E6E6E6">- типизация</span></span>
+<span class="line"><span style="color: #E6E6E6">- быстрая интерпретация</span></span>
+<span class="line"><span style="color: #E6E6E6">- дружественность к особенностям железа (hardware-friendly)</span></span>
+<span class="line"><span style="color: #E6E6E6">- открытость</span></span>
+<span class="line"><span style="color: #E6E6E6">- бесплатность</span></span>
+<span class="line"><span style="color: #E6E6E6">- быстрые контексты (fast context reset)</span></span></code></pre></div></div></figure>
 <p>Если попробовать аппроксимировать слова вместе, максимально абстрактно склеивая их друг с другом, можно получить что-то такое:</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">скорость (4) &lt;- скорость разработки + быстрая интерпретация + hardware friendly + fast context reset</span></span>
-<span class="line"><span style="color: #F8F8F2">низкоуровневость (2) &lt;- экономность + hardware friendly</span></span>
-<span class="line"><span style="color: #F8F8F2">защита (3) &lt;- контроль + типизация + чистота</span></span>
-<span class="line"><span style="color: #F8F8F2">свобода (4) &lt;- выразительность + комбинируемость + бесплатность + открытость</span></span>
-<span class="line"><span style="color: #F8F8F2">виртуальность (2) &lt;- выразительность + создание абстракций</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">скорость (4) &lt;- скорость разработки + быстрая интерпретация + hardware friendly + fast context reset</span></span>
+<span class="line"><span style="color: #E6E6E6">низкоуровневость (2) &lt;- экономность + hardware friendly</span></span>
+<span class="line"><span style="color: #E6E6E6">защита (3) &lt;- контроль + типизация + чистота</span></span>
+<span class="line"><span style="color: #E6E6E6">свобода (4) &lt;- выразительность + комбинируемость + бесплатность + открытость</span></span>
+<span class="line"><span style="color: #E6E6E6">виртуальность (2) &lt;- выразительность + создание абстракций</span></span></code></pre></div></div></figure>
 <p>И еще разок:</p>
-<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2">производительность/performance (6) &lt;- низкоуровневость + скорость</span></span>
-<span class="line"><span style="color: #F8F8F2">свобода/freedom (4)</span></span>
-<span class="line"><span style="color: #F8F8F2">безопасность/safety (5) &lt;- защита + виртуальность</span></span></code></pre></div></div></figure>
+<figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">производительность/performance (6) &lt;- низкоуровневость + скорость</span></span>
+<span class="line"><span style="color: #E6E6E6">свобода/freedom (4)</span></span>
+<span class="line"><span style="color: #E6E6E6">безопасность/safety (5) &lt;- защита + виртуальность</span></span></code></pre></div></div></figure>
 <p>Уже похоже на motto:</p>
 <blockquote><p>“Performance &amp; creative freedom in safety environment”</p>
 </blockquote>

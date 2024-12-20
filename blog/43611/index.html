@@ -19,73 +19,73 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Также существует язык Objective-C++, который позволяет более-менее свободно смешивать C++/Objective-C код. Компилятор gcc по умолчанию считает файлы с расширением .m содержащими код на Objective-C, а файлы с расширением .mm - код на языка Objictive-C++, но ему можно явно указать язык с помощью ключа -x В универсальных заголовочных файлах определить, в какой язык включается файл, можно, проверяя наличие макросимволов __OBJC__ или __cplusplus. </p>
 <p>Чтобы вызывать Objective-C код из языка С++, удобнее всего сделать обычный С++-класс-обертку, содержащий членом указатель на класс Objective-C, так как наследование от него невозможно. </p>
 <p>Если возможности создать класс нет (Objective-C, в отличие от Objective-C++, не дает возможности создавать C++-классы), то проще всего заворачивать вызовы в глобальные функции, и звать их из С++. При этом такие функции, как и обычные сишные, в С++ коде надо объявлять в блоке extern “C”, так как компилятор манглит их имена по правилам языка си. Проще это всё показать примером:  </p>
-<figure class="shiki objc"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #6272A4">//h-файл (общий заголовок)</span></span>
-<span class="line"><span style="color: #F8F8F2"> class ObjClassWrapper</span></span>
-<span class="line"><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">   ObjClass </span><span style="color: #FF79C6">*</span><span style="color: #F8F8F2"> objClass1;</span></span>
-<span class="line"><span style="color: #F8F8F2">   </span><span style="color: #50FA7B">ObjClassWrapper</span><span style="color: #F8F8F2">(); { [[objClass1 </span><span style="color: #8BE9FD">alloc</span><span style="color: #F8F8F2">] </span><span style="color: #8BE9FD">init</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2">   </span><span style="color: #FF79C6">~</span><span style="color: #50FA7B">ObjClassWrapper</span><span style="color: #F8F8F2">(); { [objClass1 </span><span style="color: #8BE9FD">dealloc</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2">   </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">method1</span><span style="color: #F8F8F2">(); { [objClass1 </span><span style="color: #8BE9FD">method1</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2"> };</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #6272A4">//mm-файл (язык Objective-C++)</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">@interface</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">ObjClass</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">@end</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">@implementation</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">ObjClass</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2">) method1</span></span>
-<span class="line"><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">   </span><span style="color: #8BE9FD">NSLog</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">Method1</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">);</span></span>
-<span class="line"><span style="color: #F8F8F2"> }</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">@end</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> ObjClassWrapper::</span><span style="color: #50FA7B">ObjClassWrapper</span><span style="color: #F8F8F2">() { [[objClass1 </span><span style="color: #8BE9FD">alloc</span><span style="color: #F8F8F2">] </span><span style="color: #8BE9FD">init</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2"> ObjClassWrapper::</span><span style="color: #FF79C6">~</span><span style="color: #50FA7B">ObjClassWrapper</span><span style="color: #F8F8F2">() { [objClass1 </span><span style="color: #8BE9FD">dealloc</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> ObjClassWrapper::</span><span style="color: #50FA7B">method1</span><span style="color: #F8F8F2">(); { [objClass1 </span><span style="color: #8BE9FD">method1</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #6272A4">//m-файл (язык Objective-C)</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">@implementation</span><span style="color: #F8F8F2"> </span><span style="color: #8BE9FD; font-style: italic">StaticObjClass</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">+</span><span style="color: #F8F8F2">(</span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2">) method2</span></span>
-<span class="line"><span style="color: #F8F8F2"> {</span></span>
-<span class="line"><span style="color: #F8F8F2">   </span><span style="color: #8BE9FD">NSLog</span><span style="color: #F8F8F2">(</span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">Method2</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2">);</span></span>
-<span class="line"><span style="color: #F8F8F2"> }</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">@end</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">method2</span><span style="color: #F8F8F2">() { [StaticObjClassObjClass </span><span style="color: #8BE9FD">method2</span><span style="color: #F8F8F2">]; }</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #6272A4">//c++-файл</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">#include</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&lt;</span><span style="color: #F1FA8C">universalHeader.h</span><span style="color: #E9F284">&gt;</span><span style="color: #F8F8F2">   </span><span style="color: #6272A4">//объявляем класс-обертку</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #FF79C6">extern</span><span style="color: #F8F8F2"> </span><span style="color: #E9F284">&quot;</span><span style="color: #F1FA8C">C</span><span style="color: #E9F284">&quot;</span><span style="color: #F8F8F2"> { </span><span style="color: #FF79C6">void</span><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">method2</span><span style="color: #F8F8F2">(); } </span><span style="color: #6272A4">//объявляем метод-обертку</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span></span>
-<span class="line"><span style="color: #F8F8F2"> ObjClassWrapper w; w.</span><span style="color: #50FA7B">method1</span><span style="color: #F8F8F2">();  </span><span style="color: #6272A4">//зовем код на Objective-C</span></span>
-<span class="line"><span style="color: #F8F8F2"> </span><span style="color: #50FA7B">method2</span><span style="color: #F8F8F2">();</span></span>
-<span class="line"><span style="color: #F8F8F2"> ```</span></span>
+<figure class="shiki objc"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">//h-файл (общий заголовок)</span></span>
+<span class="line"><span style="color: #E6E6E6"> class ObjClassWrapper</span></span>
+<span class="line"><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">   ObjClass </span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> objClass1;</span></span>
+<span class="line"><span style="color: #E6E6E6">   </span><span style="color: #DCDCAA">ObjClassWrapper</span><span style="color: #E6E6E6">(); { [[objClass1 </span><span style="color: #DCDCAA">alloc</span><span style="color: #E6E6E6">] </span><span style="color: #DCDCAA">init</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6">   </span><span style="color: #D4D4D4">~</span><span style="color: #DCDCAA">ObjClassWrapper</span><span style="color: #E6E6E6">(); { [objClass1 </span><span style="color: #DCDCAA">dealloc</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6">   </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">method1</span><span style="color: #E6E6E6">(); { [objClass1 </span><span style="color: #DCDCAA">method1</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6"> };</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #6A9955">//mm-файл (язык Objective-C++)</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">@interface</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">ObjClass</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">@end</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">@implementation</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">ObjClass</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">void</span><span style="color: #E6E6E6">) method1</span></span>
+<span class="line"><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">   </span><span style="color: #DCDCAA">NSLog</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;Method1&quot;</span><span style="color: #E6E6E6">);</span></span>
+<span class="line"><span style="color: #E6E6E6"> }</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">@end</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> ObjClassWrapper::</span><span style="color: #DCDCAA">ObjClassWrapper</span><span style="color: #E6E6E6">() { [[objClass1 </span><span style="color: #DCDCAA">alloc</span><span style="color: #E6E6E6">] </span><span style="color: #DCDCAA">init</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6"> ObjClassWrapper::</span><span style="color: #D4D4D4">~</span><span style="color: #DCDCAA">ObjClassWrapper</span><span style="color: #E6E6E6">() { [objClass1 </span><span style="color: #DCDCAA">dealloc</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> ObjClassWrapper::</span><span style="color: #DCDCAA">method1</span><span style="color: #E6E6E6">(); { [objClass1 </span><span style="color: #DCDCAA">method1</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #6A9955">//m-файл (язык Objective-C)</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">@implementation</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">StaticObjClass</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">void</span><span style="color: #E6E6E6">) method2</span></span>
+<span class="line"><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">   </span><span style="color: #DCDCAA">NSLog</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">&quot;Method2&quot;</span><span style="color: #E6E6E6">);</span></span>
+<span class="line"><span style="color: #E6E6E6"> }</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">@end</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">method2</span><span style="color: #E6E6E6">() { [StaticObjClassObjClass </span><span style="color: #DCDCAA">method2</span><span style="color: #E6E6E6">]; }</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #6A9955">//c++-файл</span></span>
+<span class="line"><span style="color: #569CD6"> </span><span style="color: #C586C0">#include</span><span style="color: #569CD6"> </span><span style="color: #CE9178">&lt;universalHeader.h&gt;</span><span style="color: #569CD6">   </span><span style="color: #6A9955">//объявляем класс-обертку</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #569CD6">extern</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;C&quot;</span><span style="color: #E6E6E6"> { </span><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">method2</span><span style="color: #E6E6E6">(); } </span><span style="color: #6A9955">//объявляем метод-обертку</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span></span>
+<span class="line"><span style="color: #E6E6E6"> ObjClassWrapper w; w.</span><span style="color: #DCDCAA">method1</span><span style="color: #E6E6E6">();  </span><span style="color: #6A9955">//зовем код на Objective-C</span></span>
+<span class="line"><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">method2</span><span style="color: #E6E6E6">();</span></span>
+<span class="line"><span style="color: #E6E6E6"> ```</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">Про смешивание языков и вызов кода на С</span><span style="color: #FF79C6">++</span><span style="color: #F8F8F2"> из языка Objective</span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2">C есть статья </span><span style="color: #FF79C6">&lt;</span><span style="color: #F8F8F2">http:</span><span style="color: #6272A4">//touchdev.ru/documents/963&gt;</span></span>
+<span class="line"><span style="color: #E6E6E6">Про смешивание языков и вызов кода на С</span><span style="color: #D4D4D4">++</span><span style="color: #E6E6E6"> из языка Objective</span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6">C есть статья </span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">http:</span><span style="color: #6A9955">//touchdev.ru/documents/963&gt;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">**</span><span style="color: #BD93F9">2.</span><span style="color: #F8F8F2"> True</span><span style="color: #FF79C6">/</span><span style="color: #F8F8F2">Yes</span><span style="color: #FF79C6">**</span></span>
+<span class="line"><span style="color: #D4D4D4">**</span><span style="color: #B5CEA8">2.</span><span style="color: #E6E6E6"> True</span><span style="color: #D4D4D4">/</span><span style="color: #E6E6E6">Yes</span><span style="color: #D4D4D4">**</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">Всегда интересно ([раз](http:</span><span style="color: #6272A4">//stackoverflow.com/questions/615702/is-there-a-difference-between-yes-no-true-false-and-true-false-in-objective-c) [два](http://stackoverflow.com/questions/541289/objective-c-bool-vs-boo) [три](http://stackoverflow.com/questions/6420987/why-does-objective-c-use-yes-no-macro-convention-instead-of-true-false)), нафига разные ключевые слова?</span></span>
+<span class="line"><span style="color: #E6E6E6">Всегда интересно ([раз](http:</span><span style="color: #6A9955">//stackoverflow.com/questions/615702/is-there-a-difference-between-yes-no-true-false-and-true-false-in-objective-c) [два](http://stackoverflow.com/questions/541289/objective-c-bool-vs-boo) [три](http://stackoverflow.com/questions/6420987/why-does-objective-c-use-yes-no-macro-convention-instead-of-true-false)), нафига разные ключевые слова?</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">[Главное, чтобы </span><span style="color: #8BE9FD">помещалось</span><span style="color: #F8F8F2">](http:</span><span style="color: #6272A4">//wasm.ru/article.php?article=1022005)</span></span>
+<span class="line"><span style="color: #E6E6E6">[Главное, чтобы </span><span style="color: #DCDCAA">помещалось</span><span style="color: #E6E6E6">](http:</span><span style="color: #6A9955">//wasm.ru/article.php?article=1022005)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">**</span><span style="color: #BD93F9">3.</span><span style="color: #F8F8F2"> Динамический Objective</span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2">C</span><span style="color: #FF79C6">**</span></span>
+<span class="line"><span style="color: #D4D4D4">**</span><span style="color: #B5CEA8">3.</span><span style="color: #E6E6E6"> Динамический Objective</span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6">C</span><span style="color: #D4D4D4">**</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF79C6">**</span><span style="color: #BD93F9">3.1</span><span style="color: #FF79C6">**</span></span>
-<span class="line"><span style="color: #F8F8F2">Так как Objective</span><span style="color: #FF79C6">-</span><span style="color: #F8F8F2">C является динамической веткой развития языка С</span><span style="color: #FF79C6">++</span><span style="color: #F8F8F2">, то проверка наличия методов у экземляров выполняется только во время запуска приложения.</span></span>
+<span class="line"><span style="color: #D4D4D4">**</span><span style="color: #B5CEA8">3.1</span><span style="color: #D4D4D4">**</span></span>
+<span class="line"><span style="color: #E6E6E6">Так как Objective</span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6">C является динамической веткой развития языка С</span><span style="color: #D4D4D4">++</span><span style="color: #E6E6E6">, то проверка наличия методов у экземляров выполняется только во время запуска приложения.</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">Методы среды выполнения, позволяющие динамически оперировать классами и методами классов, находятся в библиотеке `libobjc.A.dylib`, которая подключается к любой программе.</span></span>
+<span class="line"><span style="color: #E6E6E6">Методы среды выполнения, позволяющие динамически оперировать классами и методами классов, находятся в библиотеке `libobjc.A.dylib`, которая подключается к любой программе.</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #F8F8F2">С помощью них можно, например, сделать подмену одного класса другим во всех местах, в которых будет обращения к оригинальному классу:</span></span></code></pre></div></div></figure>
-<p>[[MyBundle class] poseAsClass:[NSBundle class]]; //заменяем класс бандла своим, переопределяя его стандартное поведение.<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki dracula"><code><span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">**3.2**</span></span>
-<span class="line"><span style="color: #F8F8F2">Однако такой метод уже признан apple устаревшим и вместо него можно подменять отдельные методы класса при помощи `class_getInstanceMethod` и свойства `method_imp` у селекторов класса. </span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">Описание интересного трика с подменой метода :</span></span>
-<span class="line"><span style="color: #F8F8F2">&lt;http://www.cocoadev.com/index.pl?MethodSwizzling&gt;</span></span>
-<span class="line"><span style="color: #F8F8F2"></span></span>
-<span class="line"><span style="color: #F8F8F2">**3.3**</span></span>
-<span class="line"><span style="color: #F8F8F2">Помимо этого в самих классах также можно перегрузить служебные методы, используемые средой выполнения, например, присвоив новый класс свойству isa, проверяющему, какому классу принадлежит объект. Члены класса таким способом поменять нельзя, зато можно полностью сменить интерфейс.</span></span></code></pre></div></div></figure><br>obj-&gt;isa = [MyClass class];<br>```</p>
+<span class="line"><span style="color: #E6E6E6">С помощью них можно, например, сделать подмену одного класса другим во всех местах, в которых будет обращения к оригинальному классу:</span></span></code></pre></div></div></figure>
+<p>[[MyBundle class] poseAsClass:[NSBundle class]]; //заменяем класс бандла своим, переопределяя его стандартное поведение.<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">**3.2**</span></span>
+<span class="line"><span style="color: #E6E6E6">Однако такой метод уже признан apple устаревшим и вместо него можно подменять отдельные методы класса при помощи `class_getInstanceMethod` и свойства `method_imp` у селекторов класса. </span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">Описание интересного трика с подменой метода :</span></span>
+<span class="line"><span style="color: #E6E6E6">&lt;http://www.cocoadev.com/index.pl?MethodSwizzling&gt;</span></span>
+<span class="line"><span style="color: #E6E6E6"></span></span>
+<span class="line"><span style="color: #E6E6E6">**3.3**</span></span>
+<span class="line"><span style="color: #E6E6E6">Помимо этого в самих классах также можно перегрузить служебные методы, используемые средой выполнения, например, присвоив новый класс свойству isa, проверяющему, какому классу принадлежит объект. Члены класса таким способом поменять нельзя, зато можно полностью сменить интерфейс.</span></span></code></pre></div></div></figure><br>obj-&gt;isa = [MyClass class];<br>```</p>
 <p><strong>3.4</strong><br>Или можно перегрузить методы <code>forwardInvocation:</code> и <code>methodSignatureForSelector:</code> проверяющие само наличие метода у объекта<br><a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/instm/NSObject/forwardInvocation:">ссылка</a></p>
 <p><strong>3.5</strong><br>Ну и в самом языке есть возможность расширения существующих классов, вплоть до базового <code>NSObject</code>‘а, используя категории<br><a target="_blank" rel="noopener" href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjectiveC/Chapters/ocCategories.html#//apple_ref/doc/uid/TP30001163-CH20-SW1">ссылка</a></p>
 
