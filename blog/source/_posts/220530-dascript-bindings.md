@@ -31,7 +31,7 @@ int main( int, char * [] ) {
 ```
 
 Теперь в das-скрипте можно импортировать модуль `cbind`, который предоставляет функции-обёртки над библиотекой `clang`, а главное -- `cbind_boost`, классы, с помощью которых можно настроить поведение генераторы, без низкоуровневого обращения к c-апи clang-а:
-```fsharp
+```dascript
 require cbind
 require cbind_boost
 ```
@@ -56,7 +56,7 @@ require cbind_boost
 Также генерируются, но вызывают последующие ошибки компиляции, функции (в лучших традициях текстов ошибок шаблонов C++), получающие аргументы POD-типов по значению.
 
 Для таких функций предполагается добавление их в список пропускаемых при автоматической генерации и последующее написания обработчика вручную:
-```fsharp
+```dascript
 //переопределение метода AnyGenBind
  def override skip_anyFunction ( var c : CXCursor; isMethod : bool )
         if AnyGenBind`skip_anyFunction(self, c, isMethod)
@@ -79,7 +79,7 @@ require cbind_boost
 
 Стартовый код генератора:
 
-```fsharp
+```dascript
 require cbind/cbind_boost
 require daslib/safe_addr
 require daslib/strings
@@ -174,7 +174,7 @@ msgpack_pack_unsigned_long
 
 Попытаемся портировать тестовый [пример](https://github.com/msgpack/msgpack-c/blob/c_master/example/simple_c.c) библиотеки с `MessagePack` с языка C на daScript:
 
-```fsharp
+```dascript
 require msgpack
 
 [export]

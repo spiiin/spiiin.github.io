@@ -24,6 +24,9 @@ start: 981,
 {% endyoutuber %}
 Misha Nestor - Антропологический менеджмент и лидерство
 
+*update 24-06-09*
+[Making Games](https://etodd.io/2023/06/27/making-games/) -- статья Эвана Тодда о поиске смысла в желании разрабатывать игры
+
 Миф -- не о поиске магии или мистике, а о совпадении ценностей и поиске смыслов.
 
 {% nomnoml '{"style":"background-color:white;text-align:center;"}'%}
@@ -61,7 +64,7 @@ Misha Nestor - Антропологический менеджмент и лид
 
 **Примеры вопросов на собеседованиях в геймдев-компании**
 [Интервью глазами пострадавшего](https://web.archive.org/web/20191006063124/http://blog.gamedeff.com/?p=64) -- образец интервью из 2007, Midway Home Entertaiment
-[Interviewing for Game Programming](Interviewing for Game Programming) -- более свежий образец, примерно такого же уровня
+[Interviewing for Game Programming](https://lazyfoo.net/articles/article12_interviewing-for-game-programming/index.php) -- более свежий образец, примерно такого же уровня
 
 **Варианты того, что можно и нужно изучать**
 (список направлений для геймдева, навскидку)

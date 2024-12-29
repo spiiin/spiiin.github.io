@@ -52,7 +52,7 @@ target_link_libraries(sfmlApp
 ```
 
 Затем в хост-приложении на C++:
-```fsharp
+```dascript
 //подключение заголовка с определением модуля
 #include <dasSFML/src/dasSFML.h>
 ...
@@ -68,7 +68,7 @@ target_link_libraries(sfmlApp
 
 `run_script` вызывает метод `main` из примера, который создаёт SFML-окно и запускает цикл обработки сообщений в нём.
 
-```fsharp
+```dascript
 [export]
 def main
     using(VideoMode(640u,480u), "SFML window", uint(WindowStyle Default), ContextSettings()) <| $ ( var window : RenderWindow# )
@@ -100,7 +100,7 @@ def main
 [dasbox_sfml](https://github.com/spiiin/dasbox_sfml) -- порт дасбокса с включенным модулем dasSFML.
 
 Базовый пример на нём выглядит так:
-```fsharp
+```dascript
 require daslib/media
 require sfml
 require dasbox_sfml
@@ -134,7 +134,7 @@ def draw
 
 - `using()` - создание переменной [временного типа](https://dascript.org/doc/reference/language/temporary.html), который существует только в пределах блока using
 
-```fsharp
+```dascript
 using() <| $(var fs: das_string#)
     fs := "hello world"
     //тут можно использовать переменную, в том числе передавать в другие функции
@@ -146,7 +146,7 @@ using() <| $(var fs: das_string#)
 - `interface` - приведение к базовому типу
 
 Генератор привязок на C++ позволяет передать отношение наследования двух C++ типов в daScript так:
-```fsharp
+```dascript
 addExtern< decltype(&with_interface<sf::Sprite,sf::Transformable>), with_interface<sf::Sprite,sf::Transformable> >(*this,lib,"interface",SideEffects::invoke,"with_interface<sf::Sprite,sf::Transformable>");
 ```
 
@@ -156,7 +156,7 @@ addExtern< decltype(&with_interface<sf::Sprite,sf::Transformable>), with_interfa
 
 Следующий пример -- рендер в текстуру и отображение её на экране. В SFML для этого можно использовать класс [RenderTexture](https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1RenderTexture.php)
 
-```fsharp
+```dascript
 def draw
     withRenderTarget <| $(var rt: RenderTarget&)
         clear(rt, Color(0u,255u,0u,255u))
@@ -177,7 +177,7 @@ def draw
 
 ## Полупрозрачные объекты в RenderTarget
 
-```fsharp
+```dascript
 //рендер двух полупрозрачных кругов
 def drawCircles(var rt: RenderTarget&)
     using(125.0f, 128ul) <| $(var shape: CircleShape#)
@@ -289,7 +289,7 @@ m3_direct == m3_sourceover
 ```
 
 Код смешивания в режиме `Source-Over`, правильный результат:
-```fsharp
+```dascript
 def draw
     withRenderTarget <| $(var rt: RenderTarget&)
         rt |> clear(Color(255u,255u,255u,255u))
@@ -319,7 +319,7 @@ def draw
 
 Можно пойти другим путём -- убрать умножение цвета на альфу при смешивании совсем, но производить его 1 раз в шейдере -- тогда не нужно переключать режим прозрачности, но нужно переключать шейдер, с которым отрисован объект. Преимуществом такого способами может быть то, что исходное изображение часто можно домножить на альфа-канал еще до запуска приложения (в демо-примере изображение генерится динамически, поэтому умножение сделано в шейдере).
 
-```fsharp
+```dascript
 var fragmentShaderTex = (
 "uniform sampler2D texture;
 void main()
@@ -417,7 +417,7 @@ ONE * srcR + ONE_MINUS_SRC_ALPHA * dstR
 - Вывод объекта с изменённым режимом блендинга и шейдером в `SFML` инкапуслирован в объекте `RenderStates`
 - Вместо создания временных типов в этом примере используются "обычные" для `daScript` указатели:
 
-```fsharp
+```dascript
 var shaderPremult : Shader? = new Shader()
 ```
 Такие [указатели](https://dascript.org/doc/reference/language/datatypes.html#pointers) хранят объект в куче и владеют им, по семантике близко к `std::unique_ptr`. При желании можно освободить объект вручную, присвоив указателю `nullptr`.

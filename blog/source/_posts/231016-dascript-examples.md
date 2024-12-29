@@ -13,7 +13,7 @@ tags: dascript
 ## Вычислить первые N простых чисел
 .. и вернуть результат в качестве массива.
 
-```fsharp
+```dascript
 def calc_primes(n: int; var a:array<int>)
     a |> clear
     a |> reserve(n)
@@ -63,7 +63,7 @@ https://github.com/spiiin/dascript_trivial_examples/blob/main/primes/primes.das
 
 Задача на то, чтобы найти в стандартной библиотеке языка нужные функциии
 
-```fsharp
+```dascript
 require fio
 require strings
 require daslib/strings_boost
@@ -102,7 +102,7 @@ https://github.com/spiiin/dascript_trivial_examples/blob/main/sort_words_stat_by
 
 Интересно посмотреть на разницу в работе с памятью между C++ и daScript
 
-```fsharp
+```dascript
 struct ListItem
     value: int
     [[do_not_delete]] next: ListItem?
@@ -154,7 +154,7 @@ https://github.com/spiiin/dascript_trivial_examples/blob/main/delete_list_every_
 
 ## Вывести максимальное число, составленное из единиц двоичного представления заданного числа
 
-```fsharp
+```dascript
 def popcount(x)
     var temp = x
     var count = 0
@@ -183,7 +183,7 @@ https://github.com/spiiin/dascript_trivial_examples/blob/main/max_value_from_1s/
 В продакшен-варианте, если нужно действительно быстро, решение прокидывается в C++, где задействуются всевозможные интринсики компилятора для того, чтобы получать кол-во битов так, как умеет процессор, или другие трюки для минимизации количества инструкций (развернуть циклы, и наложить кучу масок -- [Hamming weight](https://en.wikipedia.org/wiki/Hamming_weight)).
 
 ## Вывести список всех самых длинных путей в дереве
-```fsharp
+```dascript
 require daslib/functional
 
 struct Tree

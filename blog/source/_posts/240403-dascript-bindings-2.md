@@ -93,7 +93,7 @@ virtual bool canCopy() const {
 ```
 
 Пока всё тривиально, `MyClass` -- standart layout структура, не требующая дополнительной инициализации.
-```fsharp
+```dascript
 //объявления на стеке
 var c1 = [[MyClass]] 
 var c2 = MyClass()
@@ -144,7 +144,7 @@ bool isLocal() const override { return false; }
 ```
 
 Соотвественно, тот же код на daScript выдаст ошибки компиляции, при попытке создать класс без инициализации:
-```fsharp
+```dascript
 //можно создать класс на хипе:
 var a <- new MyClass("hello heap")
 printMyClass( *a ) //42
@@ -178,7 +178,7 @@ var c1 = MyClass()
 ```
 *Если можно построить объект из другого объекта, то можно и copy/clone/move?*
 
-```fsharp
+```dascript
 //теперь можно copy/clone/move
 var a <- new MyClass("hello heap")
 var b = new MyClass()
@@ -188,7 +188,7 @@ var b = new MyClass()
 ```
 
 Также в unsafe блоке теперь можно делать небезопасные, но интересные штуки:
-```fsharp
+```dascript
 struct Params
     a: MyClass
 unsafe
@@ -295,7 +295,7 @@ makeExtern<DAS_CALL_METHOD(_method_2), SimNode_ExtFuncCallAndCopyOrMove >(lib, "
 
 Теперь в daScript можно использовать эти функции:
 
-```fsharp
+```dascript
 functionWithClassArgument(MyClass("hello arg"))
 MyClass("hello res")|> getMyClass_ExtFuncCallAndCopyOrMove()
 ```

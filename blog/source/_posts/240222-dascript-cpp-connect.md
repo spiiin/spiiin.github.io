@@ -14,7 +14,7 @@ tags:
 https://github.com/GaijinEntertainment/daScript/blob/master/examples/tutorial/tutorial03.cpp#L15
 Базовый пример прокидывания C++ класса в daScript. Похоже на другие скриптовые языки, создаётся класс-обёртка (`ManagedStructureAnnotation`) над типом, которая позволяет привязать и настроить отображение полей и методов структуры на тип в daScript, а также переопределить группу методов, определяющих свойства этого типа в daScript.
 
-```fsharp
+```dascript
 struct Color {
     uint8_t r, g, b, a;
 };
@@ -66,7 +66,7 @@ REGISTER_MODULE(Module_Tutorial03);
 
 В примере связь организуется через класс `BaseClassAdapter`, который наследуется одновременно от базового C++-класса и сгенерированного по das-коду C++-классу-адаптеру
 
-```fsharp
+```dascript
 options remove_unused_symbols = false
 
 //interface C++/daScript
@@ -90,7 +90,7 @@ def generate_cpp_bindings
 
 `TutorialBaseClass` - интерфейс между C++/daScript, который используется генератором C++-обёрток `log_cpp_class_adapter`, на выходе получается примерно такой C++-код:
 
-```fsharp
+```dascript
 class TutorialBaseClass {
 protected:
   enum {
@@ -121,7 +121,7 @@ int TutorialBaseClass::_das_class_method_offset[2];
 ```
 
 Вызов:
-```fsharp
+```dascript
 class BaseClassAdapter : public BaseClass, public TutorialBaseClass {
 public:
     // in the constructor we store pointer to the original class and context

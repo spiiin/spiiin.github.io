@@ -14,7 +14,7 @@ tags:
 
 Самая первая, максимально наивная, построчно скопированная реализация:
 
-```fsharp
+```dascript
 require strings
 require fio
 
@@ -65,7 +65,7 @@ def interpret(code: string)
 
 Наконец, обращение к массиву можно выполнять не через разыменование ссылки, а через обращение по указателю:
 
-```fsharp
+```dascript
 tape: array<uint8>
 tape[index] // tape[check_range(index)] //медленно
 
@@ -78,7 +78,7 @@ ptape[index] //ptape[index] //еще быстрее, обращение без �
 
 Переписанная версия кода:
 
-```fsharp
+```dascript
 [unsafe_deref]
 def run(code: uint8?; lengthOfCode:int; var tape: uint8?; var codePos, tapePos: int&; skip: bool): bool
 	unsafe
@@ -181,7 +181,7 @@ daScript.exe -aot brainfuck.das brainfuck.das.cpp
 
 Полученный C++-файл проще всего подсунуть в пример [tutorial02aot](https://github.com/GaijinEntertainment/daScript/blob/master/examples/tutorial/tutorial02aot.cpp), который настроен на использование AoT варианта кода. Скомпилированный файл можно запустить:
 
-```fsharp
+```dascript
 e:\src\daScript\bin\Release>tutorial02aot.exe
 [I] total 34.27342399999999856 sec
 ```
@@ -213,7 +213,7 @@ generate_msvc_2019.bat
 
 Теперь можно воспользоваться аннотацией `[jit]`, чтобы код функциии интерпретатора без AoT-компиляции перед первым выполнением компилировался с помощью `llvm-c`.
 
-```fsharp
+```dascript
 [jit,unsafe_deref]
 def run(code: uint8?; lengthOfCode:int; var tape: uint8?; var codePos, tapePos: int&; skip: bool): bool
 ```
@@ -237,7 +237,7 @@ e:\src\daScript_my\bin\Release>daScript.exe brainfuck_2_jit.das
 
 Шаблоны таких макросов можно посмотреть в модулях `json_boost` и `regex_boost`
 
-```fsharp
+```dascript
 module brainfuck_macro shared public
 
 def generateFunction(uniqueName, code)
@@ -305,7 +305,7 @@ class private BrainfuckReader : AstReaderMacro
 
 Тогда вызвать такой макрос можно так:
 
-```fsharp
+```dascript
 require brainfuck_macro
 //генерируем функцию
 let func = %bf~++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.%%
@@ -317,7 +317,7 @@ invoke(func)
 
 Например:
 
-```fsharp
+```dascript
 let func = %bf~[->+<]%%
 //сгенерированный код
 
@@ -359,7 +359,7 @@ e:\src\daScript_my\bin\Release>daScript.exe brainfuck.das
 ## Macro + JiT
 Дальше будет интереснее. Наша скомпилированная версия функции представляет собой по сути развёрнутую трассированную версию исполнения кода (и занимающую больше памяти). Попробуем применить к ней макрос [jit]:
 
-```fsharp
+```dascript
 fn |> append_annotation("$", "unsafe_deref", args)
 fn |> append_annotation("$", "jit", args)
 ```
@@ -401,7 +401,7 @@ bf --> (bf macro) --> dascript ast --> (dascript simulate - unsafe deref macro +
 
 "Продвинутая" версия макроса, отслеживающая перечисленные паттерны
 
-```fsharp
+```dascript
 def seachRepeats(symIt; var sym:int&; symbolToCheck)
     var count = 1
     while next(symIt, sym)

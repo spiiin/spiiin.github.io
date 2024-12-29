@@ -55,7 +55,7 @@ tags:
 
 **`Создание двух view`**
 Один - для рендера в 2 текстуры, второй - для смешивания текстур с восстановлением альфы на экране
-```fsharp
+```dascript
 var display_w, display_h : int
 glfwGetWindowSize(window, safe_addr(display_w), safe_addr(display_h))
 bgfx_reset(uint(display_w), uint(display_h), BGFX_RESET_VSYNC, bgfx_texture_format COUNT)
@@ -64,7 +64,7 @@ bgfx_set_view_rect(1u, 0u, 0u, uint(display_w), uint(display_h))
 ```
 
 **`Создание 2х RT-текстур, в сумме 5 каналов 16-битных float-каналов - RGBA + модификатор`**
-```fsharp
+```dascript
 var fb_textures = [[auto 
     bgfx_create_texture_2d(1280u, 720u, false, 1u, bgfx_texture_format RGBA16F, BGFX_TEXTURE_RT, null);
     bgfx_create_texture_2d(1280u, 720u, false, 1u, bgfx_texture_format R16F, BGFX_TEXTURE_RT, null)
@@ -76,7 +76,7 @@ bgfx_set_view_frame_buffer(0u, fbh)
 ```
 
 **`Заливка текстур начальным значением`**
-```fsharp
+```dascript
 let pal0 = [[float 0.0; 0.0; 0.0; 0.0]] //для RGBA каналов
 let pal1 = [[float 1.0; 1.0; 1.0; 1.0]] //для канала с весами
 bgfx_set_view_frame_buffer(0u, fbh)
@@ -90,7 +90,7 @@ bgfx_set_view_clear_mrt(0u , BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH, 1.0f, 0u, 0u, 1u
 
 **`Шейдер`**
 
-```fsharp
+```dascript
 var [[in]] a_position : float3
 var [[in]] a_color0 : float4
 var [[inout, semantics=POSITION1]] v_pos : float4
@@ -124,14 +124,14 @@ def fs_main
 ```
 
 Небольшое необходимое дополнение к [DSL-шейдеров](https://github.com/GaijinEntertainment/daScript/blob/master/modules/dasGlsl/glsl/glsl_common.das#L121):
-```fsharp
+```dascript
 //объявление переменной для записи нескольких output-цветов (в несколько RT-текстур) в пиксельном шейдере
 var gl_FragData = [[float4[4] float4(); float4(); float4(); float4()]]
 ```
 
 **`Настройка смешивания и отрисовка`**
 
-```fsharp
+```dascript
 vs_main_bind_uniform()
 fs_main_bind_uniform()
 var stateNoDepth = ( uint64(0)
@@ -167,7 +167,7 @@ bgfx_submit(0u, program, 1u, BGFX_DISCARD_NONE)
 
 **`Шейдер`**
 
-```fsharp
+```dascript
 [bgfx_vertex_buffer]
 struct VertexTex
     position : float3
@@ -192,7 +192,7 @@ def fs_quad
 
 **`Настройка смешивания и отрисовка`**
 
-```fsharp
+```dascript
 //привязка текстур к сэмплерам
 s_texColor0 := fb_textures[0]
 s_texColor1 := fb_textures[1]

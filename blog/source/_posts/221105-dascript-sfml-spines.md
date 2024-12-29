@@ -46,7 +46,7 @@ https://github.com/spiiin/dasbox_sfml/blob/main/samples/sfml_spines/demo_spines_
 - спайн-"дырка", с режимом блендинга "вычитание" - glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_ALPHA)
 - фон, который "просвечивает" через основной спрайт только там, где была нарисована дырка - glBlendFuncSeparate(GL_SRC_ALPHA_SATURATE, GL_ONEU, GL_ONEU, GL_ONE_MINUS_SRC_ALPHA)
 
-```fsharp
+```dascript
 def initialize
     ...
     spine = new SpineWrapper("spineboy-pro.skel",  "spineboy-pma.atlas")

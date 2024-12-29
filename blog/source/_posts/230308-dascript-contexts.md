@@ -43,7 +43,7 @@ API для создания контекстов также доступно в 
 
 Пример [eval_in_context](https://github.com/GaijinEntertainment/daScript/blob/master/examples/test/misc/eval_in_context.das):
 
-```fsharp
+```dascript
 //создание текста программы
 let text = build_string <| $(st)
     st |> write("[export]\n")
@@ -79,7 +79,7 @@ access |> set_file_source("__dummy_file_name", text)
 
 Пример [agent_fork_sample.das](https://github.com/GaijinEntertainment/daScript/blob/726d440be7618fb431815b18e6f785c37a335d5d/examples/test/misc/agent_fork_sample.das)
 
-```fsharp
+```dascript
 require debugapi
 
 var test_value = "default"
@@ -122,7 +122,7 @@ my_context:my_context                         // в основном конте�
 
 Аннотация для функций [apply_in_context](https://github.com/GaijinEntertainment/daScript/blob/726d440be7618fb431815b18e6f785c37a335d5d/examples/test/misc/apply_in_context_example.das) позволяет вызывать функцию в другом контексте прозрачно для вызывающего кода. Пример выше можно переписать так:
 
-```fsharp
+```dascript
 require daslib/apply_in_context
 
 [apply_in_context(debug_context)]
@@ -150,7 +150,7 @@ debug_context_set() //функция будет вызвана в контекс
 [insturment_function](https://github.com/GaijinEntertainment/daScript/blob/eaa99142af33e7499137c4c7351d02075223cd5b/examples/test/misc/insturment_function.das) -- профилирование вызовов функций. 
 [instrument](https://github.com/GaijinEntertainment/daScript/blob/726d440be7618fb431815b18e6f785c37a335d5d/examples/test/misc/instrument.das) -- программный брейкпоинт и пошаговая трассировка
 
-```fsharp
+```dascript
 options debugger = true    //настройка контекста для работы с хуками debug-агентов
 require debugapi           //интерфейсы для кастомных debug-агентов
 require rtti               //получение информации о контексте выполнения (доступные модули/функции/переменные/etc)

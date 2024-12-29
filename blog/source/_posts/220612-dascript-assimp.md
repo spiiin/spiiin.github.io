@@ -55,7 +55,7 @@ for fname in os.listdir(HEADERS_PATH):
 
 Ну и дальше, аналогично инструкции в предыдущем посте:
 
-```fsharp
+```dascript
 class AssimpGen : CppGenBind
     override func_to_stdout = false
     unique_functions : table<string; bool>
@@ -92,7 +92,7 @@ void Module_assimp::initMain() {
 
 После генерации модуля можно попробовать им воспользоваться (предварительно не забыть прилинковать к проекту lib файлы от библиотеки `assimp` и сделать доступным путь к собранный dll, если ассимп был собран как динамическая библиотека):
 
-```fsharp
+```dascript
 require assimp
 require strings
 require daslib/defer

@@ -9,6 +9,9 @@ date: 2020-07-01 15:45:28
 Немного тестов разметки
 <!-- more -->
 
+Пример содержания:
+<!-- toc -->
+
 ---
 
 Заголовки
@@ -16,6 +19,10 @@ date: 2020-07-01 15:45:28
 # Заголовок1
 
 ## Заголовок2
+## Заголовок2.2
+## Заголовок2.3
+
+текст
 
 ---
 
@@ -29,6 +36,10 @@ echo "code without line numbers"
 def t1
   pass
   NotImplemented
+```
+
+```json
+{ "json": true }
 ```
 
 {% codeblock hello.cpp lang:cpp line_number:true first_line:100 mark:2-5 %}
@@ -46,7 +57,70 @@ namespace std {
     template<> struct tuple_element<1,Config> { using type = std::size_t; };
     template<> struct tuple_element<2,Config> { using type = const std::vector<std::string>&; };
 }
+
+template <unsigned K, class RET, class F, class Tup>
+struct Expander {
+  template <class... Ts>
+  static RET expand(F&& func, Tup&& t, Ts && ... args) {
+    return Expander<K - 1, RET, F, Tup>::expand (
+        forward<F>(func),
+        forward<Tup>(t),
+        get<K - 1>(forward<Tup>(t)),
+        forward<Ts>(args)...
+    );}
+};
 {% endcodeblock %}
+
+{% codeblock hello.cpp lang:cpp line_number:true first_line:100 mark:2-5 %}
+using namespace std;
+cout << "Code";
+cout << "with";
+cout << "line";
+cout << "numbers";
+cout << end;
+{% endcodeblock %}
+
+```cpp
+namespace std {
+    template<> struct tuple_element<0,Config> { using type = std::string_view; };
+    template<> struct tuple_element<1,Config> { using type = std::size_t; };
+    template<> struct tuple_element<2,Config> { using type = const std::vector<std::string>&; };
+}
+
+template <unsigned K, class RET, class F, class Tup>
+struct Expander {
+  template <class... Ts>
+  static RET expand(F&& func, Tup&& t, Ts && ... args) {
+    return Expander<K - 1, RET, F, Tup>::expand (
+        forward<F>(func),
+        forward<Tup>(t),
+        get<K - 1>(forward<Tup>(t)),
+        forward<Ts>(args)...
+    );}
+};
+```
+
+```js
+  function compact(arr) {
+  // @annotate: left 56 - No editor warnings in JavaScript files<br/><br/>This crashes at runtime.
+    if (orr.length > 10) return arr
+    return arr
+  }
+```
+
+```ts
+interface IdLabel {id: number, /* some fields */ }
+interface NameLabel {name: string, /* other fields */ }
+type NameOrId<T extends number | string> = T extends number ? IdLabel : NameLabel;
+// This comment should not be included
+
+// ---cut---
+function createLabel<T extends number | string>(idOrName: T): NameOrId<T> {
+  throw "unimplemented"
+}
+
+let a = createLabel("typescript");
+```
 
 ---
 
