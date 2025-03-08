@@ -142,6 +142,7 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <span class="line"><span style="color: #E6E6E6">  ОО-модель _моего_ приложения</span></span>
 <span class="line"><span style="color: #E6E6E6">  была _вытеснена_ метамоделью _оконной системы_, </span></span>
 <span class="line"><span style="color: #E6E6E6">  которую _настроили_, чтобы она воплотила моё приложение.</span></span></code></pre></div></div></figure>
+<p>С организационной точки зрения компания делиться на отделы, всё становится сильно подчинено процессам, возрастает количество митингов, специализаций и статусов, в которых находятся задачи. Просто так поправить код без планирования спринтов и кучи проверок уже сложно. Появляются серые зоны, когда программист не очень понимает, что там пишут геймдизайнеры, артисты и т.д., и наоборот — можно делать контент не особо представляя, как оно устроено внутри. Из-за чего может страдать производительность, или появляться задачи, за которые никто не хочет трогать, потому что все считают, что они в чужой зоне отвественности.</p>
 <p>Появление внеязыкового метаописания игровых объектов, обширное применение фабрик стратегий. Часто - скрипты в той или иной форме. Всё выносится из кода. В движковом коде остаётся только структура метаописания.</p>
 <p><a target="_blank" rel="noopener" href="https://www.gamearchitect.net/Articles/GameObjectRoundtable.html">The GDC 2003 Game Object Structure Roundtable</a> - 20 лет, всё об одном.<br>Вариант 1 - Убираем coupling, привет, dungeon-siege-style компоненты. Только одинокие Naughty Dog говорят, что у них 99% кода на скриптах и почти ничего не повторяется в их Jak &amp; Daxter (у них там не ооп, а lisp-подобная vm). Оттого, что у них программистов больше чем дизайнеров, скрипты фигачат тоже программисты. Другие же попробовали UnrealScript в Unreal 2, и он не особо зашёл, поэтому хотят data-driven, оттого что у них на 1 программиста 10 артистов/геймдизайнеров, которые хотят настраивать компоненты.</p>
 <p>Дискуссия не то чтобы устарела. Там где в компании программерская культура — хотят скрипты. Там где арт — хотят компоненты.</p>
@@ -448,7 +449,7 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <p>Для GUI:<br><a target="_blank" rel="noopener" href="https://github.com/rdeioris/LuaMachine">Lua</a><br><a target="_blank" rel="noopener" href="https://github.com/ncsoft/Unreal.js">Unreal.js</a> (“мы зафигачим себе движок v8, react, примитивы из three.js соберём это js-&gt;cpp и сэкспортим в веб-пример”, omg)</p>
 <p>Для того, чтобы писать логику текстом вместо блюпринтов:<br><a target="_blank" rel="noopener" href="https://github.com/EpicSkookumScript/SkookumScript-Plugin">SkookumScript</a><br><a target="_blank" rel="noopener" href="https://github.com/Hazelight/UnrealEngine-Angelscript">Angelscript</a> (требует форкнутого похаченного движка)<br><a target="_blank" rel="noopener" href="https://github.com/jmgomez/NimForUE">NimForUE</a> (пока WiP)<br>(<em>если хотим универсальный движок, то нужен и язык для команд, которые пишут текстом</em>)</p>
 <p><em>to be continued</em></p>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -457,7 +458,7 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1633438451/">Позже</a><a class="pagination__link pagination__next" href="/blog/3299387993/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+	    </script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1633438451/">Позже</a><a class="pagination__link pagination__next" href="/blog/3299387993/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2025 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
   <script>
   const CODE_CONFIG = {
     beautify: undefined,

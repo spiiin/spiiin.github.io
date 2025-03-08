@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | The Abstraction Layers of Game Developer Skills</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1552062181/">Позже</a><a class="pagination__link pagination__next" href="/blog/3038229928/">Раньше</a></div><article class="article post"><h3 class="article__title">The Abstraction Layers of Game Developer Skills</h3><div class="article__date metadata"><div class="post-info">2025/01/22</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/meta/">meta</a><a class="article__tags__link metadata" href="/tags/dev-evolution/">dev_evolution</a><a class="article__tags__link metadata" href="/tags/gamedev/">gamedev</a><a class="article__tags__link metadata" href="/tags/link/">link</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Скиллы программиста (разработчика игр) по уровню абстракции, снизу вверх</p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#1-arhitektura-kompyutera">1. Архитектура компьютера</a></li>
+<li><a href="#2-operacionnye-sistemy">2. Операционные системы</a></li>
+<li><a href="#3-ustroystvo-yazykov-programmirovaniya">3. Устройство языков программирования</a></li>
+<li><a href="#4-ispolzovanie-yazykov-programmirovaniya">4. Использование языков программирования</a></li>
+<li><a href="#5-environment-i-tulzy-vokrug-kompilyatora">5. Environment и тулзы вокруг компилятора</a></li>
+<li><a href="#6-algoritmy-obshchee">6. Алгоритмы (общее)</a></li>
+<li><a href="#7-algoritmy-predmetnoy-oblasti">7. Алгоритмы предметной области</a></li>
+<li><a href="#8-ispolzovanie-i-dizayn-bibliotek-komponentov-moduley">8. Использование и дизайн библиотек/компонентов/модулей</a></li>
+<li><a href="#9-sredy-razrabotki-dvizhki-arhitektura-sistem">9. Среды разработки / движки / архитектура систем</a></li>
+<li><a href="#10-processy-i-tehnologii-razrabotki">10. Процессы и технологии разработки</a></li>
+<li><a href="#11-biznes-processy">11. Бизнес процессы</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<!------------------------->
+<h2><span id="1-arhitektura-kompyutera">1. Архитектура компьютера</span><a href="#1-arhitektura-kompyutera" class="header-anchor">#</a></h2><p><strong><em>Устройство CPU/GPU/Память/Кеши/Network/IO</em></strong><br><code>Intel® 64 and IA-32 Architectures Software Developer’s Manual (ISA)</code><br><code>System V AMD64 ABI</code><br><code>What every programmer should know about memory</code><br><code>The microarchitecture of Intel, AMD and VIA CPUs (Agner Fog)</code><br><code>Modern X86 Assembly Language Programming</code><br><a target="_blank" rel="noopener" href="https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/">A trip through the Graphics Pipeline 2011</a></p>
+<!------------------------->
+<h2><span id="2-operacionnye-sistemy">2. Операционные системы</span><a href="#2-operacionnye-sistemy" class="header-anchor">#</a></h2><p><strong><em>Процессы, IPC, потоки, память, файловая система, сокеты, файлы, права, исполнимые файлы</em></strong><br><code>Modern Operating Systems</code><br><code>Внутреннее устройство Windows (Русинович)</code><br><code>Linux system programming</code><br><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLrCZzMib1e9pOdLmE2qtMgL3QMEIrxyu7">Системное программирование. Лаборатория Tarantool</a></p>
+<p><strong><em>Администрирование</em></strong></p>
+<!------------------------->
+<h2><span id="3-ustroystvo-yazykov-programmirovaniya">3. Устройство языков программирования</span><a href="#3-ustroystvo-yazykov-programmirovaniya" class="header-anchor">#</a></h2><p><strong><em>Компиляция, интерпретация, виртуальные машины, байт/intermediate-код, техники оптимизации, инфраструктура llvm</em></strong><br><code>Compilers: Principles, Techniques, and Tools</code><br><a target="_blank" rel="noopener" href="https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/index.html">My First Language Frontend with LLVM Tutorial</a><br><a target="_blank" rel="noopener" href="https://craftinginterpreters.com/">Crafting Interpreters</a><br><a target="_blank" rel="noopener" href="https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html">What Every C Programmer Should Know About Undefined Behavior</a><br><a target="_blank" rel="noopener" href="https://pvs-studio.com/en/blog/posts/cpp/1129/">C++ programmer’s guide to undefined behavior</a></p>
+<p><strong><em>Типизация, абстракции данных и функций, энергичные/ленивые вычисления</em></strong><br><code>Elements of programming</code><br><code>Structure and Interpretation of Computer Programs</code></p>
+<p><strong><em>Декомпиляция C++</em></strong><br><code>Optimizing software in C++: An optimization guide (Agner Fog)</code><br><a target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/abi.html">Itanium C++ ABI</a><br><a target="_blank" rel="noopener" href="https://godbolt.org/">Compiler explorer</a></p>
+<p><strong><em>Уникальные свойства языков программирования</em></strong><br><code>Mindstorms (Seymour Papert)</code><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=lc3UkIZ4zOY">Семантические процессы в C++</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YJd6Ig4ihJ0">Память как концепция в гетерогенных системах</a><br><a target="_blank" rel="noopener" href="https://parentheticallyspeaking.org/articles/bicameral-not-homoiconic/">Bicameral, Not Homoiconic</a><br><a target="_blank" rel="noopener" href="http://venge.net/graydon/talks/VectorizedInterpretersTalk-2023-05-12.pdf">Vectorized Interpreters</a><br><a target="_blank" rel="noopener" href="https://worrydream.com/LearnableProgramming/">Learnable Programming</a><br><a target="_blank" rel="noopener" href="https://graydon.livejournal.com/256533.html">What next</a><br><a target="_blank" rel="noopener" href="https://probablydance.com/2014/11/02/ideas-for-a-programming-language/">Ideas for a Programming Language</a></p>
+<!------------------------->
+<h2><span id="4-ispolzovanie-yazykov-programmirovaniya">4. Использование языков программирования</span><a href="#4-ispolzovanie-yazykov-programmirovaniya" class="header-anchor">#</a></h2><p><strong><em>Синтаксис, идиомы, семантические процессы, стандартная библиотека, работа с памятью, метапрограммирование</em></strong><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list">The Definitive C++ Book Guide and List</a><br><a target="_blank" rel="noopener" href="https://www.boost.org/">Boost</a></p>
+<p><strong><em>Общие практики</em></strong><br><code>Совершенный код</code><br><code>Приемы объектно-ориентированного проектирования. Паттерны проектирования</code></p>
+<p><strong><em>Документация/стандарт, best practices</em></strong><br><a target="_blank" rel="noopener" href="https://eel.is/c++draft/">Working Draft Programming Languages — C++</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PL3BR09unfgcgf7R88ZQRQqWOdLy4pRW2h">Магистерский курс C++ МФТИ</a></p>
+<p><strong><em>Other languages</em></strong><br><code>The C programming language</code><br><code>Expert C Programming</code><br><code>CLR via C#</code><br><a target="_blank" rel="noopener" href="https://loglog.games/blog/leaving-rust-gamedev/">Leaving Rust gamedev after 3 years</a><br><a target="_blank" rel="noopener" href="https://www.st.cs.uni-saarland.de/edu/seminare/2005/advanced-fp/docs/sweeny.pdf">The Next Mainstream Programming Language : A Game Developer’s Perspective</a></p>
+<ul>
+<li><a href="/blog/2301621444/" title="daScript - как учить">daScript - как учить</a></li>
+<li><a href="/blog/2297379949/" title="Заметки о языках программирования">Заметки о языках программирования</a>
+</li>
+</ul>
+<!------------------------->
+<h2><span id="5-environment-i-tulzy-vokrug-kompilyatora">5. Environment и тулзы вокруг компилятора</span><a href="#5-environment-i-tulzy-vokrug-kompilyatora" class="header-anchor">#</a></h2><p><strong><em>Модули/пакеты, опции компилятора, системы сборки, тесты, документация, отладчики, линтеры, анализаторы, контроль версий</em></strong><br><a target="_blank" rel="noopener" href="https://llvm.org/">LLVM</a><br><a target="_blank" rel="noopener" href="https://cmake.org/">CMake</a></p>
+<ul>
+<li><a href="/blog/1186660544/" title="Git. ссылки">Git. ссылки</a>
+</li>
+</ul>
+<p><strong><em>Профилирование</em></strong><br><a target="_blank" rel="noopener" href="https://technology.riotgames.com/news/profiling-measurement-and-analysis">Profile, measurement and analysis</a></p>
+<p><strong><em>Системы вокруг CI/CD</em></strong><br><a target="_blank" rel="noopener" href="https://www.jenkins.io/">Jenkins</a><br><a target="_blank" rel="noopener" href="https://habr.com/ru/companies/playrix/articles/479966/">CI/CD в Playrix: как мы собираем и тестируем наши игры</a></p>
+<!------------------------->
+<h2><span id="6-algoritmy-obshchee">6. Алгоритмы (общее)</span><a href="#6-algoritmy-obshchee" class="header-anchor">#</a></h2><p><strong><em>Сложность, сортировка и поиск, арифметика, комбинаторика, динамическое программирование, рекурсия, структуры данных, случайные числа, хеширование</em></strong></p>
+<p><code>Algorithms (Robert Sedgewick, Kevin Wayne)</code><br><code>Introduction to Algorithms (Kormen)</code><br><code>The Art of Computer Programming</code><br><a target="_blank" rel="noopener" href="https://leetcode.com/">leetcode</a></p>
+<p><strong><em>Численные методы, представление чисел, оптимизации</em></strong><br><code>Three Algorithmic Journeys</code><br><code>Programming pearls</code><br><code>Floating Point Tricks/Notation, notation, notation (Jim Blinn)</code><br><a target="_blank" rel="noopener" href="https://ece.uwaterloo.ca/~dwharder/NumericalAnalysis/02Numerics/Double/paper.pdf">What every programmer should know about floating-point arithmetic</a></p>
+<!------------------------->
+<h2><span id="7-algoritmy-predmetnoy-oblasti">7. Алгоритмы предметной области</span><a href="#7-algoritmy-predmetnoy-oblasti" class="header-anchor">#</a></h2><p><strong><em>Общее</em></strong><br><a target="_blank" rel="noopener" href="https://gameprogrammingpatterns.com/">Game programming patterns</a><br><a target="_blank" rel="noopener" href="https://gamedev.ru/articles/">Gamedev.ru статьи</a></p>
+<ul>
+<li><a href="/blog/2794788536/" title="Плюсовики в геймдеве + материалы по геймдеву">Плюсовики в геймдеве + материалы по геймдеву</a></li>
+<li><a href="/blog/3652741154/" title="10 лет в геймдеве">10 лет в геймдеве</a>
+</li>
+</ul>
+<p><strong><em>Математика - Вектора, матрицы, линейные трансформации, геометрия, квантерионы, проекции и преобразования, кривые</em></strong><br><code>Mathematics for 3D Game Programming and Computer Graphics</code></p>
+<p><strong><em>Физика - масса, инерция, силы, скорости, джоинты, коллижены и контакты, sat/gdk/epa, bhv, bounding volumes, spatial partitioning, жидкости, soft-bodies</em></strong><br><code>Nature of Code</code><br><code>Physics for game developers</code></p>
+<p><strong><em>Графика - растеризация, рейтрейсинг, графический пайплайн, сэмплинг, шейдеры, pbr, отражения, текстирирование, графические api, освещение/тени, эффекты, куллинг, окклюдеры, прозрачность, stencil/blenging, gpu-driven</em></strong><br><code>Real-Time Rendering</code><br><code>Physically based rendering</code><br><code>API docs</code><br><code>ShaderX/GPU gems/GPU zen/Raytracing gems series</code></p>
+<p><strong><em>AI - state machines, behavior trees, desicion trees, goal-oriented behavior, desicion making, pathfinding</em></strong><br><code>Game AI Pro</code></p>
+<ul>
+<li><a href="/blog/3627525605/" title="Искусственный интеллект в играх. Ссылки">Искусственный интеллект в играх. Ссылки</a>
+</li>
+</ul>
+<p><strong><em>Анимация - скелетная, инверсная кинематика, блендинг анимаций, графы анимаций/поведения, кастомизация, бленд-шейпы, non-uniform animations, tools/pipelines, процедурная, морфинг, ml</em></strong><br><a target="_blank" rel="noopener" href="https://www.youtube.com/@BobbyAnguelov/streams">Animation Programming Basics (Bobby Aguelov)</a></p>
+<p><strong><em>Network - сокеты, osi модель, асинхронное программирование, игровые протоколы, mmo/fast-paced особенности, сериализация, детерминизм/дискретизация/сжатие, шифрование, прогнозирование/компенсация лагов</em></strong><br><code>Многопользовательские игры. Разработка сетевых приложений</code><br><code>TCP/IP illustrated</code></p>
+<p><strong><em>UI - mvc/mvvm/mvp, реактивное программирование, usability</em></strong></p>
+<p><strong><em>Геймплей/скриптинг - ecs/dod, визуальные языки, скриптовые языки, dsl, domain-oriented-design, cериализация/кодогенерация</em></strong><br><code>Game programming games series</code><br><a target="_blank" rel="noopener" href="http://blog.interfacevision.com/design/design-visual-progarmming-languages-snapshots/">Visual Programming Languages - Snapshots</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IvHGczF6Go0">Продуктивность и производительность в новых скриптовых языках</a><br><a target="_blank" rel="noopener" href="https://awforsythe.com/unreal/blueprints_vs_cpp/">Blueprints vs. C++</a></p>
+<ul>
+<li><a href="/blog/381238762/" title="ECS. Ссылки">ECS. Ссылки</a>
+</li>
+</ul>
+<p><strong><em>Sound</em></strong><br><code>Principles of Game Audio and Sound Design</code></p>
+<p><strong><em>Многопоточность - поддержка в языке, модели памяти, lock-free структуры/алгоритмы, мьютексы/атомики/fibers, thread pools/dispatches/executors/системы задач, gpgpu</em></strong><br><code>C++ concurency in action</code><br><code>Concurrency with Modern C++</code><br><code>The Art of Multiprocessor programming</code></p>
+<!------------------------->
+<h2><span id="8-ispolzovanie-i-dizayn-bibliotek-komponentov-moduley">8. Использование и дизайн библиотек/компонентов/модулей</span><a href="#8-ispolzovanie-i-dizayn-bibliotek-komponentov-moduley" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://gist.github.com/bkaradzic/2e39896bc7d8c34e042b">Orthodox C++</a><br><a target="_blank" rel="noopener" href="https://github.com/electronicarts/EASTL/tree/master/doc">EASTL</a><br><a target="_blank" rel="noopener" href="https://github.com/EpicGames/UnrealEngine/tree/072300df18a94f18077ca20a14224b5d99fee872/Engine/Source/ThirdParty">Unreal 3rdPartyLibs</a><br><a target="_blank" rel="noopener" href="https://github.com/GaijinEntertainment/DagorEngine/tree/main/prog/3rdPartyLibs">DagorEngine 3rdPartyLibs</a><br><code>API Design for C++</code></p>
+<ul>
+<li><a href="/blog/1152347544/" title="Хорошие библиотеки">Хорошие библиотеки</a>
+</li>
+</ul>
+<!------------------------->
+<h2><span id="9-sredy-razrabotki-dvizhki-arhitektura-sistem">9. Среды разработки / движки / архитектура систем</span><a href="#9-sredy-razrabotki-dvizhki-arhitektura-sistem" class="header-anchor">#</a></h2><p><strong><em>движки, общий дизайн, unity/unreal/godot</em></strong><br><a target="_blank" rel="noopener" href="https://github.com/redorav/public_source_engines">Game Engines with Source: Learning from the best</a><br><a target="_blank" rel="noopener" href="https://aras-p.info/texts/files/201410-TUM-HobbyEngineToGameEngine.pdf">Hobby engine to game engine</a><br><a target="_blank" rel="noopener" href="https://enginearchitecture.org/downloads/reac2023_scripting_language.pdf">Scripting language? Engine language?</a><br><a target="_blank" rel="noopener" href="http://ithare.com/contents-of-development-and-deployment-of-massively-multiplayer-games-from-social-games-to-mmofps-with-stock-exchanges-in-between/">Development and Deployment of Multiplayer Online Games: from social games to MMOFPS</a><br><code>Архитектура игровых движков</code><br><code>Game Engine Gems series</code></p>
+<ul>
+<li><a href="/blog/2721099263/" title="Ещё о проектировании (движки и история)">Ещё о проектировании (движки и история)</a>
+</li>
+</ul>
+<p><strong><em>редактор/тулзы, git/серверы сборки/системы задач/cd-ci</em></strong><br><code>Game Development Tools (Marwan Ansari)</code><br><a target="_blank" rel="noopener" href="https://www.guerrilla-games.com/read/making-tools-for-big-games">Making tools for big games</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wJqOn88cU7o">Building Tools Quickly: Blueprints, Menus, Utilities, and Widgets</a></p>
+<p><strong><em>паттерны проектирования</em></strong><br><code>Pattern-oriented software architecture</code><br><code>Large-Scale C++ Software Design</code></p>
+<!------------------------->
+<h2><span id="10-processy-i-tehnologii-razrabotki">10. Процессы и технологии разработки</span><a href="#10-processy-i-tehnologii-razrabotki" class="header-anchor">#</a></h2><p><strong><em>стадии разработки, особенности milestones/взаимодействие с издателями, прототипирование/soft/live</em></strong></p>
+<p><strong><em>пайплайны работы, project management, agile/lean/scrum</em></strong><br><code>Метод Lean Startup</code><br><code>Экстремальное программирование</code><br><code>Scrum и Канбан: выжимаем максимум</code><br><code>The mythical man-month</code><br><code>Peopleware</code></p>
+<ul>
+<li><a href="/blog/1687824628/" title="Паттерны организации разработки уровней игр">Паттерны организации разработки уровней игр</a>
+</li>
+</ul>
+<p><strong><em>gamedesign</em></strong></p>
+<ul>
+<li><a href="/blog/3299387993/" title="Геймдизайн, заметки">Геймдизайн, заметки</a></li>
+<li><a href="/blog/3649678047/" title="Путь гейм-дизайнера">Путь гейм-дизайнера</a>
+</li>
+</ul>
+<!------------------------->
+<h2><span id="11-biznes-processy">11. Бизнес процессы</span><a href="#11-biznes-processy" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=O1zP6yJjc1o">Game Studio Leadership: You Can Do It</a><br><code>Игра как бизнес от мечты до релиза</code><br><code>Маркетинг игр (Галёнкин)</code></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/1552062181/">Позже</a><a class="pagination__link pagination__next" href="/blog/3038229928/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2025 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
