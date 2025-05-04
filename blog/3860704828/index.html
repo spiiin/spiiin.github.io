@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Про 10x программистов</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3134197991/">Позже</a><a class="pagination__link pagination__next" href="/blog/1107393322/">Раньше</a></div><article class="article post"><h3 class="article__title">Про 10x программистов</h3><div class="article__date metadata"><div class="post-info">2025/04/20</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/dev-method/">dev_method</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Вроде немного устаревшая дискуссия. Но попалась недавно во внутренней презентации компании, в которой сейчас работаю, икажется по прежнему холиварная и окруженная мифами.</p>
+<ul>
+<li>No silver bullet, все очевидные ускорения уже найдены, часто упираемся в сложность предметной области. Абстракции дают возможность сжимать код, но если он на каком-то этапе становится несжимаемым дальше из-за уникальности, то выигрыша не будет.</li>
+<li>Можно быть эффективным не только в кодинге. Есть еще, например, менторинг, координация, управление. По мере развития проекта, код становится в каком-то смысле деталью реализации, вторичной по отношению к продукту.</li>
+<li>Даже в программировании, есть не связанные скиллы. Кто-то лучше ориентируется в больших кодовых базах и сторонних библиотеках, кто-то находит и исправляет баги, создаёт прототипы, проектирует архитектуру и так далее. “Производительность” можно считать отдельно от скиллов, но сложно отследить, откуда именно она берётся.</li>
+<li>“10x” имеет нехорошие вайбы стартапов и привлекает эффективных менеджеров, которые хотят посчитать производительность так, чтобы уволить не достигающих KPI и нанимать только “от 10x” программистов.</li>
+</ul>
+<p>Но, если убрать 10x, можно и порассуждать про различие эффективности при одинаковых скиллах.</p>
+<h2><span id="keysy-kotorye-ya-videl">Кейсы, которые я видел</span><a href="#keysy-kotorye-ya-videl" class="header-anchor">#</a></h2><p>Когда люди работали сильно быстрее, чем “в среднем по больнице”:</p>
+<p><strong><code>Инженеры, сросшиеся с проектом</code></strong>. Знают весь код наизусть, из-за чего могут почти не глядя сказать, в каком месте нужно подкрутить, чтобы система восстановилась, и готовые ковыряться в ней всё рабочее и свободное время.<br><strong><code>Альтернативный мейнстримному подход к разработке</code></strong>, ускоренные итерации после внесения изменения, выбор правильных инструментов (языки, методологии). Практически невозможно применить в командах, которые привыкли к мейнстриму. Часто противоречит общепринятым практикам. Например, “Все делают как редакторы как Unity”. Плюсы — общая терминология, похожий UI, отличия могут в деталях, хоть и серьёзные, но основа - одна. Минусы — в этой основе зашито многое, в том числе конфигурация команд, а иногда и рабочие процессы. Пример минуса — “серая зона” между программерами и тех/гейм-дизайнерами. “то как фича работает в движке, и то, как геймдизайнеры думают что она работает - две большие разницы.<br><strong><code>Уникальные специализированные знания</code></strong>, позволяющие быстро (или в принципе) сделать то, что не могут другие. Это не касается эффективности при равенстве скиллов.</p>
+<p>В каждом из случаев получается, что объяснение, почему сейчас получается эффективная работа, находится в прошлом.</p>
+<ul>
+<li>Раньше начал работу над проектом, и изучил его</li>
+<li>Раньше запланировал такой способ работы, который требует меньше людей/усилий</li>
+<li>Раньше получил знания, которые дали уникальные скиллы</li>
+</ul>
+<p>Причём в первом случае получается, что инженер, который лучше всех знает проект, обладает в экономических терминах не только абсолютным преимуществом, но и относительным, т.е. несмотря на то, что он может решать задачи по коду быстрее других, его время лучше тратить на более высокоуровневые задачи, а программирование делегировать другим.</p>
+<p>Во втором, когда был выбран более прогрессивный способ работы, сложно отделить производительность отдельного человека, можно оценить только расходы на создание всего продукта другим составом команды (условно, нужно не 10 программистов и 1 дизайнер, а 10 дизайнеров и 1 программист) и шагами процесса (нужно меньше времени на edit-compile-run-debug или меньше циклов profile-optimization) и возможно, его уникальные фичи, которые были бы невозможны с другими подходами.</p>
+<p>Третий случай, когда программист единственный, кто может найти и реализовать такое решение, которое не могли бы другие за ограниченное разработкой время, действительно означает его личную высокую производительность.</p>
+<ul>
+<li>миф - “10х про правильный фокус на задачах”. Выловить только важное для проекта. Во-первых, кто-то должен делать и “неважное”,”выравнивать поле, по которому должны пробегать гипотетические “спринтеры”. Такие люди ценнее, хотя они и не попадут в 10х. Причем “неважных” задач оказывает раз в 10-20 больше.</li>
+<li>возможно, полезна способность быстро учиться. Это сложный навык — просмотр большого кол-ва инфы требует много времени. Даже просто чтобы перевести “неизвестное неизвестное” в “неизвестное известое”, требуется год-два. Кроме общих знаний — “слой надстройки” к технологиям внутри компании.</li>
+</ul>
+<p>Получаются, что все кейсы сложные для измерения. Можно попробовать, наоборот, сначала описать, что влияет на производительность, а затем подумать, как это измерять.</p>
+<h2><span id="formula-proizvoditelnosti">Формула производительности</span><a href="#formula-proizvoditelnosti" class="header-anchor">#</a></h2><p><strong>Производительность = Скилл x Приложенные усилия x Распреление сил</strong></p>
+<p><strong><code>Скилл</code></strong> - знания, опыт. Достаточно тривиально в оценке.<br><strong><code>Усилия</code></strong> - умение менеджить время, фокусироваться на правильных задачах в правильном порядке. Частично задача выбора фокуса может быть делегирована менеджерам и лидам.<br><strong><code>Распределение сил</code></strong> - выбор способа как решать задачу. Искать готовые решения vs делать своё. Допустимо ли решить конкретную задачу небрежно, прототипировать ли решение vs изучить state-of-art приёмы, необходимо ли сейчас разобраться в архитектуре системы, изучить устройство функций или использовать их как чёрный ящик. хардкодить решение vs выносить способы настройки в скрипты/конфиги. Если выразить кратко, то это умение не делать over-engeneering и under-engeneering.</p>
+<p>Если проводить аналогию с казино:<br>Скилл — это количество твоих фишек для игры<br>Усилия — это выбор, во что будешь играть<br>Распределение сил — это стратегия, по которой будешь играть</p>
+<p>Вот это умение распределять силы и является наиболее отличающимся параметром, но и трудно измеримым (через собеседования или достижения в резюме). </p>
+<p>Количество ресурсов на задачу всегда ограничено, а различных способов решения всегда несколько, отличаюшихся по различным измерениям качества (“способы решения” включают как способы писать код, так и выбор инструментов и методологии). Выбор различных подходов очень сильно влияет на результат, так что способность ориентироваться в этом многомерном пространстве способов проектирования серьёзно отличает производительность программистов.</p>
+<p>Нет какой-либо надёжной теоретической основы для описания методов навигации по этому пространству проектирования, из-за чего описания супер-эффективных программистов выглядят расплывчато, как древние мифы.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/3134197991/">Позже</a><a class="pagination__link pagination__next" href="/blog/1107393322/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2025 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
