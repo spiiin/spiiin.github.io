@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2025-05-04T09:30:57.000Z</updated>
+  <updated>2025-05-17T11:02:36.000Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ИИ и математика</title>
+    <link href="http://spiiin.github.io/blog/2913584196/"/>
+    <id>http://spiiin.github.io/blog/2913584196/</id>
+    <published>2025-05-17T11:02:36.000Z</published>
+    <updated>2025-05-17T11:02:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Одна из самых полезных применений ИИ для меня — растолковывание формул из книг по математике. Chat GPT 4.5 уже неплохо справляется с этим (предлагает еще и рисунки с примерами, но там пока тупит).</p><p>Относительно простой пример, преобразование, которое для знакомого с формулой дисперсии человека выглядит тривиально, но если забыл или хочешь проверить:<br><img src="/blog/2913584196/explain_math_small.png" alt="250517-ai-and-math/explain_math.png"></p><p>Если этот пример кажется простым, вот формула, которая даётся как тривиальная и используется дальше для рассчёта более плотно прилегающего к 3d-фигуре Oriented Bounding Box-а в <code>Real-time collision detection</code>:<br><img src="/blog/2913584196/1_small.png" alt="250517-ai-and-math/1.png"><br><img src="/blog/2913584196/2_small.png" alt="250517-ai-and-math/2.png"></p><p>“Если непонятно, посмотрите в учебнике вычислительной геометрии 85 года, или в другой книге (кстати, она там сформулирована совсем по другому, но разберётесь, чё там), ну или есть еще исходник на CD-ROM, можете его почитать”. Без ИИ чтобы разобрать эту формулу, возможны такие способы:</p><ul><li>быть крутым математиком чтобы проверить в уме</li><li>посидеть с листочком и ручкой минут 20-40 (если повезёт), пытаясь разобраться, как там получается коэффициент 9/12 для центроидов треугольников и 1/12 для вершин</li><li>попробовать раскрыть формулу в системе символьных вычислений (отдельный скилл и часто нужны платные программы)</li><li>найти объяснение в другой книге (что сложно, так как не факт, что в другой будет описано подробнее, или, как бывает с математикой, формула будет дана в другом контексте или в другой системе координат или еще как-нибудь вывернуто, что не освободит от перекодировки с листиком для понимания)</li><li>пойти на форум математиков за помощью, если не получилось ничего из вышеперечисленного </li></ul><p>ИИ же в принципе уже способен дать подсказку в том месте, где я сам зависаю, вспоминая нужное преобразование, или разобрать формулу детально самостоятельно, с объяснениями преобразований.</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Одна из са
+      
+    
+    </summary>
+    
+    
+    
+      <category term="ai" scheme="http://spiiin.github.io/tags/ai/"/>
+    
+  </entry>
   
   <entry>
     <title>Периоды развития gamedev-индустрии</title>
@@ -514,30 +538,6 @@
       <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
     
       <category term="fun" scheme="http://spiiin.github.io/tags/fun/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Виды сложности</title>
-    <link href="http://spiiin.github.io/blog/4080907009/"/>
-    <id>http://spiiin.github.io/blog/4080907009/</id>
-    <published>2024-05-24T23:07:00.000Z</published>
-    <updated>2024-05-24T23:07:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><strong><code>- Сложность предметной области</code></strong><br>Поиск “серебрянной пули” — универсального подхода к проектированию чего угодно. Например, проектировать, исходя из того, что “всё есть объекты”, “используем шаблоны проектирования”, попытка натягивать на паттерны всё, даже там, где это не нужно. Или “запретить использование сырых указателей”. Иногда получается хорошо, иногда странно.  Идея с классами в геймдеве рождает GodObject (GameObject/GameLevel) + в конечных классах получаются очень неудобные иерархии наследования.</p><p>Другой подход — разработка фреймворков/DSL, с помощью которых можно смоделировать на высоком уровне (“на языке специалистов предметной области”) большую часть задач в какой-либо отрасли. Может размазываться в различных пропорциях между “системным языков” и “прикладным языком/программой”, со слоем склеивания в виде файлов с данными или API в коде.</p><ul><li><a href="/blog/2721099263/" title="Ещё о проектировании (движки и история)">Ещё о проектировании (движки и история)</a></li></ul><p>Сложность предметной области плохо устраняется, так как описывает не красивые абстрактные модели, а конкретные частные случаи. Важно не подмешать лишней сложности, напроектировав в голове машины Руба Голдберга. Меньше понятий, сущностей, уровней абстракции и связей. Если без чего-то можно обойтись — нужно это выбросить.</p><p><a href="https://caseymuratori.com/blog_0015">Semantic compression</a> — статья о том, как выбрасывать сущности.</p><p><strong><code>- Сложность выполнения требований</code></strong></p><p><em>“Выбросить клоунов из машины”</em></p><p>Программы выполняются не на абстрактном компьютере, а на реальном железе. Существует разрыв между задачами, которым с головой хватает возможностей компьютера, и теми, которые упираются в ограничения. Кроме железа, могут вылезать и другие сложности окружения  — сборщик мусора, ограничения файловой системы или сети, с какого-то масштаба задач требуют учёта влияния этих факторов. “Common wisdom” про то, что можно начинать оптимизировать с момента, когда начнёт тормозить, работает далеко не всегда. Иногда решения по оптимизации должны быть заложены еще на уровне дизайна.</p><p>Отдельная сложность — предсказание ограничений, которые возникнут, но неизвестны заранее. С геймдевом — в индустрии не так много накопленного и обработанного опыта развития игр после выпуска по 5-10 и более лет.</p><p><strong><code>- Сложность старта</code></strong></p><p>Gui приложения, пустое окно OpenGL, настройка и разворачивание веб-сервера для странички — лет 15 назад требовали больше работы, чем сейчас. Более-менее решено с помощью open-source библиотек, бесплатного хостинга, доступного интернета, искусственного интеллекта. Если не поднимать вопрос о качестве этих библиотек (в разных отраслях разное), то можно сказать что стартовать и собирать прототипы стало сильно проще. Менее заметно в больших командах, чем при одиночной разработке.</p><p><a href="https://zylinski.se/posts/solodevs-and-the-trap-of-the-game-engine/">Solodevs and the trap of the game engine</a> — про разницу разработки игр в одиночку и в больших командах</p><p><strong><code>- Сложность роста</code></strong></p><p>Серьёзная проблема, с частичными идеями решения. Некоторые практики могут работать для программ на 10к-100к строк, написанных 5 людьми, но ломаться после 100к строк, написанных в разное время 50 людьми. Один из приёмов — изолировать сложность на каком-то уровне, и выдать “наружу” зафиксированный интерфейс. Чем более отдельный компонент получается, тем проще с ним общаться извне, без риска поломки. Вариант изоляции более высокого уровня — виртуальные машины и сэндбоксы для приложений.</p><p>Второй подход — не изолировать сложность, а искать такие методы решения, которые позволяют избегать роста сложности (“сделать так, чтобы большая программа ощущалась как маленькая”). Отбросить принятые практики, ведущие к запутыванию, встроить что-то в “простой” язык/виртуальную машину (пожертвовав чем-то). Преимущество таких решений — надёжность, за счёт гарантий (даже если частичных) от компилятора. Чем проще система, тем больше шансов, что в ней будет возможно быстрое внесение изменений/добавлений функционала/исправление ошибок. Single responsibility из SOLID или KISS — кодифицированные отсылки к такому подходу, как и <a href="https://www.youtube.com/watch?v=LKtk3HCgTa8">Simplicity</a> Рича Хики</p><p><strong>update 2024-09-23</strong><br><a href="https://mbuffett.com/posts/all-tacit-knowledge/">Programming and Tacit Knowledge</a> - tacit-знания, которые невозможно передать через туториал, а только эмпирически.<br>Примеры в программировании — архитектура/дизайн/паттерны/парадигмы программирования. Навыки отладки, организации рабочего процесса, оценка стиля кода, контроль сложности, производительности и запутанности кода.</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;strong&gt;&lt;c
-      
-    
-    </summary>
-    
-    
-    
-      <category term="dev_method" scheme="http://spiiin.github.io/tags/dev-method/"/>
     
   </entry>
   
