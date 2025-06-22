@@ -371,12 +371,12 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <span class="line"></span>
 <span class="line"><span style="color: #E6E6E6">when_point_clicked()</span></span></code></pre></div></div></figure>
 <p><a href="/blog/1496659028/gjk.png"><img src="/blog/1496659028/gjk_small.png" alt></a><br><a target="_blank" rel="noopener" href="https://www.geogebra.org/3d/c8h65beu">https://www.geogebra.org/3d/c8h65beu</a></p>
-<p>Так как тут код строит новые объекты на каждой проверке (так проще писать, чем в функциональном стиле с зависимостями, да и проще портировать потом на другой язык), то пересчёт результата вынесен с события on_moved точек на on_click точки O (иначе от огромного количества объектов создаваемых каждый кадр объектов при перестроении программа подтормаживает, нужно бы прокинуть в неё метод для удаления объектов, а не только скрытие их).</p>
 <p>Тут обычно серия рассуждений о применимости GJK в разных случаях, но этого и в других туториалах хватает.</p>
+<p><em>update</em> - исправил пачку ошибок и допилил удаление возможность удаления временных объектов, теперь можно перестраивать симплекс на движение любой точки. <em>оооооу, моя геогебра!</em></p>
 <p>Код примеров:<br><a target="_blank" rel="noopener" href="https://github.com/spiiin/pygbb_3d_examples">https://github.com/spiiin/pygbb_3d_examples</a></p>
 <h2><span id="vyvod">Вывод</span><a href="#vyvod" class="header-anchor">#</a></h2><p>Среда немного сыровата, но в принципе позволяет пользоваться всеми возможностями Geogebra для построений, при этом вполне встраивается в код на Python (но всё равно стоит помнить о том, что в скриптах скрещены два отдельных мира). Так что задумку можно было бы и допилить, если мне приспичит разобраться с ещё какими-нибудь алгоритмами.</p>
 <p><em>Кажется, при экспорте в gbb формат (с которого сделаны ссылки), отваливаются скрипты, так что чтобы посмотреть полноценно, надо запускать локально, надо бы натравить ИИ и на это</em></p>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -385,7 +385,7 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/2913584196/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2025 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+	    </script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/2913584196/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2025 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
   <script>
   const CODE_CONFIG = {
     beautify: undefined,
