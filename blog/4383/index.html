@@ -10,9 +10,11 @@
     <!-- Google tag (gtag.js) ends-->
     <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Исследование Addams Family(E) [NES]</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
-<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/56282/">Позже</a><a class="pagination__link pagination__next" href="/blog/21742/">Раньше</a></div><article class="article post"><h3 class="article__title">Исследование Addams Family(E) [NES]</h3><div class="article__date metadata"><div class="post-info">2011/12/23</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><code>&quot;Семья Аддамсов&quot;</code> - одна из самых запутанных игр на NES. </p>
+<a class="article__tags__link metadata" href="/tags/nes/">nes</a><a class="article__tags__link metadata" href="/tags/hack/">hack</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><code>"Семья Аддамсов"</code> - одна из самых запутанных игр на NES. </p>
 <p>Практически все зоны доступны сразу, но чтобы пройти их, надо знать правильный порядок. Но даже после полного прохождения у каждого из игроков остаётся несколько вопросов. Никому неизвестно, куда ведёт закрытая дверь в холле и зачем нужны третьи ноты в библиотеке. Но вооружившись дизассемблером и монитором памяти, можно это узнать. </p>
 <p>Сначала с помощью поиска читов необходимо отсеять ячейки памяти, которые изменяются вместе с игровой зоной. Чтобы это сделать в эмуляторе fceuxd sp надо много раз, меняя комнату, в меню Tools-&gt;Cheats просеивать ячейки кнопками Equal и Not Equal. Когда останется примерно тридцать ячеек можно с помощью монитора памяти (Tools-&gt;Hex editor), следить за ними в реальном времени. При этом опытному ромхакеру в глаза сразу должна броситься ячейка $613, которая со всех сторон окружена нулями, а сама меняется с номером комнаты или при сборе предметов. В игре есть только один параметр, который меняется при таких условиях - подсказка с названием комнаты внизу экрана.  </p>
 <p>Сюда ставится точка остановки на запись и при следующей смене комнаты находится код, который пишет в эту ячейку.</p>
@@ -29,14 +31,14 @@
 <span class="line"><span style="color: #E6E6E6">05	THE GALLERY	Галерея снизу слева от холла</span></span>
 <span class="line"><span style="color: #E6E6E6">06	THE LANDING	Коридок сверху слева, в сторону чердака</span></span>
 <span class="line"><span style="color: #E6E6E6">07	THE LANDING	Коридор сверху справа, в сторону балкона</span></span>
-<span class="line"><span style="color: #E6E6E6">08	THE FESTER&#39;S ROOM	Комната Фестера</span></span>
-<span class="line"><span style="color: #E6E6E6">09	THE PUGSLEY&#39;S ROOM	Комната Пагсли</span></span>
+<span class="line"><span style="color: #E6E6E6">08	THE FESTER'S ROOM	Комната Фестера</span></span>
+<span class="line"><span style="color: #E6E6E6">09	THE PUGSLEY'S ROOM	Комната Пагсли</span></span>
 <span class="line"><span style="color: #E6E6E6">0A	THE TOY ROOM	Комната игрушек</span></span>
-<span class="line"><span style="color: #E6E6E6">0B	THE WEDNESDAY&#39;S ROOM	Комната Венсдей</span></span>
+<span class="line"><span style="color: #E6E6E6">0B	THE WEDNESDAY'S ROOM	Комната Венсдей</span></span>
 <span class="line"><span style="color: #E6E6E6">0C	THE ATTIC	Чердак</span></span>
 <span class="line"><span style="color: #E6E6E6">0D	THE ROOF	Крыша</span></span>
 <span class="line"><span style="color: #E6E6E6">0E	THE POND	Пруд в лесу</span></span>
-<span class="line"><span style="color: #E6E6E6">0F	THE SECRET ROOM	Тайник в комнате MASTER&#39;S BEDROOM</span></span>
+<span class="line"><span style="color: #E6E6E6">0F	THE SECRET ROOM	Тайник в комнате MASTER'S BEDROOM</span></span>
 <span class="line"><span style="color: #E6E6E6">10	THE SECRET ROOM	Тайник в шкафу на чердаке</span></span>
 <span class="line"><span style="color: #E6E6E6">11	THE SECRET ROOM	Тайник справа в пруду</span></span>
 <span class="line"><span style="color: #E6E6E6">12	THE CHIMNEY	Камин. Вход в трубе на крыше</span></span>
@@ -53,7 +55,7 @@
 <span class="line"><span style="color: #E6E6E6">1D	THE BONE ROOM	Дверь сверху-слева в склепе</span></span>
 <span class="line"><span style="color: #E6E6E6">1E	THE BONE ROOM	Дверь снизу-слева в склепе</span></span>
 <span class="line"><span style="color: #E6E6E6">1F	THE BONE ROOM	Дверь сверху-слева в склепе</span></span>
-<span class="line"><span style="color: #E6E6E6">20	THE GOMEZ&#39;S ROOM	Последняя комната</span></span>
+<span class="line"><span style="color: #E6E6E6">20	THE GOMEZ'S ROOM	Последняя комната</span></span>
 <span class="line"><span style="color: #E6E6E6">21	THE FREEZER	Холодильник в кухне</span></span>
 <span class="line"><span style="color: #E6E6E6">22	THE FURNACE	Печка, вход справа в кухне</span></span>
 <span class="line"><span style="color: #E6E6E6">23	THE PIT	Яма-ловушка в комнате с ценями</span></span>
@@ -103,7 +105,7 @@
 <span class="line"><span style="color: #E6E6E6">E78A: LDA ($A),Y  </span></span>
 <span class="line"><span style="color: #E6E6E6">E78C: CMP #7 ; если вход в дверь номер 7 (та самая загадочная дверь)  </span></span>
 <span class="line"><span style="color: #E6E6E6">E78E: BEQ $E7AC  </span></span>
-<span class="line"><span style="color: #E6E6E6">E7AC: LDA #$32 ; показать строку номер 32 &quot;locked door&quot;  </span></span>
+<span class="line"><span style="color: #E6E6E6">E7AC: LDA #$32 ; показать строку номер 32 "locked door"  </span></span>
 <span class="line"><span style="color: #E6E6E6">E7AE: STA byte\_613 ; дверь закрыта всегда =\</span></span></code></pre></div></div></figure>
 <p>С нотами такая же штука. В момент, когда Гомез передаёт дворецкому манускрипт, единственное, что происходит в коде - выставляется значение номера мелодии в ячейку $623. Если записать в эту ячейку другие числа, можно послушать все 5 музыкальных тем игры или заставить дворецкого играть нойз из кода игры. Ячейка с номером мелодии постоянно считывается только в комнатах Library(открывается секретный проход в комнату цепей нотами 1) и Ballroom (призраки начинают танцевать и открывается вход в лес, если были выбраны ноты 3). Ноты номер 2 не используются нигде =\  </p>
 <p>Секретов нет, но теперь это хотя бы проверено.  </p>
