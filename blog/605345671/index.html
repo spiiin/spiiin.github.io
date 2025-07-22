@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="ru"><head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74CE2MTBK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-74CE2MTBK8');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Путеводитель С++ программиста по неопределенному поведению</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__next" href="/blog/413105276/">Раньше</a></div><article class="article post"><h3 class="article__title">Путеводитель С++ программиста по неопределенному поведению</h3><div class="article__date metadata"><div class="post-info">2025/07/18</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/cpp/">cpp</a><a class="article__tags__link metadata" href="/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/">книги</a><a class="article__tags__link metadata" href="/tags/link/">link</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a target="_blank" rel="noopener" href="https://github.com/Nekrolm/ubbook">Путеводитель C++ программиста по неопределенному поведению</a> — увлекательное путешествие по тёмным уголкам C++.<br>(и еще пара ссылок ниже).</p>
+<p>Автор несколько раз объясняет трудноуловимые ошибки в C++, через аналогичный код на <code>Rust</code>, в котором borrow-чекер находит проблемы. В каком-то виде, видимо, проверки lifetime когда-нибудь подъедут и в C++.</p>
+<p>Один из первых примеров:</p>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">f</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">float&amp;&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">x</span><span style="color: #E6E6E6">) { std::cout </span><span style="color: #D4D4D4">&lt;&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;float &quot;</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">&lt;&lt;</span><span style="color: #E6E6E6"> x </span><span style="color: #D4D4D4">&lt;&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&quot;</span><span style="color: #E6E6E6">;  }</span></span>
+<span class="line"><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">f</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">int&amp;&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">x</span><span style="color: #E6E6E6">) { std::cout </span><span style="color: #D4D4D4">&lt;&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;int &quot;</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">&lt;&lt;</span><span style="color: #E6E6E6"> x </span><span style="color: #D4D4D4">&lt;&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">&quot;</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">&quot;</span><span style="color: #E6E6E6">;  }</span></span>
+<span class="line"><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">g</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">auto&amp;&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">v</span><span style="color: #E6E6E6">) { </span><span style="color: #DCDCAA">f</span><span style="color: #E6E6E6">(v); }</span><span style="color: #6A9955"> // C++20</span></span>
+<span class="line"><span style="color: #6A9955">// template &lt;class T&gt; void g(T v) { f(v); }</span></span>
+<span class="line"><span style="color: #569CD6">int</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">main</span><span style="color: #E6E6E6">() { </span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">g</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">2</span><span style="color: #E6E6E6">);</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">g</span><span style="color: #E6E6E6">(</span><span style="color: #B5CEA8">1.f</span><span style="color: #E6E6E6">);</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
+<span class="line"><span style="color: #6A9955">// Выводит</span></span>
+<span class="line"><span style="color: #6A9955">// float 2</span></span>
+<span class="line"><span style="color: #6A9955">// int 1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #569CD6">void</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">g</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">int&amp;&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">v</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #6A9955">    // Несмотря на то что тип v — int&amp;&amp;</span></span>
+<span class="line"><span style="color: #6A9955">    // Дальнейшее использование v в выражениях дает int&amp; !</span></span>
+<span class="line"><span style="color: #6A9955">    // decltype(v)   == int&amp;&amp;</span></span>
+<span class="line"><span style="color: #6A9955">    // decltype((v)) == int&amp;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">    // Функции f принимают только rvalue ссылки</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">    // Неявное преобразование int&amp; к int&amp;&amp; запрещено</span></span>
+<span class="line"><span style="color: #6A9955">    //  int&amp;&amp; x = 5;</span></span>
+<span class="line"><span style="color: #6A9955">    //  int&amp;&amp; y = x; // не компилируется!</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">    // Таким образом перегрузка f(int&amp;&amp;) не может быть использована</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">    // Остается f(float&amp;&amp;)</span></span>
+<span class="line"><span style="color: #6A9955">    // int умеет неявно приводиться к float</span></span>
+<span class="line"><span style="color: #6A9955">    // int&amp; умеет неявно выступать в роли просто int</span></span>
+<span class="line"><span style="color: #6A9955">    // неявный static_cast&lt;float&gt;(v) возвращает временное значение float</span></span>
+<span class="line"><span style="color: #6A9955">    // временные значения типа T неявно биндятся к T&amp;&amp;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">    // Имеем цепочку преобразований:</span></span>
+<span class="line"><span style="color: #6A9955">    // int&amp; -&gt; int -&gt; float -&gt; float&amp;&amp; </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">f</span><span style="color: #E6E6E6">(v);</span><span style="color: #6A9955"> // будет вызван f(float&amp;&amp;) !</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">    // явно: f(static_cast&lt;float&gt;(v));</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Семантический процесс приведения типов красиво стреляет в ногу (не так красиво как coersion в js, но и так неплохо получилось)</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=lc3UkIZ4zOY">Константин Владимиров — Семантические процессы в C++</a><br>    3 основных процесса:</p>
+<pre><code>- поиск и разрешение имён
+- вывод и подстановка типов (проверка/приведение/вывод)
+- инстанциирование шаблонов
+</code></pre><p>Разобраться с каждым полезно для понимания языка. Кроме трюка с <code>explicit</code> для запрета каста в конструкторах с одним параметром и операторах преобразования, можно еще перекрыть преобразование явным удалением всех функций, кроме единственной:</p>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">int</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">only_ints</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">int</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">x</span><span style="color: #E6E6E6">) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> x;}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #569CD6">template</span><span style="color: #E6E6E6"> &lt;</span><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">T</span><span style="color: #E6E6E6">&gt;</span></span>
+<span class="line"><span style="color: #569CD6">auto</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">only_ints</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">T</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">x</span><span style="color: #E6E6E6">) </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">delete</span><span style="color: #E6E6E6">;</span><span style="color: #6A9955"> //отключение преобразования</span></span></code></pre></div></div></figure>
+<p>Мой любимый пример даже не UB, а <code>IFNDR</code> — специализация шаблона не в заголовочном файле. Видел налёты на него раза три у знакомых программистов (последний раз в канале движка <a target="_blank" rel="noopener" href="https://t.me/o2engine/220">o2</a>)<br><a target="_blank" rel="noopener" href="https://youtu.be/e4NpXk9l51w?si=Hg47I5PUu1F6vR4K&amp;t=1788">Магистерский курс C++ (МФТИ, 2022-2023). Лекция 3. Шаблоны классов и частичная специализация</a></p>
+<p><a target="_blank" rel="noopener" href="http://ders.stml.net/cpp/norefs/norefs.html">Не копируйте!</a> — фрик-статья о том, что ссылками в C++ сложно пользоваться (на самом деле, статьи с сайта можно давать на собеседованиях с вопросом “какие видишь логические ошибки в рассуждениях?”, и смотреть сколько кандидат насчитает).</p>
+<p>Лучше всё-таки освоиться с <a target="_blank" rel="noopener" href="https://github.com/Nekrolm/ubbook/blob/master/lifetime/lifetime_extension.md">Lifetime extension</a>, чтобы представлять случаи, когда временный объект может прилипнуть к константной ссылке в неожиданном месте и ограничить время его жизни, так как продление жизни происходит один раз, и может быть использовано раньше, чем кажется, глядя на код.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/413105276/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2025 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>

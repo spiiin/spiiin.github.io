@@ -1,16 +1,14 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Push/Pull/Event model, Reactive GUI</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
-  i['GoogleAnalyticsObject'] = r;
-  i[r] = i[r] || function () {
-    (i[r].q = i[r].q || []).push(arguments)
-  }, i[r].l = 1 * new Date();
-  a = s.createElement(o),
-    m = s.getElementsByTagName(o)[0];
-  a.async = 1;
-  a.src = g;
-  m.parentNode.insertBefore(a, m)
-})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'G-74CE2MTBK8', 'auto');
-ga('send', 'pageview');</script><!-- hexo injector head_end start -->
+<!DOCTYPE html><html lang="ru"><head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74CE2MTBK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-74CE2MTBK8');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Push/Pull/Event model, Reactive GUI</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
 <style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/4109146319/">Позже</a><a class="pagination__link pagination__next" href="/blog/1364570417/">Раньше</a></div><article class="article post"><h3 class="article__title">Push/Pull/Event model, Reactive GUI</h3><div class="article__date metadata"><div class="post-info">2024/03/23</div></div><div class="article__tags metadata">Tags:
@@ -22,7 +20,7 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <span class="line"><span style="color: #E6E6E6">игровой цикл, где игровой движок &quot;запрашивает&quot; состояние игрока или ввод данных в начале каждого кадра</span></span></code></pre></div></div></figure><br>Все загрузки, всё определение конфигурации и т.п. — размазано по коду и делается ad hoc.  </p>
 <p><strong><code>Push-модель</code></strong> — “то же самое, но вывернутое наизнанку”. Вам приходит callback/event/change propagation “blabla setting changed old-&gt;new”. В системе жёстко вшито, когда именно происходит событие, и имеется возможность добавить свою реакцию на него.</p>
 <p>Примеры<br><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">системы реального времени, где сенсоры отправляют данные на сервер или обработчик событий немедленно, как только они доступны</span></span>
-<span class="line"><span style="color: #E6E6E6">системы уведомлений, где сервер пушит уведомления на устройства клиентов без необходимости запроса со стороны клиента</span></span></code></pre></div></div></figure></p>
+<span class="line"><span style="color: #E6E6E6">система коллизий генерирует событие OnCollisionEnter, которое сразу же получают объекты</span></span></code></pre></div></div></figure></p>
 <p>Все загрузки, конфигурации, управление ресурсами - вынесено наружу, делается более-менее централизованно. Вы регистрируетесь где попало и реагируете на обновления. Зато система без вас знает, когда, как и что делать.</p>
 <p>Место определения колбека отделено от момента его вызова, вызывающий код должен понимать контекст, в котором будет вызван колбек — необходимо ли проверять на существование необходимые колбеку ресурсы, доступны ли они или заняты, безопасно ли создавать или удалять какие-либо типы объектов. Один из самых примитивных примеров — инвалидация итератора stl-контейнера в цикле в c++.</p>
 <p><a target="_blank" rel="noopener" href="https://c0de517e.blogspot.com/2014/02/design-pattern-push-updater.html">Design Pattern: The Push Updater</a></p>
@@ -38,6 +36,7 @@ ga('send', 'pageview');</script><!-- hexo injector head_end start -->
 <h2><span id="patterny-idiomy-uzory">Паттерны/идиомы/узоры</span><a href="#patterny-idiomy-uzory" class="header-anchor">#</a></h2><p>В различных языках или библиотеках идеи и модели могут быть:<br><strong><code>прозрачные для пользователя</code></strong> — доступны в виде примитивов языка<br><strong><code>выражаемые формально</code></strong> — для использования можно переопределить функцию для своего типа/отнаследоваться от класса стандартной библиотеки языка/написать синтаксический макрос/воспользоваться принятым в языке способом<br><strong><code>выражаемые неформально</code></strong> — для использования необходимо каждый раз повторно реализовывать функционал</p>
 <p>Когда-то паттернами считались процедуры (1957, <a target="_blank" rel="noopener" href="https://www.norvig.com/design-patterns/design-patterns.pdf">Design Patterns in Dynamic Programming</a>) и классы (1972, <a target="_blank" rel="noopener" href="https://blog.plover.com/prog/design-patterns.html">Design patterns of 1972</a>). Прозрачные для пользователя  практически не обсуждаются (или даже не называются!), формально выраженные также часто принимаются как правило хорошего программирования. Разве что когда кому-нибудь не нравится производительность или ограничения в интерфейсе. В этом случае даже прозрачные идиомы могут быть реифицированы и переделаны. Пример — <a href="/blog/1552834708/" title="Runtime-полиморфизм в C++">Runtime-полиморфизм в C++</a>, альтернативный полиморфизм.</p>
 <p>Может показаться, что называть что-то очень простое и примитивное паттерном слишком серьёзно, но это всего лишь ярлыки.</p>
+<p>“Встроенный” в язык паттерн объявления класса или наследования в каком-нибудь C++/C#/Java не приходит в голову называть так. Но если посмотреть на языки, где даже объявление класса реифицировано (в не-ООП языках, таких как JavaScript или Commom Lisp), то там вполне себе существуют различные варианты синтаксиса и идиомы вокруг этого.</p>
 <p><a target="_blank" rel="noopener" href="https://probablydance.com/2015/06/16/ideas-for-a-programming-language-part-4-reactive-programming/">Ideas for a Programming Language Part 4: Reactive Programming</a> — про поиск синтаксиса для того, чтобы ввернуть асинхронное программирование в язык прозрачно для пользователя</p>
 <h2><span id="iteratory-kolbeki-korutiny-faybery-dispetchery-asinki-revisited">Итераторы, колбеки, корутины, файберы, диспетчеры, асинки — revisited</span><a href="#iteratory-kolbeki-korutiny-faybery-dispetchery-asinki-revisited" class="header-anchor">#</a></h2><ul>
 <li><a href="/blog/2550823652/" title="Итераторы, колстеки, корутины">Итераторы, колстеки, корутины</a></li>
