@@ -14,7 +14,29 @@
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2629978232/">Позже</a><a class="pagination__link pagination__next" href="/blog/2975166623/">Раньше</a></div><article class="article post"><h3 class="article__title">daScript: ООП и всякое</h3><div class="article__date metadata"><div class="post-info">2023/01/12</div></div><div class="article__tags metadata">Tags:
-<a class="article__tags__link metadata" href="/tags/longread/">longread</a><a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1><span id="struktury">Структуры</span><a href="#struktury" class="header-anchor">#</a></h1><h2><span id="struktury-dascript-nasledovanie">Структуры daScript, наследование</span><a href="#struktury-dascript-nasledovanie" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://dascript.org/doc/reference/language/structs.html#struct-declaration">https://dascript.org/doc/reference/language/structs.html#struct-declaration</a></p>
+<a class="article__tags__link metadata" href="/tags/longread/">longread</a><a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#struktury-dascript-nasledovanie">Структуры daScript, наследование</a></li>
+<li><a href="#finalizatory">Финализаторы</a></li>
+<li><a href="#osvobozhdenie-pamyati">Освобождение памяти</a></li>
+<li><a href="#kastomnye-finalizatory">Кастомные финализаторы</a></li>
+<li><a href="#metody">Методы</a></li>
+<li><a href="#klassy">Классы</a></li>
+<li><a href="#poryadok-poley-obekta-v-pamyati">Порядок полей объекта в памяти</a></li>
+<li><a href="#pereopredelenie-metoda-v-ekzemplyare-klassa">Переопределение метода в экземпляре класса</a></li>
+<li><a href="#rtti">RTTI</a></li>
+<li><a href="#abstract-i-sealed-metody">Abstract и sealed-методы</a></li>
+<li><a href="#vidimost">Видимость</a></li>
+<li><a href="#inicializatory">Инициализаторы</a></li>
+<li><a href="#interfeysy">Интерфейсы</a></li>
+<li><a href="#svyaz-s-c-tipami">Связь с C++-типами</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="struktury-dascript-nasledovanie">Структуры daScript, наследование</span><a href="#struktury-dascript-nasledovanie" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://dascript.org/doc/reference/language/structs.html#struct-declaration">https://dascript.org/doc/reference/language/structs.html#struct-declaration</a></p>
 <figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">struct</span><span style="color: #E6E6E6"> V2</span></span>
 <span class="line"><span style="color: #E6E6E6">    x : </span><span style="color: #4EC9B0">float</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #B5CEA8">1.0f</span></span>
 <span class="line"><span style="color: #E6E6E6">    y : </span><span style="color: #4EC9B0">float</span></span>
@@ -209,7 +231,7 @@
 <span class="line"><span style="color: #E6E6E6">    a</span><span style="color: #D4D4D4">-&gt;</span><span style="color: #E6E6E6">set(</span><span style="color: #B5CEA8">1.0f</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">2.0f</span><span style="color: #E6E6E6">)</span></span>
 <span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">a</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span></code></pre></div></div></figure>
 <p>Здесь <code>explicit</code> в первом объявлении свободной функции <code>set</code> позволяет сделать некоторую магию — несмотря на то, что эта функция “пропускает” только указатели на V2, это позволяет однозначно выделить эту функцию в приведении <code>set = @@&lt;(var thisV: V2; X, Y: float):void&gt; set</code> среди двух прегруженных (иначе возникла бы неоднозначность — обе приводились бы с одинаковым приоритетом, и daScript выдавал бы ошибку). Но при этом сигнатура функции <code>V2'set</code> уже не содержит этого <code>explicit</code> (её тип выводится автоматически по правой части выражения, где явно указана сигнатура без <code>explicit</code>). Таким образом <code>V2'set</code> работает как виртуальная функция — может принимать первым аргументом как <code>V2</code>, так и её потомков, которые не переопределили функцию.</p>
-<h1><span id="klassy">Классы</span><a href="#klassy" class="header-anchor">#</a></h1><p><a target="_blank" rel="noopener" href="https://dascript.org/doc/reference/language/classes.html#classes">https://dascript.org/doc/reference/language/classes.html#classes</a></p>
+<h2><span id="klassy">Классы</span><a href="#klassy" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://dascript.org/doc/reference/language/classes.html#classes">https://dascript.org/doc/reference/language/classes.html#classes</a></p>
 <p>Классы в daScript — это структуры “на стероидах”. Немного отличий:</p>
 <ul>
 <li>Класс может быть отнаследован от структуры, но структура не может быть унаследована от класса (связано с тем, что классы могут иметь инициализаторы)</li>
@@ -418,7 +440,7 @@
 <span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">implements</span><span style="color: #E6E6E6">(ITick), implements(ILogger)]</span></span>
 <span class="line"><span style="color: #C586C0">class</span><span style="color: #E6E6E6"> Foo</span></span>
 <span class="line"><span style="color: #E6E6E6">    </span><span style="color: #D4D4D4">...</span></span></code></pre></div></div></figure>
-<h1><span id="svyaz-s-c-tipami">Связь с C++-типами</span><a href="#svyaz-s-c-tipami" class="header-anchor">#</a></h1><p><em>update</em></p>
+<h2><span id="svyaz-s-c-tipami">Связь с C++-типами</span><a href="#svyaz-s-c-tipami" class="header-anchor">#</a></h2><p><em>update</em></p>
 <ul>
 <li><a href="/blog/2757704498/" title="Связь daScript классов с C++-классами">Связь daScript классов с C++-классами</a> - перенёс в отдельную заметку</li>
 </ul>

@@ -16,6 +16,23 @@
 </head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/2975166623/">Позже</a><a class="pagination__link pagination__next" href="/blog/2767873544/">Раньше</a></div><article class="article post"><h3 class="article__title">Хеш-таблицы. Шпаргалка</h3><div class="article__date metadata"><div class="post-info">2022/12/25</div></div><div class="article__tags metadata">Tags:
 <a class="article__tags__link metadata" href="/tags/dev/">dev</a><a class="article__tags__link metadata" href="/tags/longread/">longread</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Небольшой обзор типов хеш-таблиц, которые чаще всего встречаются в языках программирования.</p>
 <span id="more"></span>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#razmer-tablicy">Размер таблицы</a></li>
+<li><a href="#hesh-funkcii">Хеш-функции</a></li>
+<li><a href="#idealnoe-heshirovanie">Идеальное хеширование</a></li>
+<li><a href="#separate-chaining">Separate chaining</a></li>
+<li><a href="#open-addressing">Open addressing</a></li>
+<li><a href="#lineynoe-probirovanie-bez-perestanovok">Линейное пробирование без перестановок</a></li>
+<li><a href="#lineynoe-heshirovanie-s-perestanovkoy-brenta">Линейное хеширование с перестановкой Брента</a></li>
+<li><a href="#lineynoe-heshirovanie-s-perestanovkoy-robin-guda">Линейное хеширование с перестановкой Робин Гуда</a></li>
+<li><a href="#benchmarki">Бенчмарки</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
 <p>Материалы:<br>[1] - <a target="_blank" rel="noopener" href="https://youtu.be/ncHmEUmJZf4">Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”</a><br>[2] - <a target="_blank" rel="noopener" href="http://bannalia.blogspot.com/2022/06/advancing-state-of-art-for.html">Advancing the state of the art for std::unordered_map implementations</a><br>[3] - <a target="_blank" rel="noopener" href="http://craftinginterpreters.com/hash-tables.html">Crafting Interpreters</a>. Глава “Hash tables”<br>[4] - <a target="_blank" rel="noopener" href="https://www.sebastiansylvan.com/post/robin-hood-hashing-should-be-your-default-hash-table-implementation/">Robin Hood Hashing should be your default Hash Table implementation</a><br>[5] - <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=M2fKMP47slQ">You Can Do Better than std::unordered_map: New Improvements to Hash Table Performance</a> - доклад автора ska::flat_hash_map<br>[6] - <a target="_blank" rel="noopener" href="https://pdimov.github.io/articles/unordered_dev_plan.html">Development Plan for Boost.Unordered</a></p>
 <p>Хеш-таблицы (наряду с массивами) — одна из основных структур данных стандартной библиотеки практически каждого языка программирования. Базовые понятия можно изучить из любой книги по алгоритмам и структурам данных, например, <code>Седжвик - Фундаментальные алгоритмы на C++</code>.</p>
 <p>Теоретически, хеш-таблица (ассоциативный массив) — это контейнер, который хранит пары [ключ, значение] с быстрым доступом (амортизированно, O(1)). Практически, есть много интересных нюансов организации хранения.<br>Хеш-таблица логически организована как несколько корзин (bucket/slot), которые хранят данные (пары, значения, указатели на них). Место хранения (конкретная корзина) определяется с помощью хеш-функции, которая отображает ключ на номер корзины.</p>
