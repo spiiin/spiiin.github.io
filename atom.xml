@@ -64,9 +64,9 @@
     
     
     
-      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
-    
       <category term="dev_evolution" scheme="http://spiiin.github.io/tags/dev-evolution/"/>
+    
+      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
     
   </entry>
   
