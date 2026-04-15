@@ -54,6 +54,7 @@
 <p>В итоге получились такие персонажи, сведенные к нужной высоте и очищенные он фона (с пиксел-артом очистка сильно проще, в отличие от вектор-арта, где для очистки требовались 2 прогона через ИИ-модели):<br><a href="/blog/3665106445/pixel_art_1.png"><img src="/blog/3665106445/pixel_art_1_small.png" alt></a></p>
 <p>После того, как удалось подобрать несколько десятков изображений, можно попробовать отойти от общения с чат-ботом, и использовать специфические модели, чтоб передать передать им стиль для копирования, например, <a target="_blank" rel="noopener" href="https://www.pixellab.ai/">PixelLab.ai</a>. Получается средне, годится только для референса:<br><a href="/blog/3665106445/pixel_art_2.png"><img src="/blog/3665106445/pixel_art_2_small.png" alt></a><br><em>скормлены все персонажи выше в качестве референса, просьба сгенерить персонажа берсеркера</em></p>
 <p>Возможно, копирования стиля недостаточно, нужна своя LoRA с дообучением, но это выходит за рамки проекта выходного дня.</p>
+<p><em>update 24-04-15</em><br><a target="_blank" rel="noopener" href="https://www.spritecook.ai/blog/tiny-pixel-art-animations">How to Nail Tiny Pixel Art Animations</a> — вот здесь есть достаточно простое решение проблемы “прибивания” пикселей к границам сетки, а также задания размера. Вместо пост-обработки просто в качестве референса задаётся checkerboard текстура нужного размера</p>
 <h2><span id="vydelenie-sloyov-i-palitry">Выделение слоёв и палитры</span><a href="#vydelenie-sloyov-i-palitry" class="header-anchor">#</a></h2><p>Тут чисто ручная работа - отделить слои и дорисовать отсутствующие части. ИИ не видит в пиксель-арте частей. Это придётся сделать даже если анимация генерируется ИИ, для того, чтобы можно было получить кастомизированную версию спрайта (другой тип или цвет набедренной повязки).</p>
 <p><img src="/blog/3665106445/pixel_art_3_small.png" alt><br><em>отключенная рука для теста, что все пиксели топора под ней дорисованы</em></p>
 <p>Также полезная возможность на этом этапе — перевести изображение в режим индексированной палитры и экспортировать её. Если разметить палитру текстовыми комментариями, то можно попросить ИИ автоматически сгенерировать несколько вариантов других палитр целиком для альтернативных фракций, это быстрее, чем делать вручную. Также важно проверить, что один и тот же цвет не повторяется в разных логических частях изображения — к примеру оттенки кожи полностью отличаются от металлических оттенков доспеха.<br><img src="/blog/3665106445/pixel_art_4_small.png" alt></p>
@@ -91,7 +92,7 @@
 <li>ИИ выполняет 60-70% работы, остальное — вручную. Хотя ручная работа — мелкие правки, требуется определённый скилл (всё те же требования к пониманию пиксел-арта, без которого от неверно поставленного одного пиксела можно “поломать” спрайт). Может быть сложнее для более детального арта.</li>
 <li>Меньше возможностей прикрутить какую-нибудь общую модель к пайплайну, требования к арту очень специфические.</li>
 </ul>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -100,7 +101,7 @@
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
-	    </script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/628705007/">Позже</a><a class="pagination__link pagination__next" href="/blog/2716682478/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2026 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__prev" href="/blog/628705007/">Позже</a><a class="pagination__link pagination__next" href="/blog/2716682478/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2026 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
   <script>
   const CODE_CONFIG = {
     beautify: undefined,
