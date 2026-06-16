@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2026-06-16T19:53:27.000Z</updated>
+  <updated>2026-06-16T20:03:08.000Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EdenSpark Game Jam 2</title>
+    <link href="http://spiiin.github.io/blog/2781849391/"/>
+    <id>http://spiiin.github.io/blog/2781849391/</id>
+    <published>2026-06-16T20:03:08.000Z</published>
+    <updated>2026-06-16T20:03:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul><li><a href="/blog/2671506651/" title="О гейм-джемах">О гейм-джемах</a></li></ul><p>Сделал игру для <a href="https://itch.io/jam/edenspark-game-jam-2">EdenSpark Game Jam #2</a>. В этот раз в формате компо, за 48 часов (сколько было).</p><p><a href="https://spiiin.itch.io/dark-mass">https://spiiin.itch.io/dark-mass</a> (перейдите по ссылке)</p><p><img src="/blog/2781849391/dark_mass_small.png" alt></p><p>Тема — <strong><code>Mass Control</code></strong> в широком смысле. От управления массой до контроля толпы. Кажется сложной в начале, но в широкой трактовке допускает почти что угодно.</p><figure class="shiki"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">Mass control — literally, metaphorically, in any form your imagination can reach. It might be controlling crowds and large groups of people, manipulating the mass and weight of physical objects, gravity control, black holes, magnetism, inertia, density, the flow of liquids or granular bodies. Or it could be something entirely different: weight loss as core gameplay (yes, we're serious — or maybe not), managing cargo weight in a logistics puzzle, balancing lightness against heaviness, the influence of mass on movement physics, or something we haven't even thought of yet. The main thing is that the connection to the theme should be clear in the project's design and description. </span></span><span class="line"><span style="color: #E6E6E6">[01.06.2026 18:37] Anton Yudintsev: Более того, по английски mass control можно прочитать как «массовое управление»</span></span><span class="line"><span style="color: #E6E6E6">[01.06.2026 18:38] Anton Yudintsev: И вообще все варианты годятся</span></span></code></pre></div></div></figure><p>Референсы, которые смотрел, пока выбирал идею.</p><p><code>Набор толпы/массы</code><br><a href="https://store.steampowered.com/app/848350/Katamari_Damacy_REROLL/">Katamari Damacy</a><br><a href="https://store.steampowered.com/app/29180/Osmos/">Osmos</a>, Agar.io<br><a href="https://play.google.com/store/apps/details?id=io.voodoo.crowdcity">Crowd City</a><br><a href="https://play.google.com/store/apps/details?id=com.supercell.squad">Squad Busters</a><br><a href="https://roboatino.itch.io/the-pale-blue-pixel">Pale Blue Pixel</a> - набор формы корабля<br><a href="https://vivianmochi.itch.io/gravity-well">Gravity Well</a> - набор массы и учет орбит</p><p><code>Команды толпе</code><br><a href="https://www.youtube.com/watch?v=AuiyFXMjGxA">Lemmings</a><br><a href="https://pikmin.nintendo.com/">Picmin</a><br><a href="https://store.steampowered.com/app/2499520/Be_My_Horde/">Be my horde</a></p><p><code>Мердж</code><br><a href="https://suikagame.com/">Suika</a>-клоны, <a href="https://store.steampowered.com/app/3839300/Dogpile/">Dogpile</a></p><p><code>Мостостроение</code><br><a href="https://store.steampowered.com/app/22000/World_of_Goo/">World of Goo</a> - башне-строение</p><p><code>Баланс качель/транспорта</code><br><a href="https://cosmicadventuresquad.itch.io/teeter-hero">teeter hero</a><br>It takes two (самолёт), Zelda ToTK глайдер<br>New Super Mario Bros (плот, счетчики объектов/прыжков)</p><p><code>Игры про dV</code><br><a href="https://en.wikipedia.org/wiki/Lunar_Lander_(video_game_genre">Lunar Lander (video_game_genre)</a>)</p><p><code>Платформеры с полем-пазлом</code><br><a href="https://store.steampowered.com/app/3249380/Piece_by_Piece/">Piece-by-piece</a><br><a href="https://www.youtube.com/watch?v=GHN4DKQgl9Y">Pedestrian</a><br><a href="https://candypencil.itch.io/hako-oshimai">Hako oshimai</a><br><a href="https://namatakahashi.itch.io/projectionremains">Projection Remains</a></p><p><code>Вращение как оружие</code><br><a href="https://yokin.itch.io/dogspin">Dogspin</a><br>Braveheart</p><p><code>Падение в яму</code><br><a href="https://zzzamana.itch.io/ld48">Bunny Bunny Dig Dig</a> - копание тоже падение, все шахтёрские песочницы<br><a href="https://steamcommunity.com/app/360740">Downwell</a><br><a href="https://store.steampowered.com/app/1575300/No_Parachute/">No Parachute</a></p><p><code>Инкременталки</code><br>Про набор чего угодно, в том числе и массы качественно и количественно.<br><a href="https://chifu333.itch.io/purple-carrot-eater">Purple Carrot Eater</a><br><a href="https://artbohr.itch.io/the-fire-must-be-fed">The fire must be fed</a><br><a href="https://i-am-happy-to-see-you.itch.io/incremental-rts">Incremental RTS</a></p><p><code>Перемещение на крюках</code><br>Worms<br><a href="https://moraguma.itch.io/soulchain">Soulchain</a><br><a href="https://vivianmochi.itch.io/grapple-zap-circuit">Grapple Zap Circuit</a> - гонки</p><p><code>Необычное/не по теме</code><br><a href="https://store.steampowered.com/app/702670/Donut_County/">Donut County</a> - управление дырой в земле<br><a href="https://annapurnainteractive.com/games/flock">Flock</a> - визуал<br><a href="https://store.steampowered.com/app/3995060/DeckWrecking_Pirates/">DeckWrecking Pirates</a> - не про массу, тактический пазл с кубиками<br><a href="https://team-bugulon.itch.io/grabanakki?ac=jXdAbFQF">Grabanakki</a> - платформер с разбором пола с классным стилем<br><a href="https://ldjam.com/events/ludum-dare/48/last-star-legionnaire">Last Star Legionnaire</a> (<a href="https://www.youtube.com/watch?v=OsSQyzSWskc">видео</a>) - микс космическая аркады и платформера<br><a href="https://vivianmochi.itch.io/grove-guardian">Grove guardian</a> - нестандартная смесь tower defense и стратегии<br><a href="https://team-bugulon.itch.io/yumfellows">Yumfellows</a> - защищать чуваков от монстра фонариком, а потом поедать самому, мини-хоррор<br><a href="https://mightyvision.blogspot.com/2011/02/exuberant-struggle.html">Exuberant Struggle</a> - минимализм от Michael Brough, из сборника <a href="https://smestorp.itch.io/kompendium">Kompendium</a> — притягивание массы на свою сторону</p><p><code>Персоны и команды</code></p><p><a href="https://vivianmochi.itch.io/">https://vivianmochi.itch.io/</a></p><p><a href="https://team-bugulon.itch.io/">https://team-bugulon.itch.io/</a></p><p>Michael Brough<br><a href="https://mightyvision.blogspot.com">https://mightyvision.blogspot.com</a><br><a href="https://eggplant.show/all-systems-brough-868-hack">All Systems Brough - 868-HACK</a> - есть также большая серия выпусков про его игры<br><a href="https://www.youtube.com/watch?v=RYXInr3N5UQ">Michael Brough: Going with the grain (A MAZE. Indie Connect 2013, Berlin)</a> - особенности игр как медиа</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
+      
+    
+    </summary>
+    
+    
+    
+      <category term="dev_method" scheme="http://spiiin.github.io/tags/dev-method/"/>
+    
+      <category term="gamedev" scheme="http://spiiin.github.io/tags/gamedev/"/>
+    
+      <category term="gamedesign" scheme="http://spiiin.github.io/tags/gamedesign/"/>
+    
+  </entry>
   
   <entry>
     <title>22 закона маркетинга</title>
@@ -515,34 +543,6 @@
       <category term="c#" scheme="http://spiiin.github.io/tags/c/"/>
     
       <category term="fsharp" scheme="http://spiiin.github.io/tags/fsharp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>EdenSpark</title>
-    <link href="http://spiiin.github.io/blog/2259431913/"/>
-    <id>http://spiiin.github.io/blog/2259431913/</id>
-    <published>2025-11-09T17:56:26.000Z</published>
-    <updated>2025-11-09T17:56:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a href="https://edenspark.io/">EdenSpark</a> — платформа для создания игр и запуска на консолях PS5/Xbox, сейчас в стадии подготовки в закрытому бета-тесту.</p><p>Внутри <a href="https://github.com/GaijinEntertainment/DagorEngine">Dagor Engine</a>, снаружи песочница на <a href="https://daslang.io/">Daslang</a></p><p>Игры можно аплоадить в приложение Gaijin в сторах и расшаривать для пользователей. Опционально — собрать отдельное приложение и выпустить в сторах самим. Для инди-разработчиков это даёт потенциально новый пайплайн — возможность доступа к аудитории консолей и получения фидбека в период разработки.</p><ul><li><a href="/blog/3309518526/" title="Системы поиска сокровищ">Системы поиска сокровищ</a> - надеюсь станет новой системой поиска сокровищ гейм-дизайна</li></ul><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
-      
-    
-    </summary>
-    
-    
-    
-      <category term="gamedev" scheme="http://spiiin.github.io/tags/gamedev/"/>
-    
-      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
-    
-      <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
     
   </entry>
   
