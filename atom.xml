@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2026-06-16T20:03:08.000Z</updated>
+  <updated>2026-06-20T19:47:22.000Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Game design basics: Risk and reward</title>
+    <link href="http://spiiin.github.io/blog/3571563817/"/>
+    <id>http://spiiin.github.io/blog/3571563817/</id>
+    <published>2026-06-20T19:47:22.000Z</published>
+    <updated>2026-06-20T19:47:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Ещё один базовый принцип гейм-дизайна — размер награды должен соответствовать риску, на который идёт игрок ради её получения.</p><p>Это нужно, чтобы создать значимый выбор — рискнуть и попробовать получить награду, или отказаться от неё, не рискуя проиграть.</p><p><a href="https://www.youtube.com/watch?v=FXqEykD5Ub4">Risk and Reward</a> - Masahiro Sakurai приводит в пример примитивный вариант из Space Invaders. Чем больше пикселей в ширину в корабле игрока, тем сильнее нужно “высунутся” в простреливаемую врагами зону, чтобы выстрелить в них.</p><p><code>868-hack</code> — здесь риск прямо отображается в виде числа врагов, которые появятся, если забрать награду. Для того, чтобы создать значимость выбора, в игре используется система рейтинга, основанная на самой длинной серии побед подряд. При простом подсчёте очков в партии выгоднее всегда рисковать, но для длинной серии нужно играть максимально сейфово. Так что игрок должен задумываться каждый раз.<br><a href="https://mightyvision.blogspot.com/2013/05/score-conditions.html">https://mightyvision.blogspot.com/2013/05/score-conditions.html</a><br><a href="https://mightyvision.blogspot.com/2017/09/streak-scoring-redux.html">https://mightyvision.blogspot.com/2017/09/streak-scoring-redux.html</a></p><p><code>Balatro</code> — пропуск раунда даёт немедленный бонус, но лишает возможности посетить магазин.</p><p><code>Slice &amp; Dice</code> — случайные события в игре часто предлагают получить бонус одновременно со штрафом. Дополнительный предмет за то, что враги получат подкрепление. Проклятие до конца игры за очень сильную способность.</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
+      
+    
+    </summary>
+    
+    
+    
+      <category term="gamedesign" scheme="http://spiiin.github.io/tags/gamedesign/"/>
+    
+  </entry>
   
   <entry>
     <title>EdenSpark Game Jam 2</title>
@@ -515,34 +539,6 @@
     
     
       <category term="fun" scheme="http://spiiin.github.io/tags/fun/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Advent of Code</title>
-    <link href="http://spiiin.github.io/blog/1320693322/"/>
-    <id>http://spiiin.github.io/blog/1320693322/</id>
-    <published>2025-11-09T19:07:30.000Z</published>
-    <updated>2025-11-09T19:07:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a href="https://adventofcode.com/">Advent of code</a> — сайт с задачками по программированию, которые открываются с 1 по 25 декабря. Удобен чтобы попробовать новые языки программирования, да и просто задачки интересные бывают.</p><p><img src="/blog/1320693322/aoc_small.png" alt></p><p>В прошлом году я пробовал решать задачки на <code>F#</code> - решил первые 12 простых, проглядел решения на этом же языке от более опытных участников, чтобы ознакомиться с идиомами (<a href="https://gist.github.com/spiiin/7bc4b38a74d1cd9dd04f2df7011850d6">скрипт выкачки решений</a>), и также после решения скармливал условия ИИ, чтобы проверить, как он решает их, и улучшить свои решения. ИИ смог решить почти все.</p><ul><li><a href="/blog/4106514811/" title="F# in imaginery world">F# in imaginery world</a> — F#</li><li><a href="/blog/413105276/" title="Что может ИИ">Что может ИИ</a> — AI</li></ul><p>Дальше надоело, но задачки второй половины оказались интересными, поэтому постепенно в течение года <a href="https://github.com/spiiin/advent_of_code">дорешал</a> и их, на языковом зоопарке, что было под рукой в разное время:<br><img src="/blog/1320693322/aoc_langs.png" alt><br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> F# - 14<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> C# - 5<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> Python - 3<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> Rust - 2<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> VL - 1</p><ul><li>Попробовал Rust после статьи, по лаконичности синтаксиса действительно в простых скриптах напоминает Python <a href="https://deterministic.space/elegant-apis-in-rust.html">Elegant Library APIs in Rust</a>. Ну и сравнить с ocaml решением <a href="https://mmapped.blog/posts/35-aoc-2024">отсюда</a></li><li>Одну из <a href="https://github.com/spiiin/advent_of_code/blob/main/2024_19/Program_part1_zen_solver.cs">задач</a> попробовал решить с помощью constraint solving, проверить статью <a href="https://buttondown.com/hillelwayne/archive/many-hard-leetcode-problems-are-easy-constraint/">Many Hard Leetcode Problems are Easy Constraint Problems</a>. На самом деле кодом оказывается удобнее, даже для таких простых олимпиадных задачек количество ограничений быстро разрастается.</li><li>Одну <a href="https://github.com/spiiin/advent_of_code/blob/main/2024_25/aoc2024_25_1.vl">задачку</a> решил на VL в <a href="https://vvvv.org/">VVVV</a> - системе для креативного программирования на .NET. Непривычно, визуальное программирование заставляет заново прикидывать, как работают базовые конструкции. Код выглядит так:<br><img src="/blog/1320693322/aoc_vvvv_small.png" alt></li><li>GPT-5 к концу года может решить все задачки, но признаётся, что знает их (на текст условия прямо отвечает, что знает “Отлично, это классика из AoC-2024 Day 21”), так что тут непонятно, есть ли прогресс относительно начала года, или просто модель уже обучена на этих задачах.</li></ul><p><strong><code>Интересные задачки, на мой вкус</code></strong></p><p><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a href="https://adventofcode.com/2024/day/12">Day 12: Garden Groups</a> - в первой части нужно разбить поле на участки и посчитать их площадь и периметр, вторая часть добавляет подсчёт сторон каждого участков, что неожиданно сложнее и интереснее.<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a href="https://adventofcode.com/2024/day/14">Day 14: Restroom Redoubt</a> - первая часть — симуляция движения нескольких роботов, вторая - найти шаг в симуляции, когда роботы выстраиваются в ascii-изображение ёлки, конкретный пример изображения не даётся (в симуляции несколько тысяч шагов). Можно решить используя системы поиска стеганографии, или просто в предположении, что ствол в ascii будет прямой линией.<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a href="https://adventofcode.com/2024/day/15">Day 15: Warehouse Woes</a> - симуляция робота, который двигает ящики на поле со стенками. Вторая часть — единственная, которую не может решить ChatGPT (стартовое условие усложняется тем, что допускаются ящики размером больше одной клетки).<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a href="https://adventofcode.com/2024/day/17">Day 17: Chronospatial Computer</a> - на первом шаге нужно сделать эмулятор выдуманной виртуальной машины, на втором — определить начальные состояния регистров виртуальной машины, на которых программа выведет свой исходный текст (станет <a href="https://en.wikipedia.org/wiki/Quine">куайном</a>). Для решения нужно понять, что именно делает программа, чтобы подстроить вход под её логику определенным образом.<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a href="https://adventofcode.com/2024/day/24">Day 24: Crossed Wires</a> - симуляция логической схемы из логических вентилей. Во второй части нужно найти какие четыре пары из вентилей переставлены местами — в общем случае полный перебор не подходит, нужно понять что именно делает схема, чтобы определить, как именно конкретные вентили влияют на выход системы.</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
-      
-    
-    </summary>
-    
-    
-    
-      <category term="python" scheme="http://spiiin.github.io/tags/python/"/>
-    
-      <category term="c#" scheme="http://spiiin.github.io/tags/c/"/>
-    
-      <category term="fsharp" scheme="http://spiiin.github.io/tags/fsharp/"/>
     
   </entry>
   
