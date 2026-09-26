@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="ru"><head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74CE2MTBK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-74CE2MTBK8');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | ИИ вместо программистов</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__next" href="/blog/3198586047/">Раньше</a></div><article class="article post"><h3 class="article__title">ИИ вместо программистов</h3><div class="article__date metadata"><div class="post-info">2026/09/26</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/ai/">ai</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li><a href="/blog/3676277197/" title="ИИ вместо артистов: cartoon персонажи">ИИ вместо артистов: cartoon персонажи</a></li>
+<li><a href="/blog/2604111489/" title="ИИ вместо аниматоров: cutout анимации">ИИ вместо аниматоров: cutout анимации</a></li>
+<li><a href="/blog/3665106445/" title="ИИ вместо артистов: tiny pixel-art">ИИ вместо артистов: tiny pixel-art</a>
+</li>
+</ul>
+<p>Когда я в прошлый раз хотел написать такую заметку, я думал, что напишу что-то типа “ну, в данный момент ии пишет код как средний мидл” (где-то Opus 4.6).</p>
+<p>Но где-то с выходом GPT-6 Astra и дальше, пора признать — хэй, а эта штука уже умнее меня.</p>
+<p>Неважно задам ли я вначале хорошую архитектуру и попрошу его придерживаться, или просто попрошу сделать архитектуру за меня — ии достигнет результата. Я проверял на нескольких проектах масштаба 20-50 KLOC (код небольших игр без учета кода движка). На проектах масштаба 200-500k (промышленный код игр побольше). Предела, судя по всему, практически нет.</p>
+<p>Также, судя по всему, падает стоимость абстракций, там где человек боялся лишних повторений, для ии не проблема найти и поправить 100 мест. Он обнулил большинство существующих инженерных практик, а новых у нас пока нет. Есть отдельные луддиты, которые твердят, “но это же со временем перестанет работать”. Не испортится, поддерживать это будет следующее поколении ИИ, все уже давно заложились на то, что он будет умнеть дальше.</p>
+<p>Обесцениваниее предыдущих практик уравнивает всех. В отдельных компаниях применяют простую стратегию — “вот вам неограниченный доступ к ИИ, используйте по максимуму, а мы посмотрим, у кого будут лучшие результаты, и уволим остальных”. Простой способ избавиться от работников, который “субоптимальны по производительности”. Выжившим позволим написать инструкцию, как им удалось этого достичь.</p>
+<p>Мы видим прогресс ИИ в достаточно узких пределах, то что он продолжает взбираться выше, уже не так заметно, и станет еще менее заметно, когда машины намного обгонят человека. Также, как мы не можем заметить разницу между лучшими в мире двумя шахматными программами — любая из них обыграет вас 100 раз подряд, какая разница какая именно?</p>
+<p>Отдельные программисты еще верят, что они смогут бежать быстрее разгоняющегося поезда, пока он стартует. Скорее всего, скоро мы просто получим джина, который исполняет желания (а может уже получили).</p>
+<p>Кому-то при этом придется переосмыслить, хочет ли он “программировать” компьютер так. Лично мне всегда нравилось, что компьютер может выполнить то, что ты хочешь, и не было особенно важно, как именно это происходит. Хотя с точке зрения карьеры — теперь норма “выполнить с помощью ИИ 20 желаний в день”. Менеджеры снова пытаются придумать метрики, чтобы отличать тех хороших от плохих. Больше не будут работать ни тесты на знания алгоритмов (и раньше-то не особо), ни годы опыта, ни даже “опыт в использовании ИИ” (“о, вы пользовались еще первым chatgpt, невероятно полезный опыт”).</p>
+<p>Где-то год назад писать код с ИИ было раза в 2-3 быстрее, чем без него. Сейчас — раз в 10-20 на существующих проектах, местами и в 50, если генерировать с нуля. Несколько лет назад я придумал себе планку — “когда станет быстрее в 100 раз — это уровень новой промышленной революции”. До него уже близко, осталось недолго, чтобы посмотреть.</p>
+<p>Ну а дальше интереснее. Будут ли нужны посредники для общения с ИИ? Многие в период создания “языков высокого уровня” верили, что теперь специальные программисты будут не нужны, ведь писать на каком-нибудь паскале настолько просто, что бухгалтеры будут делать это сами. Но в этом раз шанс, что пользоваться ИИ сможет любой, заметно выше. Но я допускаю, что разница между лучшим пользователем ИИ и худшим во всяком случае на короткой дистанции еще останется.</p>
+<p>Возможно останется что-нибудь еще, что можно сделать. Настраивать ИИ тем, кто еще не справился сам? Так они сами себя установят и настроят. Дообучать ИИ? Это и раньше стоило копейки, все эти разгадывания капч и механические турки амазона, а теперь и на существующих материалах обучатся (забив на интеллектуальные права). Разбираться с математикой, чтобы тренировать своих ИИ? Они и тренировать себя сами будут. Реализовать с ИИ свой пет-проджект и заработать? Он не будет отличаться от миллиона таких же, произведенных фабрикой пет-проджектов. Миллионы игр, приложений, сервисов, новый кембрийский взрыва в ноосфере. Вопрос — в количестве токенов, которые у тебя есть.</p>
+<p>А там и роботы на подходе уже, в делах непрограммерских.<br><a target="_blank" rel="noopener" href="https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/a-turbulent-ai-era-and-critical-choices-to-make">https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/a-turbulent-ai-era-and-critical-choices-to-make</a></p>
+<style>.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .embed-container iframe, .embed-container object, .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/vDjW_dRyKXY" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+<p><em>Забавно, когда на конференции по Rails выходит на интро-речь автор и говорит что-то вроде “Знаете, программисты в принципе уже не нужны, я увольняюсь. Теперь я Maker”. Можно расходиться по домам</em></p>
+<p><a target="_blank" rel="noopener" href="https://x.com/AnthropicAI/status/2102824959827742916">https://x.com/AnthropicAI/status/2102824959827742916</a> - антропики тем временем нашли в днк бактерий аналоги crispr, рано или поздно можно будет прочитать в твиттере о том, как ИИ модифицирует гены. Ну и еще много новостей об открытиях во всех сферах. Или сам решает объединяться в рои (уже несколько раз). Не в этот раз, так в следующий. Мир уже изменился, назад дороги нет. Странное ощущение восторга и трепета.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/3198586047/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2026 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
