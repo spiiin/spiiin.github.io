@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://spiiin.github.io/blog/2142632119/</loc>
+    
+    <lastmod>2026-10-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://spiiin.github.io/blog/2553880278/</loc>
     
     <lastmod>2026-10-11</lastmod>
@@ -3252,14 +3261,14 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/cpp/</loc>
+    <loc>http://spiiin.github.io/tags/asm/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/</loc>
+    <loc>http://spiiin.github.io/tags/cpp/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3273,7 +3282,7 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/asm/</loc>
+    <loc>http://spiiin.github.io/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3281,13 +3290,6 @@
   
   <url>
     <loc>http://spiiin.github.io/tags/games/</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://spiiin.github.io/tags/log/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3302,6 +3304,13 @@
   
   <url>
     <loc>http://spiiin.github.io/tags/objc/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://spiiin.github.io/tags/log/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3336,13 +3345,6 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/codespell/</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://spiiin.github.io/tags/dev/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -3351,6 +3353,13 @@
   
   <url>
     <loc>http://spiiin.github.io/tags/gamedev/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://spiiin.github.io/tags/codespell/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -3406,13 +3415,6 @@
   </url>
   
   <url>
-    <loc>http://spiiin.github.io/tags/hardware/</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://spiiin.github.io/tags/android/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -3421,6 +3423,13 @@
   
   <url>
     <loc>http://spiiin.github.io/tags/lego/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://spiiin.github.io/tags/hardware/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
