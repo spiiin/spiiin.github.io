@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2026-10-10T13:33:07.000Z</updated>
+  <updated>2026-10-11T20:40:56.000Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jupyter daslang kernel</title>
+    <link href="http://spiiin.github.io/blog/2553880278/"/>
+    <id>http://spiiin.github.io/blog/2553880278/</id>
+    <published>2026-10-11T20:40:56.000Z</published>
+    <updated>2026-10-11T20:40:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Сделал кернел для Jupyter-ноутбуков для daslang - <a href="https://github.com/spiiin/jupyter_daslang_kernel">https://github.com/spiiin/jupyter_daslang_kernel</a></p><p><a href="/blog/2553880278/jupyter_das.png"><img src="/blog/2553880278/jupyter_das_small.png" alt></a></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
+      
+    
+    </summary>
+    
+    
+    
+      <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
+    
+  </entry>
   
   <entry>
     <title>dasSDL3 (English)</title>
@@ -507,34 +531,6 @@
       <category term="art" scheme="http://spiiin.github.io/tags/art/"/>
     
       <category term="indie" scheme="http://spiiin.github.io/tags/indie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ИИ: основы</title>
-    <link href="http://spiiin.github.io/blog/2716682478/"/>
-    <id>http://spiiin.github.io/blog/2716682478/</id>
-    <published>2026-04-10T19:07:09.000Z</published>
-    <updated>2026-04-10T19:07:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Общая информация<br><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI">Deep Dive into LLMs like ChatGPT</a><br><a href="https://www.youtube.com/watch?v=EWvNQjAaOHw">How I use LLMs</a></p><p><a href="https://www.youtube.com/watch?v=938qNjdEY3M">AI-Driven Development в командах: код и процессы</a> — в корпоративном мире</p><p>Устройство<br><a href="https://www.youtube.com/watch?v=q8SA3rM6ckI&amp;list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Neural Networks: Zero to Hero</a> — серия видео Andrey Karpathy про тренировку моделей</p><p>Обзор<br><a href="https://vas3k.club/post/20548/">Machine Learning 102: нейросетки концептуально на пальцах</a></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
-      
-    
-    </summary>
-    
-    
-    
-      <category term="gamedev" scheme="http://spiiin.github.io/tags/gamedev/"/>
-    
-      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
-    
-      <category term="ai" scheme="http://spiiin.github.io/tags/ai/"/>
     
   </entry>
   
