@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="ru"><head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74CE2MTBK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-74CE2MTBK8');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Daslang Jupyter - dastrudel, macro workbench</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__next" href="/blog/2142632119/">Раньше</a></div><article class="article post"><h3 class="article__title">Daslang Jupyter - dastrudel, macro workbench</h3><div class="article__date metadata"><div class="post-info">2026/10/19</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Вкрутил в <a target="_blank" rel="noopener" href="https://github.com/spiiin/jupyter_daslang_kernel">ядро jupyter для daslang</a> пару полезных фич.<br>Теперь на нём можно в live общаться с клиентом <a target="_blank" rel="noopener" href="https://daslang.io/blog/mazarbul.html">dastrudel</a> и программно писать музыку.</p>
+<style>.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .embed-container iframe, .embed-container object, .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/rqm-zjwBwSs" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+<p><em>пример live-coding</em></p>
+<p>Также можно в одной ячейке написать макрос, а в другой проверять его, несколько magic-команд для раскрытия и pretty-print отображения.</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #D4D4D4">%%</span><span style="color: #E6E6E6">writefile notebook_macros</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">das</span></span>
+<span class="line"><span style="color: #C586C0">options</span><span style="color: #E6E6E6"> gen2</span></span>
+<span class="line"><span style="color: #C586C0">module</span><span style="color: #E6E6E6"> notebook_macros </span><span style="color: #C586C0">public</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> daslib</span><span style="color: #D4D4D4">/</span><span style="color: #E6E6E6">ast</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> daslib</span><span style="color: #D4D4D4">/</span><span style="color: #E6E6E6">ast_boost</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> daslib</span><span style="color: #D4D4D4">/</span><span style="color: #E6E6E6">templates_boost</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> daslib</span><span style="color: #D4D4D4">/</span><span style="color: #E6E6E6">macro_boost</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> daslib</span><span style="color: #D4D4D4">/</span><span style="color: #E6E6E6">ast_verify</span></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">call_macro</span><span style="color: #E6E6E6">(name</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">"plus_one"</span><span style="color: #E6E6E6">)]</span></span>
+<span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">PlusOneMacro</span><span style="color: #E6E6E6"> : </span><span style="color: #4EC9B0">AstCallMacro</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">override </span><span style="color: #DCDCAA">visit</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">prog</span><span style="color: #E6E6E6">:ProgramPtr; </span><span style="color: #9CDCFE">mod</span><span style="color: #E6E6E6">:Module?; </span><span style="color: #569CD6">var</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">expr</span><span style="color: #E6E6E6">:ExprCallMacro?):ExpressionPtr {</span></span>
+<span class="line"><span style="color: #E6E6E6">        macro_verify(</span><span style="color: #DCDCAA">length</span><span style="color: #E6E6E6">(expr</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">arguments)</span><span style="color: #D4D4D4">==</span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">, prog, expr</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">at, </span><span style="color: #CE9178">"plus_one expects one argument"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> result </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> qmacro($e(clone_expression(expr</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">arguments[</span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">])) </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">        verify_expression(result)</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> result</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Отображение в виде AST</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #D4D4D4">%%</span><span style="color: #E6E6E6">ast</span></span>
+<span class="line"><span style="color: #E6E6E6">value</span><span style="color: #D4D4D4">=</span><span style="color: #B5CEA8">999</span></span>
+<span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> temporary</span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6">plus_one(value)</span></span>
+<span class="line"><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"THIS MUST NOT RUN"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">// After type inference and macro expansion; optimizer disabled.</span></span>
+<span class="line"><span style="color: #E6E6E6">Function </span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">cell</span><span style="color: #D4D4D4">&gt;</span></span>
+<span class="line"><span style="color: #E6E6E6">  ExprBlock</span></span>
+<span class="line"><span style="color: #E6E6E6">    ExprCopy : </span><span style="color: #4EC9B0">void</span></span>
+<span class="line"><span style="color: #E6E6E6">      ExprVar : </span><span style="color: #4EC9B0">int</span><span style="color: #D4D4D4">&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  value</span></span>
+<span class="line"><span style="color: #E6E6E6">      ExprConstInt : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  </span><span style="color: #B5CEA8">999</span></span>
+<span class="line"><span style="color: #E6E6E6">    ExprLet</span></span>
+<span class="line"><span style="color: #E6E6E6">      ExprOp2 : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">const</span></span>
+<span class="line"><span style="color: #E6E6E6">        ExprRef2Value : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #C586C0">const</span></span>
+<span class="line"><span style="color: #E6E6E6">          ExprVar : </span><span style="color: #4EC9B0">int</span><span style="color: #D4D4D4">&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">-</span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  value</span></span>
+<span class="line"><span style="color: #E6E6E6">        ExprConstInt : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  </span><span style="color: #B5CEA8">1</span></span>
+<span class="line"><span style="color: #E6E6E6">    ExprCall : </span><span style="color: #4EC9B0">void</span></span>
+<span class="line"><span style="color: #E6E6E6">      ExprConstString : </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  </span><span style="color: #CE9178">"THIS MUST NOT RUN"</span></span>
+<span class="line"><span style="color: #E6E6E6">      ExprFakeContext : __context </span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  __context__</span></span>
+<span class="line"><span style="color: #E6E6E6">      ExprFakeLineInfo : __lineInfo </span><span style="color: #C586C0">const</span><span style="color: #E6E6E6">  __lineinfo__</span></span>
+<span class="line"><span style="color: #E6E6E6">    ExprReturn : </span><span style="color: #4EC9B0">void</span></span></code></pre></div></div></figure>
+<p>Отображение в виде переписанного кода</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #D4D4D4">%</span><span style="color: #E6E6E6">expand plus_one(value)</span></span>
+<span class="line"><span style="color: #6A9955">// After type inference and macro expansion; optimizer disabled.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A9955">/*FULLY INFERRED*/</span></span>
+<span class="line"><span style="color: #6A9955">// [access_global]</span></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">export</span><span style="color: #E6E6E6">]</span></span>
+<span class="line"><span style="color: #E6E6E6">[$::export]</span></span>
+<span class="line"><span style="color: #C586C0">def</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">public</span><span style="color: #E6E6E6"> inspected_cell : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">const</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">	</span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> value </span><span style="color: #D4D4D4">+</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">;</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Больше live кодинга, больше интерактивности!</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/2142632119/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2026 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
