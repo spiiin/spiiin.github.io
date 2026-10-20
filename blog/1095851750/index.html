@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="ru"><head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74CE2MTBK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-74CE2MTBK8');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Dascript - библиотеки макросов</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__next" href="/blog/2729839560/">Раньше</a></div><article class="article post"><h3 class="article__title">Dascript - библиотеки макросов</h3><div class="article__date metadata"><div class="post-info">2026/10/20</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#type-providers">Type providers</a></li>
+<li><a href="#active-patterns">Active patterns</a></li>
+<li><a href="#computation-expressions">Computation expressions</a></li>
+<li><a href="#reactivex">ReactiveX</a></li>
+<li><a href="#derive">Derive</a></li>
+<li><a href="#links">Links</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="intro">Intro</span><a href="#intro" class="header-anchor">#</a></h2><p>Осилил статью Бориса Баткина про <a target="_blank" rel="noopener" href="https://daslang.io/blog/templates-what.html">templates</a> в <code>dascript</code>. Мне нравится dascript тем, что в нём иногда встречается код, в который можно вчитываться много раз, и каждый раз находить в нём что-то новое. Это как раз такая статья, в которой стоит попробовать разобраться. Информация в ней сильно сжата, и приправлена сложным слогом, но оно того стоит.</p>
+<p>В ней описан пример того, как с помощью синтаксических макросов добавить в язык обработчик темплейтов, похожий на C++. Его можно развивать и дальше в сторону C++, если хочется поупражняться в понимании того, как это работает. Но на самом деле, в большинстве случаев на <code>dascript</code> существуют другие, более элегантные решения для большинства проблем, которые бы решались в C++ через шаблоны.</p>
+<p>Эта статья навела меня на мысль попробовать реализовать через макросы некоторые штуки, которые мне попадались в F# (-<a href="/blog/4106514811/" title="F# in imaginery world">F# in imaginery world</a>). Особенно с учетом того, что я вкрутил себе dascript в jupyter notebook и запихал туда возможность работы с макросами (- <a href="/blog/2729839560/" title="Daslang Jupyter - dastrudel, macro workbench">Daslang Jupyter - dastrudel, macro workbench</a>).</p>
+<p>В <a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp">репозитории</a> собрал несколько таких экспериментов. Я не уверен в их практичности, но сгодятся как академические примеры того, что можно делать с помощью макросов.</p>
+<h2><span id="type-providers">Type providers</span><a href="#type-providers" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp/tree/main/type_providers">Type providers</a> создают типы по внешнему описанию данных. Например, схема игрока хранится в JSON, а в коде хочется работать с обычными полями и получать ошибку компиляции при опечатке в имени или несовпадении типов.</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">typedef</span><span style="color: #E6E6E6"> Player </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> provided_type(</span><span style="color: #CE9178">"schemas/native"</span><span style="color: #E6E6E6">, </span><span style="color: #CE9178">"Player"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">apply_damage</span><span style="color: #E6E6E6">(</span><span style="color: #569CD6">var</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">player </span><span style="color: #E6E6E6">: Player; </span><span style="color: #9CDCFE">damage </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    player</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">health </span><span style="color: #D4D4D4">-=</span><span style="color: #E6E6E6"> damage</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Здесь <code>Player</code> и его поля берутся из схемы. Получившийся тип можно передавать в функции, как обычную структуру. Провайдер читает только запрошенную схему и зависимости её полей. В библиотеке есть также простой вариант с аннотацией <code>[json_provider]</code> и вариант без генерации структур — с проверяемым доступом к уже разобранному JSON:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> health : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> erased(node, </span><span style="color: #CE9178">"schemas/world"</span><span style="color: #E6E6E6">, </span><span style="color: #CE9178">"Player"</span><span style="color: #E6E6E6">, _</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">health)</span></span>
+<span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> leader : </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> erased(node, </span><span style="color: #CE9178">"schemas/world"</span><span style="color: #E6E6E6">, </span><span style="color: #CE9178">"Player"</span><span style="color: #E6E6E6">, _</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">team</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">leader</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">name)</span></span></code></pre></div></div></figure>
+<p>Потенциально это полезно для игровых конфигов, описаний ресурсов и данных из внешних инструментов: не нужно поддерживать одинаковый набор полей в схеме и в исходниках. Проверка схемы при компиляции при этом не отменяет проверку самих данных при загрузке.</p>
+<h2><span id="active-patterns">Active patterns</span><a href="#active-patterns" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp/tree/main/active_patterns">Active patterns</a> позволяют использовать функцию-распознаватель прямо в сопоставлении с образцом. Например, распознать в строке число и сразу использовать его в подходящей ветке. Отдельный макрос для этого не понадобился — нужные возможности уже есть в стандартном <code>daslib/match</code>.</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> description </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> match (text) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    (integer(_) </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> found(n)) </span><span style="color: #D4D4D4">&amp;&amp;</span><span style="color: #E6E6E6"> n </span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"negative {</span><span style="color: #9CDCFE">n</span><span style="color: #CE9178">}"</span></span>
+<span class="line"><span style="color: #E6E6E6">    (integer(_) </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> found(n)) </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"integer {</span><span style="color: #9CDCFE">n</span><span style="color: #CE9178">}"</span></span>
+<span class="line"><span style="color: #E6E6E6">    _ </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"text"</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p><code>integer</code> — функция из библиотеки, возвращающая <code>found</code> с числом или <code>missing</code>. <code>_</code> внутри вызова обозначает исходную строку. Распознаватели могут принимать и дополнительные параметры:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> eligibility </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> match (value) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    (at_least(_, minimum) </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> found(level)) </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"accepted {</span><span style="color: #9CDCFE">level</span><span style="color: #CE9178">}"</span></span>
+<span class="line"><span style="color: #E6E6E6">    _ </span><span style="color: #D4D4D4">=&gt;</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"too low"</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Так удобно разбирать команды, классифицировать события и проверять игровые условия: детали распознавания живут в отдельных функциях, а варианты поведения видны рядом. Распознаватель может вызываться повторно для разных веток, поэтому лучше обходиться без побочных эффектов.</p>
+<p>Тот же разбор без view patterns можно записать через обычную проверку variant. Распознаватель <code>integer</code> остаётся простой функцией, собственной библиотеки макросов ему не нужно:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">describe</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">text </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">) : </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> parsed </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> integer(text)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (parsed </span><span style="color: #C586C0">is</span><span style="color: #E6E6E6"> found) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> n </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> parsed </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> found</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (n </span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"negative {</span><span style="color: #9CDCFE">n</span><span style="color: #CE9178">}"</span><span style="color: #E6E6E6"> }</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"integer {</span><span style="color: #9CDCFE">n</span><span style="color: #CE9178">}"</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"text"</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<h2><span id="computation-expressions">Computation expressions</span><a href="#computation-expressions" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp/tree/main/computation_expressions">Computation expression</a> — это блок последовательного кода, правила выполнения которого задаёт специальный объект, builder. Макрос преобразует блок в вызовы его операций. Builder решает, что делать после очередного шага: продолжить вычисление, вернуть ошибку, дождаться результата или выполнить оставшуюся часть для каждого элемента коллекции. Bind похож на “перегруженную точку с запятой”. Интересны тем, что с их помощью можно реализовать очень различные фичи языка, от сокращения избыточного кода, до выворачивания порядка выполнения наизнанку — ленивые вычисления, ранний выход, возвраты и повторное выполнения кода, асинхронные вычисления. Таким образом, практически любой код можно заставить выглядеть линейно (если бизнес-логика, которую описывает код линейная, то чтобы она и в коде выглядела линейной), спрятав всю нелинейность внутрь билдера.</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> result </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> computation(builder) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> a </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> first_step() </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> b </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> second_step(a) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> combine(a, b)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Остаток блока после <code>bind</code> становится продолжением — кодом, который получит успешное значение и выполнит следующие шаги. Упрощённо первый bind означает: «вот результат <code>first_step()</code> и функция, описывающая всё, что надо сделать дальше». Builder может вызвать эту функцию сразу, позже, несколько раз или вообще не вызывать.</p>
+<p>Для знакомых с C++ здесь можно провести аналогию с <code>promise_type</code>, <code>co_await</code> и <code>co_return</code>: поведение привычной конструкции определяется пользовательским типом. Но CE охватывают и распространение ошибок, и перебор вариантов, и передачу состояния. Это универсальный протокол, через который реализуются разные способы связывать вычисления:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Builder</th>
+<th>Что происходит после <code>bind</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Result</td>
+<td>Продолжить с успешным значением или вернуть ошибку</td>
+</tr>
+<tr>
+<td>Option</td>
+<td>Продолжить, если значение есть, иначе вернуть <code>none</code></td>
+</tr>
+<tr>
+<td>Task</td>
+<td>Дождаться завершения операции и продолжить с её результатом</td>
+</tr>
+<tr>
+<td>List</td>
+<td>Выполнить продолжение для каждого элемента и собрать результаты</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Передать состояние следующему шагу</td>
+</tr>
+<tr>
+<td>Parser</td>
+<td>Продолжить разбор с новой позиции во входном тексте</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Builder реализуется обычными типами и перегрузками функций протокола. Можно добавить собственный билдер отдельным модулем, не меняя сам макрос CE.</p>
+<p>Для более подробного знакомства с идеей в F# есть серия <a target="_blank" rel="noopener" href="https://fsharpforfunandprofit.com/series/computation-expressions/">Computation Expressions на F# for fun and profit</a>.</p>
+<p><strong><code>Зачем это нужно для Result и Option</code></strong></p>
+<p>Сами <code>Result</code> и <code>Option</code> описывают результат операции: успешное значение или ошибку, наличие или отсутствие. CE сокращают код, который связывает несколько таких операций. Особенно когда следующий шаг зависит от предыдущего.</p>
+<p>Возьмём функцию, которая проверяет число:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">checked_number</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">value </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) : $Result</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (value </span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> result_error(</span><span style="color: #CE9178">"negative number"</span><span style="color: #E6E6E6">, </span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">int</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> result_ok(value)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Без CE нужно проверить каждый результат, выйти при ошибке и извлечь значения:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">remaining_plain</span><span style="color: #E6E6E6">() : $Result</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> health </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> checked_number(</span><span style="color: #B5CEA8">100</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (health </span><span style="color: #C586C0">is</span><span style="color: #E6E6E6"> err) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> health }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> damage </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> checked_number(</span><span style="color: #B5CEA8">15</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (damage </span><span style="color: #C586C0">is</span><span style="color: #E6E6E6"> err) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> damage }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> result_ok((health </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> ok) </span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6"> (damage </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> ok))</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Через CE остаются сами действия:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> result </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> computation(ResultBuilder()) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> health </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> checked_number(</span><span style="color: #B5CEA8">100</span><span style="color: #E6E6E6">) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> damage </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> checked_number(</span><span style="color: #B5CEA8">15</span><span style="color: #E6E6E6">) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> health </span><span style="color: #D4D4D4">-</span><span style="color: #E6E6E6"> damage</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Здесь <code>health</code> и <code>damage</code> внутри блока уже числа. Проверки <code>is err</code>, извлечение <code>as ok</code> и упаковку ответа берёт на себя builder. Если первая проверка не пройдёт, вторая даже не вызовется. В ручном примере все успешные значения имеют тип <code>int</code>, поэтому ошибку можно вернуть напрямую. Если шаги возвращают разные типы — например, сначала ID, затем структуру игрока, затем строку — пришлось бы ещё перепаковывать ошибку в Result нужного типа.</p>
+<p>Для Option выигрыш хорошо виден на цепочке необязательных данных. Допустим, <code>find_player</code>, <code>find_team</code> и <code>find_leader</code> возвращают Option соответствующих структур. Ручная версия:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">leader_name_plain</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">id </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) : $Option</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> player </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> find_player(id)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (player </span><span style="color: #C586C0">is</span><span style="color: #E6E6E6"> none) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> none(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">) }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> team </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> find_team((player </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> some)</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">team_id)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (team </span><span style="color: #C586C0">is</span><span style="color: #E6E6E6"> none) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> none(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">) }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> leader </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> find_leader(team </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> some)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (leader </span><span style="color: #C586C0">is</span><span style="color: #E6E6E6"> none) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> none(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">) }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> some((leader </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> some)</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">name)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>И та же последовательность через builder:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">leader_name</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">id </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) : $Option</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> computation(OptionBuilder()) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> player </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> find_player(id) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> team </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> find_team(player</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">team_id) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> leader </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> find_leader(team) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> leader</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">name</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Отсутствие любого звена превращает результат в <code>none</code>, а все последующие шаги пропускаются. Внутри блока можно читать код так, будто необходимые значения уже найдены. Для одного обращения короче обычный <code>if</code>, <code>match</code>, <code>map</code> или <code>??</code>; удобство CE проявляется именно в длинной цепочке.</p>
+<p><strong><code>Где хватит обычного dascript</code></strong></p>
+<p>Универсальность механизма ещё не означает, что каждый builder нужен в повседневном коде. В dascript уже есть изменяемые переменные, генераторы, операции над коллекциями, корутины и async. Для многих задач они удобнее:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Задача</th>
+<th>С чего я бы начал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Изменять состояние</td>
+<td>Обычный <code>var</code> и передача состояния по ссылке</td>
+</tr>
+<tr>
+<td>Передавать окружение или вести журнал</td>
+<td>Параметры функций, захваты, массив или logger</td>
+</tr>
+<tr>
+<td>Преобразовать и отфильтровать коллекцию</td>
+<td><code>for</code>, генератор массива, <code>daslib/linq</code> или <code>daslib/functional</code></td>
+</tr>
+<tr>
+<td>Выдавать последовательность значений</td>
+<td>Обычный генератор</td>
+</tr>
+<tr>
+<td>Описать грамматику</td>
+<td><code>dasPEG</code></td>
+</tr>
+<tr>
+<td>Подождать следующий кадр</td>
+<td>Стандартная корутина или <code>[async]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Builders становятся интереснее, когда управление хочется выразить именно ходом исполнения кода: между шагами есть зависимые вычисления, ветвления, раннее отсечение, ожидания или ресурсы. Например, следующее правило парсера зависит от уже прочитанного значения; поиск должен отсечь неудачную ветку.</p>
+<p>Конкретные билдеры могут добавлять абстракцию и иметь накладные расходы, другие просто перестраивают код.</p>
+<p><strong><code>Task: общий API для задач</code></strong></p>
+<p>Task даёт типизированный результат, ожидание других задач, статусы выполнения, отмену, таймауты и композицию. <code>TaskBuilder</code> работает с задачами, возвращающими значение, а <code>TaskResultBuilder</code> дополнительно распространяет ошибки Result: после неудачного шага остаток блока пропускается.</p>
+<p>Задача создаётся отложенной: её тело начинает выполняться при первом опросе. Если очередная операция ещё не готова, управление возвращается вызывающему коду. Когда она завершится, выполнение продолжится с места ожидания. Готовый результат сохраняется, повторный опрос не запускает тело заново.</p>
+<p>Например, задержка без блокировки игрового цикла:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">cooldown</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">duration </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> computation(TaskBuilder(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">int</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">)) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        task_delay_ms(duration) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">100</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> scheduler </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> task_scheduler(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">int</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> id </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> task_spawn(scheduler, cooldown(</span><span style="color: #B5CEA8">30</span><span style="color: #E6E6E6">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">task_tick(scheduler, </span><span style="color: #B5CEA8">1000</span><span style="color: #E6E6E6">) </span><span style="color: #6A9955">// Начали ожидание.</span></span>
+<span class="line"><span style="color: #E6E6E6">task_tick(scheduler, </span><span style="color: #B5CEA8">1016</span><span style="color: #E6E6E6">) </span><span style="color: #6A9955">// Ещё ждём; игровой цикл может работать дальше.</span></span>
+<span class="line"><span style="color: #E6E6E6">task_tick(scheduler, </span><span style="color: #B5CEA8">1030</span><span style="color: #E6E6E6">) </span><span style="color: #6A9955">// Задержка завершилась.</span></span>
+<span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> value </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> task_value(scheduler, id) </span><span style="color: #6A9955">// 100</span></span></code></pre></div></div></figure>
+<p>В приложении <code>task_tick</code> вызывается каждый кадр с текущим временем в миллисекундах. Здесь время задано явно для наглядности. Типизированный scheduler обслуживает задачи одного типа результата; отдельный <code>task_runtime</code> позволяет запускать задачи разных типов и получать типизированные handles. Можно ограничивать число опросов за tick, задавать таймауты и читать статус каждой задачи.</p>
+<p>Более содержательный пример — обмен по WebSocket через адаптер dasHV:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">exchange</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">url </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">; </span><span style="color: #9CDCFE">text </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> computation(TaskResultBuilder(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">)) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> socket </span><span style="color: #D4D4D4">&amp;</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> hv_websocket() </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> use_resource</span></span>
+<span class="line"><span style="color: #E6E6E6">        ws_connect(socket, url) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        ws_send_text(socket, text) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> reply </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ws_receive_text(socket) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> reply</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Подключиться, отправить сообщение, получить ответ — всё читается последовательно. Между этими шагами задача может ждать, не удерживая вызывающий поток. Ошибка подключения или отправки завершит цепочку. <code>use_resource</code> удерживает сокет через ожидания и закрывает его при завершении, ошибке, отмене или таймауте. Для своих ресурсов нужно определить операцию <code>ce_dispose</code>.</p>
+<p>Два независимых обмена можно объединить:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">two_requests</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">urlA </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">; </span><span style="color: #9CDCFE">urlB </span><span style="color: #E6E6E6">: </span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> computation(TaskResultBuilder(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">)) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> pair </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> exchange(urlA, </span><span style="color: #CE9178">"one"</span><span style="color: #E6E6E6">) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> and_bind(exchange(urlB, </span><span style="color: #CE9178">"two"</span><span style="color: #E6E6E6">)) </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> bind</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> </span><span style="color: #CE9178">"A={</span><span style="color: #9CDCFE">pair</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">first</span><span style="color: #CE9178">}; B={</span><span style="color: #9CDCFE">pair</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">second</span><span style="color: #CE9178">}"</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Обе операции продвигаются совместно: ожидание первой не мешает второй. Это конкурентное выполнение, для него не обязательно создавать два потока. Для набора задач есть <code>when_all</code>, для гонки — <code>race</code>, а для загрузки большого числа ресурсов — варианты с лимитом одновременно выполняемых задач. Лимит позволяет создавать новую работу по мере освобождения места.</p>
+<p>Отмену и таймаут можно задать снаружи, не переписывая функцию обмена:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> level </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> cancellation_token()</span></span>
+<span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> scheduler </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> task_scheduler(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">$Result</span><span style="color: #D4D4D4">&lt;</span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">;</span><span style="color: #4EC9B0">string</span><span style="color: #D4D4D4">&gt;&gt;</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> id </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> task_spawn(scheduler,</span></span>
+<span class="line"><span style="color: #E6E6E6">    task_with_cancellation(two_requests(urlA, urlB), level),</span></span>
+<span class="line"><span style="color: #E6E6E6">    TaskTimeout(</span><span style="color: #9CDCFE">after_ms</span><span style="color: #D4D4D4">=</span><span style="color: #B5CEA8">5000</span><span style="color: #E6E6E6">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">task_tick(scheduler, </span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #6A9955">// Игрок покинул уровень — его операции больше не нужны.</span></span>
+<span class="line"><span style="color: #E6E6E6">cancellation_cancel(level)</span></span>
+<span class="line"><span style="color: #E6E6E6">task_tick(scheduler, </span><span style="color: #B5CEA8">16</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #6A9955">// Задача отменена, вложенные ожидания остановлены, сокеты закрыты.</span></span></code></pre></div></div></figure>
+<p>Вокруг Task есть и другие полезные детали: каналы для обмена между задачами, ожидание событий, уведомления о прогрессе, семафоры, повторные попытки, адаптер стандартного <code>[async]</code>, TCP и WebSocket. <code>AsyncSequenceBuilder</code> совмещает ожидание задач с выдачей элементов: потребитель запрашивает следующий элемент потока, а производитель может сначала дождаться данных.</p>
+<p>Сам Task остаётся кооперативным: тяжёлый синхронный расчёт внутри него займёт вызывающий поток. Для фоновой работы есть мост к стандартному <code>jobque</code>, а также HTTP-адаптер.</p>
+<p>Для асинхроенных задач всегда нужен планировщик - <a target="_blank" rel="noopener" href="https://herecomesthemoon.net/2026/10/async-rust-where-does-the-scheduler-live/">Async Rust: Where does the scheduler live?</a>. В библиотеке есть пара простых.</p>
+<p>Дальше уже не копии с F#, но еще библиотеки, переделанные с других языков.</p>
+<h2><span id="reactivex">ReactiveX</span><a href="#reactivex" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp/tree/main/reactivex">ReactiveX</a> описывает обработку потока событий цепочкой операций: отфильтровать, преобразовать, накопить состояние, объединить с другим потоком. Простой пример — получить два первых чётных числа, умноженных на десять:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> numbers </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> (rx_range(</span><span style="color: #B5CEA8">1</span><span style="color: #E6E6E6">, </span><span style="color: #B5CEA8">10</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> rx_filter(@(n:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> n </span><span style="color: #D4D4D4">%</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">2</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">==</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6"> })</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> rx_map(@(n:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) { </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> n </span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">10</span><span style="color: #E6E6E6"> })</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> rx_take(</span><span style="color: #B5CEA8">2</span><span style="color: #E6E6E6">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> subscription </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> rx_subscribe(numbers,</span></span>
+<span class="line"><span style="color: #E6E6E6">    @(value:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">) { </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">value</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">) },</span></span>
+<span class="line"><span style="color: #E6E6E6">    @(message:</span><span style="color: #4EC9B0">string</span><span style="color: #E6E6E6">) { </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"error: {</span><span style="color: #9CDCFE">message</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">) },</span></span>
+<span class="line"><span style="color: #E6E6E6">    @() { </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"complete</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">) })</span></span></code></pre></div></div></figure>
+<h2><span id="derive">Derive</span><a href="#derive" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp/tree/main/derive">Derive</a> генерирует операции по описанию структуры. Кроме отладочного вывода, сравнения и хеширования, здесь есть builder, валидация и JSON-сериализация. Можно один раз описать поля и правила, а затем использовать их и при создании объекта в коде, и при загрузке данных.</p>
+<p>Например, игрок с обязательным непустым именем и здоровьем от 0 до 100:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">derive</span><span style="color: #E6E6E6">(builder</span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6">true, validate</span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6">true, json</span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6">true)]</span></span>
+<span class="line"><span style="color: #C586C0">struct</span><span style="color: #E6E6E6"> Player {</span></span>
+<span class="line"><span style="color: #E6E6E6">    @builder_required</span></span>
+<span class="line"><span style="color: #E6E6E6">    @validate_non_empty</span></span>
+<span class="line"><span style="color: #E6E6E6">    @json_name</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">"displayName"</span></span>
+<span class="line"><span style="color: #E6E6E6">    name : </span><span style="color: #4EC9B0">string</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    @validate_min</span><span style="color: #D4D4D4">=</span><span style="color: #B5CEA8">0</span></span>
+<span class="line"><span style="color: #E6E6E6">    @validate_max</span><span style="color: #D4D4D4">=</span><span style="color: #B5CEA8">100</span></span>
+<span class="line"><span style="color: #E6E6E6">    @json_default</span><span style="color: #D4D4D4">=</span><span style="color: #B5CEA8">100</span></span>
+<span class="line"><span style="color: #E6E6E6">    health : </span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">100</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Builder позволяет заполнять объект по шагам, а затем получить готовое значение или список ошибок:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> draft </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> (derive_builder(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">Player</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> builder_name(</span><span style="color: #CE9178">"Alice"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #D4D4D4">|&gt;</span><span style="color: #E6E6E6"> builder_health(</span><span style="color: #B5CEA8">85</span><span style="color: #E6E6E6">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> built </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> derive_build(draft, </span><span style="color: #CE9178">"player"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (built</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">ok) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> player </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> built</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">value </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> some</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">player</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #CE9178">}: {</span><span style="color: #9CDCFE">player</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">health</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">} </span><span style="color: #C586C0">else</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">for</span><span style="color: #E6E6E6"> (issue </span><span style="color: #C586C0">in</span><span style="color: #E6E6E6"> built</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">errors) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">issue</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">path</span><span style="color: #CE9178">}: {</span><span style="color: #9CDCFE">issue</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">message</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Сеттеры генерируются из имён полей. При <code>derive_build</code> проверяется наличие обязательных полей, применяются значения по умолчанию и выполняется валидация. Если не задать имя или передать здоровье 150, готового игрока не будет — результат содержит <code>none</code> и ошибки. Черновик можно исправить и собрать повторно. Если здоровье вообще не задавать, builder возьмёт <code>100</code> из инициализатора структуры.</p>
+<p>Для маленькой структуры с заранее известными значениями обычный <code>Player(name="Alice", health=85)</code> проще. Builder полезнее для редактора или формы, где поля заполняются постепенно, а на выходе нужен проверенный объект с диагностикой.</p>
+<p>Тот же тип уже умеет записываться в JSON и загружаться обратно:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (built</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">ok) {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> text </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> derive_to_json(built</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">value </span><span style="color: #C586C0">as</span><span style="color: #E6E6E6"> some)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">text</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #6A9955">// JSON с полями "displayName": "Alice" и "health": 85.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> </span><span style="color: #C586C0">inscope</span><span style="color: #E6E6E6"> loaded </span><span style="color: #D4D4D4">&lt;-</span><span style="color: #E6E6E6"> derive_from_json(text, </span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">Player</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">, </span><span style="color: #CE9178">"player"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">if</span><span style="color: #E6E6E6"> (loaded</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">ok) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">loaded</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">value</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">name</span><span style="color: #CE9178">}: {</span><span style="color: #9CDCFE">loaded</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">value</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">health</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    } </span><span style="color: #C586C0">else</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">for</span><span style="color: #E6E6E6"> (issue </span><span style="color: #C586C0">in</span><span style="color: #E6E6E6"> loaded</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">errors) {</span></span>
+<span class="line"><span style="color: #E6E6E6">            </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"{</span><span style="color: #9CDCFE">issue</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">path</span><span style="color: #CE9178">}: {</span><span style="color: #9CDCFE">issue</span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE">message</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">        }</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>При чтении проверяются форма данных и типы полей, затем правила валидации. Ошибки содержат путь к полю, например <code>player.health</code>. Успешное чтение возвращает структуру непосредственно в <code>loaded.value</code>; у builder значение обёрнуто в Option. Сама сериализация валидацию не запускает — здесь ей передаётся уже проверенный результат сборки.</p>
+<p><code>@json_name</code> задаёт внешнее имя поля. <code>@json_default=100</code> позволяет пропустить здоровье в JSON; это отдельное правило от обычного <code>health : int = 100</code>, которое использует builder. Без JSON-настройки поле при чтении было бы обязательным даже с инициализатором в структуре.</p>
+<p>Потенциальная польза — конфиги, сохранения, игровые редакторы и обмен данными с инструментами. Список полей и правила проверки остаются рядом с моделью, не приходится вручную повторять их в builder, загрузчике и сериализаторе.</p>
+<h2><span id="links">Links</span><a href="#links" class="header-anchor">#</a></h2><p>Все библиотеки: <a target="_blank" rel="noopener" href="https://github.com/spiiin/dascript_macro_fsharp">dascript_macro_fsharp</a>.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/2729839560/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2026 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
