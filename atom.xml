@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2026-10-20T18:31:42.000Z</updated>
+  <updated>2026-10-31T22:08:12.000Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DasBattleCalc - калькулятор механик</title>
+    <link href="http://spiiin.github.io/blog/45579981/"/>
+    <id>http://spiiin.github.io/blog/45579981/</id>
+    <published>2026-10-31T22:08:12.000Z</published>
+    <updated>2026-10-31T22:08:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Мне всегда нравилось читать книги правил по D&amp;D или другим ролевым системам. В компьютерных RPG и тактиках точные формулы часто скрыты, и детально разобраны только для достаточно популярных играх. Сейчас с помощью ИИ можно залезть в память и код практически любой игры и посмотреть, как устроен рассчет урона.</p><p>Сделал на <a href="https://github.com/spiiin/dasSDL3">dasSDL3</a> калькулятор боев для нескольких игр — <a href="https://github.com/spiiin/DasBattleCalc">DasBattleCalc</a>.</p><p><a href="https://spiiin.github.io/DasBattleCalc/">https://spiiin.github.io/DasBattleCalc/</a> - тут веб-версия.</p><p>Нужно выбрать ROM и сейв - поддерживаются сейвы из эмуляторов Bizhawk (GameBoyAdvance, PlayStation, Nintendo DS) и PPSSPP (PlayStation Portable), но можно добавить и любые другие. Четыре разных ассемблера (и ещё байт-код какой-то виртуальной машины)!</p><p>Программа умеет отображать персонажей в виде простых фигур, или есть есть ROM — то спрайты и меши из него. ИИ вообщем легко пишет анпакеры данных и извлекает ресурсы. Вообщем даже не всегда исследует сама, иногда находит в интернете и портирует. В случае FFTA она даже нашла мой собственный анпакер из <a href="https://github.com/spiiin/FFTAUtils">FFTAUtils</a>. Ну и заодно, раз уж игра отображает бои из сейва — то и редактирование сейвов.</p><p>Добавил туда:<br><strong><code>Final Fantasy Tactics - PlayStation</code></strong></p><p><a href="/blog/45579981/fft.png"><img src="/blog/45579981/fft_small.png" alt="Final Fantasy Tactics — калькулятор боя"></a></p><p><strong><code>Final Fantasy Tactics: War of the Lions - PlayStation Portable</code></strong></p><p><a href="/blog/45579981/fftwotl.png"><img src="/blog/45579981/fftwotl_small.png" alt="Final Fantasy Tactics: War of the Lions — калькулятор боя"></a></p><p><strong><code>Final Fantasy Tactics Advance - Game Boy Advance</code></strong></p><p><a href="/blog/45579981/ffta.png"><img src="/blog/45579981/ffta_small.png" alt="Final Fantasy Tactics Advance — калькулятор боя"></a></p><p><strong><code>Final Fantasy Tactics Advance 2 - Nintendo DS</code></strong></p><p><a href="/blog/45579981/ffta2.png"><img src="/blog/45579981/ffta2_small.png" alt="Final Fantasy Tactics Advance 2 — калькулятор боя"></a></p><p>Также, кроме симуляции, сделал небольшой язык для запросов различных данных на <a href="https://github.com/GaijinEntertainment/daScript/tree/master/modules/dasPEG">dasPEG</a> — можно импортировать что угодно в таблицы и строить графики:</p><p><a href="/blog/45579981/explore.png"><img src="/blog/45579981/explore_small.png" alt="DasBattleCalc — окно построения графиков"></a></p><p>Надо будет что-нибудь еще подобавлять, кроме Final Fantasy Tactics я еще много тактик люблю.</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
+      
+    
+    </summary>
+    
+    
+    
+      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
+    
+      <category term="gba" scheme="http://spiiin.github.io/tags/gba/"/>
+    
+      <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Dascript - библиотеки макросов</title>
@@ -503,32 +531,6 @@
     
     
       <category term="dascript" scheme="http://spiiin.github.io/tags/dascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Грег Костикян «Неопределенность в играх»</title>
-    <link href="http://spiiin.github.io/blog/2824315148/"/>
-    <id>http://spiiin.github.io/blog/2824315148/</id>
-    <published>2026-05-12T21:30:29.000Z</published>
-    <updated>2026-05-12T21:30:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Костикян выделяет следующие формы неопределённости, которые используются в геймдеве:</p><p>Неопределенности применения навыков игрока<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Перформативная неопределённость</code>, как в играх наподобие Тетриса (да и вообще в любых), где важен навык игрока. Сможет/не сможет применить навык без ошибок.<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость восприятия</code> – распространяется на игры от Hidden Object до Guitar Hero. Перекликается с перформативной неопределённостью. Сможет ли игрок удерживать внимание или нет.</p><p>Неопределенности хаоса<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость вследствие случайности</code>, как в рогаликах или играх с бросками костей. Единственный бросок кости чрезвычайно зависим от случайности, но игры со множеством бросков подкрепляют эту случайность стратегическими выборами, и в конечном итоге исход зависит от навыка игрока, что позволяет строить целые жанры вокруг основной механики неопределенности случайности. Также разделяется на случайность на входе (например, случайное число при процедурной генерации мира игры) и случайность на выходе (“бросок кубика на удачу”).<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость развития событий</code> – особенно это касается игр, где игрок может нарушить игровой баланс и победить в последний момент, в противоположность «Монополии», где победитель известен заранее и требуется немало времени для завершения игры.</p><p>Неопределённости систем<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость решения</code>, встречающаяся в головоломках. Автор относит сюда как игры вроде Lemmings, где головоломки являются продолжением игровой механики, так и авторские/контекстные задачки в квестах<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость вследствие затруднённого анализа</code>, как в шахматах или Dwarf Fortress, или любой игре с большим количеством взаимосвязанных систем, которые игрок не способен всецело охватить.</p><p>Неопределенность соперников<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Непредсказуемость ассиметричных стратегий</code>, как в «камень-ножницы-бумага» или любой многопользовательской игре, или даже одиночных играх с хорошим искусственным интеллектом, имитирующим других игроков<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость вследствие скрытой информации</code>, как в покере, где вы не знаете карты других игроков. Такого рода неопределённость побуждает к исследованию и тестированию игровых систем;</p><p>Неопредённости мета-игры<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость расписания/времени</code> – достаточно новый тип, популяризированный FarmVille, где игрок не может быть полностью уверен, что вернётся в игру точно в необходимый момент;<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределённость разработчиков</code> – когда игрок рассчитывает на обновления, патчи баланса или определенный дополнительный контент.<br>я б добавил сюда ещё<br><span class="github-emoji"><span>📍</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cd.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <code>Неопределенность обнаружения скрытой информации</code> – найдут ли игроки пасхалки, секретные концовки или отсылки.</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st
-      
-    
-    </summary>
-    
-    
-    
-      <category term="книги" scheme="http://spiiin.github.io/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/"/>
-    
-      <category term="gamedesign" scheme="http://spiiin.github.io/tags/gamedesign/"/>
     
   </entry>
   
