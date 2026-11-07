@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="ru"><head><!-- hexo injector head_begin start --><!-- Google tag (gtag.js) begins-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74CE2MTBK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-74CE2MTBK8');
+    </script>
+    <!-- Google tag (gtag.js) ends-->
+    <!-- hexo injector head_begin end --><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | DasForUE - язык daslang в Unreal Engine</title><meta name="description" content=""><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css">
+<style>:root{--hl-color:#abb2bf;--hl-bg:#282c34;--hltools-bg:#21252b;--hltools-color:#bbbbbc;--hlnumber-bg:#282c34;--hlnumber-color:#495162;--hlscrollbar-bg:#373c47;--hlexpand-bg:linear-gradient(180deg,rgba(40,44,52,0.1),rgba(40,44,52,0.9))}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/tags/meta" target="_self">TAGS</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><div class="pagination"><a class="pagination__link pagination__next" href="/blog/3321830667/">Раньше</a></div><article class="article post"><h3 class="article__title">DasForUE - язык daslang в Unreal Engine</h3><div class="article__date metadata"><div class="post-info">2026/11/07</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/dascript/">dascript</a></div><div class="article__body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li><a href="/blog/770184585/" title="Скриптовые языки в Unreal Engine">Скриптовые языки в Unreal Engine</a> - разбирал архитектуру подключения скриптового языка к unreal, на примере <code>Nim</code></li>
+</ul>
+<p>Сделал похожий по архитектуре на <code>Nim</code> и <code>AngelScript</code> враппер для подключния к <code>Unreal Engine</code> языка <code>daslang</code>.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/spiiin/DasForUE">https://github.com/spiiin/DasForUE</a> - обёртка<br><a target="_blank" rel="noopener" href="https://github.com/spiiin/ActionRoguelikeDas/">https://github.com/spiiin/ActionRoguelikeDas/</a> - пример, портированный с <a target="_blank" rel="noopener" href="https://courses.tomlooman.com/">курсов Tома Лумана</a>.</p>
+<style>.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .embed-container iframe, .embed-container object, .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/8hW55RqJcgQ" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+<p><em>Look, ma, no C++ - пример полностью написан на daslang</em></p>
+<p>Ниже немного девлога про подключение.</p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#rabota-s-vm-blueprints">Работа с VM Blueprints</a></li>
+<li><a href="#funkcii-i-makrosy-dlya-uproshcheniya-vyzovov">Функции и макросы для упрощения вызовов</a></li>
+<li><a href="#dsl">DSL</a></li>
+<li><a href="#nativnye-vyzovy">Нативные вызовы</a></li>
+<li><a href="#live-reloading">Live-reloading</a></li>
+<li><a href="#infrastruktura-daslang">Инфраструктура daslang</a></li>
+<li><a href="#optimizaciya">Оптимизация</a></li>
+<li><a href="#razdelenie-igrovyh-skriptov-redaktorskih-testym">Разделение игровых скриптов/редакторских/тестым</a></li>
+<li><a href="#testy">Тесты</a></li>
+<li><a href="#itog">Итог</a></li>
+</ul>
+<!-- tocstop -->
+<p></p></div><p></p>
+<h2><span id="rabota-s-vm-blueprints">Работа с VM Blueprints</span><a href="#rabota-s-vm-blueprints" class="header-anchor">#</a></h2><p>После подключения daslang к движку, первым шагом можно “притвориться” блюпринтом. Это не самый лучший или быстрый способ работы скриптов, но позволяет разобраться, как работает система рефлексии unreal и регистрации скриптовых функций.</p>
+<p>Со стороны C++ создаётся граф функции. Например, сокращённый фрагмент из <code>DasBlueprintService.cpp</code> — создание новой функции с аргументом <code>Input</code>:</p>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #6A9955">// BP — создаваемый Blueprint, Method.Name — имя функции.</span></span>
+<span class="line"><span style="color: #569CD6">auto</span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> Graph </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> FBlueprintEditorUtils::</span><span style="color: #DCDCAA">CreateNewGraph</span><span style="color: #E6E6E6">(</span></span>
+<span class="line"><span style="color: #E6E6E6">    BP, </span><span style="color: #9CDCFE">Method</span><span style="color: #E6E6E6">.</span><span style="color: #9CDCFE">Name</span><span style="color: #E6E6E6">, UEdGraph::</span><span style="color: #DCDCAA">StaticClass</span><span style="color: #E6E6E6">(), UEdGraphSchema_K2::</span><span style="color: #DCDCAA">StaticClass</span><span style="color: #E6E6E6">());</span></span>
+<span class="line"><span style="color: #E6E6E6">FBlueprintEditorUtils::</span><span style="color: #DCDCAA">AddFunctionGraph</span><span style="color: #E6E6E6">&lt;</span><span style="color: #4EC9B0">UClass</span><span style="color: #E6E6E6">&gt;(BP, Graph, </span><span style="color: #569CD6">true</span><span style="color: #E6E6E6">, </span><span style="color: #569CD6">nullptr</span><span style="color: #E6E6E6">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">TArray</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">UK2Node_FunctionEntry</span><span style="color: #D4D4D4">*&gt;</span><span style="color: #E6E6E6"> Entries;</span></span>
+<span class="line"><span style="color: #9CDCFE">Graph</span><span style="color: #E6E6E6">-&gt;</span><span style="color: #DCDCAA">GetNodesOfClass</span><span style="color: #E6E6E6">(Entries);</span></span>
+<span class="line"><span style="color: #9CDCFE">Entries</span><span style="color: #E6E6E6">[</span><span style="color: #B5CEA8">0</span><span style="color: #E6E6E6">]-&gt;</span><span style="color: #DCDCAA">CreateUserDefinedPin</span><span style="color: #E6E6E6">(</span><span style="color: #DCDCAA">TEXT</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"Input"</span><span style="color: #E6E6E6">), ValueType, EGPD_Output);</span></span></code></pre></div></div></figure>
+<p>Дальше в граф добавляются выходной узел и вызов C++-моста, который запускает нужную DAS-функцию. Соединяются exec-пины и пины аргументов, Blueprint компилируется — и Unreal видит обычную функцию. Полная реализация — в <a target="_blank" rel="noopener" href="https://github.com/spiiin/DasForUE/blob/main/Plugins/DasForUE/Source/DasEditor/Private/DasBlueprintService.cpp">DasBlueprintService.cpp</a>.</p>
+<p>В обратную сторону — из DAS в Unreal — сначала тоже можно идти через reflection. Вот низкоуровневый пример получения координаты актора из репозитория:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">options</span><span style="color: #E6E6E6"> gen2</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> ue_foundation</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">export</span><span style="color: #E6E6E6">]</span></span>
+<span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">main</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">input</span><span style="color: #E6E6E6">:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">):</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> call </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ue_begin_call(ue_self_object(), </span><span style="color: #CE9178">"K2_GetActorLocation"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    ue_invoke_call(call)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> x </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ue_result_double(call, </span><span style="color: #CE9178">"ReturnValue.X"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    ue_release_call(call)</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> int(x)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p><code>ue_begin_call</code> находит <code>UFunction</code> и готовит память параметров, <code>ue_invoke_call</code> вызывает <code>ProcessEvent</code>, а результат читается по пути внутри возвращаемой структуры. Это не запись байт-кода Blueprint вручную, а работа с его механизмом вызова через C++-мост.</p>
+<h2><span id="funkcii-i-makrosy-dlya-uproshcheniya-vyzovov">Функции и макросы для упрощения вызовов</span><a href="#funkcii-i-makrosy-dlya-uproshcheniya-vyzovov" class="header-anchor">#</a></h2><p>Работа со стековой виртуальной машиной на такой уровне — это слишком сложно, поэтому вызовы можно обернуть</p>
+<p>Тот же вызов с типизированной ссылкой на актора:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">options</span><span style="color: #E6E6E6"> gen2</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> ue_native_gameplay</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">export</span><span style="color: #E6E6E6">]</span></span>
+<span class="line"><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">main</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">input</span><span style="color: #E6E6E6">:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">):</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> actor </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ue_ref(</span><span style="color: #C586C0">type</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">ActorRef</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">, ue_self_object())</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> location </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> actor</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">K2_GetActorLocation()</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> int(location</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">x)</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>Теперь сигнатура известна при компиляции: не нужно вручную создавать frame, выбирать тип результата и освобождать память. Обёртка делает это сама. Вызов может идти через reflection либо через нативную привязку, если для него зарегистрирована такая замена — пользовательский синтаксис одинаковый.</p>
+<h2><span id="dsl">DSL</span><a href="#dsl" class="header-anchor">#</a></h2><p>Так как в daslang есть макросы, можно повторить парсер C++ (и сделать его удобнее!), для того, чтобы размечать атрибутами и мета-информацией код, который внешне выглядит как daslang-код</p>
+<p>Например, актор-счётчик с редактируемым полем, Blueprint-функцией и событием:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">options</span><span style="color: #E6E6E6"> gen2</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> ue_native_gameplay</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">ue_multicast</span><span style="color: #E6E6E6">]</span></span>
+<span class="line"><span style="color: #C586C0">struct</span><span style="color: #E6E6E6"> FScoreChanged {</span></span>
+<span class="line"><span style="color: #E6E6E6">    signature:</span><span style="color: #4EC9B0">function</span><span style="color: #D4D4D4">&lt;</span><span style="color: #E6E6E6">(Score:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">):</span><span style="color: #4EC9B0">void</span><span style="color: #D4D4D4">&gt;</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">ue_class</span><span style="color: #E6E6E6">(Blueprintable)]</span></span>
+<span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">Counter</span><span style="color: #E6E6E6"> : </span><span style="color: #4EC9B0">Actor</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    properties </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ue_properties(EditAnywhere, BlueprintReadWrite, </span><span style="color: #9CDCFE">Category</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">"Score"</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #6A9955">// Текущее количество очков. Комментарий станет tooltip в редакторе.</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> Score:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #6A9955">//можно объявлять более одного свойства, у группы свойств будет одинаковая мета-информация</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">    events </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ue_properties(BlueprintAssignable, </span><span style="color: #9CDCFE">Category</span><span style="color: #D4D4D4">=</span><span style="color: #CE9178">"Score"</span><span style="color: #E6E6E6">) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> OnScoreChanged:FScoreChanged</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">BeginPlay</span><span style="color: #E6E6E6">():</span><span style="color: #4EC9B0">void</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">        self</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">OnScoreChanged</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">AddUFunction(ue_self_object(), self</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">PrintScore)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    [</span><span style="color: #569CD6">ue_function</span><span style="color: #E6E6E6">(BlueprintCallable)]</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">AddScore</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">amount</span><span style="color: #E6E6E6">:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">):</span><span style="color: #4EC9B0">void</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">        self</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">Score </span><span style="color: #D4D4D4">+=</span><span style="color: #E6E6E6"> amount</span></span>
+<span class="line"><span style="color: #E6E6E6">        self</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">OnScoreChanged</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">Broadcast(self</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">Score)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    [</span><span style="color: #569CD6">ue_function</span><span style="color: #E6E6E6">(BlueprintCallable)]</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">PrintScore</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">score</span><span style="color: #E6E6E6">:</span><span style="color: #4EC9B0">int</span><span style="color: #E6E6E6">):</span><span style="color: #4EC9B0">void</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #DCDCAA">print</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"Score: {</span><span style="color: #9CDCFE">score</span><span style="color: #CE9178">}</span><span style="color: #D7BA7D">\n</span><span style="color: #CE9178">"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p><code>Score</code> становится настоящим <code>UPROPERTY</code>, <code>AddScore</code> — <code>UFunction</code>, а <code>OnScoreChanged</code> — Event Dispatcher, к которому можно подключиться и из Blueprint. <code>BeginPlay</code> распознаётся как lifecycle-метод без дополнительной аннотации. Группа <code>ue_properties</code> задаёт общие флаги сразу нескольким полям; комментарии к отдельным полям превращаются в подсказки. Декларации собираются макросами в описание класса, из которого редактор создаёт Blueprint-ассет.</p>
+<p>Похожие примеры в репозитории: <a target="_blank" rel="noopener" href="https://github.com/spiiin/DasForUE/blob/main/Plugins/DasForUE/Content/Das/Scripts/dsl_delegate_actor.das">актор с событиями</a> и <a target="_blank" rel="noopener" href="https://github.com/spiiin/DasForUE/blob/main/Plugins/DasForUE/Content/Das/Scripts/dsl_playable_character.das">управляемый Character с камерой и Enhanced Input</a>.</p>
+<h2><span id="nativnye-vyzovy">Нативные вызовы</span><a href="#nativnye-vyzovy" class="header-anchor">#</a></h2><p>Следующий шаг — привязка нативных функций unreal, чтобы вызывать их напрямую, а не через отражение (это раз в 10 быстрее). Примерный объём того, что привязывается нативно для быстрых вызовов я подсмотрел в <a target="_blank" rel="noopener" href="https://github.com/Hazelight/UnrealEngine-Angelscript/tree/angelscript-master/Engine/Plugins/Angelscript/Source/AngelscriptCode">AngelScript</a>.</p>
+<p>В этом примере жизненный цикл описан через DSL, а координаты читаются и меняются прямыми нативными вызовами:</p>
+<figure class="shiki dascript"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #C586C0">options</span><span style="color: #E6E6E6"> gen2</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> ue_native_gameplay</span></span>
+<span class="line"><span style="color: #C586C0">require</span><span style="color: #E6E6E6"> ue_engine</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">[</span><span style="color: #569CD6">ue_class</span><span style="color: #E6E6E6">(Blueprintable)]</span></span>
+<span class="line"><span style="color: #569CD6">class</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">MovingActor</span><span style="color: #E6E6E6"> : </span><span style="color: #4EC9B0">Actor</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">    properties </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> ue_properties(EditAnywhere, BlueprintReadWrite) {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #6A9955">// Скорость движения вдоль X, в сантиметрах в секунду.</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> Speed:</span><span style="color: #4EC9B0">double</span><span style="color: #E6E6E6"> </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> </span><span style="color: #B5CEA8">100.0l</span><span style="color: #E6E6E6">f</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #569CD6">def</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">Tick</span><span style="color: #E6E6E6">(</span><span style="color: #9CDCFE">delta</span><span style="color: #E6E6E6">:</span><span style="color: #4EC9B0">float</span><span style="color: #E6E6E6">):</span><span style="color: #4EC9B0">void</span><span style="color: #E6E6E6"> {</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">let</span><span style="color: #E6E6E6"> actor </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> as_AActor(ue_self_object())</span></span>
+<span class="line"><span style="color: #E6E6E6">        </span><span style="color: #C586C0">var</span><span style="color: #E6E6E6"> location </span><span style="color: #D4D4D4">=</span><span style="color: #E6E6E6"> actor</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">get_actor_location()</span></span>
+<span class="line"><span style="color: #E6E6E6">        location</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">x </span><span style="color: #D4D4D4">+=</span><span style="color: #E6E6E6"> self</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">Speed </span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> double(delta)</span></span>
+<span class="line"><span style="color: #E6E6E6">        actor</span><span style="color: #D4D4D4">.</span><span style="color: #E6E6E6">set_actor_location(location)</span></span>
+<span class="line"><span style="color: #E6E6E6">    }</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p><code>get_actor_location</code> и <code>set_actor_location</code> здесь — функции модуля <code>ue_engine</code>: они вызывают C++ напрямую, без <code>ProcessEvent</code> и reflection-frame. При этом ссылка проверяется на валидность. Для части методов поддержана и автоматическая маршрутизация: например, привычный <code>self.K2_GetActorLocation()</code> может быть заменён нативной привязкой с тем же результатом. Наличие слова <code>native</code> в названии <code>ue_native_gameplay</code> само по себе не означает прямой вызов: этот модуль также предоставляет доступ к отражённым методам нативных классов.</p>
+<p>Регистрация собственного C++ API выглядит так (фрагмент внутри C++-модуля проекта):</p>
+<figure class="shiki cpp"><div class="codeblock"><div class="code"><pre class="shiki slack-dark"><code><span class="line"><span style="color: #569CD6">static</span><span style="color: #E6E6E6"> </span><span style="color: #4EC9B0">int32</span><span style="color: #E6E6E6"> </span><span style="color: #DCDCAA">DamageFor</span><span style="color: #E6E6E6">(</span><span style="color: #4EC9B0">int32</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">Base</span><span style="color: #E6E6E6">, </span><span style="color: #569CD6">float</span><span style="color: #E6E6E6"> </span><span style="color: #9CDCFE">Multiplier</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">{</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #C586C0">return</span><span style="color: #E6E6E6"> FMath::</span><span style="color: #DCDCAA">RoundToInt</span><span style="color: #E6E6E6">(Base </span><span style="color: #D4D4D4">*</span><span style="color: #E6E6E6"> Multiplier);</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #DCDCAA">DAS_NATIVE_BINDS</span><span style="color: #E6E6E6">(ExampleGame, </span><span style="color: #CE9178">"example_game"</span><span style="color: #E6E6E6">)</span></span>
+<span class="line"><span style="color: #E6E6E6">{</span></span>
+<span class="line"><span style="color: #E6E6E6">    </span><span style="color: #9CDCFE">Binds</span><span style="color: #E6E6E6">.</span><span style="color: #9CDCFE">Function</span><span style="color: #D4D4D4">&lt;&amp;</span><span style="color: #E6E6E6">DamageFor</span><span style="color: #D4D4D4">&gt;</span><span style="color: #E6E6E6">(</span><span style="color: #DCDCAA">TEXT</span><span style="color: #E6E6E6">(</span><span style="color: #CE9178">"damage_for"</span><span style="color: #E6E6E6">), EDasBind::Pure);</span></span>
+<span class="line"><span style="color: #E6E6E6">}</span></span></code></pre></div></div></figure>
+<p>После <code>require example_game</code> скрипт может вызвать <code>damage_for(10, 1.5)</code> и получить <code>15</code>. Для такой функции не нужны ни <code>UFUNCTION</code>, ни Blueprint-граф. Больше примеров — в <a target="_blank" rel="noopener" href="https://github.com/spiiin/DasForUE/blob/main/Docs/Guide/Native/NativeBinds.md">документации по нативным привязкам</a>.</p>
+<h2><span id="live-reloading">Live-reloading</span><a href="#live-reloading" class="header-anchor">#</a></h2><p>Достаточно много работы заняла связка с системой перезагрузки Unreal. Кроме простого отслеживания изменений в файлах в редакторе нужно было добиться, чтобы изменения в скриптах отражались как в редакторе — послать сообщение об обновлении самому редактору и прописать логику обновления — например, редактор позволяет обойти ноды блюпринтов и отобразить на них изменения, проверить связи и обновить их (например, часто можно автоматически обновить связи у совместимых типов). Некоторые изменения можно сделать и при запущенной в PIE-режиме игре без остановки (если они касаются кода с рефлексией).</p>
+<style>.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .embed-container iframe, .embed-container object, .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/7lqbYKtIZ3c" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+<h2><span id="infrastruktura-daslang">Инфраструктура daslang</span><a href="#infrastruktura-daslang" class="header-anchor">#</a></h2><p>С редактором можно совместить и фичи dascript - AoT-компиляцию в нативный код (пока только нативных вызовов, вызовы через рефлексию не нативизируются), оптимизацию времени компиляции (сохранение AST) и другое, отображение ошибок компиляции в UE. Скорее всего работает и отладчик, но его не проверял.</p>
+<h2><span id="optimizaciya">Оптимизация</span><a href="#optimizaciya" class="header-anchor">#</a></h2><p>Тоже достаточно объёмная часть работы — добиться приемлимо быстрых вызовов через рефлексию, после шаманств с ускорениями получилось разогнать раз в 500 относительно наивной реализации (выбросил весь треш, и немного закешировал проверки).</p>
+<h2><span id="razdelenie-igrovyh-skriptov-redaktorskih-testym">Разделение игровых скриптов/редакторских/тестым</span><a href="#razdelenie-igrovyh-skriptov-redaktorskih-testym" class="header-anchor">#</a></h2><p>Сделано только базово. Ещё нужно получше побить не модули.</p>
+<h2><span id="testy">Тесты</span><a href="#testy" class="header-anchor">#</a></h2><p>Привязка и пример обложены тестами, чтобы оставаться устойчивыми к регрессиям.</p>
+<h2><span id="itog">Итог</span><a href="#itog" class="header-anchor">#</a></h2><p>Совсем маленькие примерчики работают, примерчики побольше, как на видео, тоже. Можно переходить к совсем большим примерам, чтобы дотюнить привязку.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"Ov23liG1mZbiQOIdi91X","clientSecret":"e05812685eb741a752982b89dcf6f5b58dc10251","repo":"spiiin.github.io","owner":"spiiin","admin":["spiiin"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/3321830667/">Раньше</a></div></main><footer class="footer metadata"><p class="footer__text">© 2026 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div><!-- hexo injector body_end start -->
+  <script>
+  const CODE_CONFIG = {
+    beautify: undefined,
+    highlightCopy: undefined,
+    highlightLang: undefined,
+    highlightHeightLimit: undefined,
+    isHighlightShrink: undefined,
+    copy: {
+      success: 'undefined',
+      error: 'undefined',
+      noSupport: 'undefined',
+    }
+  };
+  console.log(
+    `%c hexo-shiki-plugin %c v1.0.27 %c https://github.com/nova1751/hexo-shiki-plugin`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #80c8f8",
+    ""
+  );
+  </script>
+  <!-- hexo injector body_end end --></body></html>
